@@ -1,6 +1,5 @@
-print("hello")
+import streamlit as st
+import pandas as pd
+import numpy as np
 
-print("change in dev --> upload in prod")
-
-
-print("1337")
+st.title('Uber pickups in NYC')
