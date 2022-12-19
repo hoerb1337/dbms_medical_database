@@ -7,22 +7,4 @@ st.title('Uber pickups in NYC')
 
 st.title('headline2')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 st.title('headline3')
