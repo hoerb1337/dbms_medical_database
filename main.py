@@ -29,7 +29,8 @@ def run_query(query):
 rows = run_query("SELECT * from public.user;")
 
 # Print results.
-for row in rows:
-    st.write(f"User has a :{row[0]}:")
+st.write(rows)
+#for row in rows:
+#    st.write(f"User has a :{row[0]}:")
 
 
