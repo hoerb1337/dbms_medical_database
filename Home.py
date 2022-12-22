@@ -13,7 +13,7 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 st.header("Custom tab component for on-hover navigation bar")
-st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_html=True)
+#st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_html=True)
 
 with st.sidebar:
     tabs = on_hover_tabs(tabName=['Dashboard', 'Money', 'Economy'], 
