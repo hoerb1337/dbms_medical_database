@@ -12,7 +12,7 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 
 st.markdown("# Plotting Demo")
-st.sidebar.header("Plotting Demo")
+
 
 ### content ###
 st.write(

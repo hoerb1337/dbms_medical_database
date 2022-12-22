@@ -11,7 +11,6 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-st.sidebar.success("Select a demo above.")
 
 st.write("# Welcome to Medical Database! 👋")
 
