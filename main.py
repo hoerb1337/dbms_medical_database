@@ -11,14 +11,15 @@ hide_menu_style = """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 
-tab1, tab2 = st.tabs(["Chart", "Data"])
+tab1, tab2 = st.tabs(["Search", "Reporting"])
 
+with st.container():
+    tab1.subheader("A tab with a chart")
+    tab1.write("tab1")
 
-tab1.subheader("A tab with a chart")
-tab1.write("tab1")
-
-tab2.subheader("A tab with the data")
-tab2.write("tab2")
+with st.container():
+    tab2.subheader("A tab with the data")
+    tab2.write("tab2")
 
 
 # Initialize connection.
