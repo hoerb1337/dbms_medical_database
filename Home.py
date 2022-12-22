@@ -1,8 +1,9 @@
 import streamlit as st
 import psycopg2
+from st_on_hover_tabs import on_hover_tabs
 
 ### Layout ###
-st.set_page_config(page_title="Home")
+st.set_page_config(layout="wide")
 
 hide_menu_style = """
         <style>
@@ -11,30 +12,50 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
+st.header("Custom tab component for on-hover navigation bar")
+st.markdown('<style>' + open('./style.css').read() + '</style>', unsafe_allow_html=True)
 
-st.write("# Welcome to Medical Database! 👋")
+with st.sidebar:
+    tabs = on_hover_tabs(tabName=['Dashboard', 'Money', 'Economy'], 
+                         iconName=['dashboard', 'money', 'economy'], default_choice=0)
 
-### database ###
+if tabs =='Dashboard':
+    st.title("Navigation Bar")
+    st.write('Name of option is {}'.format(tabs))
 
-# Initialize connection.
-# Uses st.experimental_singleton to only run once.
-@st.experimental_singleton
-def init_connection():
-    return psycopg2.connect(**st.secrets["postgres"])
+elif tabs == 'Money':
+    st.title("Paper")
+    st.write('Name of option is {}'.format(tabs))
 
-conn = init_connection()
+    ### database ###
 
-# Perform query.
-# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-@st.experimental_memo(ttl=600)
-def run_query(query):
-    with conn.cursor() as cur:
-        cur.execute(query)
-        return cur.fetchall()
+    # Initialize connection.
+    # Uses st.experimental_singleton to only run once.
+    @st.experimental_singleton
+    def init_connection():
+        return psycopg2.connect(**st.secrets["postgres"])
 
-rows = run_query("SELECT * from public.user;")
+    conn = init_connection()
 
-# Print results.
+    # Perform query.
+    # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
+    @st.experimental_memo(ttl=600)
+    def run_query(query):
+        with conn.cursor() as cur:
+            cur.execute(query)
+            return cur.fetchall()
 
-for row in rows:
-    st.write(row)
+    rows = run_query("SELECT * from public.user;")
+
+    # Print results.
+
+    for row in rows:
+        st.write(row)
+
+elif tabs == 'Economy':
+    st.title("Tom")
+    st.write('Name of option is {}'.format(tabs))
+
+
+
+
