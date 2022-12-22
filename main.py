@@ -2,14 +2,14 @@ import streamlit as st
 import psycopg2
 
 ### Layout ###
+st.set_page_config(page_title="medical database")
+
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
         </style>
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
-
-st.set_page_config(page_title="medical database")
 
 st.sidebar.success("Select a demo above.")
 
