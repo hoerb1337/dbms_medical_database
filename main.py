@@ -1,6 +1,8 @@
 import streamlit as st
 import psycopg2
 
+st.title('medical database')
+
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
@@ -8,7 +10,6 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-st.title('medical database')
 
 tab1, tab2 = st.tabs(["Chart", "Data"])
 data = np.random.randn(10, 1)
