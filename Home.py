@@ -1,11 +1,8 @@
 import streamlit as st
 import psycopg2
 
-### database ###
-
-
 ### Layout ###
-st.set_page_config(page_title="Home")
+st.title("Medical Database")
 
 hide_menu_style = """
         <style>
@@ -17,7 +14,9 @@ st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 st.write("# Welcome to Medical Database! 👋")
 
-tab1, tab2, tab3 = st.tabs(["Cat", "Dog", "Owl"])
+tab1, tab2, tab3 = st.tabs(["Home", "Side effects", "Analysis"])
+
+### End of Layout ###
 
 with tab1:
     st.header("A cat")
