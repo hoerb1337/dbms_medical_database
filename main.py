@@ -8,6 +8,8 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
+st.title('medical database')
+
 tab1, tab2 = st.tabs(["Chart", "Data"])
 data = np.random.randn(10, 1)
 
@@ -17,7 +19,6 @@ tab1.line_chart(data)
 tab2.subheader("A tab with the data")
 tab2.write(data)
 
-st.title('medical database')
 
 # Initialize connection.
 # Uses st.experimental_singleton to only run once.
