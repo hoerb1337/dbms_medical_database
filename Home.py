@@ -1,6 +1,7 @@
+from st_on_hover_tabs import on_hover_tabs
 import streamlit as st
 import psycopg2
-from st_on_hover_tabs import on_hover_tabs
+
 
 ### Layout ###
 st.set_page_config(layout="wide")
