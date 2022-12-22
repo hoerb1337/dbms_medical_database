@@ -8,13 +8,14 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
-with st.sidebar:
-    with st.echo():
-        st.write("This code will be printed to the sidebar.")
+tab1, tab2 = st.tabs(["Chart", "Data"])
+data = np.random.randn(10, 1)
 
-    with st.spinner("Loading..."):
-        time.sleep(5)
-    st.success("Done!")
+tab1.subheader("A tab with a chart")
+tab1.line_chart(data)
+
+tab2.subheader("A tab with the data")
+tab2.write(data)
 
 st.title('medical database')
 
