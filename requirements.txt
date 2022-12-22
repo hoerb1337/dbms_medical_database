@@ -1,2 +1,2 @@
 psycopg2-binary==2.9.5
-streamlit-on-Hover-tabs
+streamlit-on-Hover-tabs== "*"
