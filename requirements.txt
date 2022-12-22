@@ -1,2 +1,2 @@
 psycopg2-binary==2.9.5
-st_on_hover_tabs
+on_hover_tabs
