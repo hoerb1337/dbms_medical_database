@@ -1,8 +1,7 @@
 import streamlit as st
 import psycopg2
 
-st.title('medical database')
-
+### Layout ###
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
@@ -10,36 +9,31 @@ hide_menu_style = """
         """
 st.markdown(hide_menu_style, unsafe_allow_html=True)
 
+st.set_page_config(page_title="medical database")
 
-tab1, tab2 = st.tabs(["Search", "Reporting"])
+st.sidebar.success("Select a demo above.")
 
-with st.container():
-    tab1.subheader("A tab with a chart")
-    tab1.write("tab1")
-    # Initialize connection.
-    # Uses st.experimental_singleton to only run once.
-    @st.experimental_singleton
-    def init_connection():
-        return psycopg2.connect(**st.secrets["postgres"])
+### database ###
 
-    conn = init_connection()
+# Initialize connection.
+# Uses st.experimental_singleton to only run once.
+@st.experimental_singleton
+def init_connection():
+    return psycopg2.connect(**st.secrets["postgres"])
 
-    # Perform query.
-    # Uses st.experimental_memo to only rerun when the query changes or after 10 min.
-    @st.experimental_memo(ttl=600)
-    def run_query(query):
-        with conn.cursor() as cur:
-            cur.execute(query)
-            return cur.fetchall()
+conn = init_connection()
 
-    rows = run_query("SELECT * from public.user;")
+# Perform query.
+# Uses st.experimental_memo to only rerun when the query changes or after 10 min.
+@st.experimental_memo(ttl=600)
+def run_query(query):
+    with conn.cursor() as cur:
+        cur.execute(query)
+        return cur.fetchall()
 
-    # Print results.
+rows = run_query("SELECT * from public.user;")
 
-    for row in rows:
-        st.write(row)
+# Print results.
 
-
-with st.container():
-    tab2.subheader("A tab with the data")
-    tab2.write("tab2")
+for row in rows:
+    st.write(row)
