@@ -2,7 +2,7 @@ import streamlit as st
 import psycopg2
 
 ### Layout ###
-st.set_page_config(page_title="medical database")
+st.set_page_config(page_title="Home")
 
 hide_menu_style = """
         <style>
