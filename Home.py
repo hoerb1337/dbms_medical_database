@@ -1,6 +1,6 @@
 import streamlit as st
 import psycopg2
-import tab1 as tab1i
+
 
 ### Layout ###
 st.title("Medical Database")
@@ -25,8 +25,9 @@ with tab1:
     st.header("Side Effects of Medicines")
     st.image("https://static.streamlit.io/examples/cat.jpg", width=200)
 
+    import tab1 as tab1i
     ### database ###
-    tab1i
+    
     # Initialize connection.
     # Uses st.experimental_singleton to only run once.
     
