@@ -14,7 +14,7 @@ class render_tab1:
         db_cur = db_connection.cursor()
         db_cur.execute("select commercial_name from dbms.medicines;")
         for record in db_cur:
-            st.write(record)
+            st.write(f"{record[0]}")
         
         medicine_selection = st.multiselect('Select up to two medicines:',
                                 [
