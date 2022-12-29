@@ -46,7 +46,7 @@ class render_tab1:
             # Call Backendservice
             callSideEffectsBackend = sideEffectsService.data4SideEffects()
             listSideEffects_med1, listSideEffects_med2 = callSideEffectsBackend.get_listSideEffects(selected_meds[0], selected_meds[0])
-            d = {'Side Effects Medicine 1': listSideEffects_med1, 'Side Effects Medicine 1': listSideEffects_med2}
+            d = {'Side Effects Medicine 1': listSideEffects_med1, 'Side Effects Medicine 2': listSideEffects_med2}
             df = pd.DataFrame(data=d)
             st.dataframe(df)
 
