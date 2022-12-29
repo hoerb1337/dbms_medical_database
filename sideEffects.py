@@ -23,20 +23,21 @@ class render_tab1:
         # Check number of meds
         check_nr_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
-        if check_nr_meds == 200:
+        while check_nr_meds != 200:
             #st.write('You selected:', medicine_selection)
-            combo = "False"
-            if st.checkbox('I want side effects of combination'):
-                combo = "True"
+            if check_nr_meds == 200:
+                combo = "False"
+                if st.checkbox('I want side effects of combination'):
+                    combo = "True"
 
-            return medicine_selection, combo
+                return medicine_selection, combo
             
-        elif check_nr_meds == 422:
-            #st.warning("Please choose at least one medicine.")
-            return st.warning("Please choose at least one medicine.")
-        elif check_nr_meds == 401:
-            #st.error("You chose more than two medicines. Please select only two medicines.")
-            return st.error("You chose more than two medicines. Please select only two medicines.")
+            elif check_nr_meds == 422:
+                st.warning("Please choose at least one medicine.")
+                 
+            elif check_nr_meds == 401:
+                st.error("You chose more than two medicines. Please select only two medicines.")
+               
         
     def display_sideEffects(self, selected_meds, combo):
         # No combination of meds
