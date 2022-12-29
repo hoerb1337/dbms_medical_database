@@ -2,25 +2,28 @@ import streamlit as st
 import psycopg2
 
 # Backend service
-#import sideEffectsService
-import database
+import sideEffectsService
+
 
 class render_tab1:
     def __init__(self):
-        st.write("Browse for side effects of selected medicines")
+        st.info("Browse and report for side effects of selected medicines")
         
-        db = database.db_connection()
-        db_connection = db.connect_postgres()
-        db_cur = db_connection.cursor()
-        db_cur.execute("select commercial_name from dbms.medicines;")
-        nlist = []
-        for record in db_cur:
-            #nitem = st.write(f"{record[0]}")
-            nlist.append(f"{record[0]}") 
+        # Call Backendservice
+        callSideEffectsBackend = sideEffectsService.data4SideEffects()
+        getListMedicines = callSideEffectsBackend.list_medicines()
+        
+        #db = database.db_connection()
+        #db_connection = db.connect_postgres()
+        #db_cur = db_connection.cursor()
+        #db_cur.execute("select commercial_name from dbms.medicines;")
+        #nlist = []
+        #for record in db_cur:
+            #nlist.append(f"{record[0]}") 
         
         medicine_selection = st.multiselect('Select up to two medicines:',
-                                nlist
-                                )
+                                            getListMedicines
+                                            )
 
         st.write('You selected:', medicine_selection)
         
