@@ -13,13 +13,13 @@ class render_tab1:
         db_connection = db.connect_postgres()
         db_cur = db_connection.cursor()
         db_cur.execute("select commercial_name from dbms.medicines;")
+        nlist = []
         for record in db_cur:
-            st.write(f"{record[0]}")
+            nitem = st.write(f"{record[0]}")
+            nlist.append(nitem) 
         
         medicine_selection = st.multiselect('Select up to two medicines:',
-                                [
-                                    'Green', 'Yellow', 'Red', 'Blue'
-                                    ]
+                                nlist
                                 )
 
         st.write('You selected:', medicine_selection)
