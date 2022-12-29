@@ -27,7 +27,7 @@ class render_tab1:
             st.button(label="Lookup side effects")
         elif check_nr_meds == 422:
             st.warning("Please choose at least one medicine.")
-        else:
+        elif check_nr_meds == 401:
             st.error("You chose more than two medicines. Please select only two medicines.")
         
         # 
