@@ -16,7 +16,7 @@ class render_tab1:
 
         st.write('You selected:', options)
         
-        col1, col2 = st.columns(2, gap="small")
+        col1, col2 = st.columns([1,2], gap="small")
         with col1:
             agree = st.checkbox('I want side effects of combination')
 
