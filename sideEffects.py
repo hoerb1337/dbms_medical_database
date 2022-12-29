@@ -33,10 +33,12 @@ class render_tab1:
             
         elif check_nr_meds == 422:
             st.warning("Please choose at least one medicine.")
-            return check_nr_meds
+            combo = None
+            return medicine_selection, combo
         elif check_nr_meds == 401:
             st.error("You chose more than two medicines. Please select only two medicines.")
-            return check_nr_meds
+            combo = None
+            return medicine_selection, combo
         
     def display_sideEffects(self, selected_meds, combo):
         # No combination of meds
