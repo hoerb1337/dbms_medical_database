@@ -24,11 +24,9 @@ class render_tab1:
         if check_nr_meds == 200:
             st.write('You selected:', medicine_selection)
             agree = st.checkbox('I want side effects of combination')
-
-            if agree:
-                st.write('Great!')
-        
             st.button(label="Lookup side effects")
+        elif check_nr_meds == 422:
+            st.warning("Please choose at least one medicine.")
         else:
             st.error("You chose more than two medicines. Please select only two medicines.")
         

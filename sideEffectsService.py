@@ -26,7 +26,7 @@ class data4SideEffects:
         if len(selected_medicines) > 2:
             nr_meds = 401
         elif len(selected_medicines) == 0:
-            nr_meds = 401
+            nr_meds = 422
         else:
             nr_meds = 200
         
