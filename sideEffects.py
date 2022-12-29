@@ -19,6 +19,7 @@ class render_tab1:
                                             getListMedicines
                                             )
         # Check number of meds
+        st.write(medicine_selection)
         check_nr_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
         if check_nr_meds == 200:
