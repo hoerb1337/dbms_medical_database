@@ -43,7 +43,7 @@ class render_tab1:
         if combo == False:
             # Call Backendservice
             callSideEffectsBackend = sideEffectsService.data4SideEffects()
-            listSideEffects_med1, listSideEffects_med2 = callSideEffectsBackend.get_listSideEffects(selected_meds[0], selected_meds[1])
+            listSideEffects_med1, listSideEffects_med2 = callSideEffectsBackend.get_listSideEffects(selected_meds[0], selected_meds[0])
             d = {'col1': listSideEffects_med1, 'col2': listSideEffects_med2}
             df = pd.DataFrame(data=d)
             st.dataframe(df)
