@@ -21,7 +21,7 @@ class Layout:
         st.markdown(hide_menu_style, unsafe_allow_html=True)
         
         # Webapp title
-        st.header("Medical Database")
+        st.title("Medical Database")
         
         # Navigation bar
         tab1, tab2, tab3 = st.tabs(["Medicine Side Effects", 
