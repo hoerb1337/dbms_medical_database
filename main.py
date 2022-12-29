@@ -37,8 +37,9 @@ class Layout:
             selected_meds, combo = tab1_rendered.selection()
             
             # Start search for side effects
-            if st.button(label="Lookup side effects"):
-                tab1_rendered.display_sideEffects(selected_meds, combo)
+            if combo != None:
+                if st.button(label="Lookup side effects"):
+                    tab1_rendered.display_sideEffects(selected_meds, combo)
         #
 
         # Tab2: analysis
