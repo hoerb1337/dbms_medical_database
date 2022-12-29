@@ -7,7 +7,7 @@ import sideEffectsService
 
 class render_tab1:
     def __init__(self):
-        st.info("Browse and report for side effects of selected medicines")
+        st.write("Browse and report for side effects of selected medicines")
         
         # Call Backendservice
         callSideEffectsBackend = sideEffectsService.data4SideEffects()
@@ -18,19 +18,22 @@ class render_tab1:
         medicine_selection = st.multiselect('Select up to two medicines:',
                                             getListMedicines
                                             )
+        # Check number of meds
         check_nr_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
         if check_nr_meds == 200:
             st.write('You selected:', medicine_selection)
+            agree = st.checkbox('I want side effects of combination')
+
+            if agree:
+                st.write('Great!')
+        
+            st.button(label="Lookup side effects")
         else:
             st.error("You chose more than two medicines. Please select only two medicines.")
         
-        agree = st.checkbox('I want side effects of combination')
-
-        if agree:
-            st.write('Great!')
+        # 
         
-        st.button(label="Lookup side effects")
 
         #self.name = name
         #self.age = age
