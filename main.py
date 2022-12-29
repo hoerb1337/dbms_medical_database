@@ -9,7 +9,7 @@ import sideEffects
 #
 
 class Layout:
-    @st.experimental_memo(ttl=600)
+    
     def __init__(self):
         
         # Hide burger menu
