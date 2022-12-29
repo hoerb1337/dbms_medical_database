@@ -15,13 +15,16 @@ class render_tab1:
                                 )
 
         st.write('You selected:', options)
-
-        agree = st.checkbox('I want side effects of combination')
-
-        if agree:
-            st.write('Great!')
         
-        st.button(label="Lookup side effects")
+        col1, col2 = st.columns(2)
+        with col1:
+            agree = st.checkbox('I want side effects of combination')
+
+            if agree:
+                st.write('Great!')
+        
+        with col2:
+            st.button(label="Lookup side effects")
 
         #self.name = name
         #self.age = age
