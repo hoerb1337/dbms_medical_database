@@ -25,9 +25,9 @@ class render_tab1:
 
         if check_nr_meds == 200:
             #st.write('You selected:', medicine_selection)
-            combo = False
+            combo = "False"
             if st.checkbox('I want side effects of combination'):
-                combo = True
+                combo = "True"
 
             return medicine_selection, combo
             
@@ -38,7 +38,7 @@ class render_tab1:
         
     def display_sideEffects(self, selected_meds, combo):
         # No combination of meds
-        if combo == False:
+        if combo == "False":
             # Call Backendservice
             callSideEffectsBackend = sideEffectsService.data4SideEffects()
             listSideEffects_med1, listSideEffects_med2 = callSideEffectsBackend.get_listSideEffects(selected_meds[0], selected_meds[0])
@@ -46,7 +46,7 @@ class render_tab1:
             df = pd.DataFrame(data=d)
             st.dataframe(df)
 
-        elif combo == True:
+        elif combo == "True":
             pass
 
 if __name__ == "__main__":
