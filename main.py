@@ -31,7 +31,14 @@ class Layout:
 
         # Tab1: sideEffects
         with tab1:
-            self.tab1_rendered = sideEffects.render_tab1()
+            tab1_rendered = sideEffects.render_tab1()
+            
+            # Return list of selected medicines
+            selected_meds, combo = tab1_rendered.selection()
+            
+            # Start search for side effects
+            st.button(label="Lookup side effects", on_click=tab1_rendered.display_sideEffects(),
+                      args=(selected_meds, combo))
         #
 
         # Tab2: analysis
