@@ -28,9 +28,7 @@ class render_tab1:
             combo = False
             if st.checkbox('I want side effects of combination'):
                 combo = True
-            
-            st.write(combo)
-            
+
             return medicine_selection, combo
             
         elif check_nr_meds == 422:
