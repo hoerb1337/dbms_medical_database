@@ -25,6 +25,8 @@ class data4SideEffects:
     def max_nr_medicines(self, selected_medicines):
         if len(selected_medicines) > 2:
             nr_meds = 401
+        elif len(selected_medicines) == 0:
+            nr_meds = 401
         else:
             nr_meds = 200
         
