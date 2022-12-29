@@ -18,8 +18,8 @@ class render_tab1:
         medicine_selection = st.multiselect('Select up to two medicines:',
                                             getListMedicines
                                             )
-        check_nr_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
-        st.write(check_nr_meds)
+        #check_nr_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
+        st.write(type(medicine_selection))
         st.write('You selected:', medicine_selection)
         
         agree = st.checkbox('I want side effects of combination')
