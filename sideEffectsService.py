@@ -23,5 +23,9 @@ class data4SideEffects:
         return list_medicines
         
     def max_nr_medicines(self, selected_medicines):
-        list_selected_medicines = list(selected_medicines.items())
-        return list_selected_medicines
+        if len(selected_medicines) > 2:
+            nr_meds = 401
+        else:
+            nr_meds = 200
+        
+        return nr_meds
