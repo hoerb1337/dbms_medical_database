@@ -7,7 +7,7 @@ import database
 class data4SideEffects:
     def __init__(self):
         pass
-         
+
     def list_medicines(self):
         # Open connection
         db = database.db_connection()
@@ -22,8 +22,6 @@ class data4SideEffects:
 
         return list_medicines
         
-    #def 
-    #db_cur.execute("select commercial_name from dbms.medicines;")
-        #nlist = []
-        #for record in db_cur:
-            #nlist.append(f"{record[0]}") 
+    def max_nr_medicines(self, selected_medicines):
+        list_selected_medicines = list(selected_medicines.items())
+        return list_selected_medicines
