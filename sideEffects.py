@@ -7,7 +7,7 @@ import streamlit as st
 
 class render_tab1:
     def __init__(self):
-        st.subheader("Browse for side effects of selected medicines")
+        st.caption("Browse for side effects of selected medicines")
 
         options = st.multiselect('Select up to two medicines:',
                                 ['Green', 'Yellow', 'Red', 'Blue'],
