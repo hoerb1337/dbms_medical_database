@@ -7,7 +7,7 @@ import streamlit as st
 
 class render_tab1:
     def __init__(self):
-        st.write("Browse for side effects of selected medicines")
+        st.info("Browse for side effects of selected medicines")
 
         options = st.multiselect('Select up to two medicines:',
                                 ['Green', 'Yellow', 'Red', 'Blue'],
@@ -16,15 +16,12 @@ class render_tab1:
 
         st.write('You selected:', options)
         
-        col1, col2 = st.columns([1,2], gap="small")
-        with col1:
-            agree = st.checkbox('I want side effects of combination')
+        agree = st.checkbox('I want side effects of combination')
 
-            if agree:
-                st.write('Great!')
+        if agree:
+            st.write('Great!')
         
-        with col2:
-            st.button(label="Lookup side effects")
+        st.button(label="Lookup side effects")
 
         #self.name = name
         #self.age = age
