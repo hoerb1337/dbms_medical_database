@@ -7,7 +7,7 @@ import sideEffectsService
 
 class render_tab1:
     def __init__(self):
-        st.write("Browse and report for side effects of selected medicines")
+        st.subheader("Browse and report for side effects of selected medicines")
         
     def selection(self):
         # Call Backendservice
@@ -53,12 +53,9 @@ class render_tab1:
                 # Create dataframes
                 df1 = callSideEffectsBackend.create_DataFrame(selected_meds[0], listSideEffects_med1)
                 df2 = callSideEffectsBackend.create_DataFrame(selected_meds[1], listSideEffects_med2)
-                #d1 = {'Side effects from ' + selected_meds[0]: listSideEffects_med1}
-                #d2 = {'Side effects from ' + selected_meds[1]: listSideEffects_med2}
-                #df1 = pd.DataFrame(data=d1)
-                #df2 = pd.DataFrame(data=d2)
+
                 concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
-                st.dataframe(concat_dfs, use_container_width=True)
+                return st.dataframe(concat_dfs, use_container_width=True)
             
             # 1 chosen med
             elif nr_selected_meds == 1:
@@ -66,9 +63,7 @@ class render_tab1:
                 
                 # Create dataframe
                 df1 = callSideEffectsBackend.create_DataFrame(selected_meds[0], listSideEffects_med1)
-                #d1 = {'Side effects from ' + selected_meds[0]: listSideEffects_med1}
-                #df1 = pd.DataFrame(data=d1)
-                st.dataframe(df1, use_container_width=True)
+                return st.dataframe(df1, use_container_width=True)
         
         # Combination of meds
         elif combo == "True":
