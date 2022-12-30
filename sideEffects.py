@@ -49,15 +49,15 @@ class render_tab1:
             if nr_selected_meds == 2:
                 listSideEffects_med1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
                 listSideEffects_med2 = callSideEffectsBackend.get_listSideEffects(selected_meds[1])
-                d1 = {'Side effects from' + selected_meds[0]: listSideEffects_med1}
-                d2 = {'Side effects from' + selected_meds[1]: listSideEffects_med2}
+                d1 = {'Side effects from ' + selected_meds[0]: listSideEffects_med1}
+                d2 = {'Side effects from ' + selected_meds[1]: listSideEffects_med2}
                 df1 = pd.DataFrame(data=d1)
                 df2 = pd.DataFrame(data=d2)
                 concat = pd.concat([df1, df2], ignore_index=False, axis=1)
                 st.dataframe(concat, use_container_width=True)
             elif nr_selected_meds == 1:
                 listSideEffects_med1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
-                d1 = {'Side effects from' + selected_meds[0]: listSideEffects_med1}
+                d1 = {'Side effects from ' + selected_meds[0]: listSideEffects_med1}
                 df1 = pd.DataFrame(data=d1)
                 st.dataframe(df1, use_container_width=True)
         elif combo == "True":
