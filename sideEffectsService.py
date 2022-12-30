@@ -47,10 +47,33 @@ class data4SideEffects:
         # Close connection
         close_db_connection = db.disconnect_postgres(db_connection, db_cur)
 
-        return list_meds1_sideEffects#, list_meds2_sideEffects
+        return list_meds1_sideEffects
     
     def create_DataFrame(self, selected_meds, listSideEffects):
         df_definition = {'Side effects from ' + selected_meds: listSideEffects}
+        df = pd.DataFrame(data=df_definition)
+        
+        return df
+    
+
+    def get_listSideEffects_combo(self, selected_meds):
+        # Open db connection
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
+
+        # Exec query 
+        db_cur.execute("""select mc.combo_side_effect_name from dbms.medicines_combo mc, dbms.medicines m0, dbms.medicines m1 where mc.stitch1 = m0.stitch and mc.stitch2 = m1.stitch and ((m0.commercial_name = %(medname1)s and m1.commercial_name= %(medname2)s) or (m0.commercial_name = %(medname2)s and m1.commercial_name= %(medname1)s));""", {'medname1': selected_meds[0], 'medname2': selected_meds[1]})
+        list_meds1_sideEffects = []
+        for sideEffect_i in db_cur:
+            list_meds1_sideEffects.append(f"{sideEffect_i[0]}")
+        
+        # Close connection
+        close_db_connection = db.disconnect_postgres(db_connection, db_cur)
+
+        return list_meds1_sideEffects
+
+    def create_DataFrame_combo(self, selected_meds, listSideEffects):
+        df_definition = {'Side effects from ' + selected_meds[0] + 'and ' + selected_meds[1]: listSideEffects}
         df = pd.DataFrame(data=df_definition)
         
         return df
