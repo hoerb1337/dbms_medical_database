@@ -38,7 +38,7 @@ class data4SideEffects:
         db_connection, db_cur = db.connect_postgres()
 
         # Exec query1 
-        db_cur.execute("select individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name = 'dasatinib';")
+        db_cur.execute("""select individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name = %s;""", (selected_meds1))
         list_meds1_sideEffects = []
         for sideEffect_i in db_cur:
             list_meds1_sideEffects.append(f"{sideEffect_i[0]}")
