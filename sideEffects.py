@@ -21,7 +21,7 @@ class render_tab1:
                                             getListMedicines
                                             )
         # Check number of meds
-        check_nr_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
+        check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
         if check_nr_meds == 200:
             #st.write('You selected:', medicine_selection)
@@ -29,30 +29,37 @@ class render_tab1:
             if st.checkbox('I want side effects of combination'):
                 combo = "True"
 
-            return medicine_selection, combo
+            return medicine_selection, combo, nr_selected_meds
             
         elif check_nr_meds == 422:
             st.warning("Please choose at least one medicine.")
             combo = None
-            return medicine_selection, combo
+            return medicine_selection, combo, nr_selected_meds
         elif check_nr_meds == 401:
             st.error("You chose more than two medicines. Please select only two medicines.")
             combo = None
-            return medicine_selection, combo
+            return medicine_selection, combo, nr_selected_meds
         
-    def display_sideEffects(self, selected_meds, combo):
+    def display_sideEffects(self, nr_selected_meds, selected_meds, combo):
         # No combination of meds
         if combo == "False":
+            
             # Call Backendservice
             callSideEffectsBackend = sideEffectsService.data4SideEffects()
-            listSideEffects_med1, listSideEffects_med2 = callSideEffectsBackend.get_listSideEffects(selected_meds[0], selected_meds[1])
-            d1 = {'Side Effects Medicine 1': listSideEffects_med1}
-            d2 = {'Side Effects Medicine 2': listSideEffects_med2}
-            df1 = pd.DataFrame(data=d1)
-            df2 = pd.DataFrame(data=d2)
-            concat = pd.concat([df1, df2], ignore_index=False, axis=1)
-            st.dataframe(concat)
-
+            if nr_selected_meds == 2:
+                listSideEffects_med1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
+                listSideEffects_med2 = callSideEffectsBackend.get_listSideEffects(selected_meds[1])
+                d1 = {'Side Effects Medicine 1': listSideEffects_med1}
+                d2 = {'Side Effects Medicine 2': listSideEffects_med2}
+                df1 = pd.DataFrame(data=d1)
+                df2 = pd.DataFrame(data=d2)
+                concat = pd.concat([df1, df2], ignore_index=False, axis=1)
+                st.dataframe(concat)
+            elif nr_selected_meds == 1:
+                listSideEffects_med1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
+                d1 = {'Side Effects Medicine 1': listSideEffects_med1}
+                df1 = pd.DataFrame(data=d1)
+                st.dataframe(df1)
         elif combo == "True":
             pass
 

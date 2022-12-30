@@ -30,26 +30,26 @@ class data4SideEffects:
         else:
             nr_meds = 200
         
-        return nr_meds
+        return nr_meds, len(selected_medicines)
 
-    def get_listSideEffects(self, selected_meds1, selected_meds2):
+    def get_listSideEffects(self, selected_meds):
         # Open db connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
 
         # Exec query1 
-        db_cur.execute("""select individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name = %(medname)s;""", {'medname': selected_meds1})
+        db_cur.execute("""select individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name = %(medname)s;""", {'medname': selected_meds})
         list_meds1_sideEffects = []
         for sideEffect_i in db_cur:
             list_meds1_sideEffects.append(f"{sideEffect_i[0]}")
         
         # Exec query2 
-        db_cur.execute("""select individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name = %(medname)s;""", {'medname': selected_meds2})
-        list_meds2_sideEffects = []
-        for sideEffect_i in db_cur:
-            list_meds2_sideEffects.append(f"{sideEffect_i[0]}")
+        #db_cur.execute("""select individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name = %(medname)s;""", {'medname': selected_meds2})
+        #list_meds2_sideEffects = []
+        #for sideEffect_i in db_cur:
+            #list_meds2_sideEffects.append(f"{sideEffect_i[0]}")
         
         # Close connection
         close_db_connection = db.disconnect_postgres(db_connection, db_cur)
 
-        return list_meds1_sideEffects, list_meds2_sideEffects
+        return list_meds1_sideEffects#, list_meds2_sideEffects
