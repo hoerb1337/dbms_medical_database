@@ -58,8 +58,8 @@ class render_tab1:
             elif nr_selected_meds == 1:
                 listSideEffects_med1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
                 d1 = {'Side Effects Medicine 1': listSideEffects_med1}
-                df1 = pd.DataFrame(data=d1, use_container_width=True)
-                st.dataframe(df1)
+                df1 = pd.DataFrame(data=d1)
+                st.dataframe(df1, use_container_width=True)
         elif combo == "True":
             pass
 
