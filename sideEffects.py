@@ -54,11 +54,11 @@ class render_tab1:
                 df1 = pd.DataFrame(data=d1)
                 df2 = pd.DataFrame(data=d2)
                 concat = pd.concat([df1, df2], ignore_index=False, axis=1)
-                st.dataframe(concat)
+                st.dataframe(concat, use_container_width=True)
             elif nr_selected_meds == 1:
                 listSideEffects_med1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
                 d1 = {'Side Effects Medicine 1': listSideEffects_med1}
-                df1 = pd.DataFrame(data=d1)
+                df1 = pd.DataFrame(data=d1, use_container_width=True)
                 st.dataframe(df1)
         elif combo == "True":
             pass
