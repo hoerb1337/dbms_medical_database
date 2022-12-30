@@ -73,7 +73,7 @@ class data4SideEffects:
         return list_meds1_sideEffects
 
     def create_DataFrame_combo(self, selected_meds, listSideEffects):
-        df_definition = {'Side effects from the combination of' + selected_meds[0] + ' and ' + selected_meds[1]: listSideEffects}
+        df_definition = {'Side effects from the combination of ' + selected_meds[0] + ' and ' + selected_meds[1]: listSideEffects}
         df = pd.DataFrame(data=df_definition)
         
         return df
