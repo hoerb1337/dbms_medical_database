@@ -44,7 +44,7 @@ class data4SideEffects:
             list_meds1_sideEffects.append(f"{sideEffect_i[0]}")
         
         # Exec query2 
-        db_cur.execute("select individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name = 'dasatinib';")
+        db_cur.execute("""select individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name = %(medname)s;""", {'medname': selected_meds2})
         list_meds2_sideEffects = []
         for sideEffect_i in db_cur:
             list_meds2_sideEffects.append(f"{sideEffect_i[0]}")
