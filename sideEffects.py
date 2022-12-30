@@ -73,8 +73,11 @@ class render_tab1:
             callSideEffectsBackend = sideEffectsService.data4SideEffects()
             listSideEffects = callSideEffectsBackend.get_listSideEffects_combo(selected_meds)
 
-            # Create dataframes
-            df1 = callSideEffectsBackend.create_DataFrame_combo(selected_meds, listSideEffects)
+            if len(listSideEffects) == 0:
+                st.error("For the selected combination of medicines are any side effects registered yet!")
+            else:
+                # Create dataframes
+                df1 = callSideEffectsBackend.create_DataFrame_combo(selected_meds, listSideEffects)
 
             return st.dataframe(df1, use_container_width=True)
 
