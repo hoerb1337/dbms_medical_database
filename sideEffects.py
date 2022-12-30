@@ -10,6 +10,7 @@ class render_tab1:
         st.subheader("Browse and report for side effects of selected medicines")
         
     def selection(self):
+        st.subheader("Selection of medicines:")
         # Call Backendservice
         callSideEffectsBackend = sideEffectsService.data4SideEffects()
         # Get list of medicines
@@ -40,6 +41,7 @@ class render_tab1:
         
     def display_sideEffects(self, nr_selected_meds, selected_meds, combo):
         # No combination of meds
+        st.subheader("Results:")
         if combo == "False":
             
             # Call Backendservice
