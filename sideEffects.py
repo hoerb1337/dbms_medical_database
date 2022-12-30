@@ -46,9 +46,12 @@ class render_tab1:
             # Call Backendservice
             callSideEffectsBackend = sideEffectsService.data4SideEffects()
             listSideEffects_med1, listSideEffects_med2 = callSideEffectsBackend.get_listSideEffects(selected_meds[0], selected_meds[1])
-            d = {'Side Effects Medicine 1': listSideEffects_med1, 'Side Effects Medicine 2': listSideEffects_med2}
-            df = pd.DataFrame(data=d)
-            st.dataframe(df)
+            d1 = {'Side Effects Medicine 1': listSideEffects_med1}
+            d2 = {'Side Effects Medicine 2': listSideEffects_med2}
+            df1 = pd.DataFrame(data=d1)
+            df2 = pd.DataFrame(data=d2)
+            concat = pd.concat([df1, df2], ignore_index=False, axis=1)
+            st.dataframe(concat)
 
         elif combo == "True":
             pass
