@@ -7,7 +7,7 @@ import sideEffectsService
 
 class render_tab1:
     def __init__(self):
-        st.subheader("Browse and report for side effects of selected medicines")
+        st.info("Browse and report for side effects of selected medicines")
         
     def selection(self):
         st.subheader("Selection of medicines:")
