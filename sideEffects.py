@@ -79,7 +79,7 @@ class render_tab1:
                 # Create dataframes
                 df1 = callSideEffectsBackend.create_DataFrame_combo(selected_meds, listSideEffects)
 
-            return st.dataframe(df1, use_container_width=True)
+                return st.dataframe(df1, use_container_width=True)
 
 if __name__ == "__main__":
     pass
