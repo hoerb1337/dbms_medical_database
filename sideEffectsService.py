@@ -157,7 +157,7 @@ class data4SideEffects:
             db_connection.commit()
 
         elif nr_selected_meds == 1:
-            st.write("test")
+            #st.write("test")
             #db = database.db_connection()
             #db_connection, db_cur = db.connect_postgres()
             #db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname1)s, %(reported_by)s, %(date)s, %(medicine1_side_effects)s);""", {'medname1': 'adfddsdsf', 'reported_by': '99', 'date': '2002-02-02', 'medicine1_side_effects': 'test'})
