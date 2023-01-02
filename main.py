@@ -71,8 +71,9 @@ class Layout:
                     #if st.button(label="Continue"):
                         #webbrowser.open("https://hoerb1337-dbms-medical-database-main-dev-93dds9.streamlit.app")
                     #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
-                    
+                    st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                     st.experimental_rerun()
+                    
         #
 
         # Tab2: analysis
