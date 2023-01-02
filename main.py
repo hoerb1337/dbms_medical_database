@@ -41,9 +41,10 @@ class Layout:
                 if st.button(label="Lookup side effects"):
                     
                     # Show dataframe
-                    tab1_rendered.display_sideEffects(nr_selected_meds, selected_meds, combo)
+                    df = tab1_rendered.display_sideEffects(nr_selected_meds, selected_meds, combo)
                     
             # Reporting side effects
+            if df != None:
                 if st.button(label="Continue for reporting own side effects"):
                     
                     # list of selected own side effects 
