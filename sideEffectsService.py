@@ -156,18 +156,18 @@ class data4SideEffects:
         
         elif nr_selected_meds == 1:
             st.write("test")
-            db = database.db_connection()
-            db_connection, db_cur = db.connect_postgres()
-            db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname1)s, %(reported_by)s, %(date)s, %(medicine1_side_effects)s);""", {'medname1': 'adfddsdsf', 'reported_by': '99', 'date': '2002-02-02', 'medicine1_side_effects': 'test'})
-            db_connection.commit()
+            #db = database.db_connection()
+            #db_connection, db_cur = db.connect_postgres()
+            #db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname1)s, %(reported_by)s, %(date)s, %(medicine1_side_effects)s);""", {'medname1': 'adfddsdsf', 'reported_by': '99', 'date': '2002-02-02', 'medicine1_side_effects': 'test'})
+            #db_connection.commit()
             #db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported (commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%s, %s, %s, %s);""", ('commercial_name1', 100, '2002-02-02', 'individual_side_effect_name'))
-            #for side_effect_i in medicine1_side_effects:
+            for side_effect_i in medicine1_side_effects:
                 # Exec query 
-                #st.write(side_effect_i)
+                st.write(side_effect_i)
                 #db = database.db_connection()
                 #db_connection, db_cur = db.connect_postgres()
-                #db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported (commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%s, %s, %s, %s);""", ('commercial_name1', 100, '2002-02-02', 'individual_side_effect_name'))
-                #db_connection.commit()
+                db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname1)s, 100, now(), %(medicine1_side_effects)s);""", {'medname1': selected_meds[0], 'medicine1_side_effects': side_effect_i})
+                db_connection.commit()
         
         # Close connection
         close_db_connection = db.disconnect_postgres(db_connection, db_cur)
