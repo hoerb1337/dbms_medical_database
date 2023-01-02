@@ -158,7 +158,7 @@ class data4SideEffects:
             st.write("test")
             for side_effect_i in medicine1_side_effects:
                 # Exec query 
-                st.write("side_effect_i")
+                st.write(side_effect_i)
                 db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname1)s, 100, now(), %(medicine1_side_effects)s);""", {'medname1': selected_meds[0], 'medicine1_side_effects': side_effect_i})
         
         # Close connection
