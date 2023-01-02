@@ -71,7 +71,7 @@ class Layout:
                     
                     st.success("Thank you! Your provided side effects have been successfully reported. You will be automically forwarded to the selection of medicines...")
 
-                    n = 100000000
+                    n = 300000000
                     while n >= 0:
                         n = n-1
                     st.experimental_rerun()
