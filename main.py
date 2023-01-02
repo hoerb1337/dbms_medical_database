@@ -69,9 +69,9 @@ class Layout:
                         del st.session_state[key]
                         st.write(st.session_state)
                         #webbrowser.open("https://hoerb1337-dbms-medical-database-main-dev-93dds9.streamlit.app")
-                        #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
+                    ast_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                     
-                        st.experimental_rerun()
+                        #st.experimental_rerun()
         #
 
         # Tab2: analysis
