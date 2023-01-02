@@ -204,6 +204,7 @@ class render_tab1:
                                                                                            selected_meds,
                                                                                            medicine1_side_effects,
                                                                                            medicine2_side_effects)
+                
                 # Return 200
                 return report_side_effects_mono
         
