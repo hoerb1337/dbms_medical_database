@@ -38,21 +38,21 @@ class Layout:
 
             # Start search for side effects
             if combo != None:
-                if st.button(label="Lookup side effects", key="lookup", on_click=tab1_rendered.display_sideEffects, args=(nr_selected_meds, selected_meds, combo)):
+                if st.button(label="Lookup side effects", key="lookup"):
                     
                     # Show dataframe
-                    #tab1_rendered.display_sideEffects(nr_selected_meds, selected_meds, combo)
+                    tab1_rendered.display_sideEffects(nr_selected_meds, selected_meds, combo)
                     
                     # Reporting side effects
                     
-                    if st.button(label="Continue for reporting own side effects", key="cont_reporting"):
+                    #if st.button(label="Continue for reporting own side effects", key="cont_reporting"):
                             
                         # list of selected own side effects/multi select UI 
-                        medicine1_side_effects, medicine2_side_effects = tab1_rendered.select_own_side_effects(combo, nr_selected_meds, selected_meds)
+                    medicine1_side_effects, medicine2_side_effects = tab1_rendered.select_own_side_effects(combo, nr_selected_meds, selected_meds)
 
                         # Post own side effects to database
-                        if st.button(label="Report side effects", key="reporting"):
-                            tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
+                    if st.button(label="Report side effects", key="cont_reporting"):
+                        tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
 
                     
         #
