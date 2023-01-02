@@ -46,8 +46,11 @@ class Layout:
                     # Reporting side effects
                     
                     #if st.button(label="Continue for reporting own side effects", key="cont_reporting"):
-                            
-                        # list of selected own side effects/multi select UI 
+            
+            st.write(nr_selected_meds)
+            st.write(selected_meds)
+            st.write(combo)          
+            # list of selected own side effects/multi select UI 
             medicine1_side_effects, medicine2_side_effects = tab1_rendered.select_own_side_effects(combo, nr_selected_meds, selected_meds)
 
                         # Post own side effects to database
