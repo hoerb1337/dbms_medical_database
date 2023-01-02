@@ -38,10 +38,10 @@ class Layout:
 
             # Start search for side effects
             if combo != None:
-                if st.button(label="Lookup side effects", key="lookup"):
+                #if st.button(label="Lookup side effects", key="lookup"):
                     
                     # Show dataframe
-                    displayed_side_effects = tab1_rendered.display_sideEffects(nr_selected_meds, selected_meds, combo)
+                displayed_side_effects = tab1_rendered.lookup_sideEffects(nr_selected_meds, selected_meds, combo)
                     
                     # Reporting side effects
                     

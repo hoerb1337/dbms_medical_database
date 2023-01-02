@@ -41,46 +41,53 @@ class render_tab1:
             return medicine_selection, combo, nr_selected_meds
     
 
-    def display_sideEffects(self, nr_selected_meds, selected_meds, combo):
-        st.subheader("2. Results:")
-        # No combination of meds
-        if combo == "False":
-            # Call Backendservice
-            callSideEffectsBackend = sideEffectsService.data4SideEffects()
-            
-            # 2 chosen meds
-            if nr_selected_meds == 2:
-                listSideEffects_med1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
-                listSideEffects_med2 = callSideEffectsBackend.get_listSideEffects(selected_meds[1])
-                
-                # Create dataframes
-                df1 = callSideEffectsBackend.create_DataFrame(selected_meds[0], listSideEffects_med1)
-                df2 = callSideEffectsBackend.create_DataFrame(selected_meds[1], listSideEffects_med2)
-
-                concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
-                return st.dataframe(concat_dfs, use_container_width=True)
-            
-            # 1 chosen med
-            elif nr_selected_meds == 1:
-                listSideEffects_med1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
-                
-                # Create dataframe
-                df1 = callSideEffectsBackend.create_DataFrame(selected_meds[0], listSideEffects_med1)
-                return st.dataframe(df1, use_container_width=True)
+    def lookup_sideEffects(self, nr_selected_meds, selected_meds, combo):
+        st.subheader("2. Lookup reported side effects from selected medicines:")
         
-        # Combination of meds
-        elif combo == "True":
-            # Call Backendservice
-            callSideEffectsBackend = sideEffectsService.data4SideEffects()
-            listSideEffects = callSideEffectsBackend.get_listSideEffects_combo(selected_meds)
+        if st.button(label="Lookup side effects", key="lookup"):
+                    # Show dataframe
+                    #displayed_side_effects = tab1_rendered.lookup_sideEffects(nr_selected_meds, selected_meds, combo)
+        
+            # No combination of meds
+            if combo == "False":
+                # Call Backendservice
+                callSideEffectsBackend = sideEffectsService.data4SideEffects()
+                
+                # 2 chosen meds
+                if nr_selected_meds == 2:
+                    listSideEffects_med1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
+                    listSideEffects_med2 = callSideEffectsBackend.get_listSideEffects(selected_meds[1])
+                    
+                    # Create dataframes
+                    df1 = callSideEffectsBackend.create_DataFrame(selected_meds[0], listSideEffects_med1)
+                    df2 = callSideEffectsBackend.create_DataFrame(selected_meds[1], listSideEffects_med2)
 
-            if len(listSideEffects) == 0:
-                st.error("For the selected combination of medicines are any side effects registered yet!")
-            else:
-                # Create dataframes
-                df1 = callSideEffectsBackend.create_DataFrame_combo(selected_meds, listSideEffects)
+                    concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
+                    st.subheader("Results from lookup")
+                    return st.dataframe(concat_dfs, use_container_width=True)
+                
+                # 1 chosen med
+                elif nr_selected_meds == 1:
+                    listSideEffects_med1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
+                    
+                    # Create dataframe
+                    df1 = callSideEffectsBackend.create_DataFrame(selected_meds[0], listSideEffects_med1)
+                    st.subheader("Results from lookup")
+                    return st.dataframe(df1, use_container_width=True)
+            
+            # Combination of meds
+            elif combo == "True":
+                # Call Backendservice
+                callSideEffectsBackend = sideEffectsService.data4SideEffects()
+                listSideEffects = callSideEffectsBackend.get_listSideEffects_combo(selected_meds)
 
-                return st.dataframe(df1, use_container_width=True)
+                if len(listSideEffects) == 0:
+                    st.error("For the selected combination of medicines are any side effects registered yet!")
+                else:
+                    # Create dataframes
+                    df1 = callSideEffectsBackend.create_DataFrame_combo(selected_meds, listSideEffects)
+                    st.subheader("Results from lookup")
+                    return st.dataframe(df1, use_container_width=True)
     
     
     def select_own_side_effects(self, combo, nr_selected_meds, selected_meds):
