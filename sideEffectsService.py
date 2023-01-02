@@ -156,12 +156,16 @@ class data4SideEffects:
         
         elif nr_selected_meds == 1:
             st.write("test")
-            for side_effect_i in medicine1_side_effects:
+            db = database.db_connection()
+            db_connection, db_cur = db.connect_postgres()
+            db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported (commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%s, %s, %s, %s);""", ('commercial_name1', 100, '2002-02-02', 'individual_side_effect_name'))
+            #for side_effect_i in medicine1_side_effects:
                 # Exec query 
-                st.write(side_effect_i)
-                db = database.db_connection()
-                db_connection, db_cur = db.connect_postgres()
-                db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported (commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%s, %s, %s, %s);""", ('commercial_name1', 100, '2002-02-02', 'individual_side_effect_name'))
+                #st.write(side_effect_i)
+                #db = database.db_connection()
+                #db_connection, db_cur = db.connect_postgres()
+                #db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported (commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%s, %s, %s, %s);""", ('commercial_name1', 100, '2002-02-02', 'individual_side_effect_name'))
+                #db_connection.commit()
         
         # Close connection
         close_db_connection = db.disconnect_postgres(db_connection, db_cur)
