@@ -36,7 +36,7 @@ class Layout:
             tab1_rendered = sideEffects.render_tab1()
             
             # Return list of selected medicines
-            selected_meds, combo, nr_selected_meds, ss_medicines_selected = tab1_rendered.selection()
+            selected_meds, combo, nr_selected_meds = tab1_rendered.selection()
             
             st.write(st.session_state)
             # Start search for side effects
