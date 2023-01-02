@@ -154,7 +154,7 @@ class data4SideEffects:
             for side_effect_j in medicine2_side_effects:
                 db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname2)s, 100, now(), %(medicine2_side_effects)s);""", {'medname1': selected_meds[1], 'medicine1_side_effects': side_effect_j})
         
-        if nr_selected_meds == 1:
+        elif nr_selected_meds == 1:
             for side_effect_i in medicine1_side_effects:
                 # Exec query 
                 db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname1)s, 100, now(), %(medicine1_side_effects)s);""", {'medname1': selected_meds[0], 'medicine1_side_effects': side_effect_i})
