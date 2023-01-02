@@ -30,7 +30,7 @@ class Layout:
                                     "Analysis",
                                     "Your Access History"])
         #
-
+        st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
         # Tab1: sideEffects
         with tab1:
             tab1_rendered = sideEffects.render_tab1()
@@ -71,11 +71,11 @@ class Layout:
                     
                     st.success("Thank you! Your provided side effects have been successfully reported.")
 
-                    n = 1000
-                    while n >= 0:
-                        n = n-1
+                    #n = 1000
+                    #while n >= 0:
+                        #n = n-1
                     st.experimental_rerun()
-                    #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
+                    
                         #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                     
                     
