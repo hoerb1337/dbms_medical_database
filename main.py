@@ -50,7 +50,7 @@ class Layout:
             #st.write(nr_selected_meds)
             #st.write(selected_meds)
             #st.write(combo)          
-            if st.session_state.lookup == True:
+            if nr_selected_meds >= 1:
             # list of selected own side effects/multi select UI 
                 medicine1_side_effects, medicine2_side_effects = tab1_rendered.select_own_side_effects(combo, nr_selected_meds, selected_meds)
             #st.write(medicine1_side_effects)
