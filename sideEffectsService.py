@@ -153,7 +153,9 @@ class data4SideEffects:
 
             for side_effect_j in medicine2_side_effects:
                 db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname2)s, 100, now(), %(medicine2_side_effects)s);""", {'medname2': selected_meds[1], 'medicine2_side_effects': side_effect_j})
-        
+
+            db_connection.commit()
+
         elif nr_selected_meds == 1:
             st.write("test")
             #db = database.db_connection()
