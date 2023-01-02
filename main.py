@@ -70,6 +70,10 @@ class Layout:
                         #st.write(st.session_state)
                     
                     st.success("Thank you! Your provided side effects have been successfully reported.")
+
+                    n = 5
+                    while n >= 0:
+                        n = n-1
                     st.experimental_rerun()
                     #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                         #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
