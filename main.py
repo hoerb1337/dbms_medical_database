@@ -59,9 +59,9 @@ class Layout:
             # Post own side effects to database
                 if st.button(label="Report side effects", key="cont_reporting"):
                     tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
-                    st.success("Thank you! Your provided side effects have been successfully reported.")
-                    combo = None
-                    st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
+                    st.success("Thank you! Your provided side effects have been successfully reported. Click" + st.write("check out this [link](https://share.streamlit.io/mesmith027/streamlit_webapps/main/MC_pi/streamlit_app.py)") + "to continue.")
+                    
+                    #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                     
                     #st.experimental_rerun()
         #
