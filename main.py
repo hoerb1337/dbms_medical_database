@@ -58,8 +58,9 @@ class Layout:
             # Post own side effects to database
                 if st.button(label="Report side effects", key="cont_reporting"):
                     tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
-                    st.success("yeay")
-                    
+                    st.success("Thank you! Your provided side effects have been successfully reported")
+                    for key in st.session_state.keys():
+                        del st.session_state[key]
         #
 
         # Tab2: analysis
