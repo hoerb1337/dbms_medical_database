@@ -45,8 +45,8 @@ class render_tab1:
         st.subheader("2. Lookup reported side effects from selected medicines:")
         
         if st.button(label="Lookup side effects", key='lookup'):
-                    if 'my_button' not in st.session_state:
-                        st.session_state.my_button = True
+            if 'my_button' not in st.session_state:
+                st.session_state.my_button = True
                     # Show dataframe
                     #displayed_side_effects = tab1_rendered.lookup_sideEffects(nr_selected_meds, selected_meds, combo)
         if st.session_state.my_button == True:
