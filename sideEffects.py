@@ -18,7 +18,7 @@ class render_tab1:
         
         # Multiselect UI
         medicine_selection = st.multiselect('Select up to two medicines:',
-                                            getListMedicines)
+                                            getListMedicines, key="medicines_selected")
         # Check number of meds
         check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
@@ -119,11 +119,11 @@ class render_tab1:
                 with col1:
                     # Multiselect UI
                     medicine1_side_effects = st.multiselect('Select side effects for ' + selected_meds[0],
-                                                            getListSideEffectsMono1)
+                                                            getListSideEffectsMono1, key="medicine1_side_effects")
                 with col2:
                     # Multiselect UI
                     medicine2_side_effects = st.multiselect('Select side effects for ' + selected_meds[1],
-                                                            getListSideEffectsMono2)
+                                                            getListSideEffectsMono2, key="medicine2_side_effects")
                 
                 #if st.button(label="Report side effects"):
                     #report_side_effects_mono = callSideEffectsBackend.report_side_effects_mono(nr_selected_meds,
@@ -138,7 +138,7 @@ class render_tab1:
                 getListSideEffectsMono = callSideEffectsBackend.list_side_effects_mono(selected_meds[0])
                 
                 medicine1_side_effects = st.multiselect('Select side effects for ' + selected_meds[0],
-                                                            getListSideEffectsMono)
+                                                            getListSideEffectsMono, key="medicine1_side_effects")
                 
                 medicine2_side_effects = None
                 
@@ -163,7 +163,7 @@ class render_tab1:
             side_effects_combo = st.multiselect('Select side effects for the combination of '
                                                 + selected_meds[0] +
                                                 ' and ' + selected_meds[1],
-                                                getListSideEffectsCombo)
+                                                getListSideEffectsCombo, key="side_effects_combo")
             # Button
             #if st.button(label="Report side effects"):
                 #report_side_effects_combo = callSideEffectsBackend.report_side_effects_combo(selected_meds,

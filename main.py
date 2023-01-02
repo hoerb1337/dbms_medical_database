@@ -64,7 +64,9 @@ class Layout:
                     st.write("Click here to [continue](https://hoerb1337-dbms-medical-database-main-dev-93dds9.streamlit.app/)")
                     
                     if st.button(label="Continue"):
-                        webbrowser.open("https://hoerb1337-dbms-medical-database-main-dev-93dds9.streamlit.app")
+                        for key in st.session_state.keys():
+                            st.write(st.session_state[key])
+                        #webbrowser.open("https://hoerb1337-dbms-medical-database-main-dev-93dds9.streamlit.app")
                     #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                     
                     #st.experimental_rerun()
