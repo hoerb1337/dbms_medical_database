@@ -32,7 +32,7 @@ class Layout:
         # Tab1: sideEffects
         with tab1:
             tab1_rendered = sideEffects.render_tab1()
-            displayed_side_effects = None
+            
             # Return list of selected medicines
             selected_meds, combo, nr_selected_meds = tab1_rendered.selection()
 
