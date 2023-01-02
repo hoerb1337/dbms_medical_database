@@ -18,7 +18,7 @@ class render_tab1:
         
         # Multiselect UI
         medicine_selection = st.multiselect('Select up to two medicines:',
-                                            getListMedicines, [], key="medicines_selected")
+                                            getListMedicines, [''], key="medicines_selected")
         # Check number of meds
         check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
