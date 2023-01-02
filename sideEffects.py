@@ -122,7 +122,7 @@ class render_tab1:
                                                                                                medicine1_side_effects,
                                                                                                medicine2_side_effects)
                 
-                return report_side_effects_mono
+                    return report_side_effects_mono
             
             # 1 chosen med
             elif nr_selected_meds == 1:
@@ -137,7 +137,7 @@ class render_tab1:
                                                                                                medicine1_side_effects,
                                                                                                medicine2_side_effects)
 
-                return report_side_effects_mono
+                    return report_side_effects_mono
         
         # Combination of meds
         elif combo == "True":
@@ -157,7 +157,7 @@ class render_tab1:
             if st.button(label="Report side effects"):
                 report_side_effects_combo = callSideEffectsBackend.report_side_effects_combo(selected_meds,
                                                                                              side_effects_combo)
-            return report_side_effects_combo
+                return report_side_effects_combo
 
 
 if __name__ == "__main__":
