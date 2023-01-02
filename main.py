@@ -71,7 +71,7 @@ class Layout:
                     
                     st.success("Thank you! Your provided side effects have been successfully reported.")
 
-                    n = 5
+                    n = 20
                     while n >= 0:
                         n = n-1
                     st.experimental_rerun()
