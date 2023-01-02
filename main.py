@@ -70,7 +70,7 @@ class Layout:
                         #st.write(st.session_state)
                     
                     st.button(label="Continue")
-                        #st.experimental_rerun()
+                    st.experimental_rerun()
                     #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                         #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                     
