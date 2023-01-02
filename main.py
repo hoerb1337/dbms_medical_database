@@ -32,7 +32,7 @@ class Layout:
         # Tab1: sideEffects
         with tab1:
             tab1_rendered = sideEffects.render_tab1()
-            
+            displayed_side_effects = None
             # Return list of selected medicines
             selected_meds, combo, nr_selected_meds = tab1_rendered.selection()
 
@@ -41,8 +41,7 @@ class Layout:
                 if st.button(label="Lookup side effects", key="lookup"):
                     
                     # Show dataframe
-                    if 'displayed_side_effects' not in st.session_state:
-                        st.session_state.displayed_side_effects = tab1_rendered.display_sideEffects(nr_selected_meds, selected_meds, combo)
+                    displayed_side_effects = tab1_rendered.display_sideEffects(nr_selected_meds, selected_meds, combo)
                     
                     # Reporting side effects
                     
@@ -51,16 +50,15 @@ class Layout:
             #st.write(nr_selected_meds)
             #st.write(selected_meds)
             #st.write(combo)          
-            if nr_selected_meds >= 1:
+            if displayed_side_effects != None:
             # list of selected own side effects/multi select UI 
                 medicine1_side_effects, medicine2_side_effects = tab1_rendered.select_own_side_effects(combo, nr_selected_meds, selected_meds)
             #st.write(medicine1_side_effects)
             #st.write(medicine2_side_effects)
             # Post own side effects to database
-                if st.button(label="Report own side effects", key="cont_reporting"):
+                if st.button(label="Report side effects", key="cont_reporting"):
                     tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
-                    st.success("Thank you! Your side effects have been successfully reported")
-
+                    st.success("yeay")
                     
         #
 
