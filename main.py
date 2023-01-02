@@ -35,20 +35,21 @@ class Layout:
             
             # Return list of selected medicines
             selected_meds, combo, nr_selected_meds = tab1_rendered.selection()
-            
+
             # Start search for side effects
             if combo != None:
                 if st.button(label="Lookup side effects"):
+                    
                     # Show dataframe
                     tab1_rendered.display_sideEffects(nr_selected_meds, selected_meds, combo)
                     
-                    # Reporting side effects
-                    #if st.button(label="Continue for reporting own side effects"):
+            # Reporting side effects
+                if st.button(label="Continue for reporting own side effects"):
                     
-                        # list of selected own side effects 
+                    # list of selected own side effects 
                     medicine1_side_effects, medicine2_side_effects = tab1_rendered.select_own_side_effects(combo, nr_selected_meds, selected_meds)
 
-                        # Post own side effects to database
+                    # Post own side effects to database
                     if st.button(label="Report side effects"):
                         tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
 
