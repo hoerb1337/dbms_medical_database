@@ -69,7 +69,7 @@ class Layout:
                         del st.session_state[key]
                         #st.write(st.session_state)
                     
-                    st.success("Thank you! Your provided side effects have been successfully reported.")
+                    st.success("Thank you! Your provided side effects have been successfully reported. You will be automically forwarded to the selection of medicines...")
 
                     n = 100000000
                     while n >= 0:
