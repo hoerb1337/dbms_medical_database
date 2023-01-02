@@ -161,7 +161,7 @@ class data4SideEffects:
                 st.write(side_effect_i)
                 db = database.db_connection()
                 db_connection, db_cur = db.connect_postgres()
-                db_cur.execute("INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES ('commercial_name1', 100, '2002-02-02', 'individual_side_effect_name');")
+                db_cur.execute("INSERT INTO dbms.mono_side_effects_reported (commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES ('commercial_name1', 100, '2002-02-02', 'individual_side_effect_name');")
         
         # Close connection
         close_db_connection = db.disconnect_postgres(db_connection, db_cur)
