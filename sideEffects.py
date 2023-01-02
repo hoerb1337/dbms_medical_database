@@ -21,8 +21,6 @@ class render_tab1:
                                             getListMedicines, key="medicines_selected")
         # Check number of meds
         check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
-        
-        ss_medicines_selected = st.session_state.medicines_selected
 
         if check_nr_meds == 200:
             combo = "False"
@@ -30,17 +28,17 @@ class render_tab1:
                 if st.checkbox('I want side effects of combination'):
                     combo = "True"
 
-            return medicine_selection, combo, nr_selected_meds, ss_medicines_selected
+            return medicine_selection, combo, nr_selected_meds
             
         elif check_nr_meds == 422:
             st.warning("Please choose at least one medicine.")
             combo = None
-            return medicine_selection, combo, nr_selected_meds, ss_medicines_selected
+            return medicine_selection, combo, nr_selected_meds
 
         elif check_nr_meds == 401:
             st.error("You chose more than two medicines. Please select only two medicines.")
             combo = None
-            return medicine_selection, combo, nr_selected_meds, ss_medicines_selected
+            return medicine_selection, combo, nr_selected_meds
     
 
     def lookup_sideEffects(self, nr_selected_meds, selected_meds, combo):
