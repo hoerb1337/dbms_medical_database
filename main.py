@@ -1,7 +1,7 @@
 # External libraries
 import streamlit as st
 import webbrowser  
-#from streamlit_autorefresh import st_autorefresh
+from streamlit_autorefresh import st_autorefresh
 # import psycopg2
 
 # Frontend modules
@@ -65,11 +65,11 @@ class Layout:
                     
                     if st.button(label="Continue"):
                         for key in st.session_state.keys():
-                            st.write(st.session_state[key])
+                            del st.session_state[key]
                         #webbrowser.open("https://hoerb1337-dbms-medical-database-main-dev-93dds9.streamlit.app")
-                    #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
+                        st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                     
-                    #st.experimental_rerun()
+                        st.experimental_rerun()
         #
 
         # Tab2: analysis
