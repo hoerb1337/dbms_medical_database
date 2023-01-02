@@ -199,6 +199,8 @@ class data4SideEffects:
             # Exec query 
             db_cur.execute("""INSERT INTO dbms.combo_side_effects_reported(commercial_name1, commercial_name2, reported_by, reporting_date, combo_side_effect_name) VALUES (%(medname1)s, %(medname2)s, 100, now(), %(combo_side_effects)s);""", {'medname1': selected_meds[0], 'medname2': selected_meds[1], 'combo_side_effects': side_effect_i})
         
+        db_connection.commit()
+        
         # Close connection
         close_db_connection = db.disconnect_postgres(db_connection, db_cur)
 
