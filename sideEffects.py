@@ -80,6 +80,85 @@ class render_tab1:
                 df1 = callSideEffectsBackend.create_DataFrame_combo(selected_meds, listSideEffects)
 
                 return st.dataframe(df1, use_container_width=True)
+    
+    
+    def report_side_effects(self, combo, nr_selected_meds, selected_meds):
+        """Render frontend for reporting side effects.
+
+        Args:
+            n: 
+            type: 
+        Returns:
+            sum over n:
+            type: 
+        """
+        st.subheader("3. Report own side effects from selected medicines:")
+        st.write("Select side effects from the list")
+
+        if combo == "False":
+            # Call Backendservice
+            callSideEffectsBackend = sideEffectsService.data4SideEffects()
+            
+            # Get list of side effects from medicines taken
+            # independently from each other
+            getListSideEffectsMono = callSideEffectsBackend.list_side_effects_mono()
+        
+            # 2 chosen meds
+            if nr_selected_meds == 2:
+                
+                col1, col2 = st.columns(2)
+                with col1:
+                    # Multiselect UI
+                    medicine1_side_effects = st.multiselect('Select side effects for ' + selected_meds[0],
+                                                            getListSideEffectsMono)
+                with col2:
+                    # Multiselect UI
+                    medicine2_side_effects = st.multiselect('Select side effects for ' + selected_meds[1],
+                                                            getListSideEffectsMono)
+                
+                if st.button(label="Report side effects"):
+                    report_side_effects_mono = callSideEffectsBackend.report_side_effects_mono(nr_selected_meds,
+                                                                                               selected_meds,
+                                                                                               medicine1_side_effects,
+                                                                                               medicine2_side_effects)
+                
+                return report_side_effects_mono
+            
+            # 1 chosen med
+            elif nr_selected_meds == 1:
+                medicine1_side_effects = st.multiselect('Select side effects for ' + selected_meds[0],
+                                                            getListSideEffectsMono)
+                
+                medicine2_side_effects = None
+                
+                if st.button(label="Report side effects"):
+                    report_side_effects_mono = callSideEffectsBackend.report_side_effects_mono(nr_selected_meds,
+                                                                                               selected_meds,
+                                                                                               medicine1_side_effects,
+                                                                                               medicine2_side_effects)
+
+                return report_side_effects_mono
+        
+        # Combination of meds
+        elif combo == "True":
+            # Call Backendservice
+            callSideEffectsBackend = sideEffectsService.data4SideEffects()
+            
+            # Get list of side effects from medicines taken
+            # independently from each other
+            getListSideEffectsCombo = callSideEffectsBackend.list_side_effects_combo()
+            
+            # Multi-select UI
+            side_effects_combo = st.multiselect('Select side effects for the combination of '
+                                                + selected_meds[0] +
+                                                ' and ' + selected_meds[1],
+                                                getListSideEffectsCombo)
+            # Button
+            if st.button(label="Report side effects"):
+                report_side_effects_combo = callSideEffectsBackend.report_side_effects_combo(selected_meds,
+                                                                                             side_effects_combo)
+            return report_side_effects_combo
+
 
 if __name__ == "__main__":
     pass
