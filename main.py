@@ -1,5 +1,6 @@
 # External libraries
 import streamlit as st
+from streamlit_autorefresh import st_autorefresh
 # import psycopg2
 
 # Frontend modules
@@ -58,7 +59,8 @@ class Layout:
             # Post own side effects to database
                 if st.button(label="Report side effects", key="cont_reporting"):
                     tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
-                    #st.success("Thank you! Your provided side effects have been successfully reported.")
+                    st.success("Thank you! Your provided side effects have been successfully reported.")
+                    st_autorefresh(interval=1000, limit=1, key="fizzbuzzcounter")
                     #st.experimental_rerun()
         #
 
