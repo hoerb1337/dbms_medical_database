@@ -70,8 +70,8 @@ class Layout:
                         #st.write(st.session_state)
                     
                     st.success("Thank you! Your provided side effects have been successfully reported.")
-                    #st.button(label="Continue")
-                    st.experimental_rerun()
+                    if st.button(label="Continue"):
+                        st.experimental_rerun()
                     #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                         #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                     
