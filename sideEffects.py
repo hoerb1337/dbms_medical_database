@@ -44,7 +44,7 @@ class render_tab1:
     def lookup_sideEffects(self, nr_selected_meds, selected_meds, combo):
         st.subheader("2. Lookup reported side effects from selected medicines:")
         
-        #if st.button(label="Lookup side effects", key="lookup"):
+        st.button(label="Lookup side effects", key="lookup")
                     # Show dataframe
                     #displayed_side_effects = tab1_rendered.lookup_sideEffects(nr_selected_meds, selected_meds, combo)
         
