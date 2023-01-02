@@ -40,10 +40,10 @@ class Layout:
             if combo != None:
                 #if st.button(label="Lookup side effects", key="lookup"):
                     
-                    # Show dataframe
+                # Show dataframe/side effects
                 displayed_side_effects = tab1_rendered.lookup_sideEffects(nr_selected_meds, selected_meds, combo)
                     
-                    # Reporting side effects
+            # Reporting side effects
                     
                     #if st.button(label="Continue for reporting own side effects", key="cont_reporting"):
             
@@ -56,7 +56,7 @@ class Layout:
             #st.write(medicine1_side_effects)
             #st.write(medicine2_side_effects)
             # Post own side effects to database
-                st.button(label="Report side effects", key="cont_reporting", on_click=tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects))
+                st.button(label="Report side effects", key="cont_reporting", on_click=tab1_rendered.report_side_effects, args=(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects))
                     #tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
                     #st.success("Thank you! Your provided side effects have been successfully reported.")
                     #for key in st.session_state.keys():
