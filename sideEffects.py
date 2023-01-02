@@ -199,7 +199,9 @@ class render_tab1:
                                                                                            medicine1_side_effects,
                                                                                            medicine2_side_effects)
                 # Return 200
-                return report_side_effects_mono
+                st.success("Thank you! Your provided side effects have been successfully reported.")
+                
+                return st.experimental_rerun()
             
             # 1 chosen med
             elif nr_selected_meds == 1:
@@ -215,7 +217,9 @@ class render_tab1:
                                                                                            medicine2_side_effects)
                 
                 # Return 200
-                return report_side_effects_mono
+                st.success("Thank you! Your provided side effects have been successfully reported.")
+                
+                return st.experimental_rerun()
         
         # Combination of meds
         elif combo == "True":
@@ -235,8 +239,9 @@ class render_tab1:
             #if st.button(label="Report side effects"):
             report_side_effects_combo = callSideEffectsBackend.report_side_effects_combo(selected_meds,
                                                                                          medicine1_side_effects)
-            # Return 200
-            return report_side_effects_combo
+            st.success("Thank you! Your provided side effects have been successfully reported.")
+                
+            return st.experimental_rerun()
 
 
 if __name__ == "__main__":
