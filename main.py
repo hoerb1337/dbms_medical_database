@@ -36,7 +36,7 @@ class Layout:
             tab1_rendered = sideEffects.render_tab1()
             
             # Return list of selected medicines
-            selected_meds, combo, nr_selected_meds = tab1_rendered.selection()
+            selected_meds, combo, nr_selected_meds, ss_medicines_selected = tab1_rendered.selection()
 
             # Start search for side effects
             if combo != None:
@@ -64,8 +64,10 @@ class Layout:
                     st.write("Click here to [continue](https://hoerb1337-dbms-medical-database-main-dev-93dds9.streamlit.app/)")
                     
                     if st.button(label="Continue"):
-                        for key in st.session_state.keys():
-                            del st.session_state[key]
+                        if "ss_medicines_selected" in st.session_state:
+                            del ss_medicines_selected
+                        #for key in st.session_state.keys():
+                            #del st.session_state[key]
                         #webbrowser.open("https://hoerb1337-dbms-medical-database-main-dev-93dds9.streamlit.app")
                         st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                     
