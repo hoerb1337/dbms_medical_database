@@ -61,6 +61,7 @@ class Layout:
                     tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
                     st.success("Thank you! Your provided side effects have been successfully reported.")
                     st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
+                    combo = None
                     #st.experimental_rerun()
         #
 
