@@ -68,7 +68,7 @@ class Layout:
                     for key in st.session_state.keys():
                         del st.session_state[key]
                         st.write(st.session_state)
-                    if True:
+                    if st.button(label="Continue"):
                         webbrowser.open("https://hoerb1337-dbms-medical-database-main-dev-93dds9.streamlit.app")
                     #st_autorefresh(interval=1000, limit=2, key="fizzbuzzcounter")
                     
