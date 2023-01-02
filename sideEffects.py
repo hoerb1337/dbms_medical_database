@@ -98,23 +98,22 @@ class render_tab1:
         if combo == "False":
             # Call Backendservice
             callSideEffectsBackend = sideEffectsService.data4SideEffects()
-            
-            # Get list of side effects from medicines taken
-            # independently from each other
-            getListSideEffectsMono = callSideEffectsBackend.list_side_effects_mono()
-        
+     
             # 2 chosen meds
             if nr_selected_meds == 2:
+                
+                getListSideEffectsMono1 = callSideEffectsBackend.list_side_effects_mono(selected_meds[0])
+                getListSideEffectsMono2 = callSideEffectsBackend.list_side_effects_mono(selected_meds[1])
                 
                 col1, col2 = st.columns(2)
                 with col1:
                     # Multiselect UI
                     medicine1_side_effects = st.multiselect('Select side effects for ' + selected_meds[0],
-                                                            getListSideEffectsMono)
+                                                            getListSideEffectsMono1)
                 with col2:
                     # Multiselect UI
                     medicine2_side_effects = st.multiselect('Select side effects for ' + selected_meds[1],
-                                                            getListSideEffectsMono)
+                                                            getListSideEffectsMono2)
                 
                 #if st.button(label="Report side effects"):
                     #report_side_effects_mono = callSideEffectsBackend.report_side_effects_mono(nr_selected_meds,
@@ -126,6 +125,8 @@ class render_tab1:
             
             # 1 chosen med
             elif nr_selected_meds == 1:
+                getListSideEffectsMono = callSideEffectsBackend.list_side_effects_mono(selected_meds[0])
+                
                 medicine1_side_effects = st.multiselect('Select side effects for ' + selected_meds[0],
                                                             getListSideEffectsMono)
                 
@@ -146,7 +147,7 @@ class render_tab1:
             
             # Get list of side effects from medicines taken
             # independently from each other
-            getListSideEffectsCombo = callSideEffectsBackend.list_side_effects_combo()
+            getListSideEffectsCombo = callSideEffectsBackend.list_side_effects_combo(selected_meds)
             
             # Multi-select UI
             side_effects_combo = st.multiselect('Select side effects for the combination of '

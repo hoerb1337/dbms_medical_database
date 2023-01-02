@@ -78,7 +78,8 @@ class data4SideEffects:
         
         return df
 
-    def list_side_effects_mono(self):
+# Reporting from here:
+    def list_side_effects_mono(self, selected_meds):
         """Get list of side effects from mono medicines in the database.
 
         Args:
@@ -92,7 +93,7 @@ class data4SideEffects:
         # Open connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
-        db_cur.execute("select mm.individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch;")
+        db_cur.execute("""select mm.individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and m0.commercial_name = %(medname)s;""", {'medname': selected_meds})
         list_side_effects_mono = []
         for side_effect_i in db_cur:
             list_side_effects_mono.append(f"{side_effect_i[0]}")
@@ -102,7 +103,7 @@ class data4SideEffects:
 
         return list_side_effects_mono
 
-    def list_side_effects_combo(self):
+    def list_side_effects_combo(self, selected_meds):
         """Get list of side effects from combo medicines in the database.
 
         Args:
@@ -116,7 +117,7 @@ class data4SideEffects:
         # Open connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
-        db_cur.execute("select mc.combo_side_effect_name from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2;")
+        db_cur.execute("""select mc.combo_side_effect_name from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and m0.commercial_name = %(medname1)s and m1.commercial_name = %(medname2)s;""", {'medname1': selected_meds[0], 'medname2': selected_meds[1]})
         list_side_effects_combo = []
         for side_effect_i in db_cur:
             list_side_effects_combo.append(f"{side_effect_i[0]}")
