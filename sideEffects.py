@@ -8,7 +8,8 @@ import sideEffectsService
 class render_tab1:
     def __init__(self):
         st.info("Browse and report for side effects of selected medicines")
-        
+
+    @st.experimental_memo(experimental_allow_widgets=True)   
     def selection(self):
         st.subheader("1. Selection of medicines:")
         # Call Backendservice
@@ -39,7 +40,8 @@ class render_tab1:
             st.error("You chose more than two medicines. Please select only two medicines.")
             combo = None
             return medicine_selection, combo, nr_selected_meds
-        
+    
+    @st.experimental_memo(experimental_allow_widgets=True)
     def display_sideEffects(self, nr_selected_meds, selected_meds, combo):
         st.subheader("2. Results:")
         # No combination of meds
@@ -81,7 +83,7 @@ class render_tab1:
 
                 return st.dataframe(df1, use_container_width=True)
     
-    
+    @st.experimental_memo(experimental_allow_widgets=True)
     def select_own_side_effects(self, combo, nr_selected_meds, selected_meds):
         """Render frontend for reporting side effects.
 
@@ -160,6 +162,7 @@ class render_tab1:
             dummy_medicine2_side_effects = None                                                                              #side_effects_combo)
             return side_effects_combo, dummy_medicine2_side_effects
     
+    @st.experimental_memo(experimental_allow_widgets=True)
     def report_side_effects(self, combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects):
         """Render frontend for reporting side effects.
 
