@@ -37,7 +37,8 @@ class Layout:
             
             # Return list of selected medicines
             selected_meds, combo, nr_selected_meds, ss_medicines_selected = tab1_rendered.selection()
-
+            
+            st.write(ss_medicines_selected)
             # Start search for side effects
             if combo != None:
                 #if st.button(label="Lookup side effects", key="lookup"):
@@ -46,8 +47,6 @@ class Layout:
                 displayed_side_effects = tab1_rendered.lookup_sideEffects(nr_selected_meds, selected_meds, combo)
                     
             # Reporting side effects
-                    
-                    #if st.button(label="Continue for reporting own side effects", key="cont_reporting"):
             
             #st.write(nr_selected_meds)
             #st.write(selected_meds)
