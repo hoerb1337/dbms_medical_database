@@ -51,19 +51,12 @@ class Layout:
                 if st.button(label="Report side effects", key="reporting"):
                     # Post own side effects to database
                     tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
-
-                    session_sate = st.session_state.keys()
-                    tab1_rendered.process_reporting(session_sate)
-                    #for key in st.session_state.keys():
-                        #del st.session_state[key]
                     
-                    #st.success("Thank you! Your provided side effects have been successfully reported. You will be automitically forwarded to the selection of medicines...")
+                    # Process reporting in frontend
+                    session_sate = st.session_state.keys()
+                    tab1_rendered.process_reporting(session_sate)        
 
-                    #n = 200000000
-                    #while n >= 0:
-                        #n = n-1
-                    #st.experimental_rerun()         
-        #
+        # End of tab1
 
         # Tab2: analysis
         with tab2:
