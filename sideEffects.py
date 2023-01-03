@@ -171,7 +171,9 @@ class render_tab1:
             return side_effects_combo, dummy_medicine2_side_effects
     
     
-    def report_side_effects(self, combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects):
+    def report_side_effects(self, combo, nr_selected_meds,
+                            selected_meds, medicine1_side_effects,
+                            medicine2_side_effects):
         """Render frontend for reporting side effects.
 
         Args:
@@ -181,16 +183,10 @@ class render_tab1:
             sum over n:
             type: 
         """
-        #st.subheader("3. Report own side effects from selected medicines:")
-        #st.write("Select side effects from the list")
 
         if combo == "False":
             # Call Backendservice
             callSideEffectsBackend = sideEffectsService.data4SideEffects()
-            
-            # Get list of side effects from medicines taken
-            # independently from each other
-            #getListSideEffectsMono = callSideEffectsBackend.list_side_effects_mono()
         
             # 2 chosen meds
             if nr_selected_meds == 2:
@@ -198,17 +194,13 @@ class render_tab1:
                                                                                            selected_meds,
                                                                                            medicine1_side_effects,
                                                                                            medicine2_side_effects)
+
                 # Return 200
                 return report_side_effects_mono
             
             # 1 chosen med
             elif nr_selected_meds == 1:
-                #medicine1_side_effects = st.multiselect('Select side effects for ' + selected_meds[0],
-                                                            #getListSideEffectsMono)
-                
-                #medicine2_side_effects = None
-                
-                
+             
                 report_side_effects_mono = callSideEffectsBackend.report_side_effects_mono(nr_selected_meds,
                                                                                            selected_meds,
                                                                                            medicine1_side_effects,
