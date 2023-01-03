@@ -52,15 +52,17 @@ class Layout:
                     # Post own side effects to database
                     tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
 
-                    for key in st.session_state.keys():
-                        del st.session_state[key]
+                    session_sate = st.session_state.keys()
+                    tab1_rendered.process_reporting(session_sate)
+                    #for key in st.session_state.keys():
+                        #del st.session_state[key]
                     
-                    st.success("Thank you! Your provided side effects have been successfully reported. You will be automically forwarded to the selection of medicines...")
+                    #st.success("Thank you! Your provided side effects have been successfully reported. You will be automitically forwarded to the selection of medicines...")
 
-                    n = 200000000
-                    while n >= 0:
-                        n = n-1
-                    st.experimental_rerun()         
+                    #n = 200000000
+                    #while n >= 0:
+                        #n = n-1
+                    #st.experimental_rerun()         
         #
 
         # Tab2: analysis

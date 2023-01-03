@@ -229,6 +229,27 @@ class render_tab1:
             # Return 200
             return report_side_effects_combo
 
+    def process_reporting(self, session_sate):
+        """Render frontend for processing the reported side effects.
+
+        Args:
+            n: 
+            type: 
+        Returns:
+            sum over n:
+            type: 
+        """
+
+        for key in session_sate:
+            del st.session_state[key]
+                    
+        st.success("Thank you! Your provided side effects have been successfully reported. You will be automitically forwarded to the selection of medicines...")
+
+        n = 200000000
+        while n >= 0:
+            n = n-1
+            
+        return st.experimental_rerun()
 
 if __name__ == "__main__":
     pass
