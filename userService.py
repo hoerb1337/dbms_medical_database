@@ -27,7 +27,7 @@ class UserManagament:
 
         headers = {"Authorization": f"Bearer {token}"}
         response = requests.get("https://api.dashboardauth.com/get-user",
-                                headers=headers)
+                                headers=headers,)
         
         if response.status_code == 200:
             st.write(response.json())

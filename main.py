@@ -11,13 +11,6 @@ import user
 class Frontend:
     
     def __init__(self):
-        
-        # User management:
-        # Check if user logged in is already in database
-        userAuthenticated = user.UserUI.authenticate()
-        
-        
-        
         # Hide burger menu
         hide_menu_style = """
         <style>
@@ -28,6 +21,10 @@ class Frontend:
         
         # Webapp title
         st.title("Medical Database")
+        
+        # User management:
+        # Check if user logged in is already in database
+        userAuthenticated = user.UserUI.authenticate()
         
         # Navigation bar
         tab1, tab2, tab3 = st.tabs(["Medicine Side Effects", 
