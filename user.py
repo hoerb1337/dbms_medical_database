@@ -1,6 +1,5 @@
 # External libraries
 import streamlit as st
-import json
 
 
 # Backend modules
@@ -17,8 +16,7 @@ class UserUI:
         
         # User data as JSON
         userData = user.get_user_auth()
-        st.write(userData)
-        st.write(userData["id"])
+
         # check if user is already in database
         # user is in db
         user_checked = user.get_user_status_db(userData["id"])
