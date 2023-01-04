@@ -162,10 +162,10 @@ class UserManagament:
 
 
 
-        st.write(side_effects1_conc)
-        st.write(side_effects2_conc)
-        st.write(medicine1_side_effects)
-        st.write(medicine2_side_effects)
+        #st.write(side_effects1_conc)
+        #st.write(side_effects2_conc)
+        #st.write(medicine1_side_effects)
+        #st.write(medicine2_side_effects)
         
         # db connection
         db = database.db_connection()
