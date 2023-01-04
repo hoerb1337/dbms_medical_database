@@ -150,13 +150,15 @@ class UserManagament:
         else:
             medicine1_side_effects = medicine1_side_effects[0]
  
-
-        if len(medicine2_side_effects) > 1:
-            side_effects2_conc = ""
-            for side_effect_i in medicine2_side_effects:
-                side_effects2_conc = side_effect_i + ", " + side_effects2_conc
-        else:
-            medicine2_side_effects = medicine2_side_effects[0] 
+        if len(selected_meds) == 1:
+            medicine2_side_effects = "null"
+        elif len(selected_meds) == 2:
+            if len(medicine2_side_effects) > 1:
+                side_effects2_conc = ""
+                for side_effect_i in medicine2_side_effects:
+                    side_effects2_conc = side_effect_i + ", " + side_effects2_conc
+            else:
+                medicine2_side_effects = medicine2_side_effects[0] 
 
 
 
