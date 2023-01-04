@@ -18,22 +18,24 @@ class UserManagament:
             sum over n:
             type: 
         """
-        st.write("hello")
+
         # Get token from SP
         params = st.experimental_get_query_params()
         token = params.get("token")
         if token:
             token = token[0]
+            st.write(f"token {token}")
+        else:
+            st.write("No token")
+
 
         headers = {"Authorization": f"Bearer {token}"}
-        response = requests.get("https://api.dashboardauth.com/get-user",
-                                headers=headers,)
-        
+        response = requests.get(
+            "https://api.dashboardauth.com/get-user", headers=headers,
+        )
         if response.status_code == 200:
-            
             return st.write(response.json())
         else:
-            
             return st.write("Invalid token")
 
 
