@@ -141,16 +141,24 @@ class UserManagament:
             type: 
         """
         
-        if len(selected_meds) > 1:
+        # transform list of side effects into concenated string
+        if len(medicine1_side_effects) > 1:
             side_effects1_conc = ""
-            side_effects2_conc = ""
             for side_effect_i in medicine1_side_effects:
                 side_effects1_conc = side_effect_i + ", " + side_effects1_conc
+         
+        else:
+            medicine1_side_effects = medicine1_side_effects[0]
+ 
+
+        if len(medicine2_side_effects) > 1:
+            side_effects2_conc = ""
             for side_effect_i in medicine2_side_effects:
                 side_effects2_conc = side_effect_i + ", " + side_effects2_conc
         else:
-            medicine1_side_effects = medicine1_side_effects[0]
             medicine2_side_effects = medicine2_side_effects[0] 
+
+
 
         st.write(side_effects1_conc)
         st.write(side_effects2_conc)
