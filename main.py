@@ -28,6 +28,7 @@ class Frontend:
         params = st.experimental_get_query_params()
         token = params.get("token")
         if token:
+            st.write(f"token {token}")
             token = token[0]
             st.write(f"token {token}")
         else:
@@ -39,7 +40,7 @@ class Frontend:
             "https://api.dashboardauth.com/get-user", headers=headers,
         )
         if response.status_code == 200:
-            st.write(response.json().id)
+            st.write(response.json())
         else:
             st.write("Invalid token")
 
