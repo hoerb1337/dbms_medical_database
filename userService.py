@@ -152,6 +152,7 @@ class UserManagament:
  
         if len(selected_meds) == 1:
             medicine2_side_effects = "null"
+            selected_meds[1] = "null"
         elif len(selected_meds) == 2:
             if len(medicine2_side_effects) > 1:
                 side_effects2_conc = ""
