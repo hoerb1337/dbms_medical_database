@@ -5,12 +5,18 @@ import streamlit as st
 # Frontend modules
 import sideEffects
 #import analysis
-#import user
+import user
 #
 
-class Layout:
+class Frontend:
     
     def __init__(self):
+        
+        # User management:
+        # Check if user logged in is already in database
+        userAuthenticated = user.UserUI.authenticate()
+        
+        
         
         # Hide burger menu
         hide_menu_style = """
@@ -72,5 +78,5 @@ class Layout:
 
 
 if __name__ == "__main__":
-    rendered_layout = Layout()
+    rendered_frondend = Frontend()
     
