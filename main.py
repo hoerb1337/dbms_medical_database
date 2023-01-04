@@ -28,13 +28,12 @@ class Frontend:
         params = st.experimental_get_query_params()
         token = params.get("token")
         if token:
-            st.write(f"token {token}")
             token = token[0]
             st.write(f"token {token}")
         else:
             st.write("No token")
 
-
+        st.write(f"token {token}")
         headers = {"Authorization": f"Bearer {token}"}
         response = requests.get(
             "https://api.dashboardauth.com/get-user", headers=headers,
