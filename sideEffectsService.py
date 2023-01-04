@@ -131,7 +131,7 @@ class data4SideEffects:
     def report_side_effects_mono(self, nr_selected_meds,
                                 selected_meds,
                                 medicine1_side_effects,
-                                medicine2_side_effects):
+                                medicine2_side_effects, userID):
         """Report own side effects from mono medicines to the database.
 
         Args:
@@ -149,10 +149,10 @@ class data4SideEffects:
         if nr_selected_meds == 2:
             for side_effect_i in medicine1_side_effects:
                 # Exec query 
-                db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname1)s, 100, now(), %(medicine1_side_effects)s);""", {'medname1': selected_meds[0], 'medicine1_side_effects': side_effect_i})
+                db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname1)s, %(reported_by)s, now(), %(medicine1_side_effects)s);""", {'medname1': selected_meds[0], 'reported_by': userID, 'medicine1_side_effects': side_effect_i})
 
             for side_effect_j in medicine2_side_effects:
-                db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname2)s, 100, now(), %(medicine2_side_effects)s);""", {'medname2': selected_meds[1], 'medicine2_side_effects': side_effect_j})
+                db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname2)s, %(reported_by)s, now(), %(medicine2_side_effects)s);""", {'medname2': selected_meds[1], 'reported_by': userID, 'medicine2_side_effects': side_effect_j})
 
             db_connection.commit()
 
@@ -160,7 +160,7 @@ class data4SideEffects:
             
             for side_effect_i in medicine1_side_effects:
                 # Exec query
-                db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname1)s, 100, now(), %(medicine1_side_effects)s);""", {'medname1': selected_meds[0], 'medicine1_side_effects': side_effect_i})
+                db_cur.execute("""INSERT INTO dbms.mono_side_effects_reported(commercial_name, reported_by, reporting_date, individual_side_effect_name) VALUES (%(medname1)s, %(reported_by)s, now(), %(medicine1_side_effects)s);""", {'medname1': selected_meds[0], 'reported_by': userID, 'medicine1_side_effects': side_effect_i})
                 db_connection.commit()
         
         # Close connection
@@ -172,7 +172,7 @@ class data4SideEffects:
 
     
     def report_side_effects_combo(self, selected_meds,
-                                  side_effects_combo):
+                                  side_effects_combo, userID):
         """Report own side effects from combo medicines to the database.
 
         Args:
@@ -189,7 +189,7 @@ class data4SideEffects:
         
         for side_effect_i in side_effects_combo:
             # Exec query 
-            db_cur.execute("""INSERT INTO dbms.combo_side_effects_reported(commercial_name1, commercial_name2, reported_by, reporting_date, combo_side_effect_name) VALUES (%(medname1)s, %(medname2)s, 100, now(), %(combo_side_effects)s);""", {'medname1': selected_meds[0], 'medname2': selected_meds[1], 'combo_side_effects': side_effect_i})
+            db_cur.execute("""INSERT INTO dbms.combo_side_effects_reported(commercial_name1, commercial_name2, reported_by, reporting_date, combo_side_effect_name) VALUES (%(medname1)s, %(medname2)s, %(reported_by)s, now(), %(combo_side_effects)s);""", {'medname1': selected_meds[0], 'medname2': selected_meds[1], 'reported_by': userID, 'combo_side_effects': side_effect_i})
         
         db_connection.commit()
         

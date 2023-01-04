@@ -25,7 +25,8 @@ class Frontend:
         # User management:
         userAuthenticated = user.UserUI()
         
-        # Check if user logged-in is already in database
+        # Check if user logged-in is already in database.
+        # If not, register the user in database.
         userData = userAuthenticated.authenticate()
 
         # Navigation bar
@@ -55,7 +56,7 @@ class Frontend:
                 # Reporting Button
                 if st.button(label="Report side effects", key="reporting"):
                     # Post own side effects to database
-                    tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects)
+                    tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects, userData["id"])
                     
                     # Process reporting in frontend
                     session_sate = st.session_state.keys()

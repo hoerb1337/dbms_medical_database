@@ -164,7 +164,7 @@ class render_tab1:
     
     def report_side_effects(self, combo, nr_selected_meds,
                             selected_meds, medicine1_side_effects,
-                            medicine2_side_effects):
+                            medicine2_side_effects, userID):
         """Render frontend for reporting side effects.
 
         Args:
@@ -184,7 +184,7 @@ class render_tab1:
                 report_side_effects_mono = callSideEffectsBackend.report_side_effects_mono(nr_selected_meds,
                                                                                            selected_meds,
                                                                                            medicine1_side_effects,
-                                                                                           medicine2_side_effects)
+                                                                                           medicine2_side_effects, userID)
 
                 # Return 200
                 return report_side_effects_mono
@@ -195,7 +195,7 @@ class render_tab1:
                 report_side_effects_mono = callSideEffectsBackend.report_side_effects_mono(nr_selected_meds,
                                                                                            selected_meds,
                                                                                            medicine1_side_effects,
-                                                                                           medicine2_side_effects)
+                                                                                           medicine2_side_effects, userID)
                 # Return 200
                 return report_side_effects_mono
         
@@ -205,7 +205,7 @@ class render_tab1:
             callSideEffectsBackend = sideEffectsService.data4SideEffects()
 
             report_side_effects_combo = callSideEffectsBackend.report_side_effects_combo(selected_meds,
-                                                                                         medicine1_side_effects)
+                                                                                         medicine1_side_effects, userID)
             # Return 200
             return report_side_effects_combo
 
