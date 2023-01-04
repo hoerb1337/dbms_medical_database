@@ -30,11 +30,11 @@ class UserManagament:
                                 headers=headers,)
         
         if response.status_code == 200:
-            st.write(response.json())
-            return response.json()
+            
+            return st.write(response.json())
         else:
-            st.write("Invalid token")
-            return 400
+            
+            return st.write("Invalid token")
 
 
     def get_user_db(self):
