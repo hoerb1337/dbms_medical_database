@@ -1,5 +1,6 @@
 # External libraries
 import streamlit as st
+import json
 
 
 # Backend modules
@@ -9,12 +10,24 @@ import userService
 class UserUI:
     
     def __init__(self):
-        st.write("hello1")
+        pass
 
     def authenticate(self):
         user = userService.UserManagament()
+        
+        # User data as JSON
+        userData = json.loads(user.get_user_auth())
+        
+        # check if user is already in database
+        # user is in db
+        if user.get_user_status_db(userData["id"]) == 200:
+            user.edit_user(userData)
     
-        return user.get_user_auth()
+        # user not yet in db
+        elif user.get_user_status_db(userData["id"]) == 400:
+            user.post_user(userData)
+
+        return userData
 
     def accessHistory(self):
         pass

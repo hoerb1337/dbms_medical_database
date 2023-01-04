@@ -9,7 +9,7 @@ class UserManagament:
         pass
 
     def get_user_auth(self):
-        """Get user data from service provider (SP)
+        """Get user data from login service provider (SP).
 
         Args:
             n: 
@@ -24,33 +24,108 @@ class UserManagament:
         token = params.get("token")
         if token:
             token = token[0]
-            st.write(f"token {token}")
+            #st.write(f"token {token}")
         else:
-            st.write("No token")
+            token = "Error"
+            #st.write("No token")
 
-
+        # Get user data
         headers = {"Authorization": f"Bearer {token}"}
         response = requests.get(
             "https://api.dashboardauth.com/get-user", headers=headers,
         )
         if response.status_code == 200:
-            return st.write(response.json())
+            return response.json()
         else:
-            return st.write("Invalid token")
+            return response.status_code
 
+    def get_user_status_db(self, userID):
+        """Check if user already exists in db.
 
-    def get_user_db(self):
+        Args:
+            n: 
+            type: 
+        Returns:
+            sum over n:
+            type: 
+        """
+
+        # Open db connection
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
+        db_cur.execute("""SELECT id FROM dbms.user where id = %(userID)s;""", {'userID': userID})
+
+        list_user = []
+        list_user.append(f"{db_cur[0]}")
+
+        if len(list_user) == 1:
+            status_msg = 200
+        elif len(list_user) == 0:
+            status_msg = 400
+
+        # Close connection
+        db.disconnect_postgres(db_connection, db_cur)
+
+        return status_msg
+    
+    def get_user_data_db(self):
         pass
         # Open db connection
         #db = database.db_connection()
         #db_connection, db_cur = db.connect_postgres()
         #db_cur.execute("SELECT commercial_name FROM dbms.medicines;")
     
-    def post_user(self):
-        pass
+        return 
 
-    def edit_user(self):
-        pass
+    def post_user(self, userData):
+        """Create new user data in db.
+
+        Args:
+            n: 
+            type: 
+        Returns:
+            sum over n:
+            type: 
+        """
+
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
+        db_cur.execute("""insert into dbms.user (id, email, last_active) values (%(id)s, %(email)s, %(last_active)s);""",
+                       {'id': userData["id"], 'email': userData["email"], 'last_active': userData["last_active"]})
+        
+        db_connection.commit()
+        
+        # Close connection
+        db.disconnect_postgres(db_connection, db_cur)
+        
+        status_msg = 200
+        
+        return status_msg
+
+    def edit_user(self, userData):
+        """Edit user data in db. Right now only last_active is changed.
+
+        Args:
+            n: 
+            type: 
+        Returns:
+            sum over n:
+            type: 
+        """
+
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
+        db_cur.execute("""UPDATE dbms.user SET last_active = %(lastActive)s where id = %(userID)s;""",
+                      {'lastActive': userData["last_active"], 'userID': userData["id"]})
+        
+        db_connection.commit()
+        
+        # Close connection
+        db.disconnect_postgres(db_connection, db_cur)
+        
+        status_msg = 200
+        
+        return status_msg
 
 
 

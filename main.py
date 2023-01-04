@@ -20,13 +20,13 @@ class Frontend:
         st.markdown(hide_menu_style, unsafe_allow_html=True)
         
         # Webapp title
-        st.title("Medical Database")
+        st.title("Welcome to the Medical Database")
         
         # User management:
-        # Check if user logged in is already in database
         userAuthenticated = user.UserUI()
-        userAuthenticated.authenticate()
         
+        # Check if user logged-in is already in database
+        userData = userAuthenticated.authenticate()
 
         # Navigation bar
         tab1, tab2, tab3 = st.tabs(["Medicine Side Effects", 
