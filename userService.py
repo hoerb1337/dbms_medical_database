@@ -18,7 +18,7 @@ class UserManagament:
             sum over n:
             type: 
         """
-
+        st.write("hello")
         # Get token from SP
         params = st.experimental_get_query_params()
         token = params.get("token")
