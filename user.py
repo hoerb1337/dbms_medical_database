@@ -12,7 +12,9 @@ class UserUI:
         pass
 
     def authenticate(self):
-        user = userService.UserManagament.get_user_auth()
+        user = userService.UserManagament()
+    
+        return user.get_user_auth()
 
     def accessHistory(self):
         pass
