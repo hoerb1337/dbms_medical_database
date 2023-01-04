@@ -128,6 +128,39 @@ class UserManagament:
         
         return status_msg
 
+    def post_usage_date(self, userData, selected_meds,
+                        combo, medicine1_side_effects, 
+                        medicine2_side_effects):
+        """Edit user data in db. Right now only last_active is changed.
+
+        Args:
+            userData: id from user
+            type: int
+        Returns:
+            sum over n:
+            type: 
+        """
+        
+        side_effects1_conc = None
+        for side_effect_i in medicine1_side_effects:
+            side_effects1_conc = side_effect_i + ", " + side_effects1_conc
+
+        st.write(side_effects1_conc)
+        
+        # db connection
+        #db = database.db_connection()
+        #db_connection, db_cur = db.connect_postgres()
+        #db_cur.execute("""UPDATE dbms.user SET last_active = %(lastActive)s where id = %(userID)s;""",
+                      #{'lastActive': userData["last_active"], 'userID': userData["id"]})
+        
+        #db_connection.commit()
+        
+        # Close connection
+        #db.disconnect_postgres(db_connection, db_cur)
+        
+        status_msg = 200
+        
+        return status_msg
 
 
 if __name__ == "__main__":

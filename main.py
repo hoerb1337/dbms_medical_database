@@ -1,12 +1,13 @@
 # External libraries
 import streamlit as st
-import requests
 
 # Frontend modules
 import sideEffects
 #import analysis
 import user
-#
+
+# Backend sevices
+import userService
 
 class Frontend:
     
@@ -51,16 +52,26 @@ class Frontend:
             # Reporting side effects:
             if nr_selected_meds >=1 and nr_selected_meds <=2:
                 # list of selected own side effects/multi select UI 
-                medicine1_side_effects, medicine2_side_effects = tab1_rendered.select_own_side_effects(combo, nr_selected_meds, selected_meds)
+                medicine1_side_effects, medicine2_side_effects = tab1_rendered.select_own_side_effects(combo,
+                                                                                                       nr_selected_meds,
+                                                                                                       selected_meds)
 
                 # Reporting Button
                 if st.button(label="Report side effects", key="reporting"):
                     # Post own side effects to database
-                    tab1_rendered.report_side_effects(combo, nr_selected_meds, selected_meds, medicine1_side_effects, medicine2_side_effects, userData["id"])
+                    tab1_rendered.report_side_effects(combo, nr_selected_meds,
+                                                      selected_meds, medicine1_side_effects,
+                                                      medicine2_side_effects, userData["id"])
                     
                     # Process reporting in frontend
                     session_sate = st.session_state.keys()
                     tab1_rendered.process_reporting(session_sate)        
+
+                # Store usage data from user in database
+                store_usage_date = userService.UserManagament()
+                store_usage_date.post_usage_date(userData["id"], selected_meds, combo,
+                                                medicine1_side_effects, medicine2_side_effects)
+            
 
         # End of tab1
 
