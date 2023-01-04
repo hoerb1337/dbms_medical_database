@@ -3,6 +3,7 @@ import pandas as pd
 
 # Backend service
 import sideEffectsService
+import userService
 
 
 class render_tab1:
@@ -42,14 +43,18 @@ class render_tab1:
     
 
     def lookup_sideEffects(self, nr_selected_meds, selected_meds, combo):
+        """Get user data from service provider (SP)
+
+        Args:
+            n: 
+            type: 
+        Returns:
+            sum over n:
+            type: 
+        """
+        
         st.subheader("2. Reported side effects from selected medicines:")
         
-        #if st.button(label="Lookup side effects", key='lookup'):
-                    #if 'my_button' not in st.session_state:
-                        #st.session_state.my_button = True
-                    # Show dataframe
-                    #displayed_side_effects = tab1_rendered.lookup_sideEffects(nr_selected_meds, selected_meds, combo)
-        #if st.session_state.my_button == True:
         # No combination of meds
         if combo == "False":
             # Call Backendservice
@@ -125,12 +130,6 @@ class render_tab1:
                     medicine2_side_effects = st.multiselect('Select side effects for ' + selected_meds[1],
                                                             getListSideEffectsMono2, key="medicine2_side_effects")
                 
-                #if st.button(label="Report side effects"):
-                    #report_side_effects_mono = callSideEffectsBackend.report_side_effects_mono(nr_selected_meds,
-                                                                                               #selected_meds,
-                                                                                               #medicine1_side_effects,
-                                                                                               #medicine2_side_effects)
-                
                 return medicine1_side_effects, medicine2_side_effects
             
             # 1 chosen med
@@ -141,12 +140,6 @@ class render_tab1:
                                                             getListSideEffectsMono, key="medicine1_side_effects")
                 
                 medicine2_side_effects = None
-                
-                #if st.button(label="Report side effects"):
-                    #report_side_effects_mono = callSideEffectsBackend.report_side_effects_mono(nr_selected_meds,
-                                                                                               #selected_meds,
-                                                                                               #medicine1_side_effects,
-                                                                                               #medicine2_side_effects)
 
                 return medicine1_side_effects, medicine2_side_effects
         
@@ -164,10 +157,8 @@ class render_tab1:
                                                 + selected_meds[0] +
                                                 ' and ' + selected_meds[1],
                                                 getListSideEffectsCombo, key="side_effects_combo")
-            # Button
-            #if st.button(label="Report side effects"):
-                #report_side_effects_combo = callSideEffectsBackend.report_side_effects_combo(selected_meds,
-            dummy_medicine2_side_effects = None                                                                              #side_effects_combo)
+
+            dummy_medicine2_side_effects = None
             return side_effects_combo, dummy_medicine2_side_effects
     
     
@@ -212,18 +203,7 @@ class render_tab1:
         elif combo == "True":
             # Call Backendservice
             callSideEffectsBackend = sideEffectsService.data4SideEffects()
-            
-            # Get list of side effects from medicines taken
-            # independently from each other
-            #getListSideEffectsCombo = callSideEffectsBackend.list_side_effects_combo()
-            
-            # Multi-select UI
-            #side_effects_combo = st.multiselect('Select side effects for the combination of '
-                                                #+ selected_meds[0] +
-                                                #' and ' + selected_meds[1],
-                                                #getListSideEffectsCombo)
-            # Button
-            #if st.button(label="Report side effects"):
+
             report_side_effects_combo = callSideEffectsBackend.report_side_effects_combo(selected_meds,
                                                                                          medicine1_side_effects)
             # Return 200
