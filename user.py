@@ -9,7 +9,7 @@ import userService
 class UserUI:
     
     def __init__(self):
-        pass
+        st.write("hello1")
 
     def authenticate(self):
         user = userService.UserManagament()
