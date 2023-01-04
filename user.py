@@ -20,6 +20,7 @@ class UserUI:
         # check if user is already in database
         # user is in db
         user_checked = user.get_user_status_db(userData["id"])
+        st.write(user_checked)
         if user_checked == 200:
             user.edit_user(userData)
     
