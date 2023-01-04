@@ -143,7 +143,7 @@ class UserManagament:
         
         side_effects1_conc = ""
         for side_effect_i in medicine1_side_effects:
-            side_effects1_conc = side_effect_i + ", " + side_effects1_conc
+            side_effects1_conc = side_effects1_conc + ", " + side_effect_i
 
         st.write(side_effects1_conc)
         st.write(medicine1_side_effects)
