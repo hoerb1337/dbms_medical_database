@@ -17,7 +17,7 @@ class UserUI:
         
         # User data as JSON
         userData = user.get_user_auth()
-        st.write(type(userData))
+        st.write(userData)
         st.write(userData["id"])
         # check if user is already in database
         # user is in db
