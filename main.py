@@ -39,10 +39,10 @@ class Frontend:
             "https://api.dashboardauth.com/get-user", headers=headers,
         )
         if response.status_code == 200:
-            st.write(response.json())
+            st.write(response.json().id)
         else:
             st.write("Invalid token")
-            
+
         # Navigation bar
         tab1, tab2, tab3 = st.tabs(["Medicine Side Effects", 
                                     "Analysis",
