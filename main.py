@@ -1,6 +1,6 @@
 # External libraries
 import streamlit as st
-# import psycopg2
+import requests
 
 # Frontend modules
 import sideEffects
@@ -24,8 +24,25 @@ class Frontend:
         
         # User management:
         # Check if user logged in is already in database
-        userAuthenticated = user.UserUI.authenticate()
-        
+        #userAuthenticated = user.UserUI.authenticate()
+        params = st.experimental_get_query_params()
+        token = params.get("token")
+        if token:
+            token = token[0]
+            st.write(f"token {token}")
+        else:
+            st.write("No token")
+
+
+        headers = {"Authorization": f"Bearer {token}"}
+        response = requests.get(
+            "https://api.dashboardauth.com/get-user", headers=headers,
+        )
+        if response.status_code == 200:
+            st.write(response.json())
+        else:
+            st.write("Invalid token")
+            
         # Navigation bar
         tab1, tab2, tab3 = st.tabs(["Medicine Side Effects", 
                                     "Analysis",
