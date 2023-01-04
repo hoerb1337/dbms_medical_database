@@ -56,7 +56,8 @@ class UserManagament:
         db_cur.execute("""SELECT id FROM dbms.user where id = %(userID)s;""", {'userID': userID})
 
         list_user = []
-        list_user.append(f"{db_cur[0]}")
+        for user_i in db_cur:
+            list_user.append(f"{user_i[0]}")
 
         if len(list_user) == 1:
             status_msg = 200

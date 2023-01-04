@@ -21,11 +21,12 @@ class UserUI:
         st.write(userData["id"])
         # check if user is already in database
         # user is in db
-        if user.get_user_status_db(userData["id"]) == 200:
+        user_checked = user.get_user_status_db(userData["id"])
+        if user_checked == 200:
             user.edit_user(userData)
     
         # user not yet in db
-        elif user.get_user_status_db(userData["id"]) == 400:
+        elif user_checked == 400:
             user.post_user(userData)
 
         return userData
