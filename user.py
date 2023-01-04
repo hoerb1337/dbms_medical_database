@@ -16,7 +16,7 @@ class UserUI:
         user = userService.UserManagament()
         
         # User data as JSON
-        userData = json.loads(user.get_user_auth())
+        userData = json.loads(str(user.get_user_auth()))
         
         # check if user is already in database
         # user is in db
