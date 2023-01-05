@@ -158,8 +158,8 @@ class render_tab1:
                                                 ' and ' + selected_meds[1],
                                                 getListSideEffectsCombo, key="side_effects_combo")
 
-            dummy_medicine2_side_effects = None
-            return side_effects_combo, dummy_medicine2_side_effects
+            medicine2_side_effects = None
+            return side_effects_combo, medicine2_side_effects 
     
     
     def report_side_effects(self, combo, nr_selected_meds,
