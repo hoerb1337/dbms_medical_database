@@ -150,7 +150,7 @@ class UserManagament:
                 for side_effect_i in medicine1_side_effects:
                     side_effects1_conc = side_effect_i + ", " + side_effects1_conc
             else:
-                medicine1_side_effects = medicine1_side_effects[0]
+                side_effects1_conc = medicine1_side_effects[0]
             
             # db connection
             db = database.db_connection()
