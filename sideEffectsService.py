@@ -121,7 +121,7 @@ class data4SideEffects:
         list_side_effects_combo = []
         for side_effect_i in db_cur:
             list_side_effects_combo.append(f"{side_effect_i[0]}")
-        
+        st.write(list_side_effects_combo)
         # Close connection
         close_db_connection = db.disconnect_postgres(db_connection, db_cur)
 
