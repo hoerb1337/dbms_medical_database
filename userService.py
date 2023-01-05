@@ -158,30 +158,48 @@ class UserManagament:
             db_cur.execute("""insert into dbms.user_side_effects_history (user_id, access_date, selected_medicine1, selected_medicine2, combo, reported_side_effect1, reported_side_effect2) values (%(userID)s, now(), %(selected_medicine1)s, 'null', %(combo)s, %(reported_side_effect1)s, 'null');""",
                         {'userID': userData, 'selected_medicine1': selected_meds[0], 'combo': combo, 'reported_side_effect1': side_effects1_conc})
 
+        # Two meds selected
         elif len(selected_meds) == 2:
-            # more than one side effect
-            if len(medicine1_side_effects) > 1:
-                # transform list of side effects into concenated string
-                side_effects1_conc = ""
-                for side_effect_i in medicine1_side_effects:
-                    side_effects1_conc = side_effect_i + ", " + side_effects1_conc
-            else:
-                side_effects1_conc = medicine1_side_effects[0]
+            if combo == "False":
+                # more than one side effect of med1
+                if len(medicine1_side_effects) > 1:
+                    # transform list of side effects into concenated string
+                    side_effects1_conc = ""
+                    for side_effect_i in medicine1_side_effects:
+                        side_effects1_conc = side_effect_i + ", " + side_effects1_conc
+                else:
+                    side_effects1_conc = medicine1_side_effects[0]
+                
+                # more than one side effect of med2
+                if len(medicine2_side_effects) > 1:
+                    # transform list of side effects into concenated string
+                    side_effects2_conc = ""
+                    for side_effect_i in medicine2_side_effects:
+                        side_effects2_conc = side_effect_i + ", " + side_effects2_conc
+                else:
+                    side_effects2_conc = medicine2_side_effects[0]
+            
+                # db connection
+                db = database.db_connection()
+                db_connection, db_cur = db.connect_postgres()
+                db_cur.execute("""insert into dbms.user_side_effects_history (user_id, access_date, selected_medicine1, selected_medicine2, combo, reported_side_effect1, reported_side_effect2) values (%(userID)s, now(), %(selected_medicine1)s, %(selected_medicine2)s, %(combo)s, %(reported_side_effect1)s, %(reported_side_effect2)s);""",
+                            {'userID': userData, 'selected_medicine1': selected_meds[0], 'selected_medicine2': selected_meds[1], 'combo': combo, 'reported_side_effect1': side_effects1_conc, 'reported_side_effect2': side_effects2_conc})
+            
+            elif combo == "True":
+                if len(medicine1_side_effects) > 1:
+                    # transform list of side effects into concenated string
+                    side_effects1_conc = ""
+                    for side_effect_i in medicine1_side_effects:
+                        side_effects1_conc = side_effect_i + ", " + side_effects1_conc
+                else:
+                    side_effects1_conc = medicine1_side_effects[0]
 
-            if len(medicine2_side_effects) > 1:
-                # transform list of side effects into concenated string
-                side_effects2_conc = ""
-                for side_effect_i in medicine2_side_effects:
-                    side_effects2_conc = side_effect_i + ", " + side_effects2_conc
-            else:
-                side_effects2_conc = medicine2_side_effects[0]
-        
-            # db connection
-            db = database.db_connection()
-            db_connection, db_cur = db.connect_postgres()
-            db_cur.execute("""insert into dbms.user_side_effects_history (user_id, access_date, selected_medicine1, selected_medicine2, combo, reported_side_effect1, reported_side_effect2) values (%(userID)s, now(), %(selected_medicine1)s, %(selected_medicine2)s, %(combo)s, %(reported_side_effect1)s, %(reported_side_effect2)s);""",
-                        {'userID': userData, 'selected_medicine1': selected_meds[0], 'selected_medicine2': selected_meds[1], 'combo': combo, 'reported_side_effect1': side_effects1_conc, 'reported_side_effect2': side_effects2_conc})
-        
+                # db connection
+                db = database.db_connection()
+                db_connection, db_cur = db.connect_postgres()
+                db_cur.execute("""insert into dbms.user_side_effects_history (user_id, access_date, selected_medicine1, selected_medicine2, combo, reported_side_effect1, reported_side_effect2) values (%(userID)s, now(), %(selected_medicine1)s, %(selected_medicine2)s, %(combo)s, %(reported_side_effect1)s, 'null');""",
+                            {'userID': userData, 'selected_medicine1': selected_meds[0], 'selected_medicine2': selected_meds[1], 'combo': combo, 'reported_side_effect1': side_effects1_conc})
+
         db_connection.commit()
         
         # Close connection
