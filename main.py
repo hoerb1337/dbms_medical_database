@@ -55,8 +55,8 @@ class Frontend:
                 medicine1_side_effects, medicine2_side_effects = tab1_rendered.select_own_side_effects(combo,
                                                                                                        nr_selected_meds,
                                                                                                        selected_meds)
-                st.write(medicine1_side_effects)
-                st.write(medicine2_side_effects)
+                #st.write(medicine1_side_effects)
+                #st.write(medicine2_side_effects)
                 # Reporting Button
                 if st.button(label="Report side effects", key="reporting"):
                     # Post own side effects to database
