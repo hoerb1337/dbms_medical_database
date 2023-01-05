@@ -113,7 +113,7 @@ class data4SideEffects:
             sum over n:
             type: 
         """
-
+        st.write("Hello")
         # Open connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
