@@ -65,9 +65,9 @@ class Frontend:
                                                       medicine2_side_effects, userData["id"])
                     
                     # Store usage data from user in database
-                    #store_usage_date = userService.UserManagament()
-                    #store_usage_date.post_usage_date(userData["id"], selected_meds, combo,
-                                                    #medicine1_side_effects, #medicine2_side_effects)
+                    store_usage_date = userService.UserManagament()
+                    store_usage_date.post_usage_date(userData["id"], selected_meds, combo,
+                                                    medicine1_side_effects, medicine2_side_effects)
                     
                     # Process reporting in frontend
                     session_sate = st.session_state.keys()
