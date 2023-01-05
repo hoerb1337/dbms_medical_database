@@ -113,15 +113,15 @@ class data4SideEffects:
             sum over n:
             type: 
         """
-        st.write("Hello")
+        
         # Open connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
-        db_cur.execute("""select mc.combo_side_effect_name from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and m0.commercial_name = %(medname1)s and m1.commercial_name = %(medname2)s;""", {'medname1': selected_meds[0], 'medname2': selected_meds[1]})
+        db_cur.execute("""select mc.combo_side_effect_name from dbms.medicines_combo mc, dbms.medicines m0, dbms.medicines m1 where mc.stitch1 = m0.stitch and mc.stitch2 = m1.stitch and ((m0.commercial_name = %(medname1)s and m1.commercial_name= %(medname2)s) or (m0.commercial_name = %(medname2)s and m1.commercial_name= %(medname1)s));""", {'medname1': selected_meds[0], 'medname2': selected_meds[1]})
         list_side_effects_combo = []
         for side_effect_i in db_cur:
             list_side_effects_combo.append(f"{side_effect_i[0]}")
-        st.write(list_side_effects_combo)
+        
         # Close connection
         close_db_connection = db.disconnect_postgres(db_connection, db_cur)
 

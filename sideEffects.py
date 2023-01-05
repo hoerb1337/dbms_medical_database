@@ -151,7 +151,7 @@ class render_tab1:
             # Get list of side effects from medicines taken
             # independently from each other
             getListSideEffectsCombo = callSideEffectsBackend.list_side_effects_combo(selected_meds)
-            st.write(getListSideEffectsCombo)
+            
             # Multi-select UI
             side_effects_combo = st.multiselect('Select side effects for the combination of '
                                                 + selected_meds[0] +
