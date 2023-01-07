@@ -14,7 +14,18 @@ class render_tab2:
                 "and we find for you the closest prediction of " +
                 "medicines that you could have taken.")
 
-    def select_side_effects(self):
+    def show_selection_sideEffects(self):
+        """UI for choosing side effects by user.
+
+        Args:
+            None
+        Returns:
+            selected_sideEffects: list of chosen side effects
+            type: list
+            nr_sideEffects: number of chosen side effects
+            type: int
+        """
+
         st.subheader("1. Selection of own side effect symptoms:")
         # Call Backendservice
         callAnalysisBackend = analysisService.data4Analysis()
@@ -25,11 +36,13 @@ class render_tab2:
             #for key in st.session_state:
             #    del st.session_state[key]
             #st.experimental_rerun
-            list_sideEffects = callAnalysisBackend.get_sideEffects(combo="True")
+            combo="True"
+            list_sideEffects = callAnalysisBackend.get_sideEffects(combo)
 
         else:
             # Get list of side effects from mono medicines
-            list_sideEffects = callAnalysisBackend.get_sideEffects(combo="False")
+            combo="False"
+            list_sideEffects = callAnalysisBackend.get_sideEffects(combo)
         
         # Multiselect UI
         selected_sideEffects = st.multiselect('Select your set of side effects:',
@@ -40,35 +53,39 @@ class render_tab2:
         nr_sideEffects = len(selected_sideEffects)
         if nr_sideEffects < 1:
             st.warning("Please choose at least one side effect symptom.")
-        elif nr_sideEffects >= 1:
-            st.button(label="Lookup medicines", key="lookUp_meds")
 
+        return selected_sideEffects, nr_sideEffects, combo
+    
+    
+    def show_reverse_lookup(self, selected_sideEffects,
+                            nr_sideEffects, combo):
+        """UI for displaying reverse lookup results.
 
-
-
-        # Check number of meds
-        #check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
+        Args:
+            selected_sideEffects:
+            type: list
+            nr_sideEffects:
+            type: int
+        Returns:
+            selected_sideEffects: list of chosen side effects
+            type: dataframe
+        """
         
-        #if check_nr_meds == 200:
-            #combo = "False"
-            #if nr_selected_meds == 2:
-                #if st.checkbox('I want side effects of combination'):
-                    #combo = "True"
-
-            #return medicine_selection, combo, nr_selected_meds
-            
-        #elif check_nr_meds == 422:
-            #st.warning("Please choose at least one medicine.")
-            #combo = None
-            #return medicine_selection, combo, nr_selected_meds
-
-        #elif check_nr_meds == 401:
-            #st.error("You chose more than two medicines. Please select only two medicines.")
-            #combo = None
-            #return medicine_selection, combo, nr_selected_meds
-        #selected_sideEffects = None
-
-        return selected_sideEffects
+        # Button:
+        if nr_sideEffects >= 1:
+            btn_lookup_meds = st.button(label="Lookup medicines")
+        
+        callAnalysisBackend = analysisService.data4Analysis()
+        
+        # If button clicked:
+        if btn_lookup_meds:
+            results_reLookup = callAnalysisBackend.do_reverse_lookup(selected_sideEffects,
+                                                                     nr_sideEffects,
+                                                                     combo)
+        # Create dataframe with results from reverse lookup
+        # Display dataframe
+        
+        return results_reLookup
 
 
 

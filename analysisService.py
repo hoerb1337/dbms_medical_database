@@ -42,3 +42,69 @@ class data4Analysis:
         close_db_connection = db.disconnect_postgres(db_connection, db_cur)
 
         return list_sideEffects
+
+    
+    def do_reverse_lookup(self, selected_sideEffects, nr_sideEffects, combo):
+        """Perform reverse lookup analysis.
+
+        Args:
+            selected_sideEffects:
+            type: list
+            nr_sideEffects:
+            type: int
+        Returns:
+            selected_sideEffects: list of chosen side effects
+            type: dataframe
+        """
+        
+        # Open db connection
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
+
+
+        if combo == "False":
+            if nr_sideEffects > 1:
+                
+                # Create input for execution
+                string = ""
+                selected_sideEffects_mod = selected_sideEffects.pop(0) 
+                for sideEffect_i in (selected_sideEffects_mod):
+                    string = string + "or mm.individual_side_effect_name = " + "'" + sideEffect_i + "' "
+
+                db_cur.execute("""select m0.commercial_name, count(*) " +
+                                "from dbms.medicines m0, dbms.medicine_mono mm " +
+                                "where m0.stitch = mm.stitch " +
+                                "and (mm.individual_side_effect_name = %(side_effect1)s " +
+                                %(string)s + ")" +
+                                "group by m0.commercial_name " +
+                                "order by count(*) desc;""",
+                                {'side_effect1': selected_sideEffects[0], 'string': string})
+
+                commercial_name = []
+                for row_i in db_cur:
+                    commercial_name.append(f"{row_i[0]}")
+
+                count = []
+                for row_i in db_cur:
+                    count.append(f"{row_i[1]}")
+
+
+                df1_definition_names = {'commercial_name': commercial_name}
+                df1 = pd.DataFrame(data=df1_definition_names)
+                df2_definition_names = {'count': count}
+                df2 = pd.DataFrame(data=df2_definition_names)
+
+                concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
+
+                return concat_dfs
+
+            elif nr_sideEffects == 1:
+                db_cur.execute("""select m0.commercial_name, count(*) " +
+                                "from dbms.medicines m0, dbms.medicine_mono mm " +
+                                "where m0.stitch = mm.stitch " +
+                                "and mm.individual_side_effect_name = %(side_effect)s +
+                                "group by m0.commercial_name " +
+                                "order by count(*) desc;""",
+                                {'string': selected_sideEffects[0]})
+
+        return 
