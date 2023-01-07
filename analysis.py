@@ -22,9 +22,9 @@ class render_tab2:
         if st.checkbox('I am taking two medicines in combination',
                        key="checkbox"):
             # Get list of side effects from combo medicines
-            for key in st.session_state:
-                del st.session_state[key]
-            st.experimental_rerun
+            #for key in st.session_state:
+            #    del st.session_state[key]
+            #st.experimental_rerun
             list_sideEffects = callAnalysisBackend.get_sideEffects(combo="True")
 
         else:
