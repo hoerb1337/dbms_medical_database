@@ -33,11 +33,11 @@ class render_tab2:
         if st.button(label="Show side effect symptoms"):
         
             # Multiselect UI
-            selected_sideEeffects = st.multiselect('Select your set of side effects:',
+            selected_sideEffects = st.multiselect('Select your set of side effects:',
                                                     list_sideEffects,
                                                     key="selected_sideEffects",
                                                     max_selections=2)
-        st.write(selected_sideEeffects)
+            st.write(selected_sideEffects)
         # Check number of meds
         #check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
