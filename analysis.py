@@ -19,27 +19,21 @@ class render_tab2:
         # Call Backendservice
         callAnalysisBackend = analysisService.data4Analysis()
         
-        combo = st.radio("Are you taking two medicines in combination?",
-                        ('Yes', 'No'), key="radio")
-        if combo == "Yes":
-        #if st.checkbox('I am taking two medicines in combination', key="checkbox"):
+        if st.checkbox('I am taking two medicines in combination',
+                       key="checkbox"):
             # Get list of side effects from combo medicines
-            list_sideEffects = callAnalysisBackend.get_sideEffects(combo)
+            list_sideEffects = callAnalysisBackend.get_sideEffects(combo="True")
 
-        elif combo == "No":
-            # Get list of side effects from combo medicines
-            list_sideEffects = callAnalysisBackend.get_sideEffects(combo)
+        else:
+            # Get list of side effects from mono medicines
+            list_sideEffects = callAnalysisBackend.get_sideEffects(combo="False")
         
-        #selected_sideEffects = []
-        
-        if st.button(label="Show side effect symptoms"):
-        
-            # Multiselect UI
-            selected_sideEffects = st.multiselect('Select your set of side effects:',
+        # Multiselect UI
+        selected_sideEffects = st.multiselect('Select your set of side effects:',
                                                     list_sideEffects,
                                                     key="selected_sideEffects",
                                                     max_selections=2)
-            st.write(selected_sideEffects)
+        st.write(selected_sideEffects)
         # Check number of meds
         #check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
@@ -62,7 +56,7 @@ class render_tab2:
             #return medicine_selection, combo, nr_selected_meds
         #selected_sideEffects = None
 
-            return selected_sideEffects
+        return selected_sideEffects
 
 
 
