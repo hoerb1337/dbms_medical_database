@@ -33,13 +33,22 @@ class render_tab2:
         
         # Multiselect UI
         selected_sideEffects = st.multiselect('Select your set of side effects:',
-                                                    list_sideEffects,
-                                                    key="selected_sideEffects",
-                                                    max_selections=2)
+                                              list_sideEffects,
+                                              key="selected_sideEffects")
         st.write(selected_sideEffects)
+        
+        nr_sideEffects = len(selected_sideEffects)
+        if nr_sideEffects < 1:
+            st.warning("Please choose at least one side effect symptom.")
+        elif nr_sideEffects >= 1:
+            st.button(label="Lookup medicines", key="lookUp_meds")
+
+
+
+
         # Check number of meds
         #check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
-
+        
         #if check_nr_meds == 200:
             #combo = "False"
             #if nr_selected_meds == 2:
