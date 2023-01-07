@@ -60,7 +60,7 @@ class render_tab2:
             #return medicine_selection, combo, nr_selected_meds
         #selected_sideEffects = None
 
-        return selected_sideEeffects
+        return selected_sideEffects
 
 
 
