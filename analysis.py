@@ -30,7 +30,7 @@ class render_tab2:
             # Get list of side effects from combo medicines
             list_sideEffects = callAnalysisBackend.get_sideEffects(combo)
         
-        selected_sideEffects = []
+        #selected_sideEffects = []
         
         if st.button(label="Show side effect symptoms"):
         
@@ -39,7 +39,7 @@ class render_tab2:
                                                     list_sideEffects,
                                                     key="selected_sideEffects",
                                                     max_selections=2)
-        st.write(selected_sideEffects)
+            st.write(selected_sideEffects)
         # Check number of meds
         #check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
@@ -62,7 +62,7 @@ class render_tab2:
             #return medicine_selection, combo, nr_selected_meds
         #selected_sideEffects = None
 
-        return selected_sideEffects
+            return selected_sideEffects
 
 
 
