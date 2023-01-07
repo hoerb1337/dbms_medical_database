@@ -20,7 +20,7 @@ class render_tab2:
         callAnalysisBackend = analysisService.data4Analysis()
         
         combo = st.radio("Are you taking two medicines in combination?",
-                        ('Yes', 'No'))
+                        ('Yes', 'No'), key="radio")
         if combo == "Yes":
         #if st.checkbox('I am taking two medicines in combination', key="checkbox"):
             # Get list of side effects from combo medicines
