@@ -30,8 +30,9 @@ class render_tab2:
             # Get list of side effects from combo medicines
             list_sideEffects = callAnalysisBackend.get_sideEffects(combo)
         
-        # Multiselect UI
-        if combo:
+        if st.button(label="Show side effect symptoms"):
+        
+            # Multiselect UI
             selected_sideEeffects = st.multiselect('Select your set of side effects:',
                                                     list_sideEffects,
                                                     key="selected_sideEffects",
