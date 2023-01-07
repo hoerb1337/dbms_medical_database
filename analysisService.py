@@ -13,7 +13,7 @@ class data4Analysis:
            stored in database.
 
         Args:
-            combo: "Yes" or "No"
+            combo: "True" or "Fals"
             type: str 
         Returns:
             list_sideEffects: list of side effects
@@ -23,7 +23,7 @@ class data4Analysis:
         # Open connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
-        if combo == "Yes":
+        if combo == "True":
             db_cur.execute("select distinct mc.combo_side_effect_name " + 
                            "from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc " + 
                            "where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2;")
