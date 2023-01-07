@@ -19,10 +19,11 @@ class render_tab2:
         # Call Backendservice
         callAnalysisBackend = analysisService.data4Analysis()
         
-        if st.checkbox('I am taking 2 medicines in combination', key="checkbox"):
-            # Get list of medicines
+        if st.checkbox('I am taking two medicines in combination', key="checkbox"):
+            # Get list of side effects from combo medicines
             list_sideEffects = callAnalysisBackend.get_sideEffects(combo="True")
         else:
+            # Get list of side effects from combo medicines
             list_sideEffects = callAnalysisBackend.get_sideEffects(combo="False")
         
         # Multiselect UI
@@ -30,6 +31,7 @@ class render_tab2:
                                             list_sideEffects,
                                             key="selected_sideEffects",
                                             max_selections=2)
+        st.write(selected_sideEeffects)
         # Check number of meds
         #check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
