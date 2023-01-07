@@ -75,17 +75,17 @@ class render_tab2:
         if nr_sideEffects >= 1:
             btn_lookup_meds = st.button(label="Lookup medicines")
         
-        callAnalysisBackend = analysisService.data4Analysis()
+            callAnalysisBackend = analysisService.data4Analysis()
         
         # If button clicked:
-        if btn_lookup_meds:
-            results_reLookup = callAnalysisBackend.do_reverse_lookup(selected_sideEffects,
-                                                                     nr_sideEffects,
-                                                                     combo)
-        # Create dataframe with results from reverse lookup
-        # Display dataframe
-        
-        return results_reLookup
+            if btn_lookup_meds:
+                results_reLookup = callAnalysisBackend.do_reverse_lookup(selected_sideEffects,
+                                                                        nr_sideEffects,
+                                                                        combo)
+            # Create dataframe with results from reverse lookup
+            # Display dataframe
+            
+            return results_reLookup
 
 
 
