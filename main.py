@@ -3,7 +3,7 @@ import streamlit as st
 
 # Frontend modules
 import sideEffects
-#import analysis
+import analysis
 import user
 
 # Backend sevices
@@ -27,13 +27,14 @@ class Frontend:
         userAuthenticated = user.UserUI()
         
         # Check if user logged-in is already in database.
-        # If not, register the user in database.
+        # If not, register the user in database. Get user data
+        # to save their access history.
         userData = userAuthenticated.authenticate()
 
         # Navigation bar
         tab1, tab2, tab3 = st.tabs(["Medicine Side Effects", 
-                                    "Analysis",
-                                    "Your Access History"])
+                                    "Analysis Module",
+                                    "Your Usage Data"])
         #
         
         # Tab1: sideEffects
@@ -55,8 +56,7 @@ class Frontend:
                 medicine1_side_effects, medicine2_side_effects = tab1_rendered.select_own_side_effects(combo,
                                                                                                        nr_selected_meds,
                                                                                                        selected_meds)
-                #st.write(medicine1_side_effects)
-                #st.write(medicine2_side_effects)
+
                 # Reporting Button
                 if st.button(label="Report side effects", key="reporting"):
                     # Post own side effects to database
@@ -80,8 +80,8 @@ class Frontend:
 
         # Tab2: analysis
         with tab2:
-            #self.tab2_rendered = analysis.render_tab2()
-            st.header("Analysis")
+            tab2_rendered = analysis.render_tab2()
+            
         #
 
         # Tab3: user
