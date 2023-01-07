@@ -14,10 +14,45 @@ class render_tab2:
                 "and we find for you the closest prediction of " +
                 "medicines that you could have taken.")
 
-    #def (self):
+    def select_side_effects(self):
+        st.subheader("1. Selection of own side effect symptoms:")
+        # Call Backendservice
+        callAnalysisBackend = analysisService.data4Analysis()
         
+        if st.checkbox('I am taking 2 medicines in combination', key="checkbox"):
+            # Get list of medicines
+            list_sideEffects = callAnalysisBackend.get_sideEffects(combo="True")
+        else:
+            list_sideEffects = callAnalysisBackend.get_sideEffects(combo="False")
+        
+        # Multiselect UI
+        selected_sideEeffects = st.multiselect('Select your set of side effects:',
+                                            list_sideEffects,
+                                            key="selected_sideEffects",
+                                            max_selections=2)
+        # Check number of meds
+        #check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
-        #return 
+        #if check_nr_meds == 200:
+            #combo = "False"
+            #if nr_selected_meds == 2:
+                #if st.checkbox('I want side effects of combination'):
+                    #combo = "True"
+
+            #return medicine_selection, combo, nr_selected_meds
+            
+        #elif check_nr_meds == 422:
+            #st.warning("Please choose at least one medicine.")
+            #combo = None
+            #return medicine_selection, combo, nr_selected_meds
+
+        #elif check_nr_meds == 401:
+            #st.error("You chose more than two medicines. Please select only two medicines.")
+            #combo = None
+            #return medicine_selection, combo, nr_selected_meds
+        #selected_sideEffects = None
+
+        return selected_sideEeffects
 
 
 

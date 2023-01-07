@@ -71,16 +71,13 @@ class Frontend:
                     
                     # Process reporting in frontend
                     session_sate = st.session_state.keys()
-                    tab1_rendered.process_reporting(session_sate)        
-
-
-            
-
+                    tab1_rendered.process_reporting(session_sate)
         # End of tab1
 
         # Tab2: analysis
         with tab2:
             tab2_rendered = analysis.render_tab2()
+            tab2_rendered.select_side_effects()
             
         #
 
