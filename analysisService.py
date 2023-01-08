@@ -87,9 +87,9 @@ class data4Analysis:
 
                 db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and (mm.individual_side_effect_name = %(string)s) group by m0.commercial_name order by count(*) desc;""", {'string': string})
 
-                st.write(db_cur)
                 test = db_cur.fetchall()
-
+                st.write(test)
+                
                 commercial_name = []
                 count = []
                 for row_i in test:
