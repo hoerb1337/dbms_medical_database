@@ -67,6 +67,7 @@ class data4Analysis:
         if combo == "False":
             if nr_sideEffects > 1:
                 
+                
                 # Create input for execution
                 string = "" 
                 
@@ -81,11 +82,14 @@ class data4Analysis:
                         string = string + " mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' or "
                         i += 1
 
+                query = "select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (mm.individual_side_effect_name = " + string + ") group by m0.commercial_name order by count(*) desc;"
+
                 st.write(selected_sideEffects)
                 #st.write(selected_sideEffects_mod)
                 st.write(string)
 
-                db_cur.execute("select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (mm.individual_side_effect_name = 'central nervous system mass' or mm.individual_side_effect_name = 'Photosensitivity reaction' or mm.individual_side_effect_name = 'scrotal ulcer' or mm.individual_side_effect_name = 'cold sweat') group by m0.commercial_name order by count(*) desc;")
+                db_cur.execute(query)
+                #db_cur.execute("select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (mm.individual_side_effect_name = 'central nervous system mass' or mm.individual_side_effect_name = 'Photosensitivity reaction' or mm.individual_side_effect_name = 'scrotal ulcer' or mm.individual_side_effect_name = 'cold sweat') group by m0.commercial_name order by count(*) desc;")
 
                 #db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and (mm.individual_side_effect_name = %(string)s) group by m0.commercial_name order by count(*) desc;""", {'string': string})
 #central nervous system mass or mm.individual_side_effect_name = 'Photosensitivity reaction' or mm.individual_side_effect_name = 'scrotal ulcer' or mm.individual_side_effect_name = 'cold sweat'
