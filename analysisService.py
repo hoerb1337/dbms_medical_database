@@ -117,7 +117,7 @@ class data4Analysis:
                 commercial_name = []
                 for row_i in test:
                     st.write(row_i)
-                    commercial_name.append(f"{row_i[0]}")
+                    commercial_name.append(f"{row_i}")
 
                 count = []
                 for row_i in db_cur:
