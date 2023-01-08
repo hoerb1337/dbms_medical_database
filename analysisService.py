@@ -95,6 +95,8 @@ class data4Analysis:
                 for row_i in db_cur:
                     count.append(f"{row_i[1]}")
 
+                st.write(commercial_name)
+                st.write(count)
 
                 df1_definition_names = {'commercial_name': commercial_name}
                 df1 = pd.DataFrame(data=df1_definition_names)
