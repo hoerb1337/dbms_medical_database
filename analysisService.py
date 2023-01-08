@@ -67,15 +67,26 @@ class data4Analysis:
                 
                 # Create input for execution
                 string = ""
-                selected_sideEffects_mod = selected_sideEffects.pop(0) 
-                for sideEffect_i in (selected_sideEffects_mod):
-                    string = string + "or mm.individual_side_effect_name = " + "'" + sideEffect_i + "' "
+                #selected_sideEffects_mod = selected_sideEffects.pop(0) 
+                
+                i = 0
+                for sideEffect_i in range(nr_sideEffects):
+                    if sideEffect_i == nr_sideEffects - 1:
+                        string = string + "mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' "
+                    else:
+                        string = string + "mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' or "
+                        i += 1
+                
+                #for sideEffect_i in (selected_sideEffects_mod):
+                #    string = string + "or mm.individual_side_effect_name = " + "'" + sideEffect_i + "' "
 
                 st.write(selected_sideEffects)
-                st.write(selected_sideEffects_mod)
+                #st.write(selected_sideEffects_mod)
                 st.write(string)
 
-                db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and (mm.individual_side_effect_name = %(side_effect1)s %(string)s) group by m0.commercial_name " order by count(*) desc;""", {'side_effect1': selected_sideEffects[0], 'string': string})
+                db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and (%(string)s) group by m0.commercial_name " order by count(*) desc;""", {'string': string})
+
+                st.write(db_cur)
 
                 commercial_name = []
                 for row_i in db_cur:
