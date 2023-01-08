@@ -66,19 +66,15 @@ class data4Analysis:
             if nr_sideEffects > 1:
                 
                 # Create input for execution
-                string = ""
-                #selected_sideEffects_mod = selected_sideEffects.pop(0) 
+                string = "" 
                 
                 i = 0
                 for sideEffect_i in range(nr_sideEffects):
                     if sideEffect_i == nr_sideEffects - 1:
                         string = string + "mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' "
                     else:
-                        string = string + "mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' or "
+                        string = string + " mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' or "
                         i += 1
-                
-                #for sideEffect_i in (selected_sideEffects_mod):
-                #    string = string + "or mm.individual_side_effect_name = " + "'" + sideEffect_i + "' "
 
                 st.write(selected_sideEffects)
                 #st.write(selected_sideEffects_mod)
