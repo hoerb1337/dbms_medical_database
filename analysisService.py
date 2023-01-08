@@ -116,6 +116,8 @@ class data4Analysis:
                 test = db_cur.fetchall()
                 st.write(test)
                 st.write(test[0])
+                st.write(test[0][0])
+                st.write(test[0][1])
                 commercial_name = []
                 count = []
                 for row_i in db_cur:
