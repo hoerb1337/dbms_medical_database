@@ -72,6 +72,9 @@ class data4Analysis:
                 for sideEffect_i in range(nr_sideEffects):
                     if sideEffect_i == nr_sideEffects - 1:
                         string = string + "mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' "
+                    elif sideEffect_i == 0:
+                        string = string + selected_sideEffects[i] + " or "
+                        i += 1
                     else:
                         string = string + " mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' or "
                         i += 1
@@ -80,7 +83,7 @@ class data4Analysis:
                 #st.write(selected_sideEffects_mod)
                 st.write(string)
 
-                db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and (%(string)s) group by m0.commercial_name order by count(*) desc;""", {'string': string})
+                db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and (mm.individual_side_effect_name = %(string)s) group by m0.commercial_name order by count(*) desc;""", {'string': string})
 
                 st.write(db_cur)
 
