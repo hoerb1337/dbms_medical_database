@@ -114,7 +114,7 @@ class data4Analysis:
 
                 st.write(db_cur.fetchall())
                 test = db_cur.fetchall()
-                st.write(test[0])
+                st.write(test[1])
                 commercial_name = []
                 for row_i in db_cur:
                     st.write(row_i)
