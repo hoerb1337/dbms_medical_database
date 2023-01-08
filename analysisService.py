@@ -115,13 +115,17 @@ class data4Analysis:
                 #st.write(db_cur.fetchall())
                 test = db_cur.fetchall()
                 st.write(test)
+                
+                # 1. tupel: ('dasatinib', 1)
                 st.write(test[0])
+                # commercial_name: dasatinib
                 st.write(test[0][0])
+                # count: 1
                 st.write(test[0][1])
                 commercial_name = []
                 count = []
-                for row_i in db_cur:
-                    st.write(row_i)
+                for row_i in test:
+                    #st.write(row_i)
                     commercial_name.append(f"{row_i[0]}")
                     count.append(f"{row_i[1]}")
 
