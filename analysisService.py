@@ -113,15 +113,13 @@ class data4Analysis:
                 db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and mm.individual_side_effect_name = %(side_effect)s group by m0.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects[0]})
 
                 st.write(db_cur.fetchall())
-                test = db_cur.fetchall()
-                st.write(test[0][0])
+                #test = db_cur.fetchall()
+                #st.write(test[0][0])
                 commercial_name = []
+                count = []
                 for row_i in db_cur:
                     st.write(row_i)
                     commercial_name.append(f"{row_i[0]}")
-
-                count = []
-                for row_i in db_cur:
                     count.append(f"{row_i[1]}")
 
                 st.write(commercial_name)
