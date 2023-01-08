@@ -116,4 +116,18 @@ class data4Analysis:
                                 "order by count(*) desc;""",
                                 {'string': selected_sideEffects[0]})
 
-        return 
+                commercial_name = []
+                for row_i in db_cur:
+                    commercial_name.append(f"{row_i[0]}")
+
+                count = []
+                for row_i in db_cur:
+                    count.append(f"{row_i[1]}")
+
+                st.write(commercial_name)
+                st.write(count)
+
+                return commercial_name, count
+
+if __name__ == "__main__":
+    pass
