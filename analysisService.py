@@ -76,13 +76,13 @@ class data4Analysis:
                     if sideEffect_i == nr_sideEffects - 1:
                         string = string + "mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' "
                     elif sideEffect_i == 0:
-                        string = string + selected_sideEffects[i] + " or "
+                        string = string + "mm.individual_side_effect_name = '" + selected_sideEffects[i] + "' or "
                         i += 1
                     else:
                         string = string + " mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' or "
                         i += 1
 
-                query = "select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (mm.individual_side_effect_name = " + string + ") group by m0.commercial_name order by count(*) desc;"
+                query = "select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (" + string + ") group by m0.commercial_name order by count(*) desc;"
 
                 st.write(selected_sideEffects)
                 #st.write(selected_sideEffects_mod)
