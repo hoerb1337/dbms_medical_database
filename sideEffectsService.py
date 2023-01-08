@@ -13,7 +13,7 @@ class data4SideEffects:
         # Open connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
-        db_cur.execute("SELECT commercial_name FROM dbms.medicines;")
+        db_cur.execute("SELECT commercial_name FROM dbms.medicines order by commercial_name;")
         list_medicines = []
         for medicine_i in db_cur:
             list_medicines.append(f"{medicine_i[0]}")
@@ -39,7 +39,7 @@ class data4SideEffects:
         db_connection, db_cur = db.connect_postgres()
 
         # Exec query 
-        db_cur.execute("""select individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name = %(medname)s;""", {'medname': selected_meds})
+        db_cur.execute("""select individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name = %(medname)s order by individual_side_effect_name;""", {'medname': selected_meds})
         list_meds1_sideEffects = []
         for sideEffect_i in db_cur:
             list_meds1_sideEffects.append(f"{sideEffect_i[0]}")
@@ -62,7 +62,7 @@ class data4SideEffects:
         db_connection, db_cur = db.connect_postgres()
 
         # Exec query 
-        db_cur.execute("""select mc.combo_side_effect_name from dbms.medicines_combo mc, dbms.medicines m0, dbms.medicines m1 where mc.stitch1 = m0.stitch and mc.stitch2 = m1.stitch and ((m0.commercial_name = %(medname1)s and m1.commercial_name= %(medname2)s) or (m0.commercial_name = %(medname2)s and m1.commercial_name= %(medname1)s));""", {'medname1': selected_meds[0], 'medname2': selected_meds[1]})
+        db_cur.execute("""select mc.combo_side_effect_name from dbms.medicines_combo mc, dbms.medicines m0, dbms.medicines m1 where mc.stitch1 = m0.stitch and mc.stitch2 = m1.stitch and ((m0.commercial_name = %(medname1)s and m1.commercial_name= %(medname2)s) or (m0.commercial_name = %(medname2)s and m1.commercial_name= %(medname1)s)) order by mc.combo_side_effect_name;""", {'medname1': selected_meds[0], 'medname2': selected_meds[1]})
         list_meds1_sideEffects = []
         for sideEffect_i in db_cur:
             list_meds1_sideEffects.append(f"{sideEffect_i[0]}")
@@ -93,7 +93,7 @@ class data4SideEffects:
         # Open connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
-        db_cur.execute("""select mm.individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and m0.commercial_name = %(medname)s;""", {'medname': selected_meds})
+        db_cur.execute("""select mm.individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and m0.commercial_name = %(medname)s order by mm.individual_side_effect_name;""", {'medname': selected_meds})
         list_side_effects_mono = []
         for side_effect_i in db_cur:
             list_side_effects_mono.append(f"{side_effect_i[0]}")
@@ -117,7 +117,7 @@ class data4SideEffects:
         # Open connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
-        db_cur.execute("""select mc.combo_side_effect_name from dbms.medicines_combo mc, dbms.medicines m0, dbms.medicines m1 where mc.stitch1 = m0.stitch and mc.stitch2 = m1.stitch and ((m0.commercial_name = %(medname1)s and m1.commercial_name= %(medname2)s) or (m0.commercial_name = %(medname2)s and m1.commercial_name= %(medname1)s));""", {'medname1': selected_meds[0], 'medname2': selected_meds[1]})
+        db_cur.execute("""select mc.combo_side_effect_name from dbms.medicines_combo mc, dbms.medicines m0, dbms.medicines m1 where mc.stitch1 = m0.stitch and mc.stitch2 = m1.stitch and ((m0.commercial_name = %(medname1)s and m1.commercial_name= %(medname2)s) or (m0.commercial_name = %(medname2)s and m1.commercial_name= %(medname1)s)) order by mc.combo_side_effect_name;""", {'medname1': selected_meds[0], 'medname2': selected_meds[1]})
         list_side_effects_combo = []
         for side_effect_i in db_cur:
             list_side_effects_combo.append(f"{side_effect_i[0]}")
