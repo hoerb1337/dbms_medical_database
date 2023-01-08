@@ -61,7 +61,9 @@ class data4Analysis:
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
 
-
+        st.write(nr_sideEffects)
+        st.write(selected_sideEffects)
+        
         if combo == "False":
             if nr_sideEffects > 1:
                 
