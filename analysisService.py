@@ -24,14 +24,14 @@ class data4Analysis:
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
         if combo == "True":
-            db_cur.execute("select distinct mc.combo_side_effect_name " + 
+            db_cur.execute("select mc.combo_side_effect_name " + 
                            "from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc " + 
                            "where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2;")
             list_sideEffects = []
             for sideEffect_i in db_cur:
                 list_sideEffects.append(f"{sideEffect_i[0]}")
         else:
-            db_cur.execute("select distinct mm.individual_side_effect_name " +
+            db_cur.execute("select mm.individual_side_effect_name " +
                            "from dbms.medicines m0, dbms.medicine_mono mm " +
                            "where m0.stitch = mm.stitch;")
             list_sideEffects = []
