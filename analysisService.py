@@ -63,7 +63,7 @@ class data4Analysis:
 
         st.write(nr_sideEffects)
         st.write(selected_sideEffects)
-        
+
         if combo == "False":
             if nr_sideEffects > 1:
                 
@@ -111,6 +111,8 @@ class data4Analysis:
 
             elif nr_sideEffects == 1:
                 db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and mm.individual_side_effect_name = %(side_effect)s group by m0.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects[0]})
+
+                st.write(db_cur.fetchall())
 
                 commercial_name = []
                 for row_i in db_cur:
