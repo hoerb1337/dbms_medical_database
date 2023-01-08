@@ -132,6 +132,14 @@ class data4Analysis:
                 st.write(commercial_name)
                 st.write(count)
 
+                df1_definition_names = {'commercial_name': commercial_name}
+                df1 = pd.DataFrame(data=df1_definition_names)
+                df2_definition_names = {'count': count}
+                df2 = pd.DataFrame(data=df2_definition_names)
+
+                concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
+                st.write(concat_dfs)
+
                 return commercial_name, count
 
 if __name__ == "__main__":
