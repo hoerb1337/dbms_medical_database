@@ -66,77 +66,56 @@ class data4Analysis:
 
         if combo == "False":
             if nr_sideEffects > 1:
-                
-                
+
                 # Create input for execution
-                string = "" 
+                sideEffects4query = "" 
                 
                 i = 0
                 for sideEffect_i in range(nr_sideEffects):
                     if sideEffect_i == nr_sideEffects - 1:
-                        string = string + "mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' "
+                        sideEffects4query = sideEffects4query + "mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' "
                     elif sideEffect_i == 0:
-                        string = string + "mm.individual_side_effect_name = '" + selected_sideEffects[i] + "' or "
+                        sideEffects4query = sideEffects4query + "mm.individual_side_effect_name = '" + selected_sideEffects[i] + "' or "
                         i += 1
                     else:
-                        string = string + " mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' or "
+                        sideEffects4query = sideEffects4query + " mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' or "
                         i += 1
 
-                query = "select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (" + string + ") group by m0.commercial_name order by count(*) desc;"
-
-                st.write(selected_sideEffects)
-                #st.write(selected_sideEffects_mod)
-                st.write(string)
+                query = "select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (" + sideEffects4query + ") group by m0.commercial_name order by count(*) desc;"
 
                 db_cur.execute(query)
-                #db_cur.execute("select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (mm.individual_side_effect_name = 'central nervous system mass' or mm.individual_side_effect_name = 'Photosensitivity reaction' or mm.individual_side_effect_name = 'scrotal ulcer' or mm.individual_side_effect_name = 'cold sweat') group by m0.commercial_name order by count(*) desc;")
 
-                #db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and (mm.individual_side_effect_name = %(string)s) group by m0.commercial_name order by count(*) desc;""", {'string': string})
-#central nervous system mass or mm.individual_side_effect_name = 'Photosensitivity reaction' or mm.individual_side_effect_name = 'scrotal ulcer' or mm.individual_side_effect_name = 'cold sweat'
-                test = db_cur.fetchall()
-                st.write(test)
+                query_result = db_cur.fetchall()
 
                 commercial_name = []
                 count = []
-                for row_i in test:
+                for row_i in query_result:
                     #st.write(row_i)
                     commercial_name.append(f"{row_i[0]}")
                     count.append(f"{row_i[1]}")
 
-                st.write(commercial_name)
-                st.write(count)
-
-                df1_definition_names = {'commercial_name': commercial_name}
+                df1_definition_names = {'Commercial Name': commercial_name}
                 df1 = pd.DataFrame(data=df1_definition_names)
-                df2_definition_names = {'count': count}
+                df2_definition_names = {'Number of side effects matched': count}
                 df2 = pd.DataFrame(data=df2_definition_names)
 
                 concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
                 st.write(concat_dfs)
+                
                 return concat_dfs
 
             elif nr_sideEffects == 1:
+                
                 db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and mm.individual_side_effect_name = %(side_effect)s group by m0.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects[0]})
 
-                #st.write(db_cur.fetchall())
-                test = db_cur.fetchall()
-                st.write(test)
-                
-                # 1. tupel: ('dasatinib', 1)
-                st.write(test[0])
-                # commercial_name: dasatinib
-                st.write(test[0][0])
-                # count: 1
-                st.write(test[0][1])
+                query_result = db_cur.fetchall()
+
                 commercial_name = []
                 count = []
-                for row_i in test:
+                for row_i in query_result:
                     #st.write(row_i)
                     commercial_name.append(f"{row_i[0]}")
                     count.append(f"{row_i[1]}")
-
-                st.write(commercial_name)
-                st.write(count)
 
                 df1_definition_names = {'commercial_name': commercial_name}
                 df1 = pd.DataFrame(data=df1_definition_names)
@@ -146,7 +125,7 @@ class data4Analysis:
                 concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
                 st.write(concat_dfs)
 
-                return commercial_name, count
+                return concat_dfs
 
 if __name__ == "__main__":
     pass
