@@ -102,7 +102,7 @@ class data4Analysis:
                 df2 = pd.DataFrame(data=df2_definition_names)
 
                 concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
-
+                st.write(concat_dfs)
                 return concat_dfs
 
             elif nr_sideEffects == 1:
