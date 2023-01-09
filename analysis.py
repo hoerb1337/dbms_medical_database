@@ -91,7 +91,7 @@ class render_tab2:
                 st.markdown("<br>", unsafe_allow_html=True)
 
                 # Display results from reverse lookup as dataframe
-                st.subheader("2. Possible medicines taken")
+                st.subheader("2. Results: Possible medicines taken")
                 
                 # Show metrics
                 col1, col2 = st.columns(2)
