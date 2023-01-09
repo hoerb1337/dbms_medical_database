@@ -26,7 +26,6 @@ class render_tab1:
 
         # normalise list of selected medicines
         medicine_selection = callSideEffectsBackend.norm_list_meds(medicine_selection)
-        st.write(medicine_selection)
 
         if check_nr_meds == 200:
             combo = "False"
