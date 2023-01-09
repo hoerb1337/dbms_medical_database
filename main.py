@@ -79,8 +79,8 @@ class Frontend:
             tab2_rendered = analysis.render_tab2()
             
             # Reverse Lookup
-            container1 = tab2_rendered.container_reLookup
-            with container1:
+            tab1 = tab2_rendered.tab1
+            with tab1:
                 # 1. Selection side effects
                 selected_sideEffects_name,selected_sideEffects_id, nr_sideEffects, combo = tab2_rendered.show_selection_sideEffects()
                 # 2. perform reverse lookup and siplay results
@@ -89,8 +89,8 @@ class Frontend:
                                                 nr_sideEffects, combo)
             
             # Analysis of drugs with shared proteins
-            container2 = tab2_rendered.container_protein
-            with container2:
+            tab2 = tab2_rendered.tab2
+            with tab2:
                 tab2_rendered.show_protein_analysis()
 
         #

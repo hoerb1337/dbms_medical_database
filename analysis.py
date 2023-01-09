@@ -9,8 +9,9 @@ import analysisService
 class render_tab2:
     
     def __init__(self):
-        self.container_reLookup = st.container()
-        self.container_protein = st.container()
+        self.tab1, self.tab2 = st.tabs(["Reverse Lookup", 
+                                    "Shared Proteins"])
+        
 
     def show_selection_sideEffects(self):
         """UI for choosing side effects by user.
