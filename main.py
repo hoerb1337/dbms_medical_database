@@ -83,7 +83,10 @@ class Frontend:
             # 2. perform reverse lookup and siplay results
             tab2_rendered.show_reverse_lookup(selected_sideEffects_name,
                                               selected_sideEffects_id,
-                                              nr_sideEffects, combo) 
+                                              nr_sideEffects, combo)
+            
+            # 3. Analysis of drugs with shared proteins
+
         #
 
         # Tab3: user
