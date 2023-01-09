@@ -9,14 +9,8 @@ import analysisService
 class render_tab2:
     
     def __init__(self):
-        self.info_reLookup = st.info("Perform a reverse lookup:\n" +
-                                     "You report your own set of side effect symptoms, " +
-                                     "and we find for you the closest prediction of " +
-                                     "medicines that you could have taken.")
-        
-        self.info_proteins = st.info("Analysis of drugs with shared proteins:\n" +
-                                     "Do drugs with shared proteins have common side effects?")
-
+        self.container_reLookup = st.container()
+        self.container_protein = st.container()
 
     def show_selection_sideEffects(self):
         """UI for choosing side effects by user.
@@ -29,7 +23,12 @@ class render_tab2:
             nr_sideEffects: number of chosen side effects
             type: int
         """
-
+        
+        st.info("Perform a reverse lookup:\n" +
+                "You report your own set of side effect symptoms, " +
+                "and we find for you the closest prediction of " +
+                "medicines that you could have taken.")
+        
         st.subheader("1. Selection of own side effect symptoms:")
         # Call Backendservice
         callAnalysisBackend = analysisService.data4Analysis()
@@ -121,7 +120,9 @@ class render_tab2:
             selected_sideEffects: list of chosen side effects
             type: dataframe
         """
-        render_tab2.info_proteins
+        
+        st.info("Analysis of drugs with shared proteins:\n" +
+                "Do drugs with shared proteins have common side effects?")
 
         return None
         
