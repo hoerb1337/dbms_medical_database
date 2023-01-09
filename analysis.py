@@ -88,6 +88,8 @@ class render_tab2:
                                                                          nr_sideEffects,
                                                                          combo)
                 
+                st.markdown("<br><br>", unsafe_allow_html=True)
+
                 # Display results from reverse lookup as dataframe
                 st.subheader("2. Possible medicines taken")
                 
