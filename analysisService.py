@@ -23,15 +23,19 @@ class data4Analysis:
         # Open connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
+        # combo
         if combo == "True":
-            query = "select distinct mc.combo_side_effect_name from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2;"
+            query = "select distinct concat(mc.combo_side_effect_name, ' (', mc.polypharmacy_side_effect, ')') as se_name_se_id from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 order by se_name_se_id;"
+            #query = "select distinct mc.combo_side_effect_name from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2;"
             db_cur.execute(query)
 
             list_sideEffects = []
             for sideEffect_i in db_cur:
                 list_sideEffects.append(f"{sideEffect_i[0]}")
+        
+        # no combo
         else:
-            query = "select distinct mm.individual_side_effect_name from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch;"
+            query = "select distinct mm.individual_side_effect, mm.individual_side_effect_name, concat(individual_side_effect_name, ' (', individual_side_effect, ')') as se_name_se_id from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch order by se_name_se_id;"
             db_cur.execute(query)
             
             list_sideEffects = []
