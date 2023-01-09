@@ -75,17 +75,34 @@ class render_tab2:
         
         # Button:
         if nr_sideEffects >= 1:
-            btn_lookup_meds = st.button(label="Lookup medicines")
+            btn_lookup_meds = st.button(label="Lookup potential medicines")
         
             callAnalysisBackend = analysisService.data4Analysis()
         
             # If button clicked:
             if btn_lookup_meds:
+                # Start reverse lookup and get results
                 results_reLookup = callAnalysisBackend.do_reverse_lookup(selected_sideEffects_name,
                                                                          selected_sideEffects_id,
                                                                          nr_sideEffects,
                                                                          combo)
-            
+                
+                # Display results from reverse lookup as dataframe
+                st.subheader("2. Possible medicines taken")
+                
+                # Show metrics
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.subheader("Most matched selected side effects:")
+                    st.metric(label="Ibuprofen", value="86%", delta=None)
+
+                with col2:
+                    st.subheader("Matched vs. unmatched side effects:")
+                    st.metric(label="Ibuprofen", value="2%", delta=None)
+                
+                with st.expander("See more details of analysis"):
+                    st.write(results_reLookup)
+                
                 return results_reLookup
 
 

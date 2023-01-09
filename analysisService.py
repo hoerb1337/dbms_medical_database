@@ -88,6 +88,7 @@ class data4Analysis:
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
 
+        # single meds
         if combo == "False":
             if nr_sideEffects > 1:
 
@@ -125,7 +126,7 @@ class data4Analysis:
                 df2 = pd.DataFrame(data=df2_definition_names)
 
                 concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
-                st.write(concat_dfs)
+                #st.write(concat_dfs)
                 
                 return concat_dfs
 
@@ -148,52 +149,81 @@ class data4Analysis:
                 df2 = pd.DataFrame(data=df2_definition_names)
 
                 concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
-                st.write(concat_dfs)
+                #st.write(concat_dfs)
 
                 return concat_dfs
 
+        # combo of medicines
         elif combo == "True":
-            # Create input for execution
-            sideEffects4query = "" 
+            
+            if nr_sideEffects > 1:
+                # Create input for execution
+                sideEffects4query = "" 
+                    
+                i = 0
+                for sideEffect_i in range(nr_sideEffects):
+                    if sideEffect_i == nr_sideEffects - 1:
+                        sideEffects4query = sideEffects4query + "mc.polypharmacy_side_effect = " + "'" + selected_sideEffects_id[i] + "' "
+                    elif sideEffect_i == 0:
+                        sideEffects4query = sideEffects4query + "mc.polypharmacy_side_effect = '" + selected_sideEffects_id[i] + "' or "
+                        i += 1
+                    else:
+                        sideEffects4query = sideEffects4query + " mc.polypharmacy_side_effect = " + "'" + selected_sideEffects_id[i] + "' or "
+                        i += 1
+
+                # query: calcualte nr of matched side effects per medicine combination
+                query = "select m0.commercial_name, m1.commercial_name, count(*) from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and (" + sideEffects4query + ") group by m0.commercial_name, m1.commercial_name order by count(*) desc;"
+                #old query = "select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (" + sideEffects4query + ") group by m0.commercial_name order by count(*) desc;"
+
+                db_cur.execute(query)
+
+                query_result = db_cur.fetchall()
+
+                commercial_name1 = []
+                commercial_name2 = []
+                count = []
+                for row_i in query_result:
+                    commercial_name1.append(f"{row_i[0]}")
+                    commercial_name2.append(f"{row_i[1]}")
+                    count.append(f"{row_i[2]}")
+
+                df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
+                df1 = pd.DataFrame(data=df1_definition_names)
+                df2_definition_names = {'Commercial Name Medicine 2': commercial_name2}
+                df2 = pd.DataFrame(data=df2_definition_names)
+                df3_definition_names = {'Number of side effects matched': count}
+                df3 = pd.DataFrame(data=df3_definition_names)
+
+                concat_dfs = pd.concat([df1, df2, df3], ignore_index=False, axis=1)
+                #st.write(concat_dfs)
+                    
+                return concat_dfs
+            
+            elif nr_sideEffects == 1:
                 
-            i = 0
-            for sideEffect_i in range(nr_sideEffects):
-                if sideEffect_i == nr_sideEffects - 1:
-                    sideEffects4query = sideEffects4query + "mc.polypharmacy_side_effect = " + "'" + selected_sideEffects_id[i] + "' "
-                elif sideEffect_i == 0:
-                    sideEffects4query = sideEffects4query + "mc.polypharmacy_side_effect = '" + selected_sideEffects_id[i] + "' or "
-                    i += 1
-                else:
-                    sideEffects4query = sideEffects4query + " mc.polypharmacy_side_effect = " + "'" + selected_sideEffects_id[i] + "' or "
-                    i += 1
+                #db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicines_combo mm where m0.stitch = mm.stitch and mm.individual_side_effect = %(side_effect)s group by m0.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects_id[0]})
+                db_cur.execute("""select m0.commercial_name, m1.commercial_name, count(*) from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and mc.polypharmacy_side_effect = %(side_effect)s group by m0.commercial_name, m1.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects_id[0]})
+                query_result = db_cur.fetchall()
 
-            # query: calcualte nr of matched side effects per medicine combination
-            query = "select m0.commercial_name, m1.commercial_name, count(*) from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and (" + sideEffects4query + ") group by m0.commercial_name, m1.commercial_name order by count(*) desc;"
-            #old query = "select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (" + sideEffects4query + ") group by m0.commercial_name order by count(*) desc;"
+                commercial_name1 = []
+                commercial_name2 = []
+                count = []
+                for row_i in query_result:
+                    commercial_name1.append(f"{row_i[0]}")
+                    commercial_name2.append(f"{row_i[1]}")
+                    count.append(f"{row_i[2]}")
 
-            db_cur.execute(query)
+                df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
+                df1 = pd.DataFrame(data=df1_definition_names)
+                df2_definition_names = {'Commercial Name Medicine 2': commercial_name2}
+                df2 = pd.DataFrame(data=df2_definition_names)
+                df3_definition_names = {'Number of side effects matched': count}
+                df3 = pd.DataFrame(data=df3_definition_names)
 
-            query_result = db_cur.fetchall()
-
-            commercial_name1 = []
-            commercial_name2 = []
-            count = []
-            for row_i in query_result:
-                commercial_name1.append(f"{row_i[0]}")
-                commercial_name2.append(f"{row_i[1]}")
-                count.append(f"{row_i[2]}")
-
-            df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
-            df1 = pd.DataFrame(data=df1_definition_names)
-            df2_definition_names = {'Commercial Name Medicine 2': commercial_name2}
-            df2 = pd.DataFrame(data=df2_definition_names)
-            df3_definition_names = {'Number of side effects matched': count}
-            df3 = pd.DataFrame(data=df3_definition_names)
-
-            concat_dfs = pd.concat([df1, df2, df3], ignore_index=False, axis=1)
-            st.write(concat_dfs)
-                
-            return concat_dfs
+                concat_dfs = pd.concat([df1, df2, df3], ignore_index=False, axis=1)
+                #st.write(concat_dfs)
+                    
+                return concat_dfs
 
 if __name__ == "__main__":
     pass
