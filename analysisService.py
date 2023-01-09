@@ -59,18 +59,20 @@ class data4Analysis:
             type: 
         """
         len_list = len(se_selected)
-        norm_se_selection = []
+        norm_se_selection_name = []
+        norm_se_selection_id = []
         for i in range(len_list):
             len_sel_se = len(se_selected[i])
-            norm_se_selection.append(se_selected[i][:len_sel_se-11:])     
+            norm_se_selection_name.append(se_selected[i][:len_sel_se-11:])
+            norm_se_selection_id.append(se_selected[i][-9:-1:])     
 
-        return norm_se_selection
+        return norm_se_selection_name, norm_se_selection_id
 
-    def do_reverse_lookup(self, selected_sideEffects, nr_sideEffects, combo):
+    def do_reverse_lookup(self, selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo):
         """Perform reverse lookup analysis.
 
         Args:
-            selected_sideEffects:
+            selected_sideEffects_name:
             type: list
             nr_sideEffects:
             type: int
@@ -84,7 +86,8 @@ class data4Analysis:
         db_connection, db_cur = db.connect_postgres()
 
         st.write(nr_sideEffects)
-        st.write(selected_sideEffects)
+        st.write(selected_sideEffects_name)
+        st.write(selected_sideEffects_id)
 
         if combo == "False":
             if nr_sideEffects > 1:
@@ -95,12 +98,12 @@ class data4Analysis:
                 i = 0
                 for sideEffect_i in range(nr_sideEffects):
                     if sideEffect_i == nr_sideEffects - 1:
-                        sideEffects4query = sideEffects4query + "mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' "
+                        sideEffects4query = sideEffects4query + "mm.individual_side_effect = " + "'" + selected_sideEffects_id[i] + "' "
                     elif sideEffect_i == 0:
-                        sideEffects4query = sideEffects4query + "mm.individual_side_effect_name = '" + selected_sideEffects[i] + "' or "
+                        sideEffects4query = sideEffects4query + "mm.individual_side_effect = '" + selected_sideEffects_id[i] + "' or "
                         i += 1
                     else:
-                        sideEffects4query = sideEffects4query + " mm.individual_side_effect_name = " + "'" + selected_sideEffects[i] + "' or "
+                        sideEffects4query = sideEffects4query + " mm.individual_side_effect = " + "'" + selected_sideEffects_id[i] + "' or "
                         i += 1
 
                 query = "select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (" + sideEffects4query + ") group by m0.commercial_name order by count(*) desc;"
@@ -128,7 +131,7 @@ class data4Analysis:
 
             elif nr_sideEffects == 1:
                 
-                db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and mm.individual_side_effect_name = %(side_effect)s group by m0.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects[0]})
+                db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and mm.individual_side_effect = %(side_effect)s group by m0.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects_id[0]})
 
                 query_result = db_cur.fetchall()
 

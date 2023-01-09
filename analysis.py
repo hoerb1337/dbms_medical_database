@@ -47,17 +47,18 @@ class render_tab2:
         selected_sideEffects = st.multiselect('Select your set of side effects:',
                                               list_sideEffects,
                                               key="selected_sideEffects")
-        st.write(selected_sideEffects)
 
         # normalise list of selected side effects
-        selected_sideEffects = callAnalysisBackend.norm_list_se(selected_sideEffects)
-        st.write(selected_sideEffects)
+        selected_sideEffects_name, selected_sideEffects_id = callAnalysisBackend.norm_list_se(selected_sideEffects)
         
+        st.write(selected_sideEffects_name)
+        st.write(selected_sideEffects_id)
+
         nr_sideEffects = len(selected_sideEffects)
         if nr_sideEffects < 1:
             st.warning("Please choose at least one side effect symptom.")
 
-        return selected_sideEffects, nr_sideEffects, combo
+        return selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo
     
     
     def show_reverse_lookup(self, selected_sideEffects,
@@ -80,13 +81,13 @@ class render_tab2:
         
             callAnalysisBackend = analysisService.data4Analysis()
         
-        # If button clicked:
+            # If button clicked:
             if btn_lookup_meds:
                 results_reLookup = callAnalysisBackend.do_reverse_lookup(selected_sideEffects,
                                                                         nr_sideEffects,
                                                                         combo)
-            # Create dataframe with results from reverse lookup
-            # Display dataframe
+                # Create dataframe with results from reverse lookup
+                # Display dataframe
             
                 return results_reLookup
 
