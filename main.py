@@ -34,7 +34,7 @@ class Frontend:
         # Navigation bar
         tab1, tab2, tab3, tab4 = st.tabs(["Lookup and Report Side Effects", 
                                     "Reverse Lookup Analysis",
-                                    "Shared Protein Analysis"
+                                    "Shared Protein Analysis",
                                     "Your Usage Data"])
         #
         
