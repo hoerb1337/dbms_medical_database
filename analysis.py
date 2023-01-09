@@ -9,10 +9,14 @@ import analysisService
 class render_tab2:
     
     def __init__(self):
-        st.info("Perform a reverse lookup:\n" +
-                "You report your own set of side effect symptoms, " +
-                "and we find for you the closest prediction of " +
-                "medicines that you could have taken.")
+        self.info_reLookup = st.info("Perform a reverse lookup:\n" +
+                                     "You report your own set of side effect symptoms, " +
+                                     "and we find for you the closest prediction of " +
+                                     "medicines that you could have taken.")
+        
+        self.info_proteins = st.info("Analysis of drugs with shared proteins:\n" +
+                                     "Do drugs with shared proteins have common side effects?")
+
 
     def show_selection_sideEffects(self):
         """UI for choosing side effects by user.
@@ -105,6 +109,21 @@ class render_tab2:
                 
                 return results_reLookup
 
+    def show_protein_analysis(self):
+        """UI for displaying results of shared protein analysis.
+
+        Args:
+            selected_sideEffects:
+            type: list
+            nr_sideEffects:
+            type: int
+        Returns:
+            selected_sideEffects: list of chosen side effects
+            type: dataframe
+        """
+
+        return None
+        
 
 
 if __name__ == "__main__":
