@@ -35,7 +35,7 @@ class data4Analysis:
         
         # no combo
         else:
-            query = "select distinct mm.individual_side_effect, mm.individual_side_effect_name, concat(individual_side_effect_name, ' (', individual_side_effect, ')') as se_name_se_id from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch order by se_name_se_id;"
+            query = "select distinct concat(individual_side_effect_name, ' (', individual_side_effect, ')') as se_name_se_id from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch order by se_name_se_id;"
             db_cur.execute(query)
             
             list_sideEffects = []
