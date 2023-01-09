@@ -9,8 +9,10 @@ import analysisService
 class render_tab2:
     
     def __init__(self):
-        self.tab1, self.tab2 = st.tabs(["Reverse Lookup", 
-                                    "Shared Proteins"])
+        st.info("Perform a reverse lookup:\n" +
+                "You report your own set of side effect symptoms, " +
+                "and we find for you the closest prediction of " +
+                "medicines that you could have taken.")
         
 
     def show_selection_sideEffects(self):
@@ -24,11 +26,6 @@ class render_tab2:
             nr_sideEffects: number of chosen side effects
             type: int
         """
-        
-        st.info("Perform a reverse lookup:\n" +
-                "You report your own set of side effect symptoms, " +
-                "and we find for you the closest prediction of " +
-                "medicines that you could have taken.")
         
         st.subheader("1. Selection of own side effect symptoms:")
         # Call Backendservice
@@ -109,6 +106,11 @@ class render_tab2:
                 
                 return results_reLookup
 
+class render_tab3:
+    def __init__(self):
+        st.info("Analysis of drugs with shared proteins:\n" +
+                "Do drugs with shared proteins have common side effects?")
+    
     def show_protein_analysis(self):
         """UI for displaying results of shared protein analysis.
 
@@ -122,11 +124,9 @@ class render_tab2:
             type: dataframe
         """
         
-        st.info("Analysis of drugs with shared proteins:\n" +
-                "Do drugs with shared proteins have common side effects?")
+
 
         return None
-        
 
 
 if __name__ == "__main__":

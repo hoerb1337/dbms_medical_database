@@ -32,8 +32,9 @@ class Frontend:
         userData = userAuthenticated.authenticate()
 
         # Navigation bar
-        tab1, tab2, tab3 = st.tabs(["Medicine Side Effects", 
-                                    "Analysis Module",
+        tab1, tab2, tab3, tab4 = st.tabs(["Lookup and Report Side Effects", 
+                                    "Reverse Lookup Analysis",
+                                    "Shared Protein Analysis"
                                     "Your Usage Data"])
         #
         
@@ -74,7 +75,7 @@ class Frontend:
                     tab1_rendered.process_reporting(session_sate)
         # End of tab1
 
-        # Tab2: analysis
+        # Tab2: reverse lookup analysis
         with tab2:
             tab2_rendered = analysis.render_tab2()
             
@@ -86,20 +87,20 @@ class Frontend:
                 # 2. perform reverse lookup and siplay results
                 tab2_rendered.show_reverse_lookup(selected_sideEffects_name,
                                                 selected_sideEffects_id,
-                                                nr_sideEffects, combo)
-            
-            # Analysis of drugs with shared proteins
-            tab2 = tab2_rendered.tab2
-            with tab2:
-                tab2_rendered.show_protein_analysis()
+                                                nr_sideEffects, combo)    
+        # End of tab2
 
-        #
-
-        # Tab3: user
+        # Tab3: shared protein analysis
         with tab3:
+            tab3_rendered = analysis.render_tab3()
+            tab3_rendered.show_protein_analysis()
+        # End of tab3
+
+        # Tab4: user
+        with tab4:
             #self.tab3_rendered = user.render_tab3()
             st.header("Access history")
-        #
+        # End of tab4
 
 
 if __name__ == "__main__":
