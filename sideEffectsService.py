@@ -38,10 +38,6 @@ class data4SideEffects:
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
 
-        len_sel_meds = len(selected_meds)
-        selected_meds = selected_meds[:len_sel_meds-15:]
-        st.write(selected_meds)
-
         # Exec query 
         db_cur.execute("""select concat(individual_side_effect_name, ' (', individual_side_effect, ')') as se_name_se_id from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name like %(medname)s order by se_name_se_id;""", {'medname': selected_meds})
         
