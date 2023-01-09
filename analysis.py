@@ -50,9 +50,6 @@ class render_tab2:
 
         # normalise list of selected side effects
         selected_sideEffects_name, selected_sideEffects_id = callAnalysisBackend.norm_list_se(selected_sideEffects)
-        
-        st.write(selected_sideEffects_name)
-        st.write(selected_sideEffects_id)
 
         nr_sideEffects = len(selected_sideEffects_name)
         if nr_sideEffects < 1:
@@ -88,8 +85,6 @@ class render_tab2:
                                                                          selected_sideEffects_id,
                                                                          nr_sideEffects,
                                                                          combo)
-                # Create dataframe with results from reverse lookup
-                # Display dataframe
             
                 return results_reLookup
 
