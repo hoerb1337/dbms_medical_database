@@ -68,7 +68,10 @@ class data4Analysis:
 
         return norm_se_selection_name, norm_se_selection_id
 
-    def do_reverse_lookup(self, selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo):
+
+    def do_reverse_lookup(self, selected_sideEffects_name,
+                          selected_sideEffects_id,
+                          nr_sideEffects, combo):
         """Perform reverse lookup analysis.
 
         Args:

@@ -81,7 +81,9 @@ class Frontend:
             # 1. Selection side effects
             selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo = tab2_rendered.show_selection_sideEffects()
             # 2. perform reverse lookup
-            tab2_rendered.show_reverse_lookup(selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo) 
+            tab2_rendered.show_reverse_lookup(selected_sideEffects_name,
+                                              selected_sideEffects_id,
+                                              nr_sideEffects, combo) 
         #
 
         # Tab3: user

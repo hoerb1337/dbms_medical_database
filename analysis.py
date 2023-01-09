@@ -54,14 +54,15 @@ class render_tab2:
         st.write(selected_sideEffects_name)
         st.write(selected_sideEffects_id)
 
-        nr_sideEffects = len(selected_sideEffects)
+        nr_sideEffects = len(selected_sideEffects_name)
         if nr_sideEffects < 1:
             st.warning("Please choose at least one side effect symptom.")
 
         return selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo
     
     
-    def show_reverse_lookup(self, selected_sideEffects,
+    def show_reverse_lookup(self, selected_sideEffects_name,
+                            selected_sideEffects_id,
                             nr_sideEffects, combo):
         """UI for displaying reverse lookup results.
 
@@ -83,9 +84,10 @@ class render_tab2:
         
             # If button clicked:
             if btn_lookup_meds:
-                results_reLookup = callAnalysisBackend.do_reverse_lookup(selected_sideEffects,
-                                                                        nr_sideEffects,
-                                                                        combo)
+                results_reLookup = callAnalysisBackend.do_reverse_lookup(selected_sideEffects_name,
+                                                                         selected_sideEffects_id,
+                                                                         nr_sideEffects,
+                                                                         combo)
                 # Create dataframe with results from reverse lookup
                 # Display dataframe
             
