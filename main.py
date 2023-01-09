@@ -86,6 +86,7 @@ class Frontend:
                                               nr_sideEffects, combo)
             
             # 3. Analysis of drugs with shared proteins
+            tab2_rendered.show_protein_analysis()
 
         #
 
