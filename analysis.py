@@ -93,11 +93,11 @@ class render_tab2:
                 # Show metrics
                 col1, col2 = st.columns(2)
                 with col1:
-                    st.subheader("Most matched selected side effects:")
+                    st.caption("Most matched selected side effects:")
                     st.metric(label="Ibuprofen", value="86%", delta=None)
 
                 with col2:
-                    st.subheader("Matched vs. unmatched side effects:")
+                    st.caption("Matched vs. unmatched side effects:")
                     st.metric(label="Ibuprofen", value="2%", delta=None)
                 
                 with st.expander("See more details of analysis"):
