@@ -39,7 +39,7 @@ class data4SideEffects:
         db_connection, db_cur = db.connect_postgres()
 
         len_sel_meds = len(selected_meds)
-        selected_meds = selected_meds[::len_sel_meds-15]
+        selected_meds = selected_meds[:len_sel_meds-15:]
         st.write(selected_meds)
 
         # Exec query 
