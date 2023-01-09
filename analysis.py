@@ -30,12 +30,11 @@ class render_tab2:
         # Call Backendservice
         callAnalysisBackend = analysisService.data4Analysis()
         
+        # Checkbox
         if st.checkbox('I am taking two medicines in combination',
                        key="checkbox"):
+            
             # Get list of side effects from combo medicines
-            #for key in st.session_state:
-            #    del st.session_state[key]
-            #st.experimental_rerun
             combo="True"
             list_sideEffects = callAnalysisBackend.get_sideEffects(combo)
 
@@ -48,6 +47,10 @@ class render_tab2:
         selected_sideEffects = st.multiselect('Select your set of side effects:',
                                               list_sideEffects,
                                               key="selected_sideEffects")
+        st.write(selected_sideEffects)
+
+        # normalise list of selected side effects
+        selected_sideEffects = callAnalysisBackend.norm_list_se(selected_sideEffects)
         st.write(selected_sideEffects)
         
         nr_sideEffects = len(selected_sideEffects)

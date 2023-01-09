@@ -25,8 +25,8 @@ class data4Analysis:
         db_connection, db_cur = db.connect_postgres()
         # combo
         if combo == "True":
-            query = "select distinct concat(mc.combo_side_effect_name, ' (', mc.polypharmacy_side_effect, ')') as se_name_se_id from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 order by se_name_se_id;"
-            #query = "select distinct mc.combo_side_effect_name from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2;"
+            query = "select distinct concat(combo_side_effect_name, ' (', polypharmacy_side_effect, ')') as se_name_se_id from dbms.medicines_combo order by se_name_se_id;"
+
             db_cur.execute(query)
 
             list_sideEffects = []
@@ -35,7 +35,7 @@ class data4Analysis:
         
         # no combo
         else:
-            query = "select distinct concat(individual_side_effect_name, ' (', individual_side_effect, ')') as se_name_se_id from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch order by se_name_se_id;"
+            query = "select distinct concat(individual_side_effect_name, ' (', individual_side_effect, ')') as se_name_se_id from dbms.medicine_mono order by se_name_se_id;"
             db_cur.execute(query)
             
             list_sideEffects = []
@@ -48,6 +48,24 @@ class data4Analysis:
         return list_sideEffects
 
     
+    def norm_list_se(self, se_selected):
+        """Normalise selected side effects to name w/o id.
+
+        Args:
+            n: 
+            type: 
+        Returns:
+            sum over n:
+            type: 
+        """
+        len_list = len(se_selected)
+        norm_se_selection = []
+        for i in range(len_list):
+            len_sel_se = len(se_selected[i])
+            norm_se_selection.append(se_selected[i][:len_sel_se-11:])     
+
+        return norm_se_selection
+
     def do_reverse_lookup(self, selected_sideEffects, nr_sideEffects, combo):
         """Perform reverse lookup analysis.
 
