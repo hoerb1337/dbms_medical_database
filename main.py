@@ -77,9 +77,10 @@ class Frontend:
         # Tab2: analysis
         with tab2:
             tab2_rendered = analysis.render_tab2()
-            # Select side effects
+            
+            # 1. Selection side effects
             selected_sideEffects, nr_sideEffects, combo = tab2_rendered.show_selection_sideEffects()
-            # perform reverse lookup
+            # 2. perform reverse lookup
             tab2_rendered.show_reverse_lookup(selected_sideEffects, nr_sideEffects, combo) 
         #
 
