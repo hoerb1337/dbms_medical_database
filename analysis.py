@@ -121,7 +121,7 @@ class render_tab2:
             selected_sideEffects: list of chosen side effects
             type: dataframe
         """
-        st.write(render_tab2.info_proteins)
+        render_tab2.info_proteins
 
         return None
         
