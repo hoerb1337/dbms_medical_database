@@ -24,8 +24,9 @@ class render_tab1:
         # Check number of meds
         check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
-        len_sel_meds = len(medicine_selection)
-        medicine_selection = medicine_selection[:len_sel_meds-15:]
+        # normalise list of selected medicines
+        medicine_selection = callSideEffectsBackend.norm_list_meds(medicine_selection)
+        st.write(medicine_selection)
 
         if check_nr_meds == 200:
             combo = "False"

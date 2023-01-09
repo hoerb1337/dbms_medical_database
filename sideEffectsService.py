@@ -33,6 +33,26 @@ class data4SideEffects:
         
         return nr_meds, len(selected_medicines)
 
+    def norm_list_meds(self, medicine_selection):
+        """Normalise selected meds to commerical name w/o stich.
+
+        Args:
+            n: 
+            type: 
+        Returns:
+            sum over n:
+            type: 
+        """
+
+        len_list = len(medicine_selection)
+        norm_medicine_selection = []
+        for i in range(len_list):
+            len_sel_med = len(medicine_selection[i])
+            norm_medicine_selection.append(medicine_selection[i][:len_sel_med-15:])
+        
+        return norm_medicine_selection
+
+
     def get_listSideEffects(self, selected_meds):
         # Open db connection
         db = database.db_connection()
