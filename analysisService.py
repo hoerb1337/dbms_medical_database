@@ -122,7 +122,7 @@ class data4Analysis:
                 for row_i in query_result:
                     #st.write(row_i)
                     commercial_name.append(f"{row_i[0]}")
-                    count.append(f"{row_i[1]}")
+                    count.append(int(f"{row_i[1]}"))
                     percent_matched_sideEffects.append(f"{row_i[2]}")
                     total_percent_matched_sideEffects.append(f"{row_i[3]}")
 
