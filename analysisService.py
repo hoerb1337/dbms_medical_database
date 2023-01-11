@@ -128,7 +128,9 @@ class data4Analysis:
 
                 st.write(type(count[0]))
                 sum_count = sum(count)
+                st.write(sum_count)
                 nr_rows = len(count)
+                st.write(nr_rows)
                 p_med = []
                 for i in range(nr_rows):
                     p = count[i]/sum_count
