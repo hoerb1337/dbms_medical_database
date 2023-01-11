@@ -107,7 +107,7 @@ class data4Analysis:
                         i += 1
 
                 # query: calcualte nr of matched side effects per medicine
-                query = "select cm.m0_commercial_name, cm.nr_matched_se, cm.nr_matched_se::float/6 as per_matched_se, cm.nr_matched_se::float/nr.to_nr_matched_se as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and (" + sideEffects4query + ") group by m0.commercial_name order by count(*) desc)cm, (select m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m1, dbms.medicine_mono mm where m1.stitch = mm.stitch group by m1.commercial_name)nr where cm.m0_commercial_name = nr.m1_commercial_name order by per_matched_se desc"
+                query = "select cm.m0_commercial_name, cm.nr_matched_se, cm.nr_matched_se::float/" + nr_sideEffects + " as per_matched_se, cm.nr_matched_se::float/nr.to_nr_matched_se as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and (" + sideEffects4query + ") group by m0.commercial_name order by count(*) desc)cm, (select m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m1, dbms.medicine_mono mm where m1.stitch = mm.stitch group by m1.commercial_name)nr where cm.m0_commercial_name = nr.m1_commercial_name order by per_matched_se desc"
                 # old query = "select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (" + sideEffects4query + ") group by m0.commercial_name order by count(*) desc;"
 
                 db_cur.execute(query)
@@ -128,11 +128,11 @@ class data4Analysis:
 
                 df1_definition_names = {'Commercial Name': commercial_name}
                 df1 = pd.DataFrame(data=df1_definition_names)
-                df2_definition_names = {'Number of side effects matched': count}
+                df2_definition_names = {'Nr of side effects matched': count}
                 df2 = pd.DataFrame(data=df2_definition_names)
-                df3_definition_names = {'Portion of matched side effects: Nr. of side effects matched/nr. selected side effects': percent_matched_sideEffects}
+                df3_definition_names = {'Nr. of side effects matched/\nnr. selected side effects': percent_matched_sideEffects}
                 df3 = pd.DataFrame(data=df3_definition_names)
-                df4_definition_names = {'Portion of matched side effects: Nr. of side effects matched/nr. reported side effects': total_percent_matched_sideEffects}
+                df4_definition_names = {'Nr. of side effects matched/\nnr. reported side effects': total_percent_matched_sideEffects}
                 df4 = pd.DataFrame(data=df4_definition_names)
 
                 concat_dfs = pd.concat([df1, df2, df3, df4], ignore_index=False, axis=1)
@@ -141,24 +141,35 @@ class data4Analysis:
                 return concat_dfs
 
             elif nr_sideEffects == 1:
-                
-                db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and mm.individual_side_effect = %(side_effect)s group by m0.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects_id[0]})
+                query = '"""select cm.m0_commercial_name, cm.nr_matched_se, cm.nr_matched_se::float/' + nr_sideEffects + ' as per_matched_se, cm.nr_matched_se::float/nr.to_nr_matched_se as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and mm.individual_side_effect = %(side_effect)s group by m0.commercial_name order by count(*) desc)cm, (select m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m1, dbms.medicine_mono mm where m1.stitch = mm.stitch group by m1.commercial_name)nr where cm.m0_commercial_name = nr.m1_commercial_name order by per_matched_se desc;"""'
+
+                db_cur.execute(query, {'side_effect': selected_sideEffects_id[0]})
+
+                #db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and mm.individual_side_effect = %(side_effect)s group by m0.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects_id[0]})
 
                 query_result = db_cur.fetchall()
 
                 commercial_name = []
                 count = []
+                percent_matched_sideEffects = []
+                total_percent_matched_sideEffects = []
                 for row_i in query_result:
                     #st.write(row_i)
                     commercial_name.append(f"{row_i[0]}")
                     count.append(f"{row_i[1]}")
+                    percent_matched_sideEffects.append(f"{row_i[2]}")
+                    total_percent_matched_sideEffects.append(f"{row_i[3]}")
 
                 df1_definition_names = {'Commercial Name': commercial_name}
                 df1 = pd.DataFrame(data=df1_definition_names)
                 df2_definition_names = {'Number of side effects matched': count}
                 df2 = pd.DataFrame(data=df2_definition_names)
+                df3_definition_names = {'Nr. of side effects matched/\nnr. selected side effects': percent_matched_sideEffects}
+                df3 = pd.DataFrame(data=df3_definition_names)
+                df4_definition_names = {'Nr. of side effects matched/\nnr. reported side effects': total_percent_matched_sideEffects}
+                df4 = pd.DataFrame(data=df4_definition_names)
 
-                concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
+                concat_dfs = pd.concat([df1, df2, df3, df4], ignore_index=False, axis=1)
                 #st.write(concat_dfs)
 
                 return concat_dfs
@@ -182,8 +193,8 @@ class data4Analysis:
                         i += 1
 
                 # query: calcualte nr of matched side effects per medicine combination
-                query = "select m0.commercial_name, m1.commercial_name, count(*) from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and (" + sideEffects4query + ") group by m0.commercial_name, m1.commercial_name order by count(*) desc;"
-                #old query = "select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (" + sideEffects4query + ") group by m0.commercial_name order by count(*) desc;"
+                query = "select cm.m0_commercial_name, cm.m1_commercial_name, cm.nr_matched_se, cm.nr_matched_se::float/6 as per_matched_se, cm.nr_matched_se::float/nr.to_nr_matched_se as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2and (" + sideEffects4query + ") group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name order by per_matched_se desc"
+                #query = "select m0.commercial_name, m1.commercial_name, count(*) from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and (" + sideEffects4query + ") group by m0.commercial_name, m1.commercial_name order by count(*) desc;"
 
                 db_cur.execute(query)
 
@@ -192,10 +203,14 @@ class data4Analysis:
                 commercial_name1 = []
                 commercial_name2 = []
                 count = []
+                percent_matched_sideEffects = []
+                total_percent_matched_sideEffects = []
                 for row_i in query_result:
                     commercial_name1.append(f"{row_i[0]}")
                     commercial_name2.append(f"{row_i[1]}")
                     count.append(f"{row_i[2]}")
+                    percent_matched_sideEffects.append(f"{row_i[3]}")
+                    total_percent_matched_sideEffects.append(f"{row_i[4]}")
 
                 df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
                 df1 = pd.DataFrame(data=df1_definition_names)
@@ -203,8 +218,12 @@ class data4Analysis:
                 df2 = pd.DataFrame(data=df2_definition_names)
                 df3_definition_names = {'Number of side effects matched': count}
                 df3 = pd.DataFrame(data=df3_definition_names)
+                df4_definition_names = {'Nr. of side effects matched/\nnr. selected side effects': percent_matched_sideEffects}
+                df4 = pd.DataFrame(data=df4_definition_names)
+                df5_definition_names = {'Nr. of side effects matched/\nnr. reported side effects': total_percent_matched_sideEffects}
+                df5 = pd.DataFrame(data=df5_definition_names)
 
-                concat_dfs = pd.concat([df1, df2, df3], ignore_index=False, axis=1)
+                concat_dfs = pd.concat([df1, df2, df3, df4, df5], ignore_index=False, axis=1)
                 #st.write(concat_dfs)
                     
                 return concat_dfs
@@ -212,16 +231,20 @@ class data4Analysis:
             elif nr_sideEffects == 1:
                 
                 #db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicines_combo mm where m0.stitch = mm.stitch and mm.individual_side_effect = %(side_effect)s group by m0.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects_id[0]})
-                db_cur.execute("""select m0.commercial_name, m1.commercial_name, count(*) from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and mc.polypharmacy_side_effect = %(side_effect)s group by m0.commercial_name, m1.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects_id[0]})
+                db_cur.execute("""select cm.m0_commercial_name, cm.m1_commercial_name, cm.nr_matched_se, cm.nr_matched_se::float/6 as per_matched_se, cm.nr_matched_se::float/nr.to_nr_matched_se as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2and and mc.polypharmacy_side_effect = %(side_effect)s group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name order by per_matched_se desc;""", {'side_effect': selected_sideEffects_id[0]})
                 query_result = db_cur.fetchall()
 
                 commercial_name1 = []
                 commercial_name2 = []
                 count = []
+                percent_matched_sideEffects = []
+                total_percent_matched_sideEffects = []
                 for row_i in query_result:
                     commercial_name1.append(f"{row_i[0]}")
                     commercial_name2.append(f"{row_i[1]}")
                     count.append(f"{row_i[2]}")
+                    percent_matched_sideEffects.append(f"{row_i[3]}")
+                    total_percent_matched_sideEffects.append(f"{row_i[4]}")
 
                 df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
                 df1 = pd.DataFrame(data=df1_definition_names)
@@ -229,8 +252,12 @@ class data4Analysis:
                 df2 = pd.DataFrame(data=df2_definition_names)
                 df3_definition_names = {'Number of side effects matched': count}
                 df3 = pd.DataFrame(data=df3_definition_names)
+                df4_definition_names = {'Nr. of side effects matched/\nnr. selected side effects': percent_matched_sideEffects}
+                df4 = pd.DataFrame(data=df4_definition_names)
+                df5_definition_names = {'Nr. of side effects matched/\nnr. reported side effects': total_percent_matched_sideEffects}
+                df5 = pd.DataFrame(data=df5_definition_names)
 
-                concat_dfs = pd.concat([df1, df2, df3], ignore_index=False, axis=1)
+                concat_dfs = pd.concat([df1, df2, df3, df4, df5], ignore_index=False, axis=1)
                 #st.write(concat_dfs)
                     
                 return concat_dfs
