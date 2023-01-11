@@ -132,9 +132,12 @@ class data4Analysis:
                 nr_rows = len(count)
                 p_med = []
                 for i in range(nr_rows):
+                    
                     p = count[i]/sum_count
-                    p_med.append(p)
+                    p_percentage = "{0:0.2f}%".format(p * 100)
+                    p_med.append(p_percentage)
 
+                st.write(p_med)
                 df1_definition_names = {'Commercial Name': commercial_name}
                 df1 = pd.DataFrame(data=df1_definition_names)
                 df2_definition_names = {'Nr of side effects matched': count}
