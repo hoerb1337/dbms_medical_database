@@ -126,6 +126,7 @@ class data4Analysis:
                     percent_matched_sideEffects.append(f"{row_i[2]}")
                     total_percent_matched_sideEffects.append(f"{row_i[3]}")
 
+                type(count[0])
                 sum_count = sum(count)
                 nr_rows = len(count)
                 p_med = []
