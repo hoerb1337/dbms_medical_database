@@ -82,7 +82,7 @@ class render_tab2:
         
             # If button clicked:
             if btn_lookup_meds:
-                # Start reverse lookup and get results
+                # Start reverse lookup and get results as dataframe
                 results_reLookup = callAnalysisBackend.do_reverse_lookup(selected_sideEffects_name,
                                                                          selected_sideEffects_id,
                                                                          nr_sideEffects,
