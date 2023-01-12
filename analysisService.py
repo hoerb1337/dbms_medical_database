@@ -246,12 +246,14 @@ class data4Analysis:
                 count = []
                 percent_matched_sideEffects = []
                 total_percent_matched_sideEffects = []
+                p_user_reports = []
                 for row_i in query_result:
                     commercial_name1.append(f"{row_i[0]}")
                     commercial_name2.append(f"{row_i[1]}")
                     count.append(int(f"{row_i[2]}"))
                     percent_matched_sideEffects.append(f"{row_i[3]}")
                     total_percent_matched_sideEffects.append(f"{row_i[4]}")
+                    p_user_reports.append(f"{row_i[5]}")
 
                 # Probability compared to all meds with at
                 # least one matched side effect
@@ -275,8 +277,10 @@ class data4Analysis:
                 df5 = pd.DataFrame(data=df5_definition_names)
                 df6_definition_names = {'Probability of all meds with at least one matched side effect': p_med}
                 df6 = pd.DataFrame(data=df6_definition_names)
+                df7_definition_names = {'Probability of med based on user reports': p_user_reports}
+                df7 = pd.DataFrame(data=df7_definition_names)
 
-                concat_dfs = pd.concat([df1, df2, df3, df4, df6, df5], ignore_index=False, axis=1)
+                concat_dfs = pd.concat([df1, df2, df3, df4, df6, df7, df5], ignore_index=False, axis=1)
                 #st.write(concat_dfs)
                     
                 return concat_dfs
