@@ -132,8 +132,8 @@ class data4Analysis:
                 p_med = []
                 for i in range(nr_rows):
                     p = count[i]/sum_count
-                    p_percentage = "{0:0.2f}%".format(p * 100)
-                    p_med.append(p_percentage)
+                    #p_percentage = "{0:0.2f}%".format(p * 100)
+                    p_med.append("{0:0.2f}%".format(p * 100))
 
                 st.write(p_med)
                 df1_definition_names = {'Commercial Name': commercial_name}
@@ -244,8 +244,8 @@ class data4Analysis:
                 p_med = []
                 for i in range(nr_rows):
                     p = count[i]/sum_count
-                    p_percentage = "{0:0.2f}%".format(p * 100)
-                    p_med.append(p_percentage)
+                    #p_percentage = "{0:0.2f}%".format(p * 100)
+                    p_med.append("{0:0.2f}%".format(p * 100))
                 
                 df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
                 df1 = pd.DataFrame(data=df1_definition_names)
@@ -293,8 +293,8 @@ class data4Analysis:
                 p_med = []
                 for i in range(nr_rows):
                     p = count[i]/sum_count
-                    p_percentage = "{0:0.2f}%".format(p * 100)
-                    p_med.append(p_percentage)
+                    #p_percentage = "{0:0.2f}%".format(p * 100)
+                    p_med.append("{0:0.2f}%".format(p * 100))
 
                 # Dataframes
                 df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
