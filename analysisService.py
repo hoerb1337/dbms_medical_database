@@ -180,6 +180,7 @@ class data4Analysis:
                     count.append(int(f"{row_i[1]}"))
                     percent_matched_sideEffects.append(f"{row_i[2]}")
                     total_percent_matched_sideEffects.append(f"{row_i[3]}")
+                    p_user_reports.append(f"{row_i[4]}")
 
                 # Probability compared to all meds with at
                 # least one matched side effect
@@ -190,7 +191,7 @@ class data4Analysis:
                     p = count[i]/sum_count
                     #p_percentage = ("{0:0.2f}%".format(p * 100))
                     p_med.append("{0:0.2f}%".format(p * 100))
-                    p_user_reports.append(f"{row_i[4]}")
+                    
 
 
                 df1_definition_names = {'Commercial Name': commercial_name}
