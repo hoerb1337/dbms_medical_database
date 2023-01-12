@@ -107,7 +107,7 @@ class data4Analysis:
                         i += 1
 
                 # query: calcualte nr of matched side effects per medicine
-                query = "select cm.m0_commercial_name, cm.nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ")*100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se)*100, 'fm990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and (" + sideEffects4query + ") group by m0.commercial_name order by count(*) desc)cm, (select m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m1, dbms.medicine_mono mm where m1.stitch = mm.stitch group by m1.commercial_name)nr where cm.m0_commercial_name = nr.m1_commercial_name order by per_matched_se desc"
+                query = "select cm.m0_commercial_name, cm.nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ")*100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se)*100, 'fm990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and (" + sideEffects4query + ") group by m0.commercial_name order by count(*) desc)cm, (select m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m1, dbms.medicine_mono mm where m1.stitch = mm.stitch group by m1.commercial_name)nr where cm.m0_commercial_name = nr.m1_commercial_name order by cm.nr_matched_se desc"
                 # old query = "select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch  and (" + sideEffects4query + ") group by m0.commercial_name order by count(*) desc;"
 
                 db_cur.execute(query)
@@ -132,7 +132,6 @@ class data4Analysis:
                 nr_rows = len(count)
                 p_med = []
                 for i in range(nr_rows):
-                    
                     p = count[i]/sum_count
                     p_percentage = "{0:0.2f}%".format(p * 100)
                     p_med.append(p_percentage)
@@ -155,7 +154,7 @@ class data4Analysis:
                 return concat_dfs
 
             elif nr_sideEffects == 1:
-                query = "select cm.m0_commercial_name, cm.nr_matched_se, cm.nr_matched_se::float/" + str(nr_sideEffects) + " as per_matched_se, cm.nr_matched_se::float/nr.to_nr_matched_se as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and mm.individual_side_effect = '" + selected_sideEffects_id[0] + "' group by m0.commercial_name order by count(*) desc)cm, (select m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m1, dbms.medicine_mono mm where m1.stitch = mm.stitch group by m1.commercial_name)nr where cm.m0_commercial_name = nr.m1_commercial_name order by per_matched_se desc;"
+                query = "select cm.m0_commercial_name, cm.nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ")*100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se)*100, 'fm990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and mm.individual_side_effect = '" + selected_sideEffects_id[0] + "' group by m0.commercial_name order by count(*) desc)cm, (select m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m1, dbms.medicine_mono mm where m1.stitch = mm.stitch group by m1.commercial_name)nr where cm.m0_commercial_name = nr.m1_commercial_name order by per_matched_se desc;"
 
                 db_cur.execute(query)
 
@@ -181,7 +180,8 @@ class data4Analysis:
                 p_med = []
                 for i in range(nr_rows):
                     p = count[i]/sum_count
-                    p_med.append(p)
+                    p_percentage = "{0:0.2f}%".format(p * 100)
+                    p_med.append(p_percentage)
 
 
                 df1_definition_names = {'Commercial Name': commercial_name}
@@ -219,7 +219,7 @@ class data4Analysis:
                         i += 1
 
                 # query: calcualte nr of matched side effects per medicine combination
-                query = "select cm.m0_commercial_name, cm.m1_commercial_name, cm.nr_matched_se, cm.nr_matched_se::float/" + str(nr_sideEffects) + " as per_matched_se, cm.nr_matched_se::float/nr.to_nr_matched_se as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and (" + sideEffects4query + ") group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name order by per_matched_se desc"
+                query = "select cm.m0_commercial_name, cm.m1_commercial_name, cm.nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ")*100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se)*100, 'fm990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and (" + sideEffects4query + ") group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name order by per_matched_se desc"
                 #query = "select m0.commercial_name, m1.commercial_name, count(*) from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and (" + sideEffects4query + ") group by m0.commercial_name, m1.commercial_name order by count(*) desc;"
 
                 db_cur.execute(query)
@@ -245,7 +245,8 @@ class data4Analysis:
                 p_med = []
                 for i in range(nr_rows):
                     p = count[i]/sum_count
-                    p_med.append(p)
+                    p_percentage = "{0:0.2f}%".format(p * 100)
+                    p_med.append(p_percentage)
                 
                 df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
                 df1 = pd.DataFrame(data=df1_definition_names)
@@ -268,7 +269,7 @@ class data4Analysis:
             elif nr_sideEffects == 1:
                 
                 #db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicines_combo mm where m0.stitch = mm.stitch and mm.individual_side_effect = %(side_effect)s group by m0.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects_id[0]})
-                query = "select cm.m0_commercial_name, cm.m1_commercial_name, cm.nr_matched_se, cm.nr_matched_se::float/" + str(nr_sideEffects) + " as per_matched_se, cm.nr_matched_se::float/nr.to_nr_matched_se as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and mc.polypharmacy_side_effect = '" + selected_sideEffects_id[0] + "' group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name order by per_matched_se desc"
+                query = "select cm.m0_commercial_name, cm.m1_commercial_name, cm.nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ") * 100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se) * 100, '990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and mc.polypharmacy_side_effect = '" + selected_sideEffects_id[0] + "' group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name order by per_matched_se desc"
 
                 db_cur.execute(query)
 
@@ -293,7 +294,8 @@ class data4Analysis:
                 p_med = []
                 for i in range(nr_rows):
                     p = count[i]/sum_count
-                    p_med.append(p)
+                    p_percentage = "{0:0.2f}%".format(p * 100)
+                    p_med.append(p_percentage)
 
                 # Dataframes
                 df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
