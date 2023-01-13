@@ -383,7 +383,7 @@ class data4Analysis:
         # max
         kpi2_perc_len = len(kpi2_perc)
         kpi2_perc_float = float(kpi2_perc[:kpi2_perc_len-1:])
-        
+        st.write(kpi2_perc_float)
         # second max
         kpi2_perc2_len = len(kpi2_perc2)
         kpi2_perc2_float = float(kpi2_perc2[:kpi2_perc2_len-1:])
