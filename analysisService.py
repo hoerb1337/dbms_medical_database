@@ -398,7 +398,7 @@ class data4Analysis:
         kpi2 = []
         kpi2.append(kpi2_name)
         kpi2.append(kpi2_perc)
-        kpi2.append("{0:0.2f}%".format(kpi2_delta))
+        kpi2.append(kpi2_delta + "%")
         
         
         return kpi2
