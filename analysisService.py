@@ -136,10 +136,9 @@ class data4Analysis:
                 p_med = []
                 for i in range(nr_rows):
                     p = count[i]/sum_count
-                    #p_percentage = "{0:0.2f}%".format(p * 100)
                     p_med.append("{0:0.2f}%".format(p * 100))
 
-                st.write(p_med)
+                # dataframes
                 df1_definition_names = {'Commercial Name': commercial_name}
                 df1 = pd.DataFrame(data=df1_definition_names)
                 df2_definition_names = {'Nr of side effects matched': count}
@@ -154,7 +153,6 @@ class data4Analysis:
                 df6 = pd.DataFrame(data=df6_definition_names)
 
                 concat_dfs = pd.concat([df1, df2, df3, df5, df6, df4], ignore_index=False, axis=1)
-                #st.write(concat_dfs)
                 
                 return concat_dfs
 
@@ -193,7 +191,6 @@ class data4Analysis:
                     p_med.append("{0:0.2f}%".format(p * 100))
                     
 
-
                 df1_definition_names = {'Commercial Name': commercial_name}
                 df1 = pd.DataFrame(data=df1_definition_names)
                 df2_definition_names = {'Number of side effects matched': count}
@@ -208,7 +205,6 @@ class data4Analysis:
                 df6 = pd.DataFrame(data=df6_definition_names)
 
                 concat_dfs = pd.concat([df1, df2, df3, df5, df6, df4], ignore_index=False, axis=1)
-                #st.write(concat_dfs)
 
                 return concat_dfs
 
@@ -262,7 +258,6 @@ class data4Analysis:
                 p_med = []
                 for i in range(nr_rows):
                     p = count[i]/sum_count
-                    #p_percentage = "{0:0.2f}%".format(p * 100)
                     p_med.append("{0:0.2f}%".format(p * 100))
                 
                 df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
@@ -281,7 +276,6 @@ class data4Analysis:
                 df7 = pd.DataFrame(data=df7_definition_names)
 
                 concat_dfs = pd.concat([df1, df2, df3, df4, df6, df7, df5], ignore_index=False, axis=1)
-                #st.write(concat_dfs)
                     
                 return concat_dfs
             
@@ -316,7 +310,6 @@ class data4Analysis:
                 p_med = []
                 for i in range(nr_rows):
                     p = count[i]/sum_count
-                    #p_percentage = "{0:0.2f}%".format(p * 100)
                     p_med.append("{0:0.2f}%".format(p * 100))
 
                 # Dataframes
@@ -336,7 +329,6 @@ class data4Analysis:
                 df7 = pd.DataFrame(data=df7_definition_names)
 
                 concat_dfs = pd.concat([df1, df2, df3, df4, df6, df7, df5], ignore_index=False, axis=1)
-                #st.write(concat_dfs)
                     
                 return concat_dfs
 
