@@ -370,7 +370,9 @@ class data4Analysis:
         kpi2_perc_index = percent_matched_sideEffects.index(kpi2_perc)
 
         # Second highest
-        perc_match_sideEffects_wo_max = percent_matched_sideEffects.pop(kpi2_perc_index)
+        perc_match_sideEffects_wo_max = percent_matched_sideEffects.copy()
+        perc_match_sideEffects_wo_max.pop(kpi2_perc_index)
+        
         kpi2_perc2 = max(perc_match_sideEffects_wo_max)
         st.write(kpi2_perc2)
         kpi2_perc2_index = perc_match_sideEffects_wo_max.index(kpi2_perc2)
