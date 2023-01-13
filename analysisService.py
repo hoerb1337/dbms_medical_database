@@ -393,7 +393,7 @@ class data4Analysis:
         kpi2_perc2_float = float(kpi2_perc2[:kpi2_perc2_len-1:])
         
         kpi2_delta = str(kpi2_perc_float - kpi2_perc2_float)
-        
+        st.write(kpi2_delta)
         # result
         kpi2 = []
         kpi2.append(kpi2_name)
