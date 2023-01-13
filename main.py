@@ -12,6 +12,8 @@ import userService
 class Frontend:
     
     def __init__(self):
+        st.set_page_config(layout="wide")
+
         # Hide burger menu
         hide_menu_style = """
         <style>
