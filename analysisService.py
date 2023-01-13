@@ -372,6 +372,7 @@ class data4Analysis:
         # Second highest
         perc_match_sideEffects_wo_max = percent_matched_sideEffects.pop(kpi2_perc_index)
         kpi2_perc2 = max(perc_match_sideEffects_wo_max)
+        st.write(kpi2_perc2)
         kpi2_perc2_index = perc_match_sideEffects_wo_max.index(kpi2_perc2)
 
 
@@ -384,6 +385,7 @@ class data4Analysis:
         kpi2_perc_len = len(kpi2_perc)
         kpi2_perc_float = float(kpi2_perc[:kpi2_perc_len-1:])
         st.write(kpi2_perc_float)
+        
         # second max
         kpi2_perc2_len = len(kpi2_perc2)
         kpi2_perc2_float = float(kpi2_perc2[:kpi2_perc2_len-1:])
