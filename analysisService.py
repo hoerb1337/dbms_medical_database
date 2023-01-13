@@ -138,6 +138,9 @@ class data4Analysis:
                     p = count[i]/sum_count
                     p_med.append("{0:0.2f}%".format(p * 100))
 
+                # KPI: nr. meds with at least one matched side effect
+                kpi1 = len(commercial_name)
+
                 # dataframes
                 df1_definition_names = {'Commercial Name': commercial_name}
                 df1 = pd.DataFrame(data=df1_definition_names)
@@ -154,7 +157,7 @@ class data4Analysis:
 
                 concat_dfs = pd.concat([df1, df2, df3, df5, df6, df4], ignore_index=False, axis=1)
                 
-                return concat_dfs
+                return concat_dfs, kpi1
 
             elif nr_sideEffects == 1:
                 query = "select left_table.med_name, left_table.nr_matched_se, left_table.per_matched_se, left_table.to_per_matched_se, user_reports_mono.sum_user_reports from (select cm.m0_commercial_name as med_name, cm.nr_matched_se as nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ") * 100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se) * 100, '990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicine_mono mm where m0.stitch = mm.stitch and mm.individual_side_effect = '" + selected_sideEffects_id[0] + "' group by m0.commercial_name order by count(*) desc)cm, (select m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m1, dbms.medicine_mono mm where m1.stitch = mm.stitch group by m1.commercial_name)nr where cm.m0_commercial_name = nr.m1_commercial_name)left_table left join (select user_reports.med_name as med_name, to_char((user_reports.nr_reported/sum_user_reports.sum_user)* 100, 'fm900D00%') as sum_user_reports from (select sum(user_reports.nr_reported) as sum_user from (select commerCIAL_NAME as med_name, count(*) as nr_reported from dbms.mono_side_effects_reported group by commerCIAL_NAME)user_reports)sum_user_reports, (select commerCIAL_NAME as med_name, count(*) as nr_reported from dbms.mono_side_effects_reported group by commerCIAL_NAME)user_reports)user_reports_mono on left_table.med_name = user_reports_mono.med_name order by left_table.nr_matched_se desc"
@@ -189,7 +192,9 @@ class data4Analysis:
                     p = count[i]/sum_count
                     #p_percentage = ("{0:0.2f}%".format(p * 100))
                     p_med.append("{0:0.2f}%".format(p * 100))
-                    
+                
+                # KPI: nr. meds with at least one matched side effect
+                kpi1 = len(commercial_name)
 
                 df1_definition_names = {'Commercial Name': commercial_name}
                 df1 = pd.DataFrame(data=df1_definition_names)
@@ -206,7 +211,7 @@ class data4Analysis:
 
                 concat_dfs = pd.concat([df1, df2, df3, df5, df6, df4], ignore_index=False, axis=1)
 
-                return concat_dfs
+                return concat_dfs, kpi1
 
         # combo of medicines
         elif combo == "True":
@@ -260,6 +265,9 @@ class data4Analysis:
                     p = count[i]/sum_count
                     p_med.append("{0:0.2f}%".format(p * 100))
                 
+                # KPI: nr. meds with at least one matched side effect
+                kpi1 = len(commercial_name)
+
                 df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
                 df1 = pd.DataFrame(data=df1_definition_names)
                 df2_definition_names = {'Commercial Name Medicine 2': commercial_name2}
@@ -277,7 +285,7 @@ class data4Analysis:
 
                 concat_dfs = pd.concat([df1, df2, df3, df4, df6, df7, df5], ignore_index=False, axis=1)
                     
-                return concat_dfs
+                return concat_dfs, kpi1
             
             elif nr_sideEffects == 1:
                 
@@ -311,6 +319,9 @@ class data4Analysis:
                 for i in range(nr_rows):
                     p = count[i]/sum_count
                     p_med.append("{0:0.2f}%".format(p * 100))
+                
+                # KPI: nr. meds with at least one matched side effect
+                kpi1 = len(commercial_name)
 
                 # Dataframes
                 df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
@@ -330,7 +341,7 @@ class data4Analysis:
 
                 concat_dfs = pd.concat([df1, df2, df3, df4, df6, df7, df5], ignore_index=False, axis=1)
                     
-                return concat_dfs
+                return concat_dfs, kpi1
 
 if __name__ == "__main__":
     pass
