@@ -374,7 +374,6 @@ class data4Analysis:
         perc_match_sideEffects_wo_max.pop(kpi2_perc_index)
         
         kpi2_perc2 = max(perc_match_sideEffects_wo_max)
-        st.write(kpi2_perc2)
         kpi2_perc2_index = perc_match_sideEffects_wo_max.index(kpi2_perc2)
 
 
@@ -382,18 +381,18 @@ class data4Analysis:
         kpi2_name = commercial_name[kpi2_perc_index]
         kpi2_name2 = commercial_name[kpi2_perc2_index]
 
-        # delta
-        # max
+        # delta calc.
+        
+        # first max
         kpi2_perc_len = len(kpi2_perc)
         kpi2_perc_float = float(kpi2_perc[:kpi2_perc_len-1:])
-        st.write(kpi2_perc_float)
         
         # second max
         kpi2_perc2_len = len(kpi2_perc2)
         kpi2_perc2_float = float(kpi2_perc2[:kpi2_perc2_len-1:])
         
         kpi2_delta = str(kpi2_perc_float - kpi2_perc2_float)
-        st.write(kpi2_delta)
+
         # result
         kpi2 = []
         kpi2.append(kpi2_name)
