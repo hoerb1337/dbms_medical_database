@@ -83,10 +83,7 @@ class render_tab2:
             # If button clicked:
             if btn_lookup_meds:
                 # Start reverse lookup and get results as dataframe
-                results_reLookup, kpi1 = callAnalysisBackend.do_reverse_lookup(selected_sideEffects_name,
-                                                                         selected_sideEffects_id,
-                                                                         nr_sideEffects,
-                                                                         combo)
+                results_reLookup, commercial_name, count, percent_matched_sideEffects, total_percent_matched_sideEffects, p_user_reports = callAnalysisBackend.do_reverse_lookup(selected_sideEffects_name, selected_sideEffects_id,nr_sideEffects,combo)
                 
                 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -95,14 +92,22 @@ class render_tab2:
                 
                 # Show metrics
                 col1, col2, col3 = st.columns(3)
+                
+                # KPI1
                 with col1:
+                    kpi1 = callAnalysisBackend.create_kpi1(commercial_name)
                     st.caption("Nr. meds with at least one matched side effect:")
-                    st.metric(label="Nr. potential meds", value=kpi1, delta=None)
-
+                    st.metric(label="Total nr. potential meds", value=kpi1, delta=None)
+                
+                # KPI2
                 with col2:
-                    st.caption("Matched vs. unmatched side effects:")
-                    st.metric(label="Ibuprofen", value="2%", delta=None)
-
+                    kpi2 = callAnalysisBackend.create_kpi2(commercial_name,
+                                                           percent_matched_sideEffects)
+                    st.caption("Medicine with highest percentage matched side effects:")
+                    st.metric(label=kpi2[0], value=kpi2[1],
+                              delta=kpi2[2])
+                
+                # KPI3
                 with col3:
                     st.caption("Most matched selected side effects:")
                     st.metric(label="Ibuprofen", value="86%", delta=None)
