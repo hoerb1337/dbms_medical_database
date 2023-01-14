@@ -148,7 +148,7 @@ class render_tab2:
                         st.caption("                                        ")
                         st.metric(label="Closest Predicted Medicine", value=med_high_p_name, delta=None)
                         tooltip_kpi1 = """
-                        <div class="tooltip">More info here
+                        <div class="tooltip"><img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                         <span class="tooltiptext">Tooltip text</span>
                         </div> 
                          """
