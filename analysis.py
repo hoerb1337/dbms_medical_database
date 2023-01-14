@@ -98,7 +98,7 @@ class render_tab2:
                     
                     # KPI1
                     with col1:
-                        st.caption("Nr. meds with at least one matched side effect:")
+                        st.caption("                                        ")
                         st.metric(label="Closest Predicted Medicine", value=med_high_p_name, delta=None)
                         st.markdown("<br>", unsafe_allow_html=True)
                         st.metric(label="Total nr. potential meds", value=total_nr_meds_found, delta=None)
@@ -107,6 +107,7 @@ class render_tab2:
                     # KPI2
                     with col2:
                         #st.caption("Closest Predicted Medicine")
+                        st.caption("                                        ")
                         st.metric(label="Matched side effects vs. selected", value=med_high_p_pct, delta=None)
                         st.markdown("<br>", unsafe_allow_html=True)
                         st.metric(label="Matched side effects from all listed side effects",
@@ -114,6 +115,7 @@ class render_tab2:
                         
                     # KPI3
                     with col3:
+                        st.caption("                                        ")
                         #st.caption("Highest percentage matched side effects:")
                         #st.metric(label="Matched side effects", value=med_high_p_pct, delta=None)
                         st.metric(label="Probability vs. all other meds", value=med_high_p_prop, delta=None)
