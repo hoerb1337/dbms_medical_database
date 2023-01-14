@@ -94,20 +94,20 @@ class render_tab2:
                 
                 # Show metrics
                 if combo == "False":
-                    col1, col2, col3, col4, col5 = st.columns(5, gap="large")
+                    col1, col2, col3 = st.columns(3, gap="large")
                     
                     # KPI1
                     with col1:
-                        #st.caption("Nr. meds with at least one matched side effect:")
-                        st.metric(label="Closest Predicted Medicine taken", value=med_high_p_name, delta=None)
+                        st.caption("Nr. meds with at least one matched side effect:")
+                        st.metric(label="Closest Predicted Medicine", value=med_high_p_name, delta=None)
                         st.markdown("<br>", unsafe_allow_html=True)
-                        st.metric(label="Matched side effects", value=med_high_p_pct, delta=None)
+                        st.metric(label="Total nr. potential meds", value=total_nr_meds_found, delta=None)
                         
                         
                     # KPI2
                     with col2:
                         #st.caption("Closest Predicted Medicine")
-                        st.metric(label="Total nr. potential meds", value=total_nr_meds_found, delta=None)
+                        st.metric(label="Matched side effects vs. selected", value=med_high_p_pct, delta=None)
                         st.markdown("<br>", unsafe_allow_html=True)
                         st.metric(label="Matched side effects from all listed side effects",
                                   value=med_high_p_total, delta=None)
