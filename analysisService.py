@@ -230,7 +230,7 @@ class data4Analysis:
                 p_med.append("{0:0.2f}%".format(p * 100))
 
             
-            # Algo for the most likely medicines in combination....
+            # Algo for the most likely medicine...
             # first value is uniquely highest
             if count[0] > count[1]:
                 med_high_p_name = commercial_name[0]
@@ -255,7 +255,7 @@ class data4Analysis:
                     
                     index = index + 1
 
-                # 
+                # user reports
                 max_user_reported = "0.00%"
                 for i in p_user_reports[0:index]:
                     if i != "None":
@@ -459,6 +459,67 @@ class data4Analysis:
                 p = count[i]/sum_count
                 p_med.append("{0:0.2f}%".format(p * 100))
 
+
+            # Algo for the most likely medicines in combination....
+            # first value is uniquely highest
+            if count[0] > count[1]:
+                med_high_p_name = commercial_name1[0]
+                med_high_p_name2 = commercial_name2[0]
+                med_high_p_pct = percent_matched_sideEffects[0]
+                med_high_p_prop = p_med[0]
+                med_high_p_user = p_user_reports[0]
+                med_high_p_total = total_percent_matched_sideEffects[0]
+            
+            # first value = second value
+            elif count[0] == count[1]:
+                index = 0
+                for i in count:
+                    # find first value lower than max value
+                    if i < count[0]:
+                        #index = index - 1
+                        break
+                    
+                    # end of list reached = all values same
+                    elif index == len(count)-1:
+                        break
+                    
+                    index = index + 1
+
+                # user reports
+                max_user_reported = "0.00%"
+                for i in p_user_reports[0:index]:
+                    if i != "None":
+                        if i > max_user_reported:
+                            max_user_reported = i
+
+                if max_user_reported == "0.00%":
+                    max_user_reported = "Any reported yet"
+
+                if max_user_reported != "Any reported yet":
+                    max_user_report = max_user_reported
+                    max_user_report_index = p_user_reports[0:index].index(max_user_report)
+                    
+                    med_high_p_name = commercial_name[max_user_report_index]
+                    med_high_p_name2 = None
+                    med_high_p_pct = percent_matched_sideEffects[max_user_report_index]
+                    med_high_p_prop = p_med[max_user_report_index]
+                    med_high_p_user = p_user_reports[max_user_report_index]
+                    med_high_p_total = total_percent_matched_sideEffects[max_user_report_index]
+                
+                # Lookup highest value of matched side effects compared to total
+                # list of side effects from specific medicine
+                else:
+                    max_p_total = max(total_percent_matched_sideEffects[0:index])
+                    max_p_total_index = total_percent_matched_sideEffects[0:index].index(max_p_total)
+                    
+                    med_high_p_name = commercial_name[max_p_total_index]
+                    med_high_p_name2 = None
+                    med_high_p_pct = percent_matched_sideEffects[max_p_total_index]
+                    med_high_p_prop = p_med[max_p_total_index]
+                    med_high_p_user = p_user_reports[max_p_total_index]
+                    med_high_p_total = total_percent_matched_sideEffects[max_p_total_index]
+
+
             # dataframes
             df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
             df1 = pd.DataFrame(data=df1_definition_names)
@@ -477,7 +538,6 @@ class data4Analysis:
 
             concat_dfs = pd.concat([df1, df2, df3, df4, df6, df7, df5], ignore_index=False, axis=1)
 
-            # here algo for the most likely medicines in combination....
 
         total_nr_meds_found = len(count)
 

@@ -138,100 +138,83 @@ class render_tab2:
                 st.markdown(tooltip, unsafe_allow_html=True)
                 
                 # Show metrics
-                if combo == "False":
-                    col1, col2, col3 = st.columns(3, gap="large")
-                    
-                    # KPI1
-                    with col1:
-                        #st.caption("                                        ")
-                        tooltip_kpi1 = """
-                        <div class="tooltip">Closest Predicted Medicine <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                        <span class="tooltiptext">Tooltip text</span>
-                        </div> 
-                         """
-
-                        st.markdown(tooltip_kpi1, unsafe_allow_html=True)
-                        st.subheader(med_high_p_name)
-                        
-                        st.markdown("<br>", unsafe_allow_html=True)
-                        tooltip_kpi2 = """
-                        <div class="tooltip">Total # potential meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                        <span class="tooltiptext">Tooltip text</span>
-                        </div> 
-                         """
-                        st.markdown(tooltip_kpi2, unsafe_allow_html=True)
-                        st.subheader(total_nr_meds_found)
-                        
-                        
-                    # KPI2
-                    with col2:
-                        
-                        tooltip_kpi3 = """
-                        <div class="tooltip">Matched slected side effects
-                        <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                        <span class="tooltiptext">Tooltip text</span>
-                        </div> 
-                         """
-
-                        st.markdown(tooltip_kpi3, unsafe_allow_html=True)
-                        st.subheader(med_high_p_pct)
-                        
-                        st.markdown("<br>", unsafe_allow_html=True)
-
-                        tooltip_kpi4 = """
-                        <div class="tooltip">Matched side effects vs. all side effects
-                        <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                        <span class="tooltiptext">Tooltip text</span>
-                        </div> 
-                         """
-                        st.markdown(tooltip_kpi4, unsafe_allow_html=True)
-                        st.subheader(med_high_p_total)
-                        
-                    # KPI3
-                    with col3:
-                        #st.caption("                                        ")
-                        #st.metric(label="Probability vs. all other meds", value=med_high_p_prop, delta=None)
-                        #st.markdown("<br>", unsafe_allow_html=True)
-                        #st.metric(label="User Reports for this medicine", value=med_high_p_user, delta=None)
-
-                        tooltip_kpi5 = """
-                        <div class="tooltip">Probability compared to all other meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                        <span class="tooltiptext">Tooltip text</span>
-                        </div> 
-                         """
-
-                        st.markdown(tooltip_kpi5, unsafe_allow_html=True)
-                        st.subheader(med_high_p_prop)
-                        
-                        st.markdown("<br>", unsafe_allow_html=True)
-                        tooltip_kpi6 = """
-                        <div class="tooltip">User Reports for this medicine <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                        <span class="tooltiptext">Tooltip text</span>
-                        </div> 
-                         """
-                        st.markdown(tooltip_kpi6, unsafe_allow_html=True)
-                        st.subheader(med_high_p_user)
-
-
                 
-                elif combo == "True":
-                    col1, col2, col3, col4 = st.columns(4, gap="large")
+                col1, col2, col3 = st.columns(3, gap="large")
                     
-                    # KPI1
-                    with col1:
-                        pass
-                    
-                    # KPI2
-                    with col2:
-                        pass
-                    
-                    # KPI3
-                    with col3:
-                        pass
+                # KPI1
+                with col1:
+                    tooltip_kpi1 = """
+                                    <div class="tooltip">Closest Predicted Medicine 1 <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                    <span class="tooltiptext">Tooltip text</span>
+                                    </div> 
+                                    """
 
-                    # KPI4
-                    with col4:
-                        pass
+                    st.markdown(tooltip_kpi1, unsafe_allow_html=True)
+                    st.subheader(med_high_p_name)
+
+                    tooltip_kpi1_1 = """
+                                    <div class="tooltip">Closest Predicted Medicine 2 <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                    <span class="tooltiptext">Tooltip text</span>
+                                    </div> 
+                                    """
+
+                    st.markdown(tooltip_kpi1_1, unsafe_allow_html=True)
+                    st.subheader(med_high_p_name2)
+                        
+                    st.markdown("<br>", unsafe_allow_html=True)
+                    tooltip_kpi2 = """
+                                    <div class="tooltip">Total # potential med combination <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                    <span class="tooltiptext">Tooltip text</span>
+                                    </div> 
+                                    """
+                    st.markdown(tooltip_kpi2, unsafe_allow_html=True)
+                    st.subheader(total_nr_meds_found)
+                        
+                        
+                # KPI2
+                with col2:
+                        
+                    tooltip_kpi3 = """
+                                    <div class="tooltip">Matched slected side effects
+                                    <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                    <span class="tooltiptext">Tooltip text</span>
+                                    </div> 
+                                    """
+
+                    st.markdown(tooltip_kpi3, unsafe_allow_html=True)
+                    st.subheader(med_high_p_pct)
+                        
+                    st.markdown("<br>", unsafe_allow_html=True)
+
+                    tooltip_kpi4 = """
+                                    <div class="tooltip">Matched side effects vs. all side effects
+                                    <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                    <span class="tooltiptext">Tooltip text</span>
+                                    </div> 
+                                    """
+                    st.markdown(tooltip_kpi4, unsafe_allow_html=True)
+                    st.subheader(med_high_p_total)
+                        
+                # KPI3
+                with col3:
+
+                    tooltip_kpi5 = """
+                                    <div class="tooltip">Probability compared to all other meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                    <span class="tooltiptext">Tooltip text</span>
+                                    </div> 
+                                    """
+
+                    st.markdown(tooltip_kpi5, unsafe_allow_html=True)
+                    st.subheader(med_high_p_prop)
+                        
+                    st.markdown("<br>", unsafe_allow_html=True)
+                    tooltip_kpi6 = """
+                                    <div class="tooltip">User Reports for this medicine <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                    <span class="tooltiptext">Tooltip text</span>
+                                    </div> 
+                                    """
+                    st.markdown(tooltip_kpi6, unsafe_allow_html=True)
+                    st.subheader(med_high_p_user)
                 
                 # Details of analysis
                 with st.expander("See more details of analysis"):
