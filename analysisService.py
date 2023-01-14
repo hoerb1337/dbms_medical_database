@@ -246,7 +246,7 @@ class data4Analysis:
                 for i in count:
                     # find first value lower than max value
                     if i < count[0]:
-                        index = index
+                        #index = index - 1
                         break
                     
                     # end of list reached = all values same
@@ -255,7 +255,7 @@ class data4Analysis:
                     
                     index = index + 1
                 st.write(index)
-                st.write(max(p_user_reports[0:index]))
+                st.write(p_user_reports[index-1])
                 if max(p_user_reports[0:index]) != None:
                     max_user_report = max(p_user_reports[0:index])
                     max_user_report_index = p_user_reports[0:index].index(max_user_report)
