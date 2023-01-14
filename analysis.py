@@ -90,7 +90,6 @@ class render_tab2:
                 # Display results from reverse lookup as dataframe
                 st.subheader("2. Results: Possible medicines taken")
                 
-                #st.markdown("<br>", unsafe_allow_html=True)
                 explained_calc = "Information about the prediction"
                 st.warning(explained_calc)
 
@@ -144,14 +143,15 @@ class render_tab2:
                     
                     # KPI1
                     with col1:
-                        st.caption("                                        ")
-                        st.metric(label="Closest Predicted Medicine", value=med_high_p_name, delta=None)
+                        #st.caption("                                        ")
                         tooltip_kpi1 = """
                         <div class="tooltip"><img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                         <span class="tooltiptext">Tooltip text</span>
                         </div> 
                          """
                         st.markdown(tooltip_kpi1, unsafe_allow_html=True)
+                        st.metric(label="Closest Predicted Medicine", value=med_high_p_name, delta=None)
+                        
                         st.markdown("<br>", unsafe_allow_html=True)
                         st.metric(label="Total nr. potential meds", value=total_nr_meds_found, delta=None)
                         
