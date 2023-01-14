@@ -136,14 +136,13 @@ class render_tab2:
                         }
                         </style>
                         """
+
+                st.markdown(tooltip, unsafe_allow_html=True)
                 tooltip2 = """
-                        <div class="tooltip">i
+                        <div class="tooltip">more info...
                         <span class="tooltiptext">Tooltip text</span>
                         </div> 
                          """
-                
-                st.markdown(tooltip, unsafe_allow_html=True)
-                
                 
                 # Show metrics
                 if combo == "False":
@@ -152,7 +151,13 @@ class render_tab2:
                     # KPI1
                     with col1:
                         st.caption("                                        ")
-                        st.metric(label="Closest Predicted Medicine" + st.markdown(tooltip2, unsafe_allow_html=True), value=med_high_p_name, delta=None)
+                        st.metric(label=st.markdown(tooltip2, unsafe_allow_html=True), value=med_high_p_name, delta=None)
+                        tooltip_kpi1 = """
+                        <div class="tooltip">more info...
+                        <span class="tooltiptext">Tooltip text</span>
+                        </div> 
+                         """
+                        #st.markdown(tooltip2, unsafe_allow_html=True)
                         st.markdown("<br>", unsafe_allow_html=True)
                         st.metric(label="Total nr. potential meds", value=total_nr_meds_found, delta=None)
                         
