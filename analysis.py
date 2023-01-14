@@ -217,6 +217,7 @@ class render_tab2:
                     st.markdown(tooltip_kpi6, unsafe_allow_html=True)
                     st.subheader(med_high_p_user)
                 
+                st.markdown("<br>", unsafe_allow_html=True)
                 # Details of analysis
                 with st.expander("See more details of analysis"):
                     st.write(df)
