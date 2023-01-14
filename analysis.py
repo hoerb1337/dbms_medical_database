@@ -151,15 +151,16 @@ class render_tab2:
 
                     st.markdown(tooltip_kpi1, unsafe_allow_html=True)
                     st.subheader(med_high_p_name)
+                    
+                    if combo == "True":
+                        tooltip_kpi1_1 = """
+                                        <div class="tooltip">Closest Predicted Medicine 2 <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                        <span class="tooltiptext">Tooltip text</span>
+                                        </div> 
+                                        """
 
-                    tooltip_kpi1_1 = """
-                                    <div class="tooltip">Closest Predicted Medicine 2 <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                                    <span class="tooltiptext">Tooltip text</span>
-                                    </div> 
-                                    """
-
-                    st.markdown(tooltip_kpi1_1, unsafe_allow_html=True)
-                    st.subheader(med_high_p_name2)
+                        st.markdown(tooltip_kpi1_1, unsafe_allow_html=True)
+                        st.subheader(med_high_p_name2)
                         
                     st.markdown("<br>", unsafe_allow_html=True)
                     tooltip_kpi2 = """

@@ -499,8 +499,8 @@ class data4Analysis:
                     max_user_report = max_user_reported
                     max_user_report_index = p_user_reports[0:index].index(max_user_report)
                     
-                    med_high_p_name = commercial_name[max_user_report_index]
-                    med_high_p_name2 = None
+                    med_high_p_name = commercial_name1[max_user_report_index]
+                    med_high_p_name2 = commercial_name2[max_user_report_index]
                     med_high_p_pct = percent_matched_sideEffects[max_user_report_index]
                     med_high_p_prop = p_med[max_user_report_index]
                     med_high_p_user = p_user_reports[max_user_report_index]
@@ -512,8 +512,8 @@ class data4Analysis:
                     max_p_total = max(total_percent_matched_sideEffects[0:index])
                     max_p_total_index = total_percent_matched_sideEffects[0:index].index(max_p_total)
                     
-                    med_high_p_name = commercial_name[max_p_total_index]
-                    med_high_p_name2 = None
+                    med_high_p_name = commercial_name1[max_p_total_index]
+                    med_high_p_name2 = commercial_name2[max_p_total_index]
                     med_high_p_pct = percent_matched_sideEffects[max_p_total_index]
                     med_high_p_prop = p_med[max_p_total_index]
                     med_high_p_user = p_user_reports[max_p_total_index]
