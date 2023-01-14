@@ -19,14 +19,15 @@ class UserUI:
 
         # check if user is already in database
         # user is in db
-        user_checked = user.get_user_status_db(userData["id"])
+        if userData != "Error":
+            user_checked = user.get_user_status_db(userData["id"])
 
-        if user_checked == 200:
-            user.edit_user(userData)
-    
-        # user not yet in db
-        elif user_checked == 400:
-            user.post_user(userData)
+            if user_checked == 200:
+                user.edit_user(userData)
+        
+            # user not yet in db
+            elif user_checked == 400:
+                user.post_user(userData)
 
         return userData
 

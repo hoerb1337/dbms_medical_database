@@ -26,7 +26,7 @@ class UserManagament:
             token = token[0]
             #st.write(f"token {token}")
         else:
-            token = "Error"
+            no_token = "Error"
             #st.write("No token")
 
         # Get user data
@@ -37,7 +37,7 @@ class UserManagament:
         if response.status_code == 200:
             return response.json()
         else:
-            return response.status_code
+            return no_token
 
     def get_user_status_db(self, userID):
         """Check if user already exists in db.
