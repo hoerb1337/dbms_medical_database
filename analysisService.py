@@ -255,7 +255,8 @@ class data4Analysis:
                     
                     index = index + 1
                 st.write(index)
-                st.write(p_user_reports[index-1])
+                st.write(max(p_user_reports[0:index]))
+                st.write(type(p_user_reports[0]))
                 if max(p_user_reports[0:index]) != None:
                     max_user_report = max(p_user_reports[0:index])
                     max_user_report_index = p_user_reports[0:index].index(max_user_report)
