@@ -150,10 +150,10 @@ class render_tab2:
                         </div> 
                          """
                         st.markdown(tooltip_kpi1, unsafe_allow_html=True)
-                        st.metric(label="Closest Predicted Medicine", value=med_high_p_name, delta=None)
+                        st.metric(label="Closest Predicted Medicine", value=med_high_p_name, delta=None, label_visibility="hidden")
                         
                         st.markdown("<br>", unsafe_allow_html=True)
-                        st.metric(label="Total nr. potential meds", value=total_nr_meds_found, delta=None)
+                        st.metric(label="Total nr. potential meds", value=total_nr_meds_found, delta=None, label_visibility="hidden")
                         
                         
                     # KPI2
