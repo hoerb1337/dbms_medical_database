@@ -135,11 +135,15 @@ class render_tab2:
                         opacity: 1;
                         }
                         </style>
-                        <div class="tooltip">Hover over me
+                        """
+                tooltip2 = """
+                        <div class="tooltip">i
                         <span class="tooltiptext">Tooltip text</span>
                         </div> 
-                        """
+                         """
+                
                 st.markdown(tooltip, unsafe_allow_html=True)
+                st.markdown(tooltip2, unsafe_allow_html=True)
                 
                 # Show metrics
                 if combo == "False":
