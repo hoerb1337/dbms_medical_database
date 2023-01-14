@@ -254,9 +254,14 @@ class data4Analysis:
                         break
                     
                     index = index + 1
-                st.write(index)
-                st.write(max(p_user_reports[0:index]))
-                st.write(type(p_user_reports[0]))
+
+                max = "0.00%"
+                for i in p_user_reports[0:index]:
+                    if i != "None":
+                        if i > max:
+                            max = i
+                st.write(max)
+
                 if max(p_user_reports[0:index]) != None:
                     max_user_report = max(p_user_reports[0:index])
                     max_user_report_index = p_user_reports[0:index].index(max_user_report)
