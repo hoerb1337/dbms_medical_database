@@ -143,7 +143,7 @@ class render_tab2:
                          """
                 
                 st.markdown(tooltip, unsafe_allow_html=True)
-                st.markdown(tooltip2, unsafe_allow_html=True)
+                
                 
                 # Show metrics
                 if combo == "False":
@@ -152,7 +152,7 @@ class render_tab2:
                     # KPI1
                     with col1:
                         st.caption("                                        ")
-                        st.metric(label="Closest Predicted Medicine", value=med_high_p_name, delta=None)
+                        st.metric(label="Closest Predicted Medicine" + st.markdown(tooltip2, unsafe_allow_html=True), value=med_high_p_name, delta=None)
                         st.markdown("<br>", unsafe_allow_html=True)
                         st.metric(label="Total nr. potential meds", value=total_nr_meds_found, delta=None)
                         
