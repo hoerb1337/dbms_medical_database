@@ -90,8 +90,9 @@ class render_tab2:
                 # Display results from reverse lookup as dataframe
                 st.subheader("2. Results: Possible medicines taken")
                 
-                st.markdown("<br>", unsafe_allow_html=True)
-                
+                #st.markdown("<br>", unsafe_allow_html=True)
+                explained_calc = "Test"
+                st.info(explained_calc)
                 # Show metrics
                 if combo == "False":
                     col1, col2, col3 = st.columns(3, gap="large")
@@ -106,7 +107,6 @@ class render_tab2:
                         
                     # KPI2
                     with col2:
-                        #st.caption("Closest Predicted Medicine")
                         st.caption("                                        ")
                         st.metric(label="Matched side effects vs. selected", value=med_high_p_pct, delta=None)
                         st.markdown("<br>", unsafe_allow_html=True)
@@ -116,26 +116,13 @@ class render_tab2:
                     # KPI3
                     with col3:
                         st.caption("                                        ")
-                        #st.caption("Highest percentage matched side effects:")
-                        #st.metric(label="Matched side effects", value=med_high_p_pct, delta=None)
                         st.metric(label="Probability vs. all other meds", value=med_high_p_prop, delta=None)
                         st.markdown("<br>", unsafe_allow_html=True)
                         st.metric(label="User Reports for this medicine", value=med_high_p_user, delta=None)
 
-
-                    # KPI4
-                    #with col4:
-                        #st.caption("Probability compared to all possible medicines:")
-                        #st.metric(label="Probability vs. all other meds", value=med_high_p_prop, delta=None)
-                    
-                    # KPI5
-                    #with col5:
-                        #st.caption("Probability compared to all possible medicines:")
-                        #st.metric(label="Matched side effects compared to all listed side effects for this medicine",
-                                  #value=med_high_p_total, delta=None)
                 
                 elif combo == "True":
-                    col1, col2, col3, col4 = st.columns(4)
+                    col1, col2, col3, col4 = st.columns(4, gap="large")
                     
                     # KPI1
                     with col1:
