@@ -235,7 +235,7 @@ class data4Analysis:
             if count[0] > count[1]:
                 med_high_p_name = commercial_name[0]
                 med_high_p_name2 = None
-                med_high_p_pct = count[0]
+                med_high_p_pct = percent_matched_sideEffects[0]
                 med_high_p_prop = p_med[0]
                 med_high_p_user = p_user_reports[0]
                 med_high_p_total = total_percent_matched_sideEffects[0]
@@ -262,7 +262,7 @@ class data4Analysis:
                 
                 med_high_p_name = commercial_name[max_p_total_index]
                 med_high_p_name2 = None
-                med_high_p_pct = count[max_p_total_index]
+                med_high_p_pct = percent_matched_sideEffects[max_p_total_index]
                 med_high_p_prop = p_med[max_p_total_index]
                 med_high_p_user = p_user_reports[max_p_total_index]
                 med_high_p_total = total_percent_matched_sideEffects[max_p_total_index]
