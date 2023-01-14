@@ -127,10 +127,10 @@ class render_tab2:
                         #st.metric(label="Probability vs. all other meds", value=med_high_p_prop, delta=None)
                     
                     # KPI5
-                    with col5:
+                    #with col5:
                         #st.caption("Probability compared to all possible medicines:")
                         #st.metric(label="Matched side effects compared to all listed side effects for this medicine",
-                                  value=med_high_p_total, delta=None)
+                                  #value=med_high_p_total, delta=None)
                 
                 elif combo == "True":
                     col1, col2, col3, col4 = st.columns(4)
