@@ -83,7 +83,7 @@ class render_tab2:
             # If button clicked:
             if btn_lookup_meds:
                 # Start reverse lookup and get results as dataframe
-                results_reLookup, commercial_name, count, percent_matched_sideEffects, total_percent_matched_sideEffects, p_user_reports = callAnalysisBackend.do_reverse_lookup(selected_sideEffects_name, selected_sideEffects_id,nr_sideEffects,combo)
+                df, total_nr_meds_found, med_high_p_name, med_high_p_name2, med_high_p_pct, med_high_p_prop, med_high_p_user, med_high_p_total = callAnalysisBackend.do_reverse_lookup(selected_sideEffects_name, selected_sideEffects_id,nr_sideEffects,combo)
                 
                 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -91,32 +91,55 @@ class render_tab2:
                 st.subheader("2. Results: Possible medicines taken")
                 
                 # Show metrics
-                col1, col2, col3 = st.columns(3)
+                if combo == "False":
+                    col1, col2, col3, col4 = st.columns(4)
+                    
+                    # KPI1
+                    with col1:
+                        st.caption("Nr. meds with at least one matched side effect:")
+                        st.metric(label="Total nr. potential meds", value=total_nr_meds_found, delta=None)
+                        
+                    
+                    # KPI2
+                    with col2:
+                        st.caption("Closest Predicted Medicine")
+                        st.metric(label="Medicine taken", value=med_high_p_name, delta=None)
+                        
+                    
+                    # KPI3
+                    with col3:
+                        st.caption("Highest percentage matched side effects:")
+                        st.metric(label="Matched side effects", value=med_high_p_pct, delta=None)
+
+                    # KPI4
+                    with col4:
+                        st.caption("Probability compared to all possible medicines:")
+                        st.metric(label="Probability vs. all other meds", value=med_high_p_prop, delta=None)
                 
-                # KPI1
-                with col1:
-                    kpi1 = callAnalysisBackend.create_kpi1(commercial_name)
-                    st.caption("Nr. meds with at least one matched side effect:")
-                    st.metric(label="Total nr. potential meds", value=kpi1, delta=None)
-                
-                # KPI2
-                with col2:
-                    kpi2 = callAnalysisBackend.create_kpi2(commercial_name,
-                                                           percent_matched_sideEffects)
-                    st.caption("Medicine with highest percentage matched side effects:")
-                    st.metric(label=kpi2[0], value=kpi2[1],
-                              delta=kpi2[2])
-                
-                # KPI3
-                with col3:
-                    st.caption("Most matched selected side effects:")
-                    st.metric(label="Ibuprofen", value="86%", delta=None)
+                elif combo == "True":
+                    col1, col2, col3, col4 = st.columns(4)
+                    
+                    # KPI1
+                    with col1:
+                        pass
+                    
+                    # KPI2
+                    with col2:
+                        pass
+                    
+                    # KPI3
+                    with col3:
+                        pass
+
+                    # KPI4
+                    with col4:
+                        pass
                 
                 # Details of analysis
                 with st.expander("See more details of analysis"):
-                    st.write(results_reLookup)
+                    st.write(df)
                 
-                return results_reLookup
+                return df
 
 class render_tab3:
     def __init__(self):
