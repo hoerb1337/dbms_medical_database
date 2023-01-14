@@ -255,6 +255,7 @@ class data4Analysis:
                     
                     index = index + 1
 
+                # 
                 max_user_reported = "0.00%"
                 for i in p_user_reports[0:index]:
                     if i != "None":
