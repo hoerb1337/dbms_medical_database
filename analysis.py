@@ -100,28 +100,36 @@ class render_tab2:
                     with col1:
                         #st.caption("Nr. meds with at least one matched side effect:")
                         st.metric(label="Total nr. potential meds", value=total_nr_meds_found, delta=None)
-                        
+                        st.markdown("<br>", unsafe_allow_html=True)
+                        st.metric(label="Matched side effects compared to all listed side effects for this medicine",
+                                  value=med_high_p_total, delta=None)
                     
                     # KPI2
                     with col2:
                         #st.caption("Closest Predicted Medicine")
-                        st.metric(label="Medicine taken", value=med_high_p_name, delta=None)
+                        st.metric(label="Closest Predicted Medicine taken", value=med_high_p_name, delta=None)
+                        st.markdown("<br>", unsafe_allow_html=True)
+                        st.metric(label="Matched side effects", value=med_high_p_pct, delta=None)
                         
                     
                     # KPI3
                     with col3:
                         #st.caption("Highest percentage matched side effects:")
-                        st.metric(label="Matched side effects", value=med_high_p_pct, delta=None)
+                        #st.metric(label="Matched side effects", value=med_high_p_pct, delta=None)
+                        st.metric(label="Probability vs. all other meds", value=med_high_p_prop, delta=None)
+                        st.markdown("<br>", unsafe_allow_html=True)
+                        st.metric(label="User Reports for this medicine", value=med_high_p_user, delta=None)
+
 
                     # KPI4
-                    with col4:
+                    #with col4:
                         #st.caption("Probability compared to all possible medicines:")
-                        st.metric(label="Probability vs. all other meds", value=med_high_p_prop, delta=None)
+                        #st.metric(label="Probability vs. all other meds", value=med_high_p_prop, delta=None)
                     
                     # KPI5
                     with col5:
                         #st.caption("Probability compared to all possible medicines:")
-                        st.metric(label="Matched side effects compared to all listed side effects for this medicine",
+                        #st.metric(label="Matched side effects compared to all listed side effects for this medicine",
                                   value=med_high_p_total, delta=None)
                 
                 elif combo == "True":
