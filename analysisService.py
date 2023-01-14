@@ -255,15 +255,17 @@ class data4Analysis:
                     
                     index = index + 1
 
-                max = "0.00%"
+                max_user_reported = "0.00%"
                 for i in p_user_reports[0:index]:
                     if i != "None":
-                        if i > max:
-                            max = i
-                st.write(max)
+                        if i > max_user_reported:
+                            max_user_reported = i
 
-                if max(p_user_reports[0:index]) != None:
-                    max_user_report = max(p_user_reports[0:index])
+                if max_user_reported == "0.00%":
+                    max_user_reported = "Any reported yet"
+
+                if max_user_reported != "Any reported yet":
+                    max_user_report = max_user_reported
                     max_user_report_index = p_user_reports[0:index].index(max_user_report)
                     
                     med_high_p_name = commercial_name[max_user_report_index]
