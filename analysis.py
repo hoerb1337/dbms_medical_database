@@ -92,7 +92,8 @@ class render_tab2:
                 
                 #st.markdown("<br>", unsafe_allow_html=True)
                 explained_calc = "Test"
-                st.info(explained_calc)
+                st.warning(explained_calc)
+                
                 # Show metrics
                 if combo == "False":
                     col1, col2, col3 = st.columns(3, gap="large")
