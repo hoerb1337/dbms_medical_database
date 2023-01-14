@@ -151,7 +151,7 @@ class render_tab2:
                          """
 
                         st.markdown(tooltip_kpi1, unsafe_allow_html=True)
-                        st.header(med_high_p_name)
+                        st.subheader(med_high_p_name)
                         
                         st.markdown("<br>", unsafe_allow_html=True)
                         tooltip_kpi2 = """
@@ -160,7 +160,7 @@ class render_tab2:
                         </div> 
                          """
                         st.markdown(tooltip_kpi2, unsafe_allow_html=True)
-                        st.header(total_nr_meds_found)
+                        st.subheader(total_nr_meds_found)
                         
                         
                     # KPI2
