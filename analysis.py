@@ -155,7 +155,7 @@ class render_tab2:
                         
                         st.markdown("<br>", unsafe_allow_html=True)
                         tooltip_kpi2 = """
-                        <div class="tooltip">Total nr. potential meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                        <div class="tooltip">Total # potential meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                         <span class="tooltiptext">Tooltip text</span>
                         </div> 
                          """
@@ -165,14 +165,10 @@ class render_tab2:
                         
                     # KPI2
                     with col2:
-                        #st.caption("                                        ")
-                        #st.metric(label="Matched side effects vs. selected", value=med_high_p_pct, delta=None)
-                        #st.markdown("<br>", unsafe_allow_html=True)
-                        #st.metric(label="Matched side effects from all listed side effects",
-                                  #value=med_high_p_total, delta=None)
                         
                         tooltip_kpi3 = """
-                        <div class="tooltip">Matched side effects vs. selected <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                        <div class="tooltip">Matched slected side effects
+                        <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                         <span class="tooltiptext">Tooltip text</span>
                         </div> 
                          """
@@ -181,8 +177,10 @@ class render_tab2:
                         st.subheader(med_high_p_pct)
                         
                         st.markdown("<br>", unsafe_allow_html=True)
+
                         tooltip_kpi4 = """
-                        <div class="tooltip">Matched side effects <br> all listed side effects <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                        <div class="tooltip">Matched side effects within list of all side effects
+                        <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                         <span class="tooltiptext">Tooltip text</span>
                         </div> 
                          """
@@ -197,7 +195,7 @@ class render_tab2:
                         #st.metric(label="User Reports for this medicine", value=med_high_p_user, delta=None)
 
                         tooltip_kpi5 = """
-                        <div class="tooltip">Probability vs. all other meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                        <div class="tooltip">Probability compared to all other meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                         <span class="tooltiptext">Tooltip text</span>
                         </div> 
                          """
