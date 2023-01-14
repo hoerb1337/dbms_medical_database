@@ -150,19 +150,17 @@ class render_tab2:
                         </div> 
                          """
 
+                        st.markdown(tooltip_kpi1, unsafe_allow_html=True)
+                        st.header(med_high_p_name)
+                        
+                        st.markdown("<br>", unsafe_allow_html=True)
                         tooltip_kpi2 = """
                         <div class="tooltip">Total nr. potential meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                         <span class="tooltiptext">Tooltip text</span>
                         </div> 
                          """
-                        st.markdown(tooltip_kpi1, unsafe_allow_html=True)
-                        st.subheader(med_high_p_name)
-                        # st.metric(label="Closest Predicted Medicine", value=med_high_p_name, delta=None)
-                        
-                        st.markdown("<br>", unsafe_allow_html=True)
                         st.markdown(tooltip_kpi2, unsafe_allow_html=True)
-                        st.subheader(total_nr_meds_found)
-                        #st.metric(label="Total nr. potential meds", value=total_nr_meds_found, delta=None, label_visibility="hidden")
+                        st.header(total_nr_meds_found)
                         
                         
                     # KPI2
