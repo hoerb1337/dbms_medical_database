@@ -182,7 +182,7 @@ class render_tab2:
                         
                         st.markdown("<br>", unsafe_allow_html=True)
                         tooltip_kpi4 = """
-                        <div class="tooltip">Matched side effects from all listed side effects <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                        <div class="tooltip">Matched side effects <br> all listed side effects <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                         <span class="tooltiptext">Tooltip text</span>
                         </div> 
                          """
