@@ -145,7 +145,7 @@ class render_tab2:
                     with col1:
                         #st.caption("                                        ")
                         tooltip_kpi1 = """
-                        <div class="tooltip">More Information <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                        <div class="tooltip">Closest Predicted Medicine <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                         <span class="tooltiptext">Tooltip text</span>
                         </div> 
                          """
