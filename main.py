@@ -100,8 +100,11 @@ class Frontend:
 
         # Tab4: user
         with tab4:
-            #self.tab3_rendered = user.render_tab3()
-            st.header("Access history")
+            tab4_rendered = user.render_tab4()
+            tab4_rendered.accessHistory_tab1()
+            tab4_rendered.accessHistory_tab2()
+            tab4_rendered.accessHistory_tab3()
+            #st.header("Access history")
         # End of tab4
 
 
