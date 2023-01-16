@@ -94,6 +94,7 @@ class Frontend:
         with tab3:
             tab3_rendered = protein.render_tab3()
             tab3_rendered.show_protein_analysis()
+            st.markdown("<br>", unsafe_allow_html=True) 
             tab3_rendered.show_protein_analysis_details()
         # End of tab3
 
