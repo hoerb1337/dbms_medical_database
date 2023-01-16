@@ -83,7 +83,7 @@ class render_tab3:
         
             st.code(query, language="sql")
 
-        st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is done during runtime instead of accessing a final result.")
+        st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is processed (processing of > 1,5mio rows) during runtime instead of accessing a final result.")
 
         if st.button(label="Execute Analysis"):
             #st.spinner("Execution may require up to 2:30mins...")
@@ -107,13 +107,12 @@ class render_tab3:
         st.markdown("<br>", unsafe_allow_html=True)    
         
         # Details
-        st.subheader("Details to explore")     
+        st.subheader("Want to explore data more in detail?")     
         # Data basis table
         with st.expander("Query for data basis"):
-            st.write("Notice that this query is limited to 100 rows because the processing of > 1,5mio rows woould require to many resources.")
-            query_total = """select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect, gene_sideeffects.nr_shared_se as nr_common_se, shared_meds.nr_shared_meds as nr_shared_meds, gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds as ratio_common_se, to_char((gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds)*100, 'fm900D00%') as per_ratio_common_se
+            st.write("Notice that this query is limited to 100 rows because the processing of > 1,5mio rows would require to many resources.")
+            query_total = """select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect, gene_sideeffects.nr_shared_se as nr_common_se, shared_meds.nr_shared_meds as nr_shared_meds, to_char((gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds)*100, 'fm900D00%') as per_ratio_common_se
 from
-
 (select mp1.gene as gene1, mm.individual_side_effect as se, count(*) as nr_shared_se
  from dbms.medicine_protein mp1, dbms.medicine_mono mm
  where mp1.stitch = mm.stitch
@@ -122,10 +121,10 @@ from
 (select mp.gene as gene2, count(*) as nr_shared_meds
 from dbms.medicine_protein mp
 group by gene)shared_meds
-    
+
 where gene_sideeffects.gene1 = shared_meds.gene2 and shared_meds.nr_shared_meds > 1
-    
-order by ratio_common_se desc"""
+
+limit 100"""
 
             st.code(query_total, language="sql")
             
@@ -136,7 +135,7 @@ order by ratio_common_se desc"""
             protein_data = analysisService.data4Analysis()
             data_basis = protein_data.lookup_protein_se_meds()
             # Runtime analysis execution
-            st.caption("Data")
+            st.markdown("<br><b>Excerp of data basis for the analaysis:</b><br>", unsafe_allow_html=True)
             st.write(data_basis)
 
 
