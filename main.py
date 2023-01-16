@@ -118,6 +118,7 @@ class Frontend:
         # Tab4: usage data
         with tab4:
             tab4_rendered = user.render_tab4()
+            tab4_rendered.show_user(userData["id"])
             tab4_rendered.show_accessHistory_tab1(userData["id"])
             tab4_rendered.show_accessHistory_tab2(userData["id"])
             tab4_rendered.show_accessHistory_tab3(userData["id"])

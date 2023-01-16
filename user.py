@@ -35,6 +35,15 @@ class render_tab4:
     def __init__(self):
         st.info("Access history")
     
+    def show_user(self, userID):
+        
+        get_user = userService.UserManagament()
+        email, last_act = get_user.get_user_data_db(userID)
+        
+        welcome_msg = "Welcome " + email + "! Your last acivity was on: " + last_act + "."
+        
+        return df
+
     def show_accessHistory_tab1(self, userID):
         with st.expander("Usage data for lookup and reporting side effects"):
             get_usage_data = userService.UsageData()

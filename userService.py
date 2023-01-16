@@ -70,14 +70,30 @@ class UserManagament:
 
         return status_msg
     
-    def get_user_data_db(self):
+    def get_user_data_db(self, userID):
         pass
         # Open db connection
-        #db = database.db_connection()
-        #db_connection, db_cur = db.connect_postgres()
-        #db_cur.execute("SELECT commercial_name FROM dbms.medicines;")
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
+        
+        email_query = "select us.email from dbms.user us where us.id = " + str(userID) + ";"
+        db_cur.execute(email_query)
+        email_query_result = db_cur.fetchone()
+        email = []
+        for row_i in email_query_result:
+                email.append(f"{row_i[0]}")
+
+        last_act_query = "select us.last_active from dbms.user us where us.id = " + str(userID) + ";"
+        db_cur.execute(last_act_query)
+        last_act_query_result = db_cur.fetchone()
+        last_act = []
+        for row_i in email_query_result:
+                last_act.append(f"{row_i[0]}")
+
+        db.disconnect_postgres(db_connection, db_cur)
     
-        return 
+        return email[0], last_act[0]
+
 
     def post_user(self, userData):
         """Create new user data in db.
