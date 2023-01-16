@@ -32,10 +32,10 @@ class render_tab3:
         with st.expander("In more detail, the analysis proceeded as follows."):
             proc_descr2 = """
                             <ol>
-                            <b>(1):</b>
+                            <b>(1) Table 1:</b>
                             <li>For each protein, find the side effects of drugs that share the protein.</li>
                             <li>Calculate the number of occurence of same side effects for each protein.</li>
-                            <b>(2):</b>
+                            <b>(2) Table 2:</b>
                             <li>Find proteins with their shared drugs.</li>
                             <li>For each protein, calculate the total number of drugs that share the protein.</li>
                             <b>Connect results from (1) and (2):</b>
@@ -44,6 +44,7 @@ class render_tab3:
                             <b>Make general statement with an average:</b>
                             <li>Calculate the average ratio from step 6 over all proteins and side effects.</li>
                             </ol>
+                            <br>
                         """
         
             st.markdown(proc_descr2, unsafe_allow_html=True)
@@ -142,7 +143,7 @@ limit 100"""
             # Runtime analysis execution
             protein_data = analysisService.data4Analysis()
             data_basis = protein_data.lookup_protein_se_meds()
-            # Runtime analysis execution
+            
             st.markdown("<br><b>Excerp of data basis for the analaysis:</b><br>", unsafe_allow_html=True)
             st.write(data_basis)
 
