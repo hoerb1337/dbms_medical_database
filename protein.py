@@ -22,7 +22,8 @@ class render_tab3:
             selected_sideEffects: list of chosen side effects
             type: dataframe
         """
-
+        
+        # Analysis
         st.subheader("Procedure of Analysis")
         proc_descr1 = """The basic idea is to check whether <b>(1)</b> at least one side effect occuring with drugs that share a protein,
                         <b>(2)</b> is listed with all drugs that share the protein. The analysis excluded proteins that are targeted only from one drug.<br>
@@ -104,10 +105,18 @@ class render_tab3:
                 st.markdown(result_display, unsafe_allow_html=True)
             
         st.markdown("<br>", unsafe_allow_html=True)    
+        
+        # Details
         st.subheader("Details to explore")     
         # Data basis table
         with st.expander("Query for data basis"):
-            query_total = "select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se from (select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect, gene_sideeffects.nr_shared_se as nr_common_se, shared_meds.nr_shared_meds as nr_shared_meds, gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds as ratio_common_se, to_char((gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds)*100, 'fm900D00%') as per_ratio_common_se from (select mp1.gene as gene1, mm.individual_side_effect as se, count(*) as nr_shared_se from dbms.medicine_protein mp1, dbms.medicine_mono mm where mp1.stitch = mm.stitch group by mp1.gene, mm.individual_side_effect)gene_sideeffects, (select mp.gene as gene2, count(*) as nr_shared_meds from dbms.medicine_protein mp group by gene)shared_meds where gene_sideeffects.gene1 = shared_meds.gene2 and shared_meds.nr_shared_meds > 1)full_table"
+            query_total = """select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se
+            from
+            (select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect, gene_sideeffects.nr_shared_se as nr_common_se, shared_meds.nr_shared_meds as nr_shared_meds, gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds as ratio_common_se, to_char((gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds)*100, 'fm900D00%') as per_ratio_common_se
+            from
+            (select mp1.gene as gene1, mm.individual_side_effect as se, count(*) as nr_shared_se from dbms.medicine_protein mp1, dbms.medicine_mono mm where mp1.stitch = mm.stitch group by mp1.gene, mm.individual_side_effect)gene_sideeffects,(select mp.gene as gene2, count(*) as nr_shared_meds from dbms.medicine_protein mp group by gene)shared_meds
+            
+            where gene_sideeffects.gene1 = shared_meds.gene2 and shared_meds.nr_shared_meds > 1)full_table"""
 
             st.code(query_total, language="sql")
             
