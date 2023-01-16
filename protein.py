@@ -95,6 +95,18 @@ class render_tab3:
             
             st.markdown("<br>", unsafe_allow_html=True)
             
+            bg_result = """
+                        <style>
+                        .bg_result {
+                        background-color: lightgrey;
+                        </style>
+                        """
+            st.markdown(bg_result, unsafe_allow_html=True)
+            yo = """
+                            <div class="bg_result">st.subheader("Result of Analysis: No")
+                            </div> 
+                            """
+            st.markdown(yo, unsafe_allow_html=True)
             # Display result of analysis
             if result_analysis == "False":
                 result_display = "No, drugs with shared proteins do not - on average - have common side effects. On average one side effect of drugs with a shared protein is common only in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein."
@@ -107,6 +119,21 @@ class render_tab3:
             
         st.markdown("<br>", unsafe_allow_html=True)    
         
+        return avg_ratio_se_meds
+
+    
+    def show_protein_analysis_details(self):
+        """UI for displaying results of shared protein analysis.
+
+        Args:
+            selected_sideEffects:
+            type: list
+            nr_sideEffects:
+            type: int
+        Returns:
+            selected_sideEffects: list of chosen side effects
+            type: dataframe
+        """
         # Details
         st.subheader("Want to explore data in more detail?")     
         # Data basis table
