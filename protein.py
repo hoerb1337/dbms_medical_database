@@ -30,10 +30,10 @@ class render_tab3:
                      """    
         st.markdown(proc_descr1, unsafe_allow_html=True)
         with st.expander("In more detail, the analysis proceeded as follows."):
-            proc_descr2 = """<style>div {
+            proc_descr2 = """div {
                                         padding-left: 20px;
                                         }
-                            </style>
+                            
                             <ol>
                             <b>(1) Table 1:</b>
                             <li>For each protein, find the side effects of drugs that share the protein.</li>
