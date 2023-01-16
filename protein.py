@@ -83,7 +83,7 @@ class render_tab3:
             st.code(query, language="sql")
 
         if st.button(label="Execute Analysis"):
-            st.spinner("Execution may require up to 2:30mins...")
+            #st.spinner("Execution may require up to 2:30mins...")
             protein_data = analysisService.data4Analysis()
             avg_ratio_se_meds = protein_data.lookup_avg_ratio_se_meds()
             result = "No, drugs with shared proteins do not - on average - have common side effects. On average only " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
