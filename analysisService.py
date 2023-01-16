@@ -604,7 +604,7 @@ class data4Analysis:
         
         db_cur.execute(query)
         query_result = db_cur.fetchall()
-
+        st.write(query_result)
         gene = []
         side_effect = []
         nr_common_se = []
