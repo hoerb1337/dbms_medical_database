@@ -238,7 +238,7 @@ class UsageData:
             side_effects1_conc = selected_sideEffects[0]
         
         query = "insert into dbms.user_relookup_history (user_id, access_date, selected_side_effects, predicted_med, combo) values (" + str(userData) + ", now(), '" + side_effects1_conc + "', '" + predicted_med + "', '" + combo + "');"
-        st.write(query)
+
         db_cur.execute(query)
         
         db_connection.commit()

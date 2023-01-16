@@ -25,7 +25,9 @@ class data4Analysis:
         db_connection, db_cur = db.connect_postgres()
         # combo
         if combo == "True":
-            query = "select distinct concat(combo_side_effect_name, ' (', polypharmacy_side_effect, ')') as se_name_se_id from dbms.medicines_combo order by se_name_se_id;"
+            #query = "select distinct concat(combo_side_effect_name, ' (', polypharmacy_side_effect, ')') as se_name_se_id from dbms.medicines_combo order by se_name_se_id;"
+
+            query = "select rcse.se_name_se_id from dbms.relookup_combo_se rcse;"
 
             db_cur.execute(query)
 
