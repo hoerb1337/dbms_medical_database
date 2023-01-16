@@ -86,11 +86,9 @@ class render_tab3:
             st.spinner("Execution may require up to 2:30mins...")
             protein_data = analysisService.data4Analysis()
             avg_ratio_se_meds = protein_data.lookup_avg_ratio_se_meds()
-        
-        st.subheader("Result of Analysis: No")
-        result = "No, drugs with shared proteins do not - on average - have common side effects. On average only " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
-                
-        st.write(result)
+            result = "No, drugs with shared proteins do not - on average - have common side effects. On average only " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
+            st.subheader("Result of Analysis: No")     
+            st.write(result)
         
 
 
