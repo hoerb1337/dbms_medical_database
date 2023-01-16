@@ -91,22 +91,9 @@ class render_tab3:
             # Runtime analysis execution
             protein_data = analysisService.data4Analysis()
             avg_ratio_se_meds, result_analysis = protein_data.lookup_avg_ratio_se_meds()
-            #data_basis = protein_data.lookup_protein_se_meds()
             
             st.markdown("<br>", unsafe_allow_html=True)
             
-            bg_result = """
-                        <style>
-                        .bg_result {
-                        background-color: lightgrey;
-                        </style>
-                        """
-            st.markdown(bg_result, unsafe_allow_html=True)
-            yo = """
-                            <div class="bg_result">st.subheader("Result of Analysis: No")
-                            </div> 
-                            """
-            st.markdown(yo, unsafe_allow_html=True)
             # Display result of analysis
             if result_analysis == "False":
                 result_display = "No, drugs with shared proteins do not - on average - have common side effects. On average one side effect of drugs with a shared protein is common only in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein."
