@@ -28,31 +28,23 @@ class render_tab3:
                         <b>(2)</b> are listed with all drugs that share the protein. The analysis excluded proteins that are targeted only from one drug.<br><br>
                      """    
         st.markdown(proc_descr1, unsafe_allow_html=True)
-        with st.expander("In more detail, the analysis proceeded as follows:"):
-            proc_descr2 = """(1):
-                            <ul>
+        with st.expander("In more detail, the analysis proceeded as follows."):
+            proc_descr2 = """
+                            <ol>
                             <li>For each protein, find the side effects of drugs that share the protein.</li>
                             <li>Calculate the number of occurence of same side effects for each protein.</li>
-                            </ul>
-                            (2):
-                            <br>
-                            <ul>
                             <li>Find proteins with their shared drugs.</li>
                             <li>For each protein, calculate the total number of drugs that share the protein.</li>
-                            </ul>
                             Connect results from (1) and (2):
-                            <ul>
                             <li>Join the tables from (1) and (2) on the proteins.</li>
                             <li>For each protein, calculate the ratio of side effects to the number of drugs that share the protein.</li>
-                            </ul>
-                            <ul>
                             Make general statement with an average:
                             <li>Calculate the average ratio from step 6 over all proteins and side effects.</li>
-                            </ul>
+                            </ol>
                         """
         
             st.markdown(proc_descr2, unsafe_allow_html=True)
-            
+
         #st.subheader("Result of Analysis: No")
         #protein_data = analysisService.data4Analysis()
         #avg_ratio_se_meds = protein_data.lookup_avg_ratio_se_meds()
