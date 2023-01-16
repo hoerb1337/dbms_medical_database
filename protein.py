@@ -103,9 +103,8 @@ class render_tab3:
                 st.markdown(result_display, unsafe_allow_html=True)
             
             # Data table
-            st.subheader("More details to explore")
-            exp1_title = st.markdown("<br><b>Data basis for the result</b>", unsafe_allow_html=True)
-            with st.expander(exp1_title):
+            st.caption("Want more details to explore?")
+            with st.expander("Data basis for the result"):
                 query_total = ""
                 st.code(query_total, language="sql")
                 st.markdown("<br>", unsafe_allow_html=True)
