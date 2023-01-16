@@ -79,6 +79,7 @@ class UserManagament:
         email_query = "select us.email from dbms.user us where us.id = " + str(userID) + ";"
         db_cur.execute(email_query)
         email_query_result = db_cur.fetchone()
+        st.write(email_query_result)
         email = []
         for row_i in email_query_result:
                 email.append(f"{row_i[0]}")
