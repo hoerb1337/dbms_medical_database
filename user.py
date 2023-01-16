@@ -35,14 +35,29 @@ class render_tab4:
     def __init__(self):
         st.info("Access history")
     
-    def show_accessHistory_tab1(self):
-        pass
+    def show_accessHistory_tab1(self, userID):
+        with st.expander("Usage data for lookup and reporting side effects"):
+            get_usage_data = userService.UsageData()
+            df = get_usage_data.get_usage_data_se(userID)
+            st.write(df)
+        
+        return df
+ 
+    def show_accessHistory_tab2(self, userID):
+        with st.expander("Usage data for reverse lookup analysis"):
+            get_usage_data = userService.UsageData()
+            df = get_usage_data.get_usage_data_relookup(userID)
+            st.write(df)
+        
+        return df
 
-    def show_accessHistory_tab2(self):
-        pass
-
-    def show_accessHistory_tab3(self):
-        pass
+    def show_accessHistory_tab3(self, userID):
+        with st.expander("Usage data for protein analysis"):
+            get_usage_data = userService.UsageData()
+            df = get_usage_data.get_usage_data_protein(userID)
+            st.write(df)
+        
+        return df
 
 if __name__ == "__main__":
     pass

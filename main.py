@@ -108,8 +108,7 @@ class Frontend:
             st.markdown("<br>", unsafe_allow_html=True) 
             
             analysis_details_executed = tab3_rendered.show_protein_analysis_details()
-            #st.write(analysis_executed)
-            #st.write(analysis_details_executed)
+
             if analysis_details_executed != None:
                 store_usage_data = userService.UsageData()
                 analysis_details_executed = "Execute Query"
@@ -119,9 +118,9 @@ class Frontend:
         # Tab4: usage data
         with tab4:
             tab4_rendered = user.render_tab4()
-            tab4_rendered.show_accessHistory_tab1()
-            tab4_rendered.show_accessHistory_tab2()
-            tab4_rendered.show_accessHistory_tab3()
+            tab4_rendered.show_accessHistory_tab1(userData["id"])
+            tab4_rendered.show_accessHistory_tab2(userData["id"])
+            tab4_rendered.show_accessHistory_tab3(userData["id"])
             #st.header("Access history")
         # End of tab4
 

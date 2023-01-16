@@ -1,5 +1,6 @@
 import streamlit as st
 import requests
+import pandas as pd
 
 # Backend services
 import database
@@ -264,16 +265,9 @@ class UsageData:
         # db connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
-
-        #if analysis_type_executed == "Execute Analysis":
             
         query = "insert into dbms.user_protein_history (user_id, access_date, analysis_type) values (" + str(userData) + ", now(), '" + analysis_type_executed + "');"
-        #elif analysis_type_executed == "Execute Query":
-            #pass
-            #query = "insert into dbms.user_relookup_history (user_id, access_date, selected_side_effects, predicted_med, combo) values (" + str(userData) + ", now(), '" + side_effects1_conc + "', '" + predicted_med + "', '" + combo + "');"
-        
-        
-        
+
         db_cur.execute(query)
         
         db_connection.commit()
@@ -284,6 +278,145 @@ class UsageData:
         
         return status_msg
 
+    def get_usage_data_se(self, userData):
+        """Edit user data in db. Right now only last_active is changed.
+
+        Args:
+            userData: id from user
+            type: int
+        Returns:
+            sum over n:
+            type: 
+        """
+        
+        # db connection
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
+
+        query = "select useh.access_date, useh.selected_medicine1, useh.selected_medicine2, useh.combo, useh.reported_side_effect1, useh.reported_side_effect2 from dbms.user_side_effects_history useh where user_id = " + userData + ";"
+
+        db_cur.execute(query)
+        query_result = db_cur.fetchall()
+        
+        access_date = []
+        selected_medicine1 = []
+        selected_medicine2 = []
+        combo = []
+        reported_side_effect1 = []
+        reported_side_effect2 = []
+
+        # Fill empty lists with data from query
+        for row_i in query_result:
+            access_date.append(f"{row_i[0]}")
+            selected_medicine1.append(f"{row_i[1]}")
+            selected_medicine2.append(f"{row_i[2]}")
+            combo.append(f"{row_i[3]}")
+            reported_side_effect1.append(f"{row_i[4]}")
+            reported_side_effect2.append(f"{row_i[5]}")
+        
+        # dataframes
+        df1_definition_names = {'Access Date': access_date}
+        df1 = pd.DataFrame(data=df1_definition_names)
+        df2_definition_names = {'Selected Medicine 1': selected_medicine1}
+        df2 = pd.DataFrame(data=df2_definition_names)
+        df3_definition_names = {'Selected Medicine 2': selected_medicine2}
+        df3 = pd.DataFrame(data=df3_definition_names)
+        df4_definition_names = {'Medicine Combination': combo}
+        df4 = pd.DataFrame(data=df4_definition_names)
+        df5_definition_names = {'Reported Side Effects for Med.1': reported_side_effect1}
+        df5 = pd.DataFrame(data=df5_definition_names)
+        db.disconnect_postgres(db_connection, db_cur)
+        df6_definition_names = {'Reported Side Effects for Med.2': reported_side_effect2}
+        df6 = pd.DataFrame(data=df6_definition_names)
+        
+        concat_dfs = pd.concat([df1, df2, df3, df4, df5, df5], ignore_index=False, axis=1)
+        
+        return concat_dfs
+
+
+    def get_usage_data_relookup(self, userData):
+        """Edit user data in db. Right now only last_active is changed.
+
+        Args:
+            userData: id from user
+            type: int
+        Returns:
+            sum over n:
+            type: 
+        """
+        
+        # db connection
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
+
+        query = "select useh.access_date, useh.selected_side_effects, useh.predicted_med, useh.combo from dbms.user_relookup_history useh where user_id = " + userData + ";"
+
+        db_cur.execute(query)
+        query_result = db_cur.fetchall()
+        
+        access_date = []
+        selected_side_effects = []
+        predicted_med = []
+        combo = []
+
+        # Fill empty lists with data from query
+        for row_i in query_result:
+            access_date.append(f"{row_i[0]}")
+            selected_side_effects.append(f"{row_i[1]}")
+            predicted_med.append(f"{row_i[2]}")
+            combo.append(f"{row_i[3]}")
+        
+        # dataframes
+        df1_definition_names = {'Access Date': access_date}
+        df1 = pd.DataFrame(data=df1_definition_names)
+        df2_definition_names = {'Selected Side Effects': selected_side_effects}
+        df2 = pd.DataFrame(data=df2_definition_names)
+        df3_definition_names = {'Predicted Medicine': predicted_med}
+        df3 = pd.DataFrame(data=df3_definition_names)
+        df4_definition_names = {'Medicine Combination': combo}
+        df4 = pd.DataFrame(data=df4_definition_names)
+        
+        concat_dfs = pd.concat([df1, df2, df3, df4], ignore_index=False, axis=1)
+        
+        return concat_dfs
+
+    def get_usage_data_protein(self, userData):
+        """Edit user data in db. Right now only last_active is changed.
+
+        Args:
+            userData: id from user
+            type: int
+        Returns:
+            sum over n:
+            type: 
+        """
+        
+        # db connection
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
+
+        query = "select useh.access_date, useh.analysis_type from dbms.user_protein_history useh where user_id = " + userData + ";"
+
+        db_cur.execute(query)
+        query_result = db_cur.fetchall()
+        
+        access_date = []
+        analysis_type = []
+
+        # Fill empty lists with data from query
+        for row_i in query_result:
+            access_date.append(f"{row_i[0]}")
+            analysis_type.append(f"{row_i[1]}")
+        
+        # dataframes
+        df1_definition_names = {'Access Date': access_date}
+        df1 = pd.DataFrame(data=df1_definition_names)
+        df2_definition_names = {'Type of Execution': analysis_type}
+        df2 = pd.DataFrame(data=df2_definition_names)
+        
+        concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
+        
+        return concat_dfs
 
 if __name__ == "__main__":
     pass
