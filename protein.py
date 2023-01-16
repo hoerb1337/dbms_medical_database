@@ -23,12 +23,36 @@ class render_tab3:
             type: dataframe
         """
 
-        st.subheader("Result of Analysis: No")
-        protein_data = analysisService.data4Analysis()
-        avg_ratio_se_meds = protein_data.lookup_avg_ratio_se_meds()
-        result = "No, drugs with shared proteins do not - on average - have common side effects. On average only " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
+        st.subheader("Procedure of Analysis")
+        proc_descr = """
+                    The basic idea is to check whether (1) at least one side effect occuring with drugs that share a protein, (2) are listed with all drugs that share the protein. The analysis excluded proteins that are targeted only from one drug.
+                    
+                    In more detail, the analysis proceeded as follows:
+                    
+                    (1): 
+                    1. For each protein, find the side effects of drugs that share the protein.
+                    2. Calculate the number of occurence of same side effects for each protein.
+                    
+                    (2):
+                    3. Find proteins with their shared drugs.
+                    4. For each protein, calculate the total number of drugs that share the protein.
+                    
+                    Connect results from (1) and (2):
+                    5. Join the tables from (1) and (2) on the proteins.
+                    6. For each protein, calculate the ratio of side effects to the number of drugs that share the protein.
+
+                    Make general statement with an average:
+                    7. Calculate the average ratio from step 6 over all proteins and side effects.
+
+                    """
+        st.write(proc_descr)
+        st.markdown("<br>", unsafe_allow_html=True)
+        #st.subheader("Result of Analysis: No")
+        #protein_data = analysisService.data4Analysis()
+        #avg_ratio_se_meds = protein_data.lookup_avg_ratio_se_meds()
+        #result = "No, drugs with shared proteins do not - on average - have common side effects. On average only " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
         
-        st.write(result)
+        #st.write(result)
 
 
 
@@ -61,7 +85,6 @@ where gene_sideeffects.gene1 = shared_meds.gene2
 and shared_meds.nr_shared_meds > 1)full_table
                 """
        
-        st.markdown("<br>", unsafe_allow_html=True)
         st.code(query, language="sql")
         
 
