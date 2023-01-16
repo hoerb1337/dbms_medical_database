@@ -541,6 +541,8 @@ class data4Analysis:
 
         total_nr_meds_found = len(count)
 
+        db.disconnect_postgres(db_connection, db_cur)
+
         return concat_dfs, total_nr_meds_found, med_high_p_name, med_high_p_name2, med_high_p_pct, med_high_p_prop, med_high_p_user, med_high_p_total
         
 
@@ -575,8 +577,65 @@ class data4Analysis:
             result = "True"
         else:
             result = "False"
-
+        
+        db.disconnect_postgres(db_connection, db_cur)
+        
         return avg_ratio_se_meds[0], result
+
+    
+    def lookup_protein_se_meds(self):
+        """Create value for KPI1:
+        
+        Nr. meds with at least one matched side effect.
+
+        Args:
+            commercial_name: list of medicines found in query
+            type: list
+        Returns:
+            kpi1: number of medicines with >=1 matched side effects
+            type: int
+        """
+
+        # Open db connection
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
+
+        query = "select full_table.gene, full_table.side_effect, full_table.nr_common_se, full_table.nr_shared_meds, full_table.ratio_common_se, full_table.per_ratio_common_se from (select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect, gene_sideeffects.nr_shared_se as nr_common_se, shared_meds.nr_shared_meds as nr_shared_meds, gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds as ratio_common_se, to_char((gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds)*100, 'fm900D00%') as per_ratio_common_se from (select mp1.gene as gene1, mm.individual_side_effect as se, count(*) as nr_shared_se from dbms.medicine_protein mp1, dbms.medicine_mono mm where mp1.stitch = mm.stitch group by mp1.gene, mm.individual_side_effect)gene_sideeffects, (select mp.gene as gene2, count(*) as nr_shared_meds from dbms.medicine_protein mp group by gene)shared_meds where gene_sideeffects.gene1 = shared_meds.gene2 and shared_meds.nr_shared_meds > 1)full_table order by full_table.ratio_common_se desc"
+        
+        db_cur.execute(query)
+        query_result = db_cur.fetchall()
+
+        gene = []
+        side_effect = []
+        nr_common_se = []
+        nr_shared_meds = []
+        per_ratio_common_se = []
+
+        for row_i in query_result:
+            gene.append(int(f"{row_i[0]}"))
+            side_effect.append(f"{row_i[1]}")
+            nr_common_se.append(int(f"{row_i[2]}"))
+            nr_shared_meds.append(int(f"{row_i[3]}"))
+            per_ratio_common_se.append(f"{row_i[5]}")
+
+        # dataframes
+        df1_definition_names = {'Protein': gene}
+        df1 = pd.DataFrame(data=df1_definition_names)
+        df2_definition_names = {'Side effect from med.': side_effect}
+        df2 = pd.DataFrame(data=df2_definition_names)
+        df3_definition_names = {'Occurence side effect in each protein': nr_common_se}
+        df3 = pd.DataFrame(data=df3_definition_names)
+        df4_definition_names = {'Nr. of meds sharing this protein': nr_shared_meds}
+        df4 = pd.DataFrame(data=df4_definition_names)
+        df5_definition_names = {'Ratio on how common the side effect is': per_ratio_common_se}
+        df5 = pd.DataFrame(data=df5_definition_names)
+
+        concat_dfs = pd.concat([df1, df2, df3, df4, df5], ignore_index=False, axis=1)
+        
+        db.disconnect_postgres(db_connection, db_cur)
+        
+
+        return concat_dfs
 
 
 if __name__ == "__main__":

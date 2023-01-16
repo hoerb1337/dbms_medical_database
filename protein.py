@@ -86,17 +86,42 @@ class render_tab3:
 
         if st.button(label="Execute Analysis"):
             #st.spinner("Execution may require up to 2:30mins...")
+            # Runtime analysis execution
             protein_data = analysisService.data4Analysis()
             avg_ratio_se_meds, result_analysis = protein_data.lookup_avg_ratio_se_meds()
+            
+            st.markdown("<br>", unsafe_allow_html=True)
+            
+            # Display result of analysis
             if result_analysis == "False":
-                result_display = "No, drugs with shared proteins do not - on average - have common side effects. On average only <b>" + avg_ratio_se_meds + " <b> of side effects are common in drugs with shared proteins."
-                st.markdown
+                result_display = "No, drugs with shared proteins do not - on average - have common side effects. On average only <b>" + avg_ratio_se_meds + "</b> of side effects are common in drugs with shared proteins."
                 st.subheader("Result of Analysis: No")     
                 st.markdown(result_display, unsafe_allow_html=True)
             else:
-                result_display = "Yes, drugs with shared proteins do - on average - have common side effects. On average " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
+                result_display = "Yes, drugs with shared proteins do - on average - have common side effects. On average <b>" + avg_ratio_se_meds + "</b> of side effects are common in drugs with shared proteins."
                 st.subheader("Result of Analysis: Yes")     
-                st.write(result_display)
+                st.markdown(result_display, unsafe_allow_html=True)
+            
+            # Data table
+            st.subheader("More details to explore")
+            exp1_title = st.markdown("<br><b>Data basis for the result</b>", unsafe_allow_html=True)
+            with st.expander(exp1_title):
+                query_total = ""
+                st.code(query_total, language="sql")
+                st.markdown("<br>", unsafe_allow_html=True)
+                st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is done during runtime instead of accessing a final result.")
+                st.markdown("<br>", unsafe_allow_html=True)
+                if st.button(label="Execute Query"):
+                    #st.spinner("Execution may require up to 2:30mins...")
+                    # Runtime analysis execution
+                    data_basis = protein_data.lookup_protein_se_meds()
+                    st.subheader("Data")
+                    st.write(data_basis)
+
+
+
+
+            
         
 
 
