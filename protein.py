@@ -89,9 +89,10 @@ class render_tab3:
             protein_data = analysisService.data4Analysis()
             avg_ratio_se_meds, result_analysis = protein_data.lookup_avg_ratio_se_meds()
             if result_analysis == "False":
-                result_display = "No, drugs with shared proteins do not - on average - have common side effects. On average only " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
+                result_display = "No, drugs with shared proteins do not - on average - have common side effects. On average only <b>" + avg_ratio_se_meds + " <b> of side effects are common in drugs with shared proteins."
+                st.markdown
                 st.subheader("Result of Analysis: No")     
-                st.write(result_display)
+                st.markdown(result_display, unsafe_allow_html=True)
             else:
                 result_display = "Yes, drugs with shared proteins do - on average - have common side effects. On average " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
                 st.subheader("Result of Analysis: Yes")     
