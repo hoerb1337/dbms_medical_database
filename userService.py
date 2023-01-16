@@ -295,6 +295,7 @@ class UsageData:
 
         query = "select useh.access_date, useh.selected_medicine1, useh.selected_medicine2, useh.combo, useh.reported_side_effect1, useh.reported_side_effect2 from dbms.user_side_effects_history useh where user_id = " + str(userData) + ";"
 
+        st.write(query)
         db_cur.execute(query)
         query_result = db_cur.fetchall()
         
