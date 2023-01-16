@@ -128,7 +128,7 @@ from
 from dbms.medicine_protein mp
 group by gene)shared_meds
 
-/* Join tables on proteins */
+/* Join tables on proteins and exclude proteins that are only targeted by one medicine */
 where gene_sideeffects.gene1 = shared_meds.gene2 and shared_meds.nr_shared_meds > 1
 
 /* Limit to 100 rows */
