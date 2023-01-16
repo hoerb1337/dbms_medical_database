@@ -33,15 +33,15 @@ class render_tab3:
                     1. For each protein, find the side effects of drugs that share the protein.
                     2. Calculate the number of occurence of same side effects for each protein.
                     
-                    (2): 
+                    (2):
                     3. Find proteins with their shared drugs.
                     4. For each protein, calculate the total number of drugs that share the protein.
                     
-                    Connect results from (1) and (2): 
+                    Connect results from (1) and (2):
                     5. Join the tables from (1) and (2) on the proteins.
                     6. For each protein, calculate the ratio of side effects to the number of drugs that share the protein.
 
-                    Make general statement with an average: 
+                    Make general statement with an average:
                     7. Calculate the average ratio from step 6 over all proteins and side effects.
 
                     """
