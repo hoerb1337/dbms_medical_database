@@ -24,7 +24,8 @@ class render_tab3:
         """
 
         st.subheader("Procedure of Analysis")
-        proc_descr = """ The basic idea is to check whether (1) at least one side effect occuring with drugs that share a protein, (2) are listed with all drugs that share the protein. The analysis excluded proteins that are targeted only from one drug.<br>In more detail, the analysis proceeded as follows:<br>(1):<ul><li>For each protein, find the side effects of drugs that share the protein.</li>
+        proc_descr = """ The basic idea is to check whether (1) at least one side effect occuring with drugs that share a protein, (2) are listed with all drugs that share the protein. The analysis excluded proteins that are targeted only from one drug.<br><br>
+        In more detail, the analysis proceeded as follows:<br>(1):<ul><li>For each protein, find the side effects of drugs that share the protein.</li>
                     <li>Calculate the number of occurence of same side effects for each protein.</li>
                     </ul>
                     <br>
