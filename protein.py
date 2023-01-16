@@ -23,6 +23,15 @@ class render_tab3:
             type: dataframe
         """
 
+        st.subheader("Result of Analysis: No")
+        protein_data = analysisService.data4Analysis()
+        avg_ratio_se_meds = protein_data.lookup_avg_ratio_se_meds()
+        result = "No, drugs with shared proteins do not - on average - have common side effects. On average only " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
+        
+        st.write(result)
+
+
+
         query = """
 /* Calculate avg. ratio from side effects common in meds with a shared protein */
 select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se
@@ -51,6 +60,8 @@ group by gene)shared_meds
 where gene_sideeffects.gene1 = shared_meds.gene2
 and shared_meds.nr_shared_meds > 1)full_table
                 """
+       
+        st.markdown("<br>", unsafe_allow_html=True)
         st.code(query, language="sql")
         
 

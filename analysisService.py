@@ -544,7 +544,7 @@ class data4Analysis:
         return concat_dfs, total_nr_meds_found, med_high_p_name, med_high_p_name2, med_high_p_pct, med_high_p_prop, med_high_p_user, med_high_p_total
         
 
-    def create_kpi1(self, commercial_name):
+    def lookup_avg_ratio_se_meds(self):
         """Create value for KPI1:
         
         Nr. meds with at least one matched side effect.
@@ -557,62 +557,21 @@ class data4Analysis:
             type: int
         """
 
-        # KPI: nr. meds with at least one matched side effect
-        kpi1 = len(commercial_name)
+        # Open db connection
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
 
-        return kpi1
-
-
-    def create_kpi2(self, commercial_name, percent_matched_sideEffects):
-        """Create value for KPI1:
-
-        Medicine with highest percentage matched side effects.
-
-        Args:
-            percent_matched_sideEffects: list of medicines found in query
-            type: list
-        Returns:
-            kpi2: list with name, percentage and delta to second
-            type: list
-        """
-
-        # Percentage of highest value
-        kpi2_perc = max(percent_matched_sideEffects)
-        # Identify index of two highest percentage in list
-        kpi2_perc_index = percent_matched_sideEffects.index(kpi2_perc)
-
-        # Second highest
-        perc_match_sideEffects_wo_max = percent_matched_sideEffects.copy()
-        perc_match_sideEffects_wo_max.pop(kpi2_perc_index)
+        query = "select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se from (select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect, gene_sideeffects.nr_shared_se as nr_common_se, shared_meds.nr_shared_meds as nr_shared_meds, gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds as ratio_common_se, to_char((gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds)*100, 'fm900D00%') as per_ratio_common_se from (select mp1.gene as gene1, mm.individual_side_effect as se, count(*) as nr_shared_se from dbms.medicine_protein mp1, dbms.medicine_mono mm where mp1.stitch = mm.stitch group by mp1.gene, mm.individual_side_effect)gene_sideeffects, (select mp.gene as gene2, count(*) as nr_shared_meds from dbms.medicine_protein mp group by gene)shared_meds where gene_sideeffects.gene1 = shared_meds.gene2 and shared_meds.nr_shared_meds > 1)full_table"
         
-        kpi2_perc2 = max(perc_match_sideEffects_wo_max)
-        kpi2_perc2_index = perc_match_sideEffects_wo_max.index(kpi2_perc2)
+        db_cur.execute(query)
+        query_result = db_cur.fetchall()
 
+        avg_ratio_se_meds = []
 
-        # Define name of two highest med based on index
-        kpi2_name = commercial_name[kpi2_perc_index]
-        kpi2_name2 = commercial_name[kpi2_perc2_index]
+        for row_i in query_result:
+            avg_ratio_se_meds.append(f"{row_i[0]}")
 
-        # delta calc.
-        
-        # first max
-        kpi2_perc_len = len(kpi2_perc)
-        kpi2_perc_float = float(kpi2_perc[:kpi2_perc_len-1:])
-        
-        # second max
-        kpi2_perc2_len = len(kpi2_perc2)
-        kpi2_perc2_float = float(kpi2_perc2[:kpi2_perc2_len-1:])
-        
-        kpi2_delta = str(kpi2_perc_float - kpi2_perc2_float)
-
-        # result
-        kpi2 = []
-        kpi2.append(kpi2_name)
-        kpi2.append(kpi2_perc)
-        kpi2.append(kpi2_delta + "%")
-        
-        
-        return kpi2
+        return avg_ratio_se_meds[0]
 
 
 if __name__ == "__main__":
