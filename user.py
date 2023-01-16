@@ -42,7 +42,9 @@ class render_tab4:
         
         welcome_msg = "Welcome " + email + "! Your last acivity was on: " + last_act + "."
         
-        return df
+        st.write(welcome_msg)
+
+        return email, last_act
 
     def show_accessHistory_tab1(self, userID):
         with st.expander("Usage data for lookup and reporting side effects"):
