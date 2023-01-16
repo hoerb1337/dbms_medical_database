@@ -224,28 +224,6 @@ class render_tab2:
                 
                 return df
 
-class render_tab3:
-    def __init__(self):
-        st.info("Analysis of drugs with shared proteins:\n" +
-                "Do drugs with shared proteins have common side effects?")
-    
-    def show_protein_analysis(self):
-        """UI for displaying results of shared protein analysis.
-
-        Args:
-            selected_sideEffects:
-            type: list
-            nr_sideEffects:
-            type: int
-        Returns:
-            selected_sideEffects: list of chosen side effects
-            type: dataframe
-        """
-        
-
-
-        return None
-
 
 if __name__ == "__main__":
     pass

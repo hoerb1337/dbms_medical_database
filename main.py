@@ -5,6 +5,7 @@ import streamlit as st
 import sideEffects
 import analysis
 import user
+import protein
 
 # Backend sevices
 import userService
@@ -91,7 +92,7 @@ class Frontend:
 
         # Tab3: shared protein analysis
         with tab3:
-            tab3_rendered = analysis.render_tab3()
+            tab3_rendered = protein.render_tab3()
             tab3_rendered.show_protein_analysis()
         # End of tab3
 
