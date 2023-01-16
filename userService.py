@@ -293,7 +293,7 @@ class UsageData:
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
 
-        query = "select useh.access_date, useh.selected_medicine1, useh.selected_medicine2, useh.combo, useh.reported_side_effect1, useh.reported_side_effect2 from dbms.user_side_effects_history useh where user_id = " + userData + ";"
+        query = "select useh.access_date, useh.selected_medicine1, useh.selected_medicine2, useh.combo, useh.reported_side_effect1, useh.reported_side_effect2 from dbms.user_side_effects_history useh where user_id = " + int(userData) + ";"
 
         db_cur.execute(query)
         query_result = db_cur.fetchall()
@@ -331,6 +331,8 @@ class UsageData:
         
         concat_dfs = pd.concat([df1, df2, df3, df4, df5, df5], ignore_index=False, axis=1)
         
+        db.disconnect_postgres(db_connection, db_cur)
+
         return concat_dfs
 
 
@@ -349,7 +351,7 @@ class UsageData:
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
 
-        query = "select useh.access_date, useh.selected_side_effects, useh.predicted_med, useh.combo from dbms.user_relookup_history useh where user_id = " + userData + ";"
+        query = "select useh.access_date, useh.selected_side_effects, useh.predicted_med, useh.combo from dbms.user_relookup_history useh where user_id = " + int(userData) + ";"
 
         db_cur.execute(query)
         query_result = db_cur.fetchall()
@@ -378,6 +380,8 @@ class UsageData:
         
         concat_dfs = pd.concat([df1, df2, df3, df4], ignore_index=False, axis=1)
         
+        db.disconnect_postgres(db_connection, db_cur)
+
         return concat_dfs
 
     def get_usage_data_protein(self, userData):
@@ -395,7 +399,7 @@ class UsageData:
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
 
-        query = "select useh.access_date, useh.analysis_type from dbms.user_protein_history useh where user_id = " + userData + ";"
+        query = "select useh.access_date, useh.analysis_type from dbms.user_protein_history useh where user_id = " + int(userData) + ";"
 
         db_cur.execute(query)
         query_result = db_cur.fetchall()
@@ -416,6 +420,8 @@ class UsageData:
         
         concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
         
+        db.disconnect_postgres(db_connection, db_cur)
+
         return concat_dfs
 
 if __name__ == "__main__":
