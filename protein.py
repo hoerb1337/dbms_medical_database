@@ -105,8 +105,10 @@ class render_tab3:
                 st.markdown(result_display, unsafe_allow_html=True)
             
             st.markdown("<br>", unsafe_allow_html=True)    
-        
-            return avg_ratio_se_meds
+            
+            analysis_executed = "True"
+            
+            return analysis_executed
 
     
     def show_protein_analysis_details(self):
@@ -161,8 +163,9 @@ limit 100"""
             st.markdown("<br><b>Excerp of data basis for the analaysis:</b><br>", unsafe_allow_html=True)
             st.write(data_basis)
 
-
-        return None
+            analysis_executed = "True"
+        
+            return analysis_executed
 
 
 if __name__ == "__main__":

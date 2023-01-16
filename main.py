@@ -99,9 +99,17 @@ class Frontend:
         # Tab3: shared protein analysis
         with tab3:
             tab3_rendered = protein.render_tab3()
-            tab3_rendered.show_protein_analysis()
+            analysis_executed = tab3_rendered.show_protein_analysis()
+            
             st.markdown("<br>", unsafe_allow_html=True) 
-            tab3_rendered.show_protein_analysis_details()
+            
+            analysis_details_executed = tab3_rendered.show_protein_analysis_details()
+            st.write(analysis_executed)
+            st.write(analysis_details_executed)
+            #if (analysis_executed != None) or (analysis_details_executed != None):
+                #store_usage_data = userService.UsageData()
+                #store_usage_data.post_usage_data_reLookup(userData["id"], analysis_executed, 
+                                                          #analysis_details_executed)
         # End of tab3
 
         # Tab4: usage data
