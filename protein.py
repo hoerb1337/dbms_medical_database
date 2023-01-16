@@ -31,7 +31,7 @@ class render_tab3:
                 gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds as ratio_common_se,
                 to_char((gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds)*100, 'fm900D00%') as per_ratio_common_se
                 from
-                
+
                 (select mp1.gene as gene1, mm.individual_side_effect as se, count(*) as nr_shared_se
                 from dbms.medicine_protein mp1, dbms.medicine_mono mm
                 where mp1.stitch = mm.stitch
