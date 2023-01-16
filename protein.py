@@ -25,7 +25,7 @@ class render_tab3:
 
         st.subheader("Procedure of Analysis")
         proc_descr1 = """The basic idea is to check whether <b>(1)</b> at least one side effect occuring with drugs that share a protein,
-                        <b>(2)</b> are listed with all drugs that share the protein. The analysis excluded proteins that are targeted only from one drug.<br>
+                        <b>(2)</b> is listed with all drugs that share the protein. The analysis excluded proteins that are targeted only from one drug.<br>
                      """    
         st.markdown(proc_descr1, unsafe_allow_html=True)
         with st.expander("In more detail, the analysis proceeded as follows."):

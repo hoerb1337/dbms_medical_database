@@ -571,10 +571,10 @@ class data4Analysis:
         for row_i in query_result:
             avg_ratio_se_meds.append(f"{row_i[0]}")
         
-        if avg_ratio_se_meds[0] < "100.00%":
-            result = "False"
-        else:
+        if avg_ratio_se_meds[0] == "100.00%":
             result = "True"
+        else:
+            result = "False"
 
         return avg_ratio_se_meds[0], result
 
