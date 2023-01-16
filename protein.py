@@ -25,12 +25,8 @@ class render_tab3:
 
         st.subheader("Procedure of Analysis")
         proc_descr = """
-                    The basic idea is to check whether (1) at least one side effect occuring with drugs that share a protein, (2) are listed with all drugs that share the protein. The analysis excluded proteins that are targeted only from one drug.
-                    <br>
-                    In more detail, the analysis proceeded as follows:
-                    <br>
+                    The basic idea is to check whether (1) at least one side effect occuring with drugs that share a protein, (2) are listed with all drugs that share the protein. The analysis excluded proteins that are targeted only from one drug.<br>In more detail, the analysis proceeded as follows:<br>
                     (1):
-                    <br>
                     <ul>
                     <li>For each protein, find the side effects of drugs that share the protein.</li>
                     <li>Calculate the number of occurence of same side effects for each protein.</li>
@@ -44,12 +40,10 @@ class render_tab3:
                     </ul>
                     <br>
                     Connect results from (1) and (2):
-                    <br>
                     <ul>
                     <li>Join the tables from (1) and (2) on the proteins.</li>
                     <li>For each protein, calculate the ratio of side effects to the number of drugs that share the protein.</li>
                     </ul>
-                    <br>
                     <ul>
                     Make general statement with an average:
                     <li>Calculate the average ratio from step 6 over all proteins and side effects.</li>
