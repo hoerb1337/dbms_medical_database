@@ -293,7 +293,7 @@ class UsageData:
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
 
-        query = "select useh.access_date, useh.selected_medicine1, useh.selected_medicine2, useh.combo, useh.reported_side_effect1, useh.reported_side_effect2 from dbms.user_side_effects_history useh where user_id = " + int(userData) + ";"
+        query = "select useh.access_date, useh.selected_medicine1, useh.selected_medicine2, useh.combo, useh.reported_side_effect1, useh.reported_side_effect2 from dbms.user_side_effects_history useh where user_id = " + str(userData) + ";"
 
         db_cur.execute(query)
         query_result = db_cur.fetchall()
@@ -351,7 +351,7 @@ class UsageData:
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
 
-        query = "select useh.access_date, useh.selected_side_effects, useh.predicted_med, useh.combo from dbms.user_relookup_history useh where user_id = " + int(userData) + ";"
+        query = "select useh.access_date, useh.selected_side_effects, useh.predicted_med, useh.combo from dbms.user_relookup_history useh where user_id = " + str(userData) + ";"
 
         db_cur.execute(query)
         query_result = db_cur.fetchall()
@@ -399,7 +399,7 @@ class UsageData:
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
 
-        query = "select useh.access_date, useh.analysis_type from dbms.user_protein_history useh where user_id = " + int(userData) + ";"
+        query = "select useh.access_date, useh.analysis_type from dbms.user_protein_history useh where user_id = " + str(userData) + ";"
 
         db_cur.execute(query)
         query_result = db_cur.fetchall()
