@@ -88,11 +88,12 @@ class Frontend:
             predicted_med = tab2_rendered.show_reverse_lookup(selected_sideEffects_name,
                                               selected_sideEffects_id,
                                               nr_sideEffects, combo)    
-            st.write(predicted_med)
+            #st.write(predicted_med)
             # Store usage data from user in database
-            store_usage_data = userService.UsageData()
-            store_usage_data.post_usage_data_reLookup(userData["id"], selected_sideEffects, 
-                                                      predicted_med, combo)
+            if predicted_med != None:
+                store_usage_data = userService.UsageData()
+                store_usage_data.post_usage_data_reLookup(userData["id"], selected_sideEffects, 
+                                                        predicted_med, combo)
         # End of tab2
 
         # Tab3: shared protein analysis
