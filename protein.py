@@ -50,7 +50,7 @@ class render_tab3:
         
 
 
-        with st.expander("Procedure as a SQL-Query"):
+        with st.expander("Procedure as SQL-Query"):
             query = """
     /* Calculate avg. ratio from side effects common in meds with a shared protein */
     select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se
@@ -82,13 +82,20 @@ class render_tab3:
         
             st.code(query, language="sql")
 
+        st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is done during runtime instead of accessing a final result.")
+
         if st.button(label="Execute Analysis"):
             #st.spinner("Execution may require up to 2:30mins...")
             protein_data = analysisService.data4Analysis()
-            avg_ratio_se_meds = protein_data.lookup_avg_ratio_se_meds()
-            result = "No, drugs with shared proteins do not - on average - have common side effects. On average only " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
-            st.subheader("Result of Analysis: No")     
-            st.write(result)
+            avg_ratio_se_meds, result_analysis = protein_data.lookup_avg_ratio_se_meds()
+            if result_analysis == "False":
+                result_display = "No, drugs with shared proteins do not - on average - have common side effects. On average only " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
+                st.subheader("Result of Analysis: No")     
+                st.write(result_display)
+            else:
+                result_display = "Yes, drugs with shared proteins do - on average - have common side effects. On average " + avg_ratio_se_meds + " of side effects are common in drugs with shared proteins."
+                st.subheader("Result of Analysis: Yes")     
+                st.write(result_display)
         
 
 
