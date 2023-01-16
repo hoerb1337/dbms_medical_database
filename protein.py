@@ -104,9 +104,9 @@ class render_tab3:
                 st.subheader("Result of Analysis: Yes")     
                 st.markdown(result_display, unsafe_allow_html=True)
             
-        st.markdown("<br>", unsafe_allow_html=True)    
+            st.markdown("<br>", unsafe_allow_html=True)    
         
-        return avg_ratio_se_meds
+            return avg_ratio_se_meds
 
     
     def show_protein_analysis_details(self):
