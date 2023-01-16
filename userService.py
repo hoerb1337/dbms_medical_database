@@ -295,7 +295,6 @@ class UsageData:
 
         query = "select useh.access_date, useh.selected_medicine1, useh.selected_medicine2, useh.combo, useh.reported_side_effect1, useh.reported_side_effect2 from dbms.user_side_effects_history useh where user_id = " + str(userData) + ";"
 
-        st.write(query)
         db_cur.execute(query)
         query_result = db_cur.fetchall()
         
@@ -330,7 +329,7 @@ class UsageData:
         df6_definition_names = {'Reported Side Effects for Med.2': reported_side_effect2}
         df6 = pd.DataFrame(data=df6_definition_names)
         
-        concat_dfs = pd.concat([df1, df2, df3, df4, df5, df5], ignore_index=False, axis=1)
+        concat_dfs = pd.concat([df1, df2, df3, df4, df5, df6], ignore_index=False, axis=1)
         
         db.disconnect_postgres(db_connection, db_cur)
 
