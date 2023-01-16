@@ -35,13 +35,13 @@ class render_tab4:
     def __init__(self):
         st.info("Access history")
     
-    def accessHistory_tab1(self):
+    def show_accessHistory_tab1(self):
         pass
 
-    def accessHistory_tab2(self):
+    def show_accessHistory_tab2(self):
         pass
 
-    def accessHistory_tab3(self):
+    def show_accessHistory_tab3(self):
         pass
 
 if __name__ == "__main__":
