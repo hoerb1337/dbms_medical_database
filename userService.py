@@ -251,8 +251,7 @@ class UsageData:
 
 
     def post_usage_data_protein(self, userData,
-                                analysis_executed, 
-                                analysis_details_executed):
+                                analysis_type_executed):
         """Edit user data in db. Right now only last_active is changed.
 
         Args:
@@ -266,19 +265,16 @@ class UsageData:
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
 
-        #if (analysis_executed == "True") and (analysis_details_executed = "True"):
-            #pass
-            #query = "insert into dbms.user_relookup_history (user_id, access_date, selected_side_effects, predicted_med, combo) values (" + str(userData) + ", now(), '" + side_effects1_conc + "', '" + predicted_med + "', '" + combo + "');"
-        #elif (analysis_executed == "True") and (analysis_details_executed = "False"):
-            #pass
-            #query = "insert into dbms.user_relookup_history (user_id, access_date, selected_side_effects, predicted_med, combo) values (" + str(userData) + ", now(), '" + side_effects1_conc + "', '" + predicted_med + "', '" + combo + "');"
-        
-        #elif (analysis_executed == "False") and (analysis_details_executed = "True"):
+        #if analysis_type_executed == "Execute Analysis":
+            
+        query = "insert into dbms.user_protein_history (user_id, access_date, analysis_type) values (" + str(userData) + ", now(), '" + analysis_type_executed + "');"
+        #elif analysis_type_executed == "Execute Query":
             #pass
             #query = "insert into dbms.user_relookup_history (user_id, access_date, selected_side_effects, predicted_med, combo) values (" + str(userData) + ", now(), '" + side_effects1_conc + "', '" + predicted_med + "', '" + combo + "');"
         
         
-        #db_cur.execute(query)
+        
+        db_cur.execute(query)
         
         db_connection.commit()
         

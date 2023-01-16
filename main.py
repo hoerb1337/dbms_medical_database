@@ -100,16 +100,20 @@ class Frontend:
         with tab3:
             tab3_rendered = protein.render_tab3()
             analysis_executed = tab3_rendered.show_protein_analysis()
+            if analysis_executed != None:
+                store_usage_data = userService.UsageData()
+                analysis_executed = "Execute Analysis"
+                store_usage_data.post_usage_data_protein(userData["id"], analysis_executed)
             
             st.markdown("<br>", unsafe_allow_html=True) 
             
             analysis_details_executed = tab3_rendered.show_protein_analysis_details()
-            st.write(analysis_executed)
-            st.write(analysis_details_executed)
-            #if (analysis_executed != None) or (analysis_details_executed != None):
-                #store_usage_data = userService.UsageData()
-                #store_usage_data.post_usage_data_reLookup(userData["id"], analysis_executed, 
-                                                          #analysis_details_executed)
+            #st.write(analysis_executed)
+            #st.write(analysis_details_executed)
+            if analysis_details_executed != None:
+                store_usage_data = userService.UsageData()
+                analysis_details_executed = "Execute Query"
+                store_usage_data.post_usage_data_protein(userData["id"], analysis_details_executed)
         # End of tab3
 
         # Tab4: usage data
