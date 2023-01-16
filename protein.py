@@ -94,34 +94,29 @@ class render_tab3:
             
             # Display result of analysis
             if result_analysis == "False":
-                result_display = "No, drugs with shared proteins do not - on average - have common side effects. On average only <b>" + avg_ratio_se_meds + "</b> of side effects are common in drugs with shared proteins."
+                result_display = "No, drugs with shared proteins do not - on average - have common side effects. On average one side effect of drugs with a shared protein is common only in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein."
                 st.subheader("Result of Analysis: No")     
                 st.markdown(result_display, unsafe_allow_html=True)
             else:
-                result_display = "Yes, drugs with shared proteins do - on average - have common side effects. On average <b>" + avg_ratio_se_meds + "</b> of side effects are common in drugs with shared proteins."
+                result_display = "Yes, drugs with shared proteins do - on average - have common side effects. On average one side effect of drugs with a shared protein is common in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein."
                 st.subheader("Result of Analysis: Yes")     
                 st.markdown(result_display, unsafe_allow_html=True)
             
             # Data table
-            st.caption("Want more details to explore?")
-            with st.expander("Data basis for the result"):
-                query_total = ""
-                st.code(query_total, language="sql")
-                st.markdown("<br>", unsafe_allow_html=True)
-                st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is done during runtime instead of accessing a final result.")
-                st.markdown("<br>", unsafe_allow_html=True)
-                if st.button(label="Execute Query"):
-                    #st.spinner("Execution may require up to 2:30mins...")
-                    # Runtime analysis execution
-                    data_basis = protein_data.lookup_protein_se_meds()
-                    st.subheader("Data")
-                    st.write(data_basis)
-
-
-
-
+            st.caption("More details to explore")
             
-        
+            query_total = "select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se from (select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect, gene_sideeffects.nr_shared_se as nr_common_se, shared_meds.nr_shared_meds as nr_shared_meds, gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds as ratio_common_se, to_char((gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds)*100, 'fm900D00%') as per_ratio_common_se from (select mp1.gene as gene1, mm.individual_side_effect as se, count(*) as nr_shared_se from dbms.medicine_protein mp1, dbms.medicine_mono mm where mp1.stitch = mm.stitch group by mp1.gene, mm.individual_side_effect)gene_sideeffects, (select mp.gene as gene2, count(*) as nr_shared_meds from dbms.medicine_protein mp group by gene)shared_meds where gene_sideeffects.gene1 = shared_meds.gene2 and shared_meds.nr_shared_meds > 1)full_table"
+            
+            st.code(query_total, language="sql")
+            st.markdown("<br>", unsafe_allow_html=True)
+            st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is done during runtime instead of accessing a final result.")
+            st.markdown("<br>", unsafe_allow_html=True)
+            if st.button(label="Execute Query"):
+                #st.spinner("Execution may require up to 2:30mins...")
+                # Runtime analysis execution
+                data_basis = protein_data.lookup_protein_se_meds()
+                st.subheader("Data")
+                st.write(data_basis)
 
 
         return None
