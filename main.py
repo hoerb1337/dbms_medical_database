@@ -69,9 +69,9 @@ class Frontend:
                                                       medicine2_side_effects, userData["id"])
                     
                     # Store usage data from user in database
-                    store_usage_date = userService.UserManagament()
-                    store_usage_date.post_usage_date(userData["id"], selected_meds, combo,
-                                                    medicine1_side_effects, medicine2_side_effects)
+                    store_usage_date = userService.UsageData()
+                    store_usage_date.post_usage_data_se(userData["id"], selected_meds, combo,
+                                                        medicine1_side_effects, medicine2_side_effects)
                     
                     # Process reporting in frontend
                     session_sate = st.session_state.keys()
@@ -83,11 +83,16 @@ class Frontend:
             tab2_rendered = analysis.render_tab2()
 
             # 1. Selection side effects
-            selected_sideEffects_name,selected_sideEffects_id, nr_sideEffects, combo = tab2_rendered.show_selection_sideEffects()
+            selected_sideEffects_name,selected_sideEffects_id, nr_sideEffects, combo, selected_sideEffects = tab2_rendered.show_selection_sideEffects()
             # 2. perform reverse lookup and display results
-            tab2_rendered.show_reverse_lookup(selected_sideEffects_name,
+            predicted_med = tab2_rendered.show_reverse_lookup(selected_sideEffects_name,
                                               selected_sideEffects_id,
                                               nr_sideEffects, combo)    
+
+            # Store usage data from user in database
+            store_usage_data = userService.UsageData()
+            store_usage_data.post_usage_data_reLookup(userData["id"], selected_sideEffects, 
+                                                      predicted_med, combo)
         # End of tab2
 
         # Tab3: shared protein analysis
@@ -98,12 +103,12 @@ class Frontend:
             tab3_rendered.show_protein_analysis_details()
         # End of tab3
 
-        # Tab4: user
+        # Tab4: usage data
         with tab4:
             tab4_rendered = user.render_tab4()
-            tab4_rendered.accessHistory_tab1()
-            tab4_rendered.accessHistory_tab2()
-            tab4_rendered.accessHistory_tab3()
+            tab4_rendered.show_accessHistory_tab1()
+            tab4_rendered.show_accessHistory_tab2()
+            tab4_rendered.show_accessHistory_tab3()
             #st.header("Access history")
         # End of tab4
 

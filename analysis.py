@@ -56,7 +56,7 @@ class render_tab2:
         if nr_sideEffects < 1:
             st.warning("Please choose at least one side effect symptom.")
 
-        return selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo
+        return selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo, selected_sideEffects
     
     
     def show_reverse_lookup(self, selected_sideEffects_name,
@@ -222,7 +222,7 @@ class render_tab2:
                 with st.expander("See more details of analysis"):
                     st.write(df)
                 
-                return df
+                return med_high_p_name
 
 
 if __name__ == "__main__":

@@ -128,7 +128,11 @@ class UserManagament:
         
         return status_msg
 
-    def post_usage_date(self, userData, selected_meds,
+class UsageData:
+    def __init__(self):
+        pass
+
+    def post_usage_data_se(self, userData, selected_meds,
                         combo, medicine1_side_effects, 
                         medicine2_side_effects):
         """Edit user data in db. Right now only last_active is changed.
@@ -203,6 +207,41 @@ class UserManagament:
         db_connection.commit()
         
         # Close connection
+        db.disconnect_postgres(db_connection, db_cur)
+        
+        status_msg = 200
+        
+        return status_msg
+
+    def post_usage_data_reLookup(self, userData,
+                                selected_sideEffects, 
+                                predicted_med, combo):
+        """Edit user data in db. Right now only last_active is changed.
+
+        Args:
+            userData: id from user
+            type: int
+        Returns:
+            sum over n:
+            type: 
+        """
+        # db connection
+        db = database.db_connection()
+        db_connection, db_cur = db.connect_postgres()
+
+        if len(selected_sideEffects) > 1:
+            # transform list of selected side effects w/ stitch into concenated string
+            side_effects1_conc = ""
+            for side_effect_i in selected_sideEffects:
+                side_effects1_conc = side_effect_i + ", " + side_effects1_conc
+        else:
+            side_effects1_conc = selected_sideEffects[0]
+        
+        query = "insert into dbms.user_relookup_history (user_id, access_date, selected_side_effects, predicted_med, combo) values (" + str(userData) + ", now(), " + side_effects1_conc + ", " + predicted_med + ", " + combo + ");"
+        db_cur.execute(query)
+        
+        db_connection.commit()
+        
         db.disconnect_postgres(db_connection, db_cur)
         
         status_msg = 200
