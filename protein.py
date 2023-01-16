@@ -28,19 +28,16 @@ class render_tab3:
                         <b>(2)</b> are listed with all drugs that share the protein. The analysis excluded proteins that are targeted only from one drug.<br><br>
                         In more detail, the analysis proceeded as follows:<br><br>
                         (1):
-                        <br>
                         <ul>
                         <li>For each protein, find the side effects of drugs that share the protein.</li>
                         <li>Calculate the number of occurence of same side effects for each protein.</li>
                         </ul>
-                        <br>
                         (2):
                         <br>
                         <ul>
                         <li>Find proteins with their shared drugs.</li>
                         <li>For each protein, calculate the total number of drugs that share the protein.</li>
                         </ul>
-                        <br>
                         Connect results from (1) and (2):
                         <ul>
                         <li>Join the tables from (1) and (2) on the proteins.</li>
