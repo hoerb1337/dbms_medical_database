@@ -25,7 +25,7 @@ class render_tab3:
 
         query = """
                 select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se
-                from
+from
                 (select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect,
                 gene_sideeffects.nr_shared_se as nr_common_se, shared_meds.nr_shared_meds as nr_shared_meds,
                 gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds as ratio_common_se,
