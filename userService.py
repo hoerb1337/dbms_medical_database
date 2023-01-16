@@ -79,16 +79,17 @@ class UserManagament:
         email_query = "select us.email from dbms.user us where us.id = " + str(userID) + ";"
         db_cur.execute(email_query)
         email_query_result = db_cur.fetchall()
-        st.write(email_query_result)
+
         email = []
         for row_i in email_query_result:
                 email.append(f"{row_i[0]}")
+        
 
         last_act_query = "select us.last_active from dbms.user us where us.id = " + str(userID) + ";"
         db_cur.execute(last_act_query)
-        last_act_query_result = db_cur.fetchone()
+        last_act_query_result = db_cur.fetchall()
         last_act = []
-        for row_i in email_query_result:
+        for row_i in last_act_query_result:
                 last_act.append(f"{row_i[0]}")
 
         db.disconnect_postgres(db_connection, db_cur)
