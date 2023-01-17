@@ -26,7 +26,7 @@ class Frontend:
         
         # Webapp title
         #st.title("Welcome to the Medical Database")
-        title = "<h1>Welcome to the Medical Database</h1>"
+        title = "<h1>Welcome to the Medical Database2</h1>"
         st.markdown(title, unsafe_allow_html=True)
         
         # User management:
