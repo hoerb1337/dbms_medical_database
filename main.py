@@ -16,19 +16,15 @@ class Frontend:
         st.set_page_config(page_title="Medical Database",
                            layout="wide")
 
-        # Hide burger menu
-        hide_menu_style = """
+        # Header
+        header = """
         <style>
         #MainMenu {visibility: hidden;}
         </style>
-        <h1>Welcome to the Medical Database</h1>
+        <div-class="MainMenu">Welcome to the Medical Database</div>
         """
-        st.markdown(hide_menu_style, unsafe_allow_html=True)
+        st.markdown(header, unsafe_allow_html=True)
         
-        # Webapp title
-        #st.title("Welcome to the Medical Database")
-        #title = "<h1>Welcome to the Medical Database</h1>"
-        #st.markdown(title, unsafe_allow_html=True)
         
         # User management:
         userAuthenticated = user.UserUI()
