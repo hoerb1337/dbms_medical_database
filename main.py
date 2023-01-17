@@ -22,7 +22,6 @@ class Frontend:
         #MainMenu {visibility: hidden;}
         </style>
         <h1>Welcome to the Medical Database</h1>
-        <br><br>
         Text...
         """
         st.markdown(header, unsafe_allow_html=True)
