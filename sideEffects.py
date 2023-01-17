@@ -142,7 +142,7 @@ class render_tab1:
             type: 
         """
         st.subheader("3. Report own side effects from selected medicines:")
-        st.write("Select side effects from the list")
+        st.write("Select your own side effect symptoms of the selected medicines from the list:")
 
         if combo == "False":
             # Call Backendservice
