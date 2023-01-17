@@ -21,7 +21,9 @@ class Frontend:
         <style>
         #MainMenu {visibility: hidden;}
         </style>
-        <div-class="MainMenu">Welcome to the Medical Database</div>
+        <h1>Welcome to the Medical Database</h1>
+        <br><br>
+        Text...
         """
         st.markdown(header, unsafe_allow_html=True)
         
