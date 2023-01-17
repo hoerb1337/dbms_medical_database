@@ -22,8 +22,8 @@ class Frontend:
         #MainMenu {visibility: hidden;}
         </style>
         <h1>Welcome to the Medical Database</h1>
-        Our data is based on the "Molecular network and polypharmacy data.
-        The data mainly provides information on medicines and their side effects.
+        Our data is based on the "Molecular network and polypharmacy data.<br>
+        The data mainly provides information on medicines and their side effects.<br>
         You can also contribute by reporting your side effect symptoms."
         <br>
         <br>
