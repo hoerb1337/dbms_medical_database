@@ -51,7 +51,7 @@ class Frontend:
             
             # Return list of selected medicines
             selected_meds, combo, nr_selected_meds = tab1_rendered.selection()
-            
+            st.markdown("<br>", unsafe_allow_html=True)
             # Start search for side effects
             if combo != None:
                 # Show dataframe/side effects
