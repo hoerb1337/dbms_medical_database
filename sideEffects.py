@@ -10,11 +10,11 @@ class render_tab1:
     def __init__(self):
         info = """
                 Browse and report for side effects of selected:
-                1: Select up to two medicines from the list.
-                2: Choose whether you combine selected medicines.
-                3: Browse side effect symptoms registered in the database.
-                4: Select your own side effect symptoms from the list.
-                5: Send your side effects for our analysis.
+                1. Select up to two medicines from the list.
+                2. Choose whether you combine selected medicines.
+                3. Browse side effect symptoms registered in the database.
+                4. Select your own side effect symptoms from the list.
+                5. Send your side effects for our analysis.
                """
         st.info(info)
         st.markdown("<br>", unsafe_allow_html=True)
