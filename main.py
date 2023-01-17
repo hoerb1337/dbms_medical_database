@@ -22,7 +22,7 @@ class Frontend:
         #MainMenu {visibility: hidden;}
         </style>
         <h1>Welcome to the Medical Database</h1>
-        <h5 style="color:grey">Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
+        <h5 style="color:darkgrey">Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
         The data mainly provides information on medicines and their side effects.</h5>
         <br>
         """
