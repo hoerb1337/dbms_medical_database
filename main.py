@@ -13,7 +13,8 @@ import userService
 class Frontend:
     
     def __init__(self):
-        st.set_page_config(layout="wide")
+        st.set_page_config(page_title="Medical Database",
+                           layout="wide")
 
         # Hide burger menu
         hide_menu_style = """
@@ -24,7 +25,9 @@ class Frontend:
         st.markdown(hide_menu_style, unsafe_allow_html=True)
         
         # Webapp title
-        st.title("Welcome to the Medical Database")
+        #st.title("Welcome to the Medical Database")
+        title = "<h1>Welcome to the Medical Database</h1>"
+        st.markdown(title, unsafe_allow_html=True)
         
         # User management:
         userAuthenticated = user.UserUI()
