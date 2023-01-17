@@ -14,6 +14,7 @@ class render_tab1:
                     </style>
                     <div>Browse and report for side effects of selected medicines</div>
                     """
+        st.markdown(subheader, unsafe_allow_html=True)
   
     def selection(self):
         st.subheader("1. Selection of medicines:")
