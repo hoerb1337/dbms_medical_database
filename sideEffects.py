@@ -9,7 +9,7 @@ import userService
 class render_tab1:
     def __init__(self):
         info = """
-                Browse and report for side effects of selected:
+                Browse and report for side effects of selected medicines:
                 1. Select up to two medicines from the list.
                 2. Choose whether you combine selected medicines.
                 3. Browse side effect symptoms registered in the database.
@@ -25,7 +25,9 @@ class render_tab1:
         callSideEffectsBackend = sideEffectsService.data4SideEffects()
         # Get list of medicines
         getListMedicines = callSideEffectsBackend.list_medicines()
-        
+        if 'getListMedicines' not in st.session_state:
+            st.session_state.getListMedicines = getListMedicines
+
         # Multiselect UI
         medicine_selection = st.multiselect('Select up to two medicines:',
                                             getListMedicines, key="medicines_selected")
