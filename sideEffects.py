@@ -8,7 +8,7 @@ import userService
 
 class render_tab1:
     def __init__(self):
-        st.info("Browse and report for side effects of selected medicines")
+        st.header("Browse and report for side effects of selected medicines")
   
     def selection(self):
         st.subheader("1. Selection of medicines:")
