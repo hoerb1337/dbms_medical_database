@@ -23,6 +23,8 @@ class Frontend:
         </style>
         <h1>Welcome to the Medical Database</h1>
         Text...
+        <br>
+        <br>
         """
         st.markdown(header, unsafe_allow_html=True)
         
