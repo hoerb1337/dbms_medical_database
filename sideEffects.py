@@ -60,7 +60,7 @@ class render_tab1:
         if check_nr_meds == 200:
             combo = "False"
             if nr_selected_meds == 2:
-                if st.checkbox("Lookup side effects of combination (Polypharmacy Side Effect)", key="checkbox"):
+                if st.checkbox("Lookup side effects of combination (Polypharmacy Side Effect)", key="checkbox_se"):
                     combo = "True"
 
             return medicine_selection, combo, nr_selected_meds
