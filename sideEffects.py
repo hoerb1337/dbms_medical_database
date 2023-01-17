@@ -10,9 +10,9 @@ class render_tab1:
     def __init__(self):
         subheader = """
                     <style>
-                    div { background-color: lightgrey;}
+                    .sub_header { background-color: lightgrey;}
                     </style>
-                    <div>Browse and report for side effects of selected medicines</div>
+                    <div class="sub_header">Browse and report for side effects of selected medicines</div>
                     """
         st.markdown(subheader, unsafe_allow_html=True)
   
