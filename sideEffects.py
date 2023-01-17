@@ -16,7 +16,6 @@ class render_tab1:
                 4: Select your own side effect symptoms from the list.
                 5: Send your side effects for our analysis.
                """
-        st.markdown("<br>", unsafe_allow_html=True)
         st.info(info)
         st.markdown("<br>", unsafe_allow_html=True)
 
