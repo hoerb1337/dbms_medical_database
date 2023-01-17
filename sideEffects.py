@@ -17,6 +17,7 @@ class render_tab1:
                 5: Send your side effects for our analysis.
                """
         st.info(info)
+        st.markdown("<br>", unsafe_allow_html=True)
 
     def selection(self):
         st.subheader("1. Selection of medicines:")
