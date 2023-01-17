@@ -8,8 +8,16 @@ import userService
 
 class render_tab1:
     def __init__(self):
-        st.info("Browse and report for side effects of selected")
-  
+        info = """
+                Browse and report for side effects of selected:
+                1: Select up to two medicines from the list.
+                2: Choose whether you combine selected medicines.
+                3: Browse side effect symptoms registered in the database.
+                4: Select your own side effect symptoms from the list.
+                5: Send your side effects for our analysis.
+               """
+        st.info(info)
+
     def selection(self):
         st.subheader("1. Selection of medicines:")
         # Call Backendservice
@@ -227,9 +235,9 @@ class render_tab1:
         for key in session_sate:
             del st.session_state[key]
                     
-        st.success("Thank you! Your provided side effects have been successfully reported. You will be automitically forwarded to the selection of medicines...")
+        st.success("Thank you! Your provided side effects have been successfully reported. You will be automatically forwarded back to the selection of medicines...")
 
-        n = 200000000
+        n = 150000000
         while n >= 0:
             n = n-1
             
