@@ -8,6 +8,8 @@ import userService
 
 class render_tab1:
     def __init__(self):
+        """Display information for tab1."""
+
         info = """
                 Browse and report for side effects of selected medicines:
                 1. Select up to two medicines from the list.
@@ -19,29 +21,46 @@ class render_tab1:
         st.info(info)
         st.markdown("<br>", unsafe_allow_html=True)
 
+
     def selection(self):
+        """UI for the selection of medicines.
+
+        Min. number meds: 1
+        Max. number meds: 2
+
+        Otherwise information for correction is displayed.
+
+        Args:
+            none
+        Returns:
+            medicine_selection: list of selected meds
+            type: list
+            combo: "True" or "False"
+            type: str
+            nr_selected_meds: nr. of selected meds
+            type: int
+        """
+        
         st.subheader("1. Selection of medicines:")
         # Call Backendservice
         callSideEffectsBackend = sideEffectsService.data4SideEffects()
         # Get list of medicines
         getListMedicines = callSideEffectsBackend.list_medicines()
-        if 'getListMedicines' not in st.session_state:
-            st.session_state.getListMedicines = getListMedicines
 
-        # Multiselect UI
+        # Multiselect UI, returns list with meds with stitch
         medicine_selection = st.multiselect('Select up to two medicines:',
                                             getListMedicines, key="medicines_selected")
         
         # Check number of meds
         check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
-        # normalise list of selected medicines
+        # normalise list of selected medicines: delete stitch
         medicine_selection = callSideEffectsBackend.norm_list_meds(medicine_selection)
 
         if check_nr_meds == 200:
             combo = "False"
             if nr_selected_meds == 2:
-                if st.checkbox('I want side effects of combination'):
+                if st.checkbox("Lookup side effects of combination (Polypharmacy Side Effect)", key="checkbox"):
                     combo = "True"
 
             return medicine_selection, combo, nr_selected_meds
