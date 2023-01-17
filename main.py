@@ -24,7 +24,6 @@ class Frontend:
         <h1>Welcome to the Medical Database</h1>
         Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
         The data mainly provides information on medicines and their side effects.
-        You can also contribute by reporting your side effect symptoms.
         <br>
         <br>
         """
