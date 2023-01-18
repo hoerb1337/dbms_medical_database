@@ -116,31 +116,42 @@ class render_tab2:
                                 <style>
                                 .info_box {
                                     background-color: lightyellow;
-                                    margin-top: 20px;
-                                    padding-left: 15px;
-                                    padding-top: 15px;
-                                    padding-right: 15px;
-                                    padding-bottom: 15px;
+                                    margin-top: 10px;
+                                    margin-bottom: 20px;
+                                    padding-left: 20px;
+                                    padding-top: 20px;
+                                    padding-right: 20px;
+                                    padding-bottom: 20px;
                                     border-radius: 20px;
                                 }
                                 </style>
                                 <div class="info_box">
                                 <b>Information about the procedure of prediction:</b><br>
-                                <br>
                                 In general, the analysis follows a multiple-stage/criteria approach
                                 to make the prediction:<br>
                                 <ol>
                                 <li>
                                 Calculate, for each medicine registered in the database,
-                                how many of selected side effects match all listed side effects for the medicine.
-                                Only the medicines with at least one matched side effect are further considered.
+                                how many of selected side effects match all listed side
+                                effects for the medicine. Only the medicines with at least
+                                one matched side effect are further considered.
+                                Medicine with highest proportion is selected.
                                 </li>
                                 <li>
-                                
-                                the more selected side effects
-                                match the
+                                If there are multiple medicines with highest proportion of 
+                                matched side effects, the next criterium is the popularity
+                                of reported side effects by users (tab1).
+                                </li>
+                                <li>
+                                If there are any reports for the medicines yet, the next criterium
+                                is the proportion of the number of matched side effects for each medicine
+                                to the total number of listed side effects for the medicine.<br>
+                                Hint: Since the number of side effects per medicine is pretty high,
+                                the prediction becomes better with higher number of selected side effects.
                                 </li>
                                 </ol>
+                                <br> Additional information on each criteria is
+                                provided by clicking on the information symbol.
                                 </div>
                                 """
                 
