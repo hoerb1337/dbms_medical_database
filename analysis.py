@@ -67,15 +67,11 @@ class render_tab2:
             list_sideEffects = callAnalysisBackend.get_sideEffects(combo)
         
         # Multiselect UI
-        test =  """
-                <font style="size: 12;">Select your set of side effects:</font>
-                """
-        #test2 = st.markdown(test, unsafe_allow_html=True)
-        selected_sideEffects = st.multiselect(st.markdown(test, unsafe_allow_html=True),
+        selected_sideEffects = st.multiselect('Select your set of side effects:',
                                               list_sideEffects,
                                               key="selected_sideEffects")
 
-        # normalise list of selected side effects:
+        # Normalise list of selected side effects:
         # extract ids from side effects description
         selected_sideEffects_name, selected_sideEffects_id = callAnalysisBackend.norm_list_se(selected_sideEffects)
 
