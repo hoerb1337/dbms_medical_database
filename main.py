@@ -55,7 +55,7 @@ class Frontend:
 
                     .tooltip .tooltiptext {
                         visibility: hidden;
-                        height: 50px;
+                        width: 300px;
                         background-color: #555;
                         color: #fff;
                         text-align: left;
@@ -66,7 +66,7 @@ class Frontend:
                         padding-bottom: 10px;
                         position: absolute;
                         z-index: 1;
-                        bottom: 100%;
+                        bottom: 120%;
                         left: 10%;
                         margin-left: 0px;
                         opacity: 0;
