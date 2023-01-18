@@ -20,7 +20,7 @@ class render_tab2:
                     
                     More details on how we perform the predicition is provided with the results.
                     
-                    Hint: Since the number of side effects per medicine is pretty high,
+                    Hint: Since the number of side effects per medicine is high (>100),
                     the prediction becomes better with higher number of selected side effects.
                     """
         st.info(info_text)
