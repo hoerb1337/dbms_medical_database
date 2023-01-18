@@ -116,6 +116,7 @@ class render_tab2:
                                 <style>
                                 .info_box {
                                     background-color: lightyellow;
+                                    margin-top: 20px;
                                     padding-left: 15px;
                                     padding-top: 15px;
                                     padding-right: 15px;
