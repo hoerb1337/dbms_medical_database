@@ -7,8 +7,15 @@ import analysisService
 
 class render_tab3:
     def __init__(self):
-        st.info("Analysis of drugs with shared proteins:\n" +
-                "Do drugs with shared proteins have common side effects?")
+
+        info_box_tab3 = """
+                        <div class="info_box">
+                        <h5>Analysis of drugs with shared proteins:</h5>
+                        <p>Do drugs with shared proteins have common side effects?</p>
+                        </div>
+                        """
+                    
+        st.markdown(info_box_tab3, unsafe_allow_html=True)
     
     def show_protein_analysis(self):
         """UI for displaying results of shared protein analysis.
