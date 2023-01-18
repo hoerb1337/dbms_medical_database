@@ -28,14 +28,14 @@ class render_tab2:
         info_box_init = """
                     <style>
                     .info_box {
-                    background-color: lightgrey;
+                    background-color: #f2f3f4;
                     margin-top: 10px;
-                    margin-bottom: 20px;
+                    margin-bottom: 30px;
                     padding-left: 20px;
-                    padding-top: 10px;
+                    padding-top: 20px;
                     padding-right: 20px;
-                    padding-bottom: 10px;
-                    border-radius: 20px;
+                    padding-bottom: 20px;
+                    border-radius: 15px;
                     }
                     </style>
                     <div class="info_box">
