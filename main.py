@@ -77,8 +77,7 @@ class Frontend:
                         content: "";
                         position: absolute;
                         top: 100%;
-                        
-                        right: 5%;
+                        right: 40%;
                         margin-left: 5px;
                         border-width: 5px;
                         border-style: solid;
