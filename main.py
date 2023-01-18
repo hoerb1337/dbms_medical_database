@@ -20,7 +20,7 @@ class Frontend:
         header = """
         <style>
         #MainMenu {visibility: hidden;}
-        .subheader {color: #f2f3f4; font-size: 18px;}
+        .subheader {color: grey; font-size: 18px;}
         </style>
         <h1>Welcome to the Medical Database</h1>
         <div class="subheader">Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
