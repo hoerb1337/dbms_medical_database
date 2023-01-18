@@ -29,6 +29,7 @@ class Frontend:
         """
         st.markdown(header, unsafe_allow_html=True)
         
+        # Style Info Box when initialising tabs
         info_box_init_style = """
                         <style>
                         .info_box {
@@ -39,7 +40,7 @@ class Frontend:
                         padding-top: 20px;
                         padding-right: 20px;
                         padding-bottom: 15px;
-                        border-radius: 0px;
+                        border-radius: 5px;
                         }
                         </style>
                         """
