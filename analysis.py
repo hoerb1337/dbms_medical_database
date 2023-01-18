@@ -9,10 +9,15 @@ import analysisService
 class render_tab2:
     
     def __init__(self):
-        st.info("Perform a reverse lookup:\n" +
-                "You report your own set of side effect symptoms, " +
-                "and we find for you the closest prediction of " +
-                "medicines that you could have taken.")
+        """Display information for tab1."""
+        
+        info_text = """
+                    Perform a reverse lookup:
+                    You report your own set of side effect symptoms, 
+                    and we find for you the closest prediction of 
+                    medicines that you could have taken.
+                    """
+        st.info(info_text)
         
 
     def show_selection_sideEffects(self):
