@@ -33,8 +33,16 @@ class UserUI:
 
 class render_tab4:
     def __init__(self):
-        st.info("Access history")
-    
+
+        info_box_tab4 = """
+                        <div class="info_box">
+                        <h5>Your Usage data</h5>
+                        </div>
+                        """
+                    
+        st.markdown(info_box_tab4, unsafe_allow_html=True)
+
+
     def show_user(self, userID):
         
         get_user = userService.UserManagament()
