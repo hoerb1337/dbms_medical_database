@@ -19,6 +19,7 @@ class render_tab2:
                     3. We find for you the closest prediction of medicine that you could have taken.
                     
                     More details on how we perform the predicition is provided with the results.
+                    
                     Hint: Since the number of side effects per medicine is pretty high,
                     the prediction becomes better with higher number of selected side effects.
                     """
