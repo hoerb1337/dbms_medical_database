@@ -122,20 +122,9 @@ class render_tab2:
                     
                 # KPI1
                 with col1:
-                    tooltip_kpi1 = """
-                                    <div class="tooltip"> Closest Predicted Medicine (1) <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                                    <span class="tooltiptext">
-                                    Medicine with greatest matched
-                                    side effects compared to nr. of selected side
-                                    effects and either greatest proportion of user
-                                    reports or greatest proportion of matched side
-                                    effects compared to all listed side effects 
-                                    for this medicine. 
-                                    </span>
-                                    </div> 
-                                    """
-
-                    st.markdown(tooltip_kpi1, unsafe_allow_html=True)
+                    
+                    st.write("Closest Predicted Medicine (1)")
+                    #st.markdown(tooltip_kpi1, unsafe_allow_html=True)
                     st.subheader(med_high_p_name)
                     
                     if combo == "True":
