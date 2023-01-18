@@ -60,8 +60,8 @@ class Frontend:
                         color: #fff;
                         text-align: left;
                         border-radius: 6px;
-                        padding-left: 10;
-                        position: absolute;
+                        padding-left: 10px;
+                        position: relative;
                         z-index: 1;
                         bottom: 125%;
                         left: 50%;
