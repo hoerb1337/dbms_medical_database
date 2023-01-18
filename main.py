@@ -61,11 +61,14 @@ class Frontend:
                         text-align: left;
                         border-radius: 6px;
                         padding-left: 10px;
+                        padding-top: 10px;
+                        padding-right: 10px;
+                        padding-bottom: 10px;
                         position: absolute;
                         z-index: 1;
-                        bottom: 125%;
+                        bottom: 20%;
                         left: 10%;
-                        margin-left: 10px;
+                        margin-left: 0px;
                         opacity: 0;
                         transition: opacity 0.3s;
                     }
@@ -74,7 +77,7 @@ class Frontend:
                         content: "";
                         position: absolute;
                         top: 100%;
-                        left: 50%;
+                        left: 20%;
                         margin-left: -5px;
                         border-width: 5px;
                         border-style: solid;
