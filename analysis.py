@@ -123,9 +123,9 @@ class render_tab2:
                 # KPI1
                 with col1:
                     tooltip_kpi1 = """
-                                    <div class="tooltip">
+                                    Closest Predicted Medicine (1) <div class="tooltip">
                                     <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px"> 
-                                    Closest Predicted Medicine (1)
+                                    
                                     <span class="tooltiptext">
                                     Medicine with greatest matched
                                     side effects compared to nr. of selected side
