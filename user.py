@@ -37,6 +37,7 @@ class render_tab4:
         info_box_tab4 = """
                         <div class="info_box">
                         <h5>Your Usage data</h5>
+                        <p>Browse for the history of all your actions on our webapp</p>
                         </div>
                         """
                     
@@ -48,7 +49,7 @@ class render_tab4:
         get_user = userService.UserManagament()
         email, last_act = get_user.get_user_data_db(userID)
         
-        welcome_msg = "Welcome " + email + "! Your last acivity was on: " + last_act + "."
+        welcome_msg = "Welcome " + email + "! Your last acivity was on: " + last_act+1 + "."
         
         st.write(welcome_msg)
 
