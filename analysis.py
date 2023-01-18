@@ -221,18 +221,7 @@ class render_tab2:
                 # Explaination of predection
                 with st.expander("Explaination for the prediction"):
                     explained_calc = """
-                                    <style>
-                                    .info_box {
-                                        margin-top: 10px;
-                                        margin-bottom: 20px;
-                                        padding-left: 20px;
-                                        padding-top: 10px;
-                                        padding-right: 20px;
-                                        padding-bottom: 10px;
-                                        border-radius: 20px;
-                                    }
-                                    </style>
-                                    <div class="info_box">
+                                    <div class="expander">
                                     <h5>Information about the procedure of prediction:</h5>
                                     In general, the analysis follows a multiple-stage/criteria approach
                                     to make the prediction:<br>

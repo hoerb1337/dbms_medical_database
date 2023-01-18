@@ -93,6 +93,22 @@ class Frontend:
 
         st.markdown(tooltip, unsafe_allow_html=True)
 
+        # Expander
+        expander_style =    """
+                            <style>
+                            .expander {
+                                margin-top: 10px;
+                                margin-bottom: 20px;
+                                padding-left: 20px;
+                                padding-top: 10px;
+                                padding-right: 20px;
+                                padding-bottom: 10px;
+                                        
+                            }
+                            </style>
+                            """
+        st.markdown(expander_style, unsafe_allow_html=True)
+       
         # User management:
         userAuthenticated = user.UserUI()
         
