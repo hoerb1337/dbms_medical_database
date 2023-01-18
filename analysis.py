@@ -126,7 +126,7 @@ class render_tab2:
                                 }
                                 </style>
                                 <div class="info_box">
-                                <b>Information about the procedure of prediction:</b><br>
+                                <h4>Information about the procedure of prediction:</h4><br>
                                 In general, the analysis follows a multiple-stage/criteria approach
                                 to make the prediction:<br>
                                 <ol>
@@ -150,7 +150,7 @@ class render_tab2:
                                 the prediction becomes better with higher number of selected side effects.
                                 </li>
                                 </ol>
-                                <br> Additional information on each criteria is
+                                <br><br>Additional information on each criteria is
                                 provided by clicking on the information symbol.
                                 </div>
                                 """
