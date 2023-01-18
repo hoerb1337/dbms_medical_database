@@ -55,10 +55,10 @@ class Frontend:
 
                     .tooltip .tooltiptext {
                         visibility: hidden;
-                        width: 300px;
+                        width: 500px;
                         background-color: #555;
                         color: #fff;
-                        text-align: left;
+                        text-align: justify;
                         border-radius: 6px;
                         padding-left: 10px;
                         padding-top: 10px;
