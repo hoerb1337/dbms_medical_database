@@ -123,16 +123,16 @@ class render_tab2:
                                 In general, the analysis follows a multiple-stage/criteria approach
                                 to make the prediction.<br>
                                 <ol>
-                                <i>
+                                <li>
                                 Calculate, for each medicine registered in the database,
                                 how many of selected side effects match all listed side effects for the medicine.
                                 Only the medicines with at least one matched side effect are further considered.
-                                </i>
-                                <i>
+                                </li>
+                                <li>
                                 
                                 the more selected side effects
                                 match the
-                                </i>
+                                </li>
                                 </ol>
                                 </div>
                                 """
