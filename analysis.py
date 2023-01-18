@@ -123,9 +123,7 @@ class render_tab2:
                 # KPI1
                 with col1:
                     tooltip_kpi1 = """
-                                    Closest Predicted Medicine (1) <div class="tooltip">
-                                    <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px"> 
-                                    
+                                    <div class="tooltip"> Closest Predicted Medicine (1) <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                                     <span class="tooltiptext">
                                     Medicine with greatest matched
                                     side effects compared to nr. of selected side
@@ -152,7 +150,7 @@ class render_tab2:
                         
                     st.markdown("<br>", unsafe_allow_html=True)
                     tooltip_kpi2 = """
-                                    <div class="tooltip">Total # potential meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                    <div class="tooltip">Total number potential meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                                     <span class="tooltiptext">Tooltip text</span>
                                     </div> 
                                     """
