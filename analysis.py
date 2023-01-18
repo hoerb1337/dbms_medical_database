@@ -126,7 +126,7 @@ class render_tab2:
                                 }
                                 </style>
                                 <div class="info_box">
-                                <h4>Information about the procedure of prediction:</h4><br>
+                                <h5>Information about the procedure of prediction:</h5>
                                 In general, the analysis follows a multiple-stage/criteria approach
                                 to make the prediction:<br>
                                 <ol>
@@ -145,12 +145,12 @@ class render_tab2:
                                 <li>
                                 If there are any reports for the medicines yet, the next criterium
                                 is the proportion of the number of matched side effects for each medicine
-                                to the total number of listed side effects for the medicine.<br>
+                                to the total number of listed side effects for the medicine.<br><br>
                                 Hint: Since the number of side effects per medicine is pretty high,
                                 the prediction becomes better with higher number of selected side effects.
                                 </li>
                                 </ol>
-                                <br><br>Additional information on each criteria is
+                                <br>Additional information on each criteria is
                                 provided by clicking on the information symbol.
                                 </div>
                                 """
