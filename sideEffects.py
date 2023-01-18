@@ -54,9 +54,10 @@ class render_tab1:
         # Check number of meds
         check_nr_meds, nr_selected_meds = callSideEffectsBackend.max_nr_medicines(medicine_selection)
 
-        # normalise list of selected medicines: delete stitch
+        # Normalise list of selected medicines: delete stitch
         medicine_selection = callSideEffectsBackend.norm_list_meds(medicine_selection)
 
+        # Differentiate return based on selection
         if check_nr_meds == 200:
             combo = "False"
             if nr_selected_meds == 2:
@@ -77,14 +78,21 @@ class render_tab1:
     
 
     def lookup_sideEffects(self, nr_selected_meds, selected_meds, combo):
-        """Get user data from service provider (SP)
+        """UI for displaying registered side effects as datafranes.
+
+        1. Calls backend for lookup in database based on user selection.
+        2. Displays results as dataframe
 
         Args:
-            n: 
-            type: 
+            nr_selected_meds: nr. of selected meds by user
+            type: int
+            selected_meds: list of selected meds by user
+            type: list
+            combo: "True" or "False"
+            type: str
         Returns:
-            sum over n:
-            type: 
+            dataframe: list of side effects
+            type: dataframe
         """
         
         st.subheader("2. Reported side effects from selected medicines:")
@@ -98,13 +106,13 @@ class render_tab1:
             if nr_selected_meds == 2:
                 listSideEffects_med1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
                 listSideEffects_med2 = callSideEffectsBackend.get_listSideEffects(selected_meds[1])
-                
+
                 # Create dataframes
                 df1 = callSideEffectsBackend.create_DataFrame(selected_meds[0], listSideEffects_med1)
                 df2 = callSideEffectsBackend.create_DataFrame(selected_meds[1], listSideEffects_med2)
 
                 concat_dfs = pd.concat([df1, df2], ignore_index=False, axis=1)
-                #st.subheader("Results from lookup")
+
                 return st.dataframe(concat_dfs, use_container_width=True)
             
             # 1 chosen med
@@ -132,15 +140,25 @@ class render_tab1:
     
     
     def select_own_side_effects(self, combo, nr_selected_meds, selected_meds):
-        """Render frontend for reporting side effects.
+        """UI for selecting own side effects from a given list.
 
         Args:
-            n: 
-            type: 
+            nr_selected_meds: nr. of selected meds by user
+            type: int
+            selected_meds: list of selected meds by user
+            type: list
+            combo: "True" or "False"
+            type: str 
         Returns:
-            sum over n:
-            type: 
+            medicine1_side_effects: selected side effects for
+            medicine 1 by user
+            type: list
+            medicine2_side_effects: selected side effects for
+            medicine 2 by user. Only if user chose two medicines.
+            Otherweise None.
+            type: list or None
         """
+        
         st.subheader("3. Report own side effects from selected medicines:")
         st.write("Select your own side effect symptoms of the selected medicines from the list:")
 
@@ -151,8 +169,8 @@ class render_tab1:
             # 2 chosen meds
             if nr_selected_meds == 2:
                 
-                getListSideEffectsMono1 = callSideEffectsBackend.list_side_effects_mono(selected_meds[0])
-                getListSideEffectsMono2 = callSideEffectsBackend.list_side_effects_mono(selected_meds[1])
+                getListSideEffectsMono1 = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
+                getListSideEffectsMono2 = callSideEffectsBackend.get_listSideEffects(selected_meds[1])
                 
                 col1, col2 = st.columns(2)
                 with col1:
@@ -168,7 +186,7 @@ class render_tab1:
             
             # 1 chosen med
             elif nr_selected_meds == 1:
-                getListSideEffectsMono = callSideEffectsBackend.list_side_effects_mono(selected_meds[0])
+                getListSideEffectsMono = callSideEffectsBackend.get_listSideEffects(selected_meds[0])
                 
                 medicine1_side_effects = st.multiselect('Select side effects for ' + selected_meds[0],
                                                             getListSideEffectsMono, key="medicine1_side_effects")
@@ -184,7 +202,7 @@ class render_tab1:
             
             # Get list of side effects from medicines taken
             # independently from each other
-            getListSideEffectsCombo = callSideEffectsBackend.list_side_effects_combo(selected_meds)
+            getListSideEffectsCombo = callSideEffectsBackend.get_listSideEffects_combo(selected_meds)
             
             # Multi-select UI
             side_effects_combo = st.multiselect('Select side effects for the combination of '
@@ -199,14 +217,31 @@ class render_tab1:
     def report_side_effects(self, combo, nr_selected_meds,
                             selected_meds, medicine1_side_effects,
                             medicine2_side_effects, userID):
-        """Render frontend for reporting side effects.
-
+        """Organise the reporting of side effects.
+        
+        Proxy for Backend that differentiates the different cases
+        and forwards data to backend, which then POSTs data to
+        database.
+        
         Args:
-            n: 
-            type: 
+            nr_selected_meds: nr. of selected meds by user
+            type: int
+            selected_meds: list of selected meds by user
+            type: list
+            combo: "True" or "False"
+            type: str
+            medicine1_side_effects: selected side effects for
+            medicine 1 by user
+            type: list
+            medicine2_side_effects: selected side effects for
+            medicine 2 by user. Only if user chose two medicines.
+            Otherweise None.
+            type: list or None
+            userID: id from user who calls the reporting
+            type: int
         Returns:
-            sum over n:
-            type: 
+            report_side_effects_mono: status message 200
+            type: int
         """
 
         if combo == "False":
@@ -243,15 +278,16 @@ class render_tab1:
             # Return 200
             return report_side_effects_combo
 
+
     def process_reporting(self, session_sate):
-        """Render frontend for processing the reported side effects.
+        """UI for processing the reported side effects.
 
         Args:
-            n: 
-            type: 
+            session_sate: variables in session state.
+            type: dict
         Returns:
-            sum over n:
-            type: 
+            st.experimental_rerun(): refresh of script
+            type: none
         """
 
         for key in session_sate:
