@@ -64,7 +64,7 @@ class Frontend:
                         position: absolute;
                         z-index: 1;
                         bottom: 125%;
-                        left: 50%;
+                        left: 10%;
                         margin-left: 10px;
                         opacity: 0;
                         transition: opacity 0.3s;
