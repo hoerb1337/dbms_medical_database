@@ -21,7 +21,7 @@ class render_tab2:
                     More details on how we perform the predicition is provided with the results.
                     """
         st.info(info_text)
-        
+        st.markdown("<br>", unsafe_allow_html=True)
 
     def show_selection_sideEffects(self):
         """UI for choosing side effects by user.
