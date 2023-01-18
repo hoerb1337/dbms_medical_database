@@ -30,73 +30,60 @@ class Frontend:
         st.markdown(header, unsafe_allow_html=True)
         
         # Style Info Box when initialising tabs
-        info_box_init_style = """
+        css_style = """
                         <style>
                         .info_box {
-                        background-color: #f2f3f4;
-                        margin-top: 5px;
-                        margin-bottom: 30px;
-                        padding-left: 20px;
-                        padding-top: 20px;
-                        padding-right: 20px;
-                        padding-bottom: 15px;
-                        border-radius: 5px;
+                            background-color: #f2f3f4;
+                            margin-top: 5px;
+                            margin-bottom: 30px;
+                            padding-left: 20px;
+                            padding-top: 20px;
+                            padding-right: 20px;
+                            padding-bottom: 15px;
+                            border-radius: 5px;
                         }
-                        </style>
-                        """
-        st.markdown(info_box_init_style, unsafe_allow_html=True)
-        
-        tooltip = """
-                    <style>
-                    .tooltip {
-                    position: relative;
-                    display: inline-block;
-                    }
-
-                    .tooltip .tooltiptext {
-                        visibility: hidden;
-                        width: 300px;
-                        background-color: #555;
-                        color: #fff;
-                        text-align: justify;
-                        border-radius: 6px;
-                        padding-left: 10px;
-                        padding-top: 10px;
-                        padding-right: 10px;
-                        padding-bottom: 10px;
-                        position: absolute;
-                        z-index: 1;
-                        bottom: 120%;
-                        left: 10%;
-                        margin-left: 0px;
-                        opacity: 0;
-                        transition: opacity 0.3s;
-                    }
-
-                    .tooltip .tooltiptext::after {
-                        content: "";
-                        position: absolute;
-                        top: 100%;
-                        right: 40%;
-                        margin-left: -30px;
-                        border-width: 5px;
-                        border-style: solid;
-                        border-color: #555 transparent transparent transparent;
-                    }
-
-                    .tooltip:hover .tooltiptext {
-                        visibility: visible;
-                        opacity: 1;
+                        .tooltip {
+                            position: relative;
+                            display: inline-block;
                         }
-                        </style>
-                """
 
-        st.markdown(tooltip, unsafe_allow_html=True)
+                        .tooltip .tooltiptext {
+                            visibility: hidden;
+                            width: 300px;
+                            background-color: #555;
+                            color: #fff;
+                            text-align: justify;
+                            border-radius: 6px;
+                            padding-left: 10px;
+                            padding-top: 10px;
+                            padding-right: 10px;
+                            padding-bottom: 10px;
+                            position: absolute;
+                            z-index: 1;
+                            bottom: 120%;
+                            left: 10%;
+                            margin-left: 0px;
+                            opacity: 0;
+                            transition: opacity 0.3s;
+                        }
 
-        # Expander
-        expander_style =    """
-                            <style>
-                            .expander {
+                        .tooltip .tooltiptext::after {
+                            content: "";
+                            position: absolute;
+                            top: 100%;
+                            right: 40%;
+                            margin-left: -30px;
+                            border-width: 5px;
+                            border-style: solid;
+                            border-color: #555 transparent transparent transparent;
+                        }
+
+                        .tooltip:hover .tooltiptext {
+                            visibility: visible;
+                            opacity: 1;
+                            }
+                        
+                        .expander {
                                 margin-top: 10px;
                                 margin-bottom: 20px;
                                 padding-left: 20px;
@@ -104,10 +91,10 @@ class Frontend:
                                 padding-right: 20px;
                                 padding-bottom: 10px;
                                         
-                            }
-                            </style>
-                            """
-        st.markdown(expander_style, unsafe_allow_html=True)
+                        }
+                        </style>
+                    """
+        st.markdown(css_style, unsafe_allow_html=True)
        
         # User management:
         userAuthenticated = user.UserUI()
