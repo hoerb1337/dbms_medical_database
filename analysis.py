@@ -11,20 +11,49 @@ class render_tab2:
     def __init__(self):
         """Display information for tab2."""
         
-        info_text = """
-                    Perform a Reverse Lookup Analysis:
+        #info_text = """
+                    #Perform a Reverse Lookup Analysis:
                     
-                    1. Choose whether you are taking medicines in combination.
-                    2. Select your own set of felt side effect symptoms from medicines you are taking.
-                    3. We find for you the closest prediction of medicine that you could have taken.
+                    #1. Choose whether you are taking medicines in combination.
+                    #2. Select your own set of felt side effect symptoms from medicines you are taking.
+                    #3. We find for you the closest prediction of medicine that you could have taken.
                     
-                    More details on how we perform the predicition is provided with the results.
+                    #More details on how we perform the predicition is provided with the results.
                     
-                    Hint: Since the number of side effects per medicine is high (>100),
-                    the prediction becomes better with higher number of selected side effects.
+                    #Hint: Since the number of side effects per medicine is high (>100),
+                    #the prediction becomes better with higher number of selected side effects.
+                    #"""
+        #st.info(info_text)
+
+        info_box_init = """
+                    <style>
+                    .info_box {
+                    background-color: lightgrey;
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+                    padding-left: 20px;
+                    padding-top: 10px;
+                    padding-right: 20px;
+                    padding-bottom: 10px;
+                    border-radius: 20px;
+                    }
+                    </style>
+                    <div class="info_box">
+                    <h5>Perform a Reverse Lookup Analysis:</h5>
+                    In general, the analysis follows a multiple-stage/criteria approach
+                    to make the prediction:<br>
+                    <ol>
+                    <li>Choose whether you are taking medicines in combination.</li>
+                    <li>Select your own set of felt side effect symptoms from medicines you are taking.</li>
+                    <li>We find for you the closest prediction of medicine that you could have taken.</li>
+                    </ol>
+                    <p>More details on how we perform the predicition is provided with the results.</p>
+                    <p>Hint: Since the number of side effects per medicine is high (>100),
+                    #the prediction becomes better with higher number of selected side effects.</p>
+                    </div>
                     """
-        st.info(info_text)
-        st.markdown("<br>", unsafe_allow_html=True)
+                    
+        st.markdown(info_box_init, unsafe_allow_html=True)
 
 
     def show_selection_sideEffects(self):
