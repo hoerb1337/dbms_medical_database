@@ -12,12 +12,13 @@ class render_tab2:
         """Display information for tab2."""
         
         info_text = """
-                    Perform a reverse lookup:
+                    Perform a Reverse Lookup Analysis:
                     
-                    1. You report your own set of side effect symptoms
-
-                    2. We find for you the closest prediction of 
-                    medicines that you could have taken.
+                    1. Choose whether you are taking medicines in combination.
+                    2. Select your own set of felt side effect symptoms from medicines you are taking.
+                    3. We find for you the closest prediction of medicine that you could have taken.
+                    
+                    More details on how we perform the predicition is provided with the results.
                     """
         st.info(info_text)
         
