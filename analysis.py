@@ -112,7 +112,17 @@ class render_tab2:
                 st.subheader("2. Results: Possible medicines taken")
                 
                 explained_calc = """Information about the procedure of prediction:
-                                dss
+                                
+                                In general, the analysis follows a multiple-stage/criteria approach
+                                to make the prediction.
+                                1. Calculate, for each medicine registered in the database,
+                                how many of selected side effects match all listed side effects for the medicine.
+                                Only the medicines with at least one matched side effect are further considered.
+                                
+                                2. 
+                                
+                                the more selected side effects
+                                match the
                                 """
                 st.warning(explained_calc)
 
