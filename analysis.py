@@ -113,15 +113,15 @@ class render_tab2:
                 
                 info_box_style = """
                         <style>
-                        .info_box {background-color: lightgrey;}
+                        .info_box {background-color: #000;}
                         </style>
                         """
                 explained_calc = """
                                 <div class="info_box">
-                                Information about the procedure of prediction:<br>
+                                <b>Information about the procedure of prediction:</b><br>
                                 <br>
                                 In general, the analysis follows a multiple-stage/criteria approach
-                                to make the prediction.<br>
+                                to make the prediction:<br>
                                 <ol>
                                 <li>
                                 Calculate, for each medicine registered in the database,
