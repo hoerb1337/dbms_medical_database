@@ -72,7 +72,7 @@ class render_tab2:
                 <span class="tooltiptext">Tooltip text</span></div>:</font>
                 """
                 
-        selected_sideEffects = st.multiselect(st.markdown(test, unsafe_allow_html=True),#'Select your set of side effects:',
+        selected_sideEffects = st.multiselect(st.markdown(test, unsafe_allow_html=True),
                                               list_sideEffects,
                                               key="selected_sideEffects")
 
