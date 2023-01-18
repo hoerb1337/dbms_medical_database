@@ -117,60 +117,23 @@ class render_tab2:
                 # Display results from reverse lookup as dataframe
                 st.subheader("2. Results: Possible medicines taken")
                 
-                
-
-                #tooltip = """
-                        #<style>
-                        #.tooltip {
-                        #position: relative;
-                        #display: inline-block;
-                        #}
-
-                        #.tooltip .tooltiptext {
-                        #visibility: hidden;
-                        #width: 120px;
-                        #background-color: #555;
-                        #color: #fff;
-                        #text-align: center;
-                        #border-radius: 6px;
-                        #padding: 5px 0;
-                        #position: absolute;
-                        #z-index: 1;
-                        #bottom: 125%;
-                        #left: 50%;
-                        #margin-left: -60px;
-                        #opacity: 0;
-                        #transition: opacity 0.3s;
-                        #}
-
-                        #.tooltip .tooltiptext::after {
-                        #content: "";
-                        #position: absolute;
-                        #top: 100%;
-                        #left: 50%;
-                        #margin-left: -5px;
-                        #border-width: 5px;
-                        #border-style: solid;
-                        #border-color: #555 transparent transparent transparent;
-                        #}
-
-                        #.tooltip:hover .tooltiptext {
-                        #visibility: visible;
-                        #opacity: 1;
-                        #}
-                        #</style>
-                        #"""
-
-                #st.markdown(tooltip, unsafe_allow_html=True)
-                
                 # Show metrics
                 col1, col2, col3 = st.columns(3, gap="large")
                     
                 # KPI1
                 with col1:
                     tooltip_kpi1 = """
-                                    <div class="tooltip">Closest Predicted Medicine 1 <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                                    <span class="tooltiptext">Tooltip text</span>
+                                    <div class="tooltip">
+                                    Closest Predicted Medicine (1) 
+                                    <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                    <span class="tooltiptext">
+                                    Medicine with greatest matched
+                                    side effects compared to nr. of selected side
+                                    effects and either greatest proportion of user
+                                    reports or greatest proportion of matched side
+                                    effects compared to all listed side effects 
+                                    for this medicine. 
+                                    </span>
                                     </div> 
                                     """
 
