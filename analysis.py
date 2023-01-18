@@ -72,8 +72,8 @@ class render_tab2:
                 <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                 <span class="tooltiptext">Tooltip text</span></div>:</font>
                 """
-                
-        selected_sideEffects = st.multiselect(st.markdown(test, unsafe_allow_html=True),
+        test2 = st.markdown(test, unsafe_allow_html=True)
+        selected_sideEffects = st.multiselect(test2,
                                               list_sideEffects,
                                               key="selected_sideEffects")
 
