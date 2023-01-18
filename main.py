@@ -60,12 +60,12 @@ class Frontend:
                         color: #fff;
                         text-align: left;
                         border-radius: 6px;
-                        padding: 5px 0;
+                        padding-left: 10;
                         position: absolute;
                         z-index: 1;
                         bottom: 125%;
                         left: 50%;
-                        margin-left: -20px;
+                        margin-left: 10px;
                         opacity: 0;
                         transition: opacity 0.3s;
                     }
