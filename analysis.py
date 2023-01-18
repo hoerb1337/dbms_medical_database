@@ -125,12 +125,8 @@ class render_tab2:
                     tooltip_kpi1 = """
                                     <div class="tooltip"> Closest Predicted Medicine (1) <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                                     <span class="tooltiptext">
-                                    Medicine with greatest matched
-                                    side effects compared to nr. of selected side
-                                    effects and either greatest proportion of user
-                                    reports or greatest proportion of matched side
-                                    effects compared to all listed side effects 
-                                    for this medicine. 
+                                    You can find more details to the predition
+                                    within the expanders further down. 
                                     </span>
                                     </div> 
                                     """
@@ -140,8 +136,11 @@ class render_tab2:
                     
                     if combo == "True":
                         tooltip_kpi1_1 = """
-                                        <div class="tooltip">Closest Predicted Medicine 2 <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                                        <span class="tooltiptext">Tooltip text</span>
+                                        <div class="tooltip">Closest Predicted Medicine (2) <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                        <span class="tooltiptext">
+                                        You can find more details to the predition
+                                        within the expanders further down.
+                                        </span>
                                         </div> 
                                         """
 
@@ -150,8 +149,10 @@ class render_tab2:
                         
                     st.markdown("<br>", unsafe_allow_html=True)
                     tooltip_kpi2 = """
-                                    <div class="tooltip">Total number potential meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                                    <span class="tooltiptext">Tooltip text</span>
+                                    <div class="tooltip">Total number of potential meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
+                                    <span class="tooltiptext">
+                                    All medicines with at least one matched side effect.
+                                    </span>
                                     </div> 
                                     """
                     st.markdown(tooltip_kpi2, unsafe_allow_html=True)
@@ -162,9 +163,12 @@ class render_tab2:
                 with col2:
                         
                     tooltip_kpi3 = """
-                                    <div class="tooltip">Matched slected side effects
+                                    <div class="tooltip">Matched selected side effects
                                     <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                                    <span class="tooltiptext">Tooltip text</span>
+                                    <span class="tooltiptext">
+                                    Matched selected side effects compared
+                                    to number of selected side effects.
+                                    </span>
                                     </div> 
                                     """
 
@@ -174,9 +178,13 @@ class render_tab2:
                     st.markdown("<br>", unsafe_allow_html=True)
 
                     tooltip_kpi4 = """
-                                    <div class="tooltip">Matched side effects vs. all side effects
+                                    <div class="tooltip">Matched side effects compared to all side effects
                                     <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                                    <span class="tooltiptext">Tooltip text</span>
+                                    <span class="tooltiptext">
+                                    Matched selected side effects compared
+                                    to the total number of side effects registered
+                                    in database for the medicine.
+                                    </span>
                                     </div> 
                                     """
                     st.markdown(tooltip_kpi4, unsafe_allow_html=True)
@@ -187,7 +195,10 @@ class render_tab2:
 
                     tooltip_kpi5 = """
                                     <div class="tooltip">Probability compared to all other meds <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                                    <span class="tooltiptext">Tooltip text</span>
+                                    <span class="tooltiptext">
+                                    Probability compared to all other medicines with at
+                                    least one matched side effect.
+                                    </span>
                                     </div> 
                                     """
 
@@ -197,7 +208,9 @@ class render_tab2:
                     st.markdown("<br>", unsafe_allow_html=True)
                     tooltip_kpi6 = """
                                     <div class="tooltip">User Reports for this medicine <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                                    <span class="tooltiptext">Tooltip text</span>
+                                    <span class="tooltiptext">
+                                    Popularity of the medicine based on proportion of resports for a medicine by users (tab1).
+                                    </span>
                                     </div> 
                                     """
                     st.markdown(tooltip_kpi6, unsafe_allow_html=True)
