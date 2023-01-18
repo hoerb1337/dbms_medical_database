@@ -111,20 +111,33 @@ class render_tab2:
                 # Display results from reverse lookup as dataframe
                 st.subheader("2. Results: Possible medicines taken")
                 
-                explained_calc = """Information about the procedure of prediction:
-                                
+                info_box_style = """
+                        <style>
+                        .info_box {background-color: lightgrey;}
+                        </style>
+                        """
+                explained_calc = """
+                                <div class="info_box">
+                                Information about the procedure of prediction:<br>
+                                <br>
                                 In general, the analysis follows a multiple-stage/criteria approach
-                                to make the prediction.
-                                1. Calculate, for each medicine registered in the database,
+                                to make the prediction.<br>
+                                <ol>
+                                <i>
+                                Calculate, for each medicine registered in the database,
                                 how many of selected side effects match all listed side effects for the medicine.
                                 Only the medicines with at least one matched side effect are further considered.
-                                
-                                2. 
+                                </i>
+                                <i>
                                 
                                 the more selected side effects
                                 match the
+                                </i>
+                                </ol>
+                                </div>
                                 """
-                st.warning(explained_calc)
+                
+                st.markdown(explained_calc, unsafe_allow_html=True)
 
                 tooltip = """
                         <style>
