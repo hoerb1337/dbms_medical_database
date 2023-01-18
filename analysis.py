@@ -68,12 +68,10 @@ class render_tab2:
         
         # Multiselect UI
         test =  """
-                <font style="size: 12;">Select your set of side effects <div class="tooltip">
-                <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
-                <span class="tooltiptext">Tooltip text</span></div>:</font>
+                <font style="size: 12;">Select your set of side effects:</font>
                 """
-        test2 = st.markdown(test, unsafe_allow_html=True)
-        selected_sideEffects = st.multiselect(test2,
+        #test2 = st.markdown(test, unsafe_allow_html=True)
+        selected_sideEffects = st.multiselect(st.markdown(test, unsafe_allow_html=True),
                                               list_sideEffects,
                                               key="selected_sideEffects")
 
