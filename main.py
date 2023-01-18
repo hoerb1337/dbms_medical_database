@@ -78,7 +78,7 @@ class Frontend:
                         position: absolute;
                         top: 100%;
                         left: 5%;
-                        margin-left: -5px;
+                        margin-left: 5px;
                         border-width: 5px;
                         border-style: solid;
                         border-color: #555 transparent transparent transparent;
