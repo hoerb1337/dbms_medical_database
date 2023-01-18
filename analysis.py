@@ -36,6 +36,8 @@ class render_tab2:
                     padding-right: 20px;
                     padding-bottom: 15px;
                     border-radius: 10px;
+                    border-color: #ff0000;
+                    border-width: 1px;
                     }
                     </style>
                     <div class="info_box">
