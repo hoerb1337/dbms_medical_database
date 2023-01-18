@@ -21,7 +21,7 @@ class render_tab2:
                     padding-top: 20px;
                     padding-right: 20px;
                     padding-bottom: 15px;
-                    border-radius: 10px;
+                    border-radius: 0px;
                     }
                     </style>
                     <div class="info_box">
