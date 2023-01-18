@@ -245,7 +245,6 @@ class render_tab2:
                     explained_calc = """
                                     <style>
                                     .info_box {
-                                        background-color: lightyellow;
                                         margin-top: 10px;
                                         margin-bottom: 20px;
                                         padding-left: 20px;
@@ -276,10 +275,9 @@ class render_tab2:
                                     If there are any reports for the medicines yet, the next criterium
                                     is the proportion of the number of matched side effects for each medicine
                                     to the total number of listed side effects for the medicine.<br><br>
-                                    
                                     </li>
                                     </ol>
-                                    <br>Additional information on each criteria is
+                                    Additional information on each criteria is
                                     provided by clicking on the information symbol.
                                     </div>
                                     """
