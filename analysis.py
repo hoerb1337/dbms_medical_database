@@ -10,20 +10,6 @@ class render_tab2:
     
     def __init__(self):
         """Display information for tab2."""
-        
-        #info_text = """
-                    #Perform a Reverse Lookup Analysis:
-                    
-                    #1. Choose whether you are taking medicines in combination.
-                    #2. Select your own set of felt side effect symptoms from medicines you are taking.
-                    #3. We find for you the closest prediction of medicine that you could have taken.
-                    
-                    #More details on how we perform the predicition is provided with the results.
-                    
-                    #Hint: Since the number of side effects per medicine is high (>100),
-                    #the prediction becomes better with higher number of selected side effects.
-                    #"""
-        #st.info(info_text)
 
         info_box_init = """
                     <style>
@@ -35,16 +21,13 @@ class render_tab2:
                     padding-top: 20px;
                     padding-right: 20px;
                     padding-bottom: 15px;
-                    border-style: solid;
                     border-radius: 10px;
-                    border-color: #ff0000;
-                    border-width: 1px;
                     }
                     </style>
                     <div class="info_box">
                     <h5>Perform Reverse Lookup Analysis:</h5>
-                    In general, the analysis follows a multiple-stage/criteria approach
-                    to make the prediction:<br>
+                    <p>In general, the analysis follows a multiple-stage/criteria approach
+                    to make the prediction:</p>
                     <ol>
                     <li>Choose whether you are taking medicines in combination.</li>
                     <li>Select your own set of felt side effect symptoms from medicines you are taking.</li>

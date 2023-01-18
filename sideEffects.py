@@ -10,16 +10,43 @@ class render_tab1:
     def __init__(self):
         """Display information for tab1."""
 
-        info = """
-                Browse and report for side effects of selected medicines:
-                1. Select up to two medicines from the list.
-                2. Choose whether you combine selected medicines.
-                3. Browse side effect symptoms registered in the database.
-                4. Select your own side effect symptoms from the list.
-                5. Send your side effects for our analysis.
-               """
-        st.info(info)
-        st.markdown("<br>", unsafe_allow_html=True)
+        info_box_init = """
+                    <style>
+                    .info_box {
+                    background-color: #f2f3f4;
+                    margin-top: 10px;
+                    margin-bottom: 30px;
+                    padding-left: 20px;
+                    padding-top: 20px;
+                    padding-right: 20px;
+                    padding-bottom: 15px;
+                    border-radius: 10px;
+                    }
+                    </style>
+                    <div class="info_box">
+                    <h5>Browse and report for side effects of selected medicines:</h5>
+                    <ol>
+                    <li>Select up to two medicines from the list.</li>
+                    <li>Choose whether you combine selected medicines.</li>
+                    <li>Browse side effect symptoms registered in the database.</li>
+                    <li>Select your own side effect symptoms from the list.</li>
+                    <li>Send your side effects for our analysis.</li>
+                    </ol>
+                    </div>
+                    """
+                    
+        st.markdown(info_box_init, unsafe_allow_html=True)
+
+        #info = """
+                #Browse and report for side effects of selected medicines:
+                #1. Select up to two medicines from the list.
+                #2. Choose whether you combine selected medicines.
+                #3. Browse side effect symptoms registered in the database.
+                #4. Select your own side effect symptoms from the list.
+                #5. Send your side effects for our analysis.
+               #"""
+        #st.info(info)
+        #st.markdown("<br>", unsafe_allow_html=True)
 
 
     def selection(self):
