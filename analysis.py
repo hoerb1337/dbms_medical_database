@@ -253,6 +253,7 @@ class render_tab2:
 
                 # Full table
                 with st.expander("See full table with all data from all medicines with at least one matched side effect"):
+                    st.markdown("<br>", unsafe_allow_html=True)
                     st.write(df)
                 
                 return med_high_p_name
