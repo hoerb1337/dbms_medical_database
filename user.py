@@ -37,7 +37,7 @@ class render_tab4:
         info_box_tab4 = """
                         <div class="info_box">
                         <h5>Your Usage data:</h5>
-                        <p>Browse for the history of all your actions on our webapp</p>
+                        <p>Browse for the history of all your actions on our webapp.</p>
                         </div>
                         """
                     
