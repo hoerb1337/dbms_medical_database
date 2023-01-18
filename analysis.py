@@ -125,7 +125,7 @@ class render_tab2:
                     tooltip_kpi1 = """
                                     <div class="tooltip"> Closest Predicted Medicine (1) <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                                     <span class="tooltiptext">
-                                    You can find more details to the predition
+                                    You can find more details to the prediction
                                     within the expanders further down. 
                                     </span>
                                     </div> 
@@ -138,7 +138,7 @@ class render_tab2:
                         tooltip_kpi1_1 = """
                                         <div class="tooltip">Closest Predicted Medicine (2) <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                                         <span class="tooltiptext">
-                                        You can find more details to the predition
+                                        You can find more details to the prediction
                                         within the expanders further down.
                                         </span>
                                         </div> 
@@ -178,7 +178,7 @@ class render_tab2:
                     st.markdown("<br>", unsafe_allow_html=True)
 
                     tooltip_kpi4 = """
-                                    <div class="tooltip">Matched side effects compared to all side effects
+                                    <div class="tooltip">Matched side effects vs. all side effects
                                     <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                                     <span class="tooltiptext">
                                     Matched selected side effects compared
