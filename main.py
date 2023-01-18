@@ -29,6 +29,21 @@ class Frontend:
         """
         st.markdown(header, unsafe_allow_html=True)
         
+        info_box_init_style = """
+                        <style>
+                        .info_box {
+                        background-color: #f2f3f4;
+                        margin-top: 5px;
+                        margin-bottom: 30px;
+                        padding-left: 20px;
+                        padding-top: 20px;
+                        padding-right: 20px;
+                        padding-bottom: 15px;
+                        border-radius: 0px;
+                        }
+                        </style>
+                        """
+        st.markdown(info_box_init_style, unsafe_allow_html=True)
         
         # User management:
         userAuthenticated = user.UserUI()

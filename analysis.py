@@ -11,19 +11,7 @@ class render_tab2:
     def __init__(self):
         """Display information for tab2."""
 
-        info_box_init = """
-                    <style>
-                    .info_box {
-                    background-color: #f2f3f4;
-                    margin-top: 5px;
-                    margin-bottom: 30px;
-                    padding-left: 20px;
-                    padding-top: 20px;
-                    padding-right: 20px;
-                    padding-bottom: 15px;
-                    border-radius: 0px;
-                    }
-                    </style>
+        info_box_tab2 = """
                     <div class="info_box">
                     <h5>Perform Reverse Lookup Analysis:</h5>
                     <p>In general, the analysis follows a multiple-stage/criteria approach
@@ -39,7 +27,7 @@ class render_tab2:
                     </div>
                     """
                     
-        st.markdown(info_box_init, unsafe_allow_html=True)
+        st.markdown(info_box_tab2, unsafe_allow_html=True)
 
 
     def show_selection_sideEffects(self):

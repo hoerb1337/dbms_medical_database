@@ -10,19 +10,7 @@ class render_tab1:
     def __init__(self):
         """Display information for tab1."""
 
-        info_box_init = """
-                    <style>
-                    .info_box {
-                    background-color: #f2f3f4;
-                    margin-top: 10px;
-                    margin-bottom: 30px;
-                    padding-left: 20px;
-                    padding-top: 20px;
-                    padding-right: 20px;
-                    padding-bottom: 15px;
-                    border-radius: 10px;
-                    }
-                    </style>
+        info_box_tab1 = """
                     <div class="info_box">
                     <h5>Browse and report for side effects of selected medicines:</h5>
                     <ol>
@@ -35,7 +23,7 @@ class render_tab1:
                     </div>
                     """
                     
-        st.markdown(info_box_init, unsafe_allow_html=True)
+        st.markdown(info_box_tab1, unsafe_allow_html=True)
 
         #info = """
                 #Browse and report for side effects of selected medicines:
