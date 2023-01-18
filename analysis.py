@@ -111,9 +111,17 @@ class render_tab2:
                 # Display results from reverse lookup as dataframe
                 st.subheader("2. Results: Possible medicines taken")
                 
+
                 explained_calc = """
                                 <style>
-                                .info_box {background-color: lightgrey;}
+                                .info_box {
+                                    background-color: lightyellow;
+                                    margin-left: 5px;
+                                    margin-top: 5px;
+                                    margin-right: 5px;
+                                    margin-bottom: 5px;
+                                    border-radius: 6px;
+                                }
                                 </style>
                                 <div class="info_box">
                                 <b>Information about the procedure of prediction:</b><br>
@@ -134,7 +142,7 @@ class render_tab2:
                                 </ol>
                                 </div>
                                 """
-
+                
                 st.markdown(explained_calc, unsafe_allow_html=True)
 
                 tooltip = """
