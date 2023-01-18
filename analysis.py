@@ -9,12 +9,14 @@ import analysisService
 class render_tab2:
     
     def __init__(self):
-        """Display information for tab1."""
+        """Display information for tab2."""
         
         info_text = """
                     Perform a reverse lookup:
-                    You report your own set of side effect symptoms, 
-                    and we find for you the closest prediction of 
+                    
+                    1. You report your own set of side effect symptoms
+
+                    2. We find for you the closest prediction of 
                     medicines that you could have taken.
                     """
         st.info(info_text)
