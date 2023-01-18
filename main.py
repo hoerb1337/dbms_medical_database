@@ -61,7 +61,7 @@ class Frontend:
                         text-align: left;
                         border-radius: 6px;
                         padding-left: 10px;
-                        position: relative;
+                        position: absolute;
                         z-index: 1;
                         bottom: 125%;
                         left: 50%;
