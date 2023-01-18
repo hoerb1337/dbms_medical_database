@@ -34,12 +34,12 @@ class render_tab2:
                     padding-left: 20px;
                     padding-top: 20px;
                     padding-right: 20px;
-                    padding-bottom: 20px;
-                    border-radius: 15px;
+                    padding-bottom: 15px;
+                    border-radius: 10px;
                     }
                     </style>
                     <div class="info_box">
-                    <h5>Perform a Reverse Lookup Analysis:</h5>
+                    <h5>Perform Reverse Lookup Analysis:</h5>
                     In general, the analysis follows a multiple-stage/criteria approach
                     to make the prediction:<br>
                     <ol>
@@ -49,7 +49,7 @@ class render_tab2:
                     </ol>
                     <p>More details on how we perform the predicition is provided with the results.</p>
                     <p>Hint: Since the number of side effects per medicine is high (>100),
-                    #the prediction becomes better with higher number of selected side effects.</p>
+                    the prediction becomes better with higher number of selected side effects.</p>
                     </div>
                     """
                     
