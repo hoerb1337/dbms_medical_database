@@ -116,11 +116,11 @@ class render_tab2:
                                 <style>
                                 .info_box {
                                     background-color: lightyellow;
-                                    margin-left: 5px;
-                                    margin-top: 5px;
-                                    margin-right: 5px;
-                                    margin-bottom: 5px;
-                                    border-radius: 6px;
+                                    padding-left: 15px;
+                                    padding-top: 15px;
+                                    padding-right: 15px;
+                                    padding-bottom: 15px;
+                                    border-radius: 20px;
                                 }
                                 </style>
                                 <div class="info_box">
