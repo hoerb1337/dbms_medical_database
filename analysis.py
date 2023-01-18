@@ -68,7 +68,8 @@ class render_tab2:
         
         # Multiselect UI
         test =  """
-                <font style="size: 12px">Select your set of side effects <div class="tooltip">
+                <font style="size: 12;">Select your set of side effects <div class="tooltip">
+                <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
                 <span class="tooltiptext">Tooltip text</span></div>:</font>
                 """
                 
