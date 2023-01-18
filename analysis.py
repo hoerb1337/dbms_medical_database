@@ -23,16 +23,24 @@ class render_tab2:
         st.info(info_text)
         st.markdown("<br>", unsafe_allow_html=True)
 
+
     def show_selection_sideEffects(self):
         """UI for choosing side effects by user.
 
         Args:
             None
         Returns:
-            selected_sideEffects: list of chosen side effects
-            type: list
-            nr_sideEffects: number of chosen side effects
+            selected_sideEffects_name: name of selected side effects w/o id
+            type: str items in list
+            selected_sideEffects_id: id of side effect
+            type: str items in list
+            nr_sideEffects: number of selected side effects by user
             type: int
+            combo: "True" or "False"
+            type: str
+            selected_sideEffects: names + id of selected side effects,
+            in the form ['<name side effect (id)>', '...', ...]
+            type: str items in list
         """
         
         st.subheader("1. Selection of own side effect symptoms:")
@@ -57,7 +65,8 @@ class render_tab2:
                                               list_sideEffects,
                                               key="selected_sideEffects")
 
-        # normalise list of selected side effects
+        # normalise list of selected side effects:
+        # extract ids from side effects description
         selected_sideEffects_name, selected_sideEffects_id = callAnalysisBackend.norm_list_se(selected_sideEffects)
 
         nr_sideEffects = len(selected_sideEffects_name)
@@ -73,13 +82,17 @@ class render_tab2:
         """UI for displaying reverse lookup results.
 
         Args:
-            selected_sideEffects:
-            type: list
-            nr_sideEffects:
+            selected_sideEffects_name: name of selected side effects w/o id
+            type: str items in list
+            selected_sideEffects_id: id of side effect
+            type: str items in list
+            nr_sideEffects: number of selected side effects by user
             type: int
+            combo: "True" or "False"
+            type: str
         Returns:
-            selected_sideEffects: list of chosen side effects
-            type: dataframe
+            med_high_p_name: commercial name of predicted medicine
+            type: str
         """
         
         # Button:
@@ -98,7 +111,9 @@ class render_tab2:
                 # Display results from reverse lookup as dataframe
                 st.subheader("2. Results: Possible medicines taken")
                 
-                explained_calc = "Information about the prediction"
+                explained_calc = """Information about the procedure of prediction:
+                                dss
+                                """
                 st.warning(explained_calc)
 
                 tooltip = """
@@ -146,7 +161,6 @@ class render_tab2:
                 st.markdown(tooltip, unsafe_allow_html=True)
                 
                 # Show metrics
-                
                 col1, col2, col3 = st.columns(3, gap="large")
                     
                 # KPI1
@@ -226,8 +240,9 @@ class render_tab2:
                     st.subheader(med_high_p_user)
                 
                 st.markdown("<br>", unsafe_allow_html=True)
+                
                 # Details of analysis
-                with st.expander("See more details of analysis"):
+                with st.expander("See full table with all data from all medicines with at least one matched side effect"):
                     st.write(df)
                 
                 return med_high_p_name
