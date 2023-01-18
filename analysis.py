@@ -35,6 +35,7 @@ class render_tab2:
                     padding-top: 20px;
                     padding-right: 20px;
                     padding-bottom: 15px;
+                    border-style: solid;
                     border-radius: 10px;
                     border-color: #ff0000;
                     border-width: 1px;
