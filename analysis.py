@@ -113,50 +113,7 @@ class render_tab2:
                 # Display results from reverse lookup as dataframe
                 st.subheader("2. Results: Possible medicines taken")
                 
-                with st.expander("Explaination for the prediction"):
-                    explained_calc = """
-                                    <style>
-                                    .info_box {
-                                        background-color: lightyellow;
-                                        margin-top: 10px;
-                                        margin-bottom: 20px;
-                                        padding-left: 20px;
-                                        padding-top: 20px;
-                                        padding-right: 20px;
-                                        padding-bottom: 20px;
-                                        border-radius: 20px;
-                                    }
-                                    </style>
-                                    <div class="info_box">
-                                    <h5>Information about the procedure of prediction:</h5>
-                                    In general, the analysis follows a multiple-stage/criteria approach
-                                    to make the prediction:<br>
-                                    <ol>
-                                    <li>
-                                    Calculate, for each medicine registered in the database,
-                                    how many of selected side effects match all listed side
-                                    effects for the medicine. Only the medicines with at least
-                                    one matched side effect are further considered.
-                                    Medicine with highest proportion is selected.
-                                    </li>
-                                    <li>
-                                    If there are multiple medicines with highest proportion of 
-                                    matched side effects, the next criterium is the popularity
-                                    of reported side effects by users (tab1).
-                                    </li>
-                                    <li>
-                                    If there are any reports for the medicines yet, the next criterium
-                                    is the proportion of the number of matched side effects for each medicine
-                                    to the total number of listed side effects for the medicine.<br><br>
-                                    
-                                    </li>
-                                    </ol>
-                                    <br>Additional information on each criteria is
-                                    provided by clicking on the information symbol.
-                                    </div>
-                                    """
-                    
-                    st.markdown(explained_calc, unsafe_allow_html=True)
+                
 
                 tooltip = """
                         <style>
@@ -283,7 +240,53 @@ class render_tab2:
                 
                 st.markdown("<br>", unsafe_allow_html=True)
                 
-                # Details of analysis
+                # Explaination of predection
+                with st.expander("Explaination for the prediction"):
+                    explained_calc = """
+                                    <style>
+                                    .info_box {
+                                        background-color: lightyellow;
+                                        margin-top: 10px;
+                                        margin-bottom: 20px;
+                                        padding-left: 20px;
+                                        padding-top: 20px;
+                                        padding-right: 20px;
+                                        padding-bottom: 20px;
+                                        border-radius: 20px;
+                                    }
+                                    </style>
+                                    <div class="info_box">
+                                    <h5>Information about the procedure of prediction:</h5>
+                                    In general, the analysis follows a multiple-stage/criteria approach
+                                    to make the prediction:<br>
+                                    <ol>
+                                    <li>
+                                    Calculate, for each medicine registered in the database,
+                                    how many of selected side effects match all listed side
+                                    effects for the medicine. Only the medicines with at least
+                                    one matched side effect are further considered.
+                                    Medicine with highest proportion is selected.
+                                    </li>
+                                    <li>
+                                    If there are multiple medicines with highest proportion of 
+                                    matched side effects, the next criterium is the popularity
+                                    of reported side effects by users (tab1).
+                                    </li>
+                                    <li>
+                                    If there are any reports for the medicines yet, the next criterium
+                                    is the proportion of the number of matched side effects for each medicine
+                                    to the total number of listed side effects for the medicine.<br><br>
+                                    
+                                    </li>
+                                    </ol>
+                                    <br>Additional information on each criteria is
+                                    provided by clicking on the information symbol.
+                                    </div>
+                                    """
+                    
+                    st.markdown(explained_calc, unsafe_allow_html=True)
+
+                # Full table
                 with st.expander("See full table with all data from all medicines with at least one matched side effect"):
                     st.write(df)
                 
