@@ -196,76 +196,89 @@ class data4SideEffects:
         return df
 
 # Reporting from here:
-    def list_side_effects_mono(self, selected_meds):
-        """Provides a list of side effects with their ids
-        registred in the database for one given medicine.
+    # not needed anymore --> see method get_listSideEffects
+    #def list_side_effects_mono(self, selected_meds):
+        #"""Provides a list of side effects with their ids
+        #registred in the database for one given medicine.
 
-        Queries table for mono medicines.
+        #Queries table for mono medicines.
 
-        Args:
-            selected_meds: commercial name of one selected med
-            type: str 
-        Returns:
-            list_meds1_sideEffects: list of side effects for mono meds.,
-            e.g. ['<side effect name> (<id>)', '...', ...]
-            type: list
-        """
+        #Args:
+            #selected_meds: commercial name of one selected med
+            #type: str 
+        #Returns:
+            #list_meds1_sideEffects: list of side effects for mono meds.,
+            #e.g. ['<side effect name> (<id>)', '...', ...]
+            #type: list
+        #"""
 
         # Open connection
-        db = database.db_connection()
-        db_connection, db_cur = db.connect_postgres()
+        #db = database.db_connection()
+        #db_connection, db_cur = db.connect_postgres()
         
-        db_cur.execute("""select concat(individual_side_effect_name, ' (', individual_side_effect, ')') as se_name_se_id from dbms.medicines m0, dbms.medicine_mono m1 where m0.stitch = m1.stitch and m0.commercial_name like %(medname)s order by se_name_se_id;""", {'medname': selected_meds})
+        #db_cur.execute("""select concat(individual_side_effect_name, ' (', individual_side_effect, ')') as se_name_se_id from dbms.medicines m0, dbms.medicine_mono #m1 where m0.stitch = m1.stitch and m0.commercial_name like %(medname)s order by se_name_se_id;""", {'medname': selected_meds})
         
-        list_side_effects_mono = []
-        for side_effect_i in db_cur:
-            list_side_effects_mono.append(f"{side_effect_i[0]}")
+        #list_side_effects_mono = []
+        #for side_effect_i in db_cur:
+            #list_side_effects_mono.append(f"{side_effect_i[0]}")
         
         # Close connection
-        close_db_connection = db.disconnect_postgres(db_connection, db_cur)
+        #close_db_connection = db.disconnect_postgres(db_connection, db_cur)
 
-        return list_side_effects_mono
+        #return list_side_effects_mono
 
-    def list_side_effects_combo(self, selected_meds):
-        """Get list of side effects from combo medicines in the database.
+    # not needed anymore --> see method get_listSideEffects_combo
+    #def list_side_effects_combo(self, selected_meds):
+        #"""Get list of side effects from combo medicines in the database.
 
-        Args:
-            n: 
-            type: 
-        Returns:
-            sum over n:
-            type: 
-        """
+        #Args:
+            #n: 
+            #type: 
+        #Returns:
+            #sum over n:
+            #type: 
+        #"""
         
-        # Open connection
-        db = database.db_connection()
-        db_connection, db_cur = db.connect_postgres()
+        ## Open connection
+        #db = database.db_connection()
+        #db_connection, db_cur = db.connect_postgres()
         #db_cur.execute("""select mc.combo_side_effect_name from dbms.medicines_combo mc, dbms.medicines m0, dbms.medicines m1 where mc.stitch1 = m0.stitch and mc.stitch2 = m1.stitch and ((m0.commercial_name = %(medname1)s and m1.commercial_name= %(medname2)s) or (m0.commercial_name = %(medname2)s and m1.commercial_name= %(medname1)s)) order by mc.combo_side_effect_name;""", {'medname1': selected_meds[0], 'medname2': selected_meds[1]})
         
-        db_cur.execute("""select concat(combo_side_effect_name, ' (', polypharmacy_side_effect, ')') as se_name_se_id from dbms.medicines_combo mc, dbms.medicines m0, dbms.medicines m1 where mc.stitch1 = m0.stitch and mc.stitch2 = m1.stitch and ((m0.commercial_name like %(medname1)s and m1.commercial_name like %(medname2)s) or (m0.commercial_name like %(medname2)s and m1.commercial_name like %(medname1)s)) order by se_name_se_id;""", {'medname1': selected_meds[0], 'medname2': selected_meds[1]})
+        #db_cur.execute("""select concat(combo_side_effect_name, ' (', polypharmacy_side_effect, ')') as se_name_se_id from dbms.medicines_combo mc, dbms.medicines m0, dbms.medicines m1 where mc.stitch1 = m0.stitch and mc.stitch2 = m1.stitch and ((m0.commercial_name like %(medname1)s and m1.commercial_name like %(medname2)s) or (m0.commercial_name like %(medname2)s and m1.commercial_name like %(medname1)s)) order by se_name_se_id;""", {'medname1': selected_meds[0], 'medname2': selected_meds[1]})
         
-        list_side_effects_combo = []
-        for side_effect_i in db_cur:
-            list_side_effects_combo.append(f"{side_effect_i[0]}")
+        #list_side_effects_combo = []
+        #for side_effect_i in db_cur:
+            #list_side_effects_combo.append(f"{side_effect_i[0]}")
         
         # Close connection
-        close_db_connection = db.disconnect_postgres(db_connection, db_cur)
+        #close_db_connection = db.disconnect_postgres(db_connection, db_cur)
 
-        return list_side_effects_combo
+        #return list_side_effects_combo
 
     
     def report_side_effects_mono(self, nr_selected_meds,
                                 selected_meds,
                                 medicine1_side_effects,
                                 medicine2_side_effects, userID):
-        """Report own side effects from mono medicines to the database.
+        """Writes usage data for tab1 (selected medicines and side effects)
+        reported by users in the UI to the database.
 
         Args:
-            n: 
-            type: 
+            nr_selected_meds: number of selected meds by user.
+            type: int
+            selected_meds: list of selected meds with their commercial name.
+            type: list
+            medicine1_side_effects: list of side effects for first chosen
+            medicine reported by user.
+            type: list
+            medicine2_side_effects: list of side effects for second chosen
+            medicine reported by user. If only one chosen medicine, it is "null".
+            type: list or str
+            userID: ID of user who reports this data.
+            type: int
         Returns:
-            sum over n:
-            type: 
+            status_msg: 200 for successfull writing to database.
+            type: int
         """
 
         # Open connection
@@ -290,7 +303,7 @@ class data4SideEffects:
                 db_connection.commit()
         
         # Close connection
-        close_db_connection = db.disconnect_postgres(db_connection, db_cur)
+        db.disconnect_postgres(db_connection, db_cur)
 
         status_msg = 200
 
@@ -299,14 +312,20 @@ class data4SideEffects:
     
     def report_side_effects_combo(self, selected_meds,
                                   side_effects_combo, userID):
-        """Report own side effects from combo medicines to the database.
+        """Writes usage data for tab1 (selected medicines, combo, side effects)
+        reported by users in the UI to the database.
 
         Args:
-            n: 
-            type: 
+            selected_meds: list of selected meds with their commercial name.
+            type: list
+            side_effects_combo: list of side effects for combo of chosen
+            medicines reported by user.
+            type: list
+            userID: ID of user who reports this data.
+            type: int
         Returns:
-            sum over n:
-            type: 
+            status_msg: 200 for successfull writing to database.
+            type: int
         """
 
         # Open connection
@@ -320,7 +339,7 @@ class data4SideEffects:
         db_connection.commit()
         
         # Close connection
-        close_db_connection = db.disconnect_postgres(db_connection, db_cur)
+        db.disconnect_postgres(db_connection, db_cur)
 
         status_msg = 200
 
