@@ -141,9 +141,9 @@ class data4Analysis:
                 st.write(type(row_i[3]))
                 total_matched_sideEffects.append(float(f"{row_i[3]}"))
                 total_percent_matched_sideEffects.append(f"{row_i[4]}")
-                p_user_reports_calc.append(float(f"{row_i[5]}"))
                 st.write(row_i[5])
                 st.write(type(row_i[5]))
+                p_user_reports_calc.append(float(f"{row_i[5]}"))
                 p_user_reports.append(f"{row_i[6]}")
 
             # Probability compared to all meds with at
