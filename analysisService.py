@@ -311,7 +311,9 @@ class data4Analysis:
                 if max_user_reported != "Any reported yet":
                     sec_index = sec_p_user_reports_calc.index(max_user_reported)
                     st.write(sec_index)
+                    st.write(sec_p_user_reports_calc)
                     sec_p_user_reports_calc.pop(sec_index)
+                    st.write(sec_p_user_reports_calc)
                     #max_user_reported_2 = float(0.00)
                     for i in sec_p_user_reports_calc:
                         if i != "None":
@@ -327,7 +329,7 @@ class data4Analysis:
 
                 if max_user_reported_2 != "Any reported yet":
                     # Find index
-                    max_user_reported_index_2 = p_user_reports_calc[0:index+1].index(max_user_reported_2)
+                    max_user_reported_index_2 = p_user_reports_calc.index(max_user_reported_2)
 
                     med_high_p_name_2 = commercial_name[max_user_reported_index_2]
                     med_high_p_name2_2 = None
