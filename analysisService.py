@@ -135,15 +135,14 @@ class data4Analysis:
             # Fill empty lists with data from query
             for row_i in query_result:
                 commercial_name.append(f"{row_i[0]}")
-                count.append(int(f"{row_i[1]}"))
+                count.append(row_i[1])
                 percent_matched_sideEffects.append(f"{row_i[2]}")
-                st.write(row_i[3])
-                st.write(type(row_i[3]))
-                total_matched_sideEffects.append(float(f"{row_i[3]}"))
+                #st.write(row_i[3])
+                #st.write(type(row_i[3]))
+                total_matched_sideEffects.append(row_i[3])
+                #total_matched_sideEffects.append(float(f"{row_i[3]}"))
                 total_percent_matched_sideEffects.append(f"{row_i[4]}")
-                st.write(row_i[5])
-                st.write(type(row_i[5]))
-                p_user_reports_calc.append(float(f"{row_i[5]}"))
+                p_user_reports_calc.append(f"{row_i[5]}")
                 p_user_reports.append(f"{row_i[6]}")
 
             # Probability compared to all meds with at
@@ -191,13 +190,14 @@ class data4Analysis:
                     index = index + 1
 
                 # user reports
-                max_user_reported = "0.00%"
+                max_user_reported = float(0.00)
                 for i in p_user_reports_calc[0:index+1]:
                     if i != "None":
-                        if i > max_user_reported:
+                        float_i = float(i)
+                        if float_i > max_user_reported:
                             max_user_reported = i
 
-                if max_user_reported == "0.00%":
+                if max_user_reported == float(0.00):
                     max_user_reported = "Any reported yet"
 
                 if max_user_reported != "Any reported yet":
@@ -305,11 +305,11 @@ class data4Analysis:
             for row_i in query_result:
                 commercial_name1.append(f"{row_i[0]}")
                 commercial_name2.append(f"{row_i[1]}")
-                count.append(int(f"{row_i[2]}"))
+                count.append(row_i[2])
                 percent_matched_sideEffects.append(f"{row_i[3]}")
                 total_percent_matched_sideEffects.append(f"{row_i[4]}")
-                total_matched_sideEffects.append(float(f"{row_i[5]}"))
-                p_user_reports_calc.append(float(f"{row_i[6]}"))
+                total_matched_sideEffects.append(row_i[5])
+                p_user_reports_calc.append(f"{row_i[6]}")
                 p_user_reports.append(f"{row_i[7]}")
 
             # Probability compared to all meds with at
@@ -358,14 +358,14 @@ class data4Analysis:
                 st.write(index)
 
                 # user reports
-                max_user_reported = "0.00%"
+                max_user_reported = float(0.00)
                 for i in p_user_reports_calc[0:index+1]:
                     if i != "None":
-                        if i > max_user_reported:
+                        float_i = float(i)
+                        if float_i > max_user_reported:
                             max_user_reported = i
 
-                # Any reports from user available
-                if max_user_reported == "0.00%":
+                if max_user_reported == float(0.00):
                     max_user_reported = "Any reported yet"
 
                 # At least one report-value available
