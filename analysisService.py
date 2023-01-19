@@ -233,8 +233,17 @@ class data4Analysis:
 
             
             # Algo for the most likely medicine...
+            
+            if len(count) < 2:
+                med_high_p_name = commercial_name1[0]
+                med_high_p_name2 = commercial_name2[0]
+                med_high_p_pct = percent_matched_sideEffects[0]
+                med_high_p_prop = p_med[0]
+                med_high_p_user = p_user_reports[0]
+                med_high_p_total = total_percent_matched_sideEffects[0]
+            
             # first value is uniquely highest
-            if count[0] > count[1]:
+            elif count[0] > count[1]:
                 med_high_p_name = commercial_name[0]
                 med_high_p_name2 = None
                 med_high_p_pct = percent_matched_sideEffects[0]
@@ -281,8 +290,8 @@ class data4Analysis:
                 # Lookup highest value of matched side effects compared to total
                 # list of side effects from specific medicine
                 else:
-                    max_p_total = max(total_percent_matched_sideEffects[0:index])
-                    max_p_total_index = total_percent_matched_sideEffects[0:index].index(max_p_total)
+                    max_p_total = max(total_percent_matched_sideEffects[0:index+1])
+                    max_p_total_index = total_percent_matched_sideEffects[0:index+1].index(max_p_total)
                     
                     med_high_p_name = commercial_name[max_p_total_index]
                     med_high_p_name2 = None
