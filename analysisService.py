@@ -162,6 +162,13 @@ class data4Analysis:
                 med_high_p_prop = p_med[0]
                 med_high_p_user = p_user_reports[0]
                 med_high_p_total = total_percent_matched_sideEffects[0]
+
+                med_high_p_name_2 = None
+                med_high_p_name2_2 = None
+                med_high_p_pct_2 = None
+                med_high_p_prop_2 = None
+                med_high_p_user_2 = None
+                med_high_p_total_2 = None
             
             # first value is uniquely highest
             elif count[0] > count[1]:
@@ -429,6 +436,13 @@ class data4Analysis:
                 med_high_p_prop = p_med[0]
                 med_high_p_user = p_user_reports[0]
                 med_high_p_total = total_percent_matched_sideEffects[0]
+
+                med_high_p_name_2 = None
+                med_high_p_name2_2 = None
+                med_high_p_pct_2 = None
+                med_high_p_prop_2 = None
+                med_high_p_user_2 = None
+                med_high_p_total_2 = None
             
             # first value is uniquely highest
             elif count[0] > count[1]:
