@@ -348,7 +348,9 @@ class data4Analysis:
 
             elif nr_sideEffects == 1:
                 
-                query = "select left_table.med_name1, left_table.med_name2, left_table.nr_matched_se, left_table.per_matched_se, left_table.to_per_matched_se, user_reports_combo.sum_user_reports from (select cm.m0_commercial_name as med_name1, cm.m1_commercial_name as med_name2, cm.nr_matched_se as nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ")*100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se)*100, 'fm990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and mc.polypharmacy_side_effect = '" + selected_sideEffects_id[0] + "' group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name)left_table left join (select user_reports2.med_name1 as med_name1, user_reports2.med_name2 as med_name2, to_char((user_reports2.nr_reported/sum_user_reports.sum_user)* 100, 'fm900D00%') as sum_user_reports from (select sum(user_reports.nr_reported) as sum_user from (select commercial_name1 as med_name1, commercial_name2 as med_name2, count(*) as nr_reported from dbms.combo_side_effects_reported group by med_name1, med_name2)user_reports)sum_user_reports, (select commercial_name1 as med_name1, commercial_name2 as med_name2, count(*) as nr_reported from dbms.combo_side_effects_reported group by med_name1, med_name2)user_reports2)user_reports_combo on left_table.med_name1 = user_reports_combo.med_name1 and left_table.med_name2 = user_reports_combo.med_name2 order by left_table.nr_matched_se desc"
+                query = "select left_table.med_name1, left_table.med_name2, left_table.nr_matched_se, left_table.per_matched_se, left_table.to_per_matched_se, left_table.to_matched_se, user_reports_combo.sum_user_reports from (select cm.m0_commercial_name as med_name1, cm.m1_commercial_name as med_name2, cm.nr_matched_se as nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ")*100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se)*100, 'fm990D00%') as to_per_matched_se, (cm.nr_matched_se::float/nr.to_nr_matched_se) as to_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and mc.polypharmacy_side_effect = '" + selected_sideEffects_id[0] + "' group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name)left_table left join (select user_reports2.med_name1 as med_name1, user_reports2.med_name2 as med_name2, to_char((user_reports2.nr_reported/sum_user_reports.sum_user)* 100, 'fm900D00%') as sum_user_reports from (select sum(user_reports.nr_reported) as sum_user from (select commercial_name1 as med_name1, commercial_name2 as med_name2, count(*) as nr_reported from dbms.combo_side_effects_reported group by med_name1, med_name2)user_reports)sum_user_reports, (select commercial_name1 as med_name1, commercial_name2 as med_name2, count(*) as nr_reported from dbms.combo_side_effects_reported group by med_name1, med_name2)user_reports2)user_reports_combo on left_table.med_name1 = user_reports_combo.med_name1 and left_table.med_name2 = user_reports_combo.med_name2 order by left_table.nr_matched_se desc"
+                
+                #query = "select left_table.med_name1, left_table.med_name2, left_table.nr_matched_se, left_table.per_matched_se, left_table.to_per_matched_se, user_reports_combo.sum_user_reports from (select cm.m0_commercial_name as med_name1, cm.m1_commercial_name as med_name2, cm.nr_matched_se as nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ")*100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se)*100, 'fm990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and mc.polypharmacy_side_effect = '" + selected_sideEffects_id[0] + "' group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name)left_table left join (select user_reports2.med_name1 as med_name1, user_reports2.med_name2 as med_name2, to_char((user_reports2.nr_reported/sum_user_reports.sum_user)* 100, 'fm900D00%') as sum_user_reports from (select sum(user_reports.nr_reported) as sum_user from (select commercial_name1 as med_name1, commercial_name2 as med_name2, count(*) as nr_reported from dbms.combo_side_effects_reported group by med_name1, med_name2)user_reports)sum_user_reports, (select commercial_name1 as med_name1, commercial_name2 as med_name2, count(*) as nr_reported from dbms.combo_side_effects_reported group by med_name1, med_name2)user_reports2)user_reports_combo on left_table.med_name1 = user_reports_combo.med_name1 and left_table.med_name2 = user_reports_combo.med_name2 order by left_table.nr_matched_se desc"
                 
 
                 db_cur.execute(query)
@@ -361,6 +363,7 @@ class data4Analysis:
             count = []
             percent_matched_sideEffects = []
             total_percent_matched_sideEffects = []
+            total_matched_sideEffects = []
             p_user_reports = []
                 
             for row_i in query_result:
@@ -369,7 +372,8 @@ class data4Analysis:
                 count.append(int(f"{row_i[2]}"))
                 percent_matched_sideEffects.append(f"{row_i[3]}")
                 total_percent_matched_sideEffects.append(f"{row_i[4]}")
-                p_user_reports.append(f"{row_i[5]}")
+                total_matched_sideEffects.append(f"{row_i[5]}")
+                p_user_reports.append(f"{row_i[6]}")
 
             # Probability compared to all meds with at
             # least one matched side effect
@@ -440,16 +444,17 @@ class data4Analysis:
                 # Lookup highest value of matched side effects compared to total
                 # list of side effects from specific medicine
                 else:
-                    max_p_total = max(total_percent_matched_sideEffects[0:index+1])
+                    max_p_total_calc = max(total_matched_sideEffects[0:index+1])
+                    st.write(max_p_total_calc)
+                    max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
+                    max_p_total = total_percent_matched_sideEffects[max_p_total_calc_index]
                     st.write(max_p_total)
-                    max_p_total_index = total_percent_matched_sideEffects[0:index+1].index(max_p_total)
-                    
-                    med_high_p_name = commercial_name1[max_p_total_index]
-                    med_high_p_name2 = commercial_name2[max_p_total_index]
-                    med_high_p_pct = percent_matched_sideEffects[max_p_total_index]
-                    med_high_p_prop = p_med[max_p_total_index]
-                    med_high_p_user = p_user_reports[max_p_total_index]
-                    med_high_p_total = total_percent_matched_sideEffects[max_p_total_index]
+                    med_high_p_name = commercial_name1[max_p_total_calc_index]
+                    med_high_p_name2 = commercial_name2[max_p_total_calc_index]
+                    med_high_p_pct = percent_matched_sideEffects[max_p_total_calc_index]
+                    med_high_p_prop = p_med[max_p_total_calc_index]
+                    med_high_p_user = p_user_reports[max_p_total_calc_index]
+                    med_high_p_total = total_percent_matched_sideEffects[max_p_total_calc_index]
 
 
             # dataframes
