@@ -512,7 +512,7 @@ class data4Analysis:
                 # list of side effects from specific medicine
                 else:
                     max_p_total = max(total_percent_matched_sideEffects[0:index+1])
-                    max_p_total_index = total_percent_matched_sideEffects[0:index].index(max_p_total)
+                    max_p_total_index = total_percent_matched_sideEffects[0:index+1].index(max_p_total)
                     
                     med_high_p_name = commercial_name1[max_p_total_index]
                     med_high_p_name2 = commercial_name2[max_p_total_index]
