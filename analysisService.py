@@ -271,6 +271,7 @@ class data4Analysis:
                             max_user_reported = i
 
                 # second best value for user reports
+                st.write(max_user_reported)
                 sec_index = sec_p_user_reports_calc.index(max_user_reported)
                 sec_p_user_reports_calc.pop(sec_index)
                 max_user_reported_2 = float(0.00)
