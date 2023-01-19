@@ -409,12 +409,13 @@ class data4Analysis:
                     
                     # end of list reached = all values same
                     elif index == len(count)-1:
+                        st.write(index)
                         break
                     
                     index = index + 1
 
                 st.write(index)
-                
+
                 # user reports
                 max_user_reported = "0.00%"
                 for i in p_user_reports[0:index]:
