@@ -270,17 +270,7 @@ class data4Analysis:
                         if float_i > max_user_reported:
                             max_user_reported = i
 
-                # second best value for user reports
-                st.write(max_user_reported)
-                sec_index = sec_p_user_reports_calc.index(max_user_reported)
-                sec_p_user_reports_calc.pop(sec_index)
-                max_user_reported_2 = float(0.00)
-                for i in sec_p_user_reports_calc:
-                    if i != "None":
-                        float_i = float(i)
-                        if float_i > max_user_reported_2:
-                            max_user_reported_2 = i
-
+                
                 # best value reporting vs. total
                 if max_user_reported == float(0.00):
                     max_user_reported = "Any reported yet"
@@ -301,10 +291,10 @@ class data4Analysis:
                 else:
 
                     max_p_total_calc = max(total_matched_sideEffects[0:index+1])
-                    st.write(max_p_total_calc)
+                    
                     max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
                     max_p_total = total_percent_matched_sideEffects[max_p_total_calc_index]
-                    st.write(max_p_total)
+                    
                     med_high_p_name = commercial_name[max_p_total_calc_index]
                     med_high_p_name2 = None
                     med_high_p_pct = percent_matched_sideEffects[max_p_total_calc_index]
@@ -312,6 +302,18 @@ class data4Analysis:
                     med_high_p_user = p_user_reports[max_p_total_calc_index]
                     med_high_p_total = total_percent_matched_sideEffects[max_p_total_calc_index]
 
+
+                # second best value for user reports
+                st.write(max_user_reported)
+                if max_user_reported != "Any reported yet":
+                    sec_index = sec_p_user_reports_calc.index(max_user_reported)
+                    sec_p_user_reports_calc.pop(sec_index)
+                    max_user_reported_2 = float(0.00)
+                    for i in sec_p_user_reports_calc:
+                        if i != "None":
+                            float_i = float(i)
+                            if float_i > max_user_reported_2:
+                                max_user_reported_2 = i
 
                 # second best value user reporting vs. total
                 if max_user_reported_2 == float(0.00):
