@@ -267,8 +267,8 @@ class data4Analysis:
                     sec_p_user_reports_calc.append(i)
                     if i != "None":
                         float_i = float(i)
-                        st.write(max_user_reported)
-                        st.write(float_i)
+                        #st.write(max_user_reported)
+                        #st.write(float_i)
                         if float_i > max_user_reported:
                             max_user_reported = i
 
