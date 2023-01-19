@@ -330,6 +330,7 @@ class data4Analysis:
                 if max_user_reported_2 != "Any reported yet":
                     # Find index
                     st.write(max_user_reported_2)
+                    
                     max_user_reported_index_2 = sec_p_user_reports_calc.index(max_user_reported_2)
                     max_user_reported_index_2 = max_user_reported_index_2 + 1
                     med_high_p_name_2 = commercial_name[max_user_reported_index_2]
@@ -360,6 +361,24 @@ class data4Analysis:
                     med_high_p_prop_2 = p_med[max_p_total_calc_index_2]
                     med_high_p_user_2 = p_user_reports[max_p_total_calc_index_2]
                     med_high_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
+
+                if med_high_p_user == med_high_p_user_2:
+                    if med_high_p_total < med_high_p_total_2:
+
+                        med_high_p_name = commercial_name[max_user_reported_index_2]
+                        med_high_p_name2 = None
+                        med_high_p_pct = percent_matched_sideEffects[max_user_reported_index_2]
+                        med_high_p_prop = p_med[max_user_reported_index_2]
+                        med_high_p_user = p_user_reports[max_user_reported_index_2]
+                        med_high_p_total = total_percent_matched_sideEffects[max_user_reported_index_2]
+
+                        med_high_p_name_2 = commercial_name[max_user_reported_index]
+                        med_high_p_name2_2 = None
+                        med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index]
+                        med_high_p_prop_2 = p_med[max_user_reported_index]
+                        med_high_p_user_2 = p_user_reports[max_user_reported_index]
+                        med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index]
+
 
             # dataframes
             df1_definition_names = {'Commercial Name': commercial_name}
