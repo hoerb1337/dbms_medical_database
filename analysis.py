@@ -110,7 +110,7 @@ class render_tab2:
             # If button clicked:
             if btn_lookup_meds:
                 # Start reverse lookup and get results as dataframe
-                df, total_nr_meds_found, med_high_p_name, med_high_p_name2, med_high_p_pct, med_high_p_prop, med_high_p_user, med_high_p_total = callAnalysisBackend.do_reverse_lookup(selected_sideEffects_name, selected_sideEffects_id,nr_sideEffects,combo)
+                df, total_nr_meds_found, med_high_p_name, med_high_p_name2, med_high_p_pct, med_high_p_prop, med_high_p_user, med_high_p_total, med_high_p_name_2, med_high_p_name2_2, med_high_p_pct_2, med_high_p_prop_2, med_high_p_user_2, med_high_p_total_2 = callAnalysisBackend.do_reverse_lookup(selected_sideEffects_name, selected_sideEffects_id,nr_sideEffects,combo)
                 
                 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -133,6 +133,7 @@ class render_tab2:
                     
                     st.markdown(tooltip_kpi1, unsafe_allow_html=True)
                     st.subheader(med_high_p_name)
+                    st.write(med_high_p_name_2)
                     
                     if combo == "True":
                         tooltip_kpi1_1 = """
@@ -146,6 +147,7 @@ class render_tab2:
 
                         st.markdown(tooltip_kpi1_1, unsafe_allow_html=True)
                         st.subheader(med_high_p_name2)
+                        st.write(med_high_p_name2_2)
                         
                     st.markdown("<br>", unsafe_allow_html=True)
                     tooltip_kpi2 = """
@@ -174,6 +176,7 @@ class render_tab2:
 
                     st.markdown(tooltip_kpi3, unsafe_allow_html=True)
                     st.subheader(med_high_p_pct)
+                    st.write(med_high_p_pct_2)
                         
                     st.markdown("<br>", unsafe_allow_html=True)
 
@@ -189,6 +192,7 @@ class render_tab2:
                                     """
                     st.markdown(tooltip_kpi4, unsafe_allow_html=True)
                     st.subheader(med_high_p_total)
+                    st.write(med_high_p_total_2)
                         
                 # KPI3
                 with col3:
@@ -204,6 +208,7 @@ class render_tab2:
 
                     st.markdown(tooltip_kpi5, unsafe_allow_html=True)
                     st.subheader(med_high_p_prop)
+                    st.write(med_high_p_prop_2)
                         
                     st.markdown("<br>", unsafe_allow_html=True)
                     tooltip_kpi6 = """
@@ -215,6 +220,7 @@ class render_tab2:
                                     """
                     st.markdown(tooltip_kpi6, unsafe_allow_html=True)
                     st.subheader(med_high_p_user)
+                    st.write(med_high_p_user_2)
                 
                 st.markdown("<br>", unsafe_allow_html=True)
                 

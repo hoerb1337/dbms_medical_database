@@ -137,10 +137,7 @@ class data4Analysis:
                 commercial_name.append(f"{row_i[0]}")
                 count.append(row_i[1])
                 percent_matched_sideEffects.append(f"{row_i[2]}")
-                #st.write(row_i[3])
-                #st.write(type(row_i[3]))
                 total_matched_sideEffects.append(row_i[3])
-                #total_matched_sideEffects.append(float(f"{row_i[3]}"))
                 total_percent_matched_sideEffects.append(f"{row_i[4]}")
                 p_user_reports_calc.append(f"{row_i[5]}")
                 p_user_reports.append(f"{row_i[6]}")
@@ -155,7 +152,8 @@ class data4Analysis:
                 p_med.append("{0:0.2f}%".format(p * 100))
 
             
-            # Algo for the most likely medicine...
+            ##### Algo for the most likely medicine... #####
+
             # Only one medicine with selected side effects
             if len(count) < 2:
                 med_high_p_name = commercial_name[0]
@@ -173,7 +171,73 @@ class data4Analysis:
                 med_high_p_prop = p_med[0]
                 med_high_p_user = p_user_reports[0]
                 med_high_p_total = total_percent_matched_sideEffects[0]
-            
+
+                # find second best values
+                # scond best value is the second index
+                if count[1] > count[2]:
+                    med_high_p_name_2 = commercial_name[1]
+                    med_high_p_name2_2 = None
+                    med_high_p_pct_2 = percent_matched_sideEffects[1]
+                    med_high_p_prop_2 = p_med[1]
+                    med_high_p_user_2 = p_user_reports[1]
+                    med_high_p_total_2 = total_percent_matched_sideEffects[1]
+                
+                # at least third value is same as second value
+                elif count[1] == count[2]:
+                    index = 1
+                    for i in count[1:]:
+                        # find first value lower than max value
+                        if i < count[1]:
+                            #index = index - 1
+                            break
+                        
+                        # end of list reached = all values same
+                        elif index == len(count)-1:
+                            break
+                        
+                        index = index + 1
+
+                    # user reports for second best value
+                    max_user_reported_2 = float(0.00)
+                    for i in p_user_reports_calc[1:index+1]:
+                        if i != "None":
+                            float_i = float(i)
+                            if float_i > max_user_reported_2:
+                                max_user_reported_2 = i
+
+                    if max_user_reported_2 == float(0.00):
+                        max_user_reported_2 = "Any reported yet"
+
+                    if max_user_reported_2 != "Any reported yet":
+                        # Find index
+                        max_user_reported_index_2 = p_user_reports_calc[1:index+1].index(max_user_reported_2)
+                        
+                        #max_user_report = max_user_reported
+                        #max_user_report_index = p_user_reports[0:index].index(max_user_report)
+                        
+                        med_high_p_name_2 = commercial_name[max_user_reported_index_2]
+                        med_high_p_name2_2 = None
+                        med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2]
+                        med_high_p_prop_2 = p_med[max_user_reported_index_2]
+                        med_high_p_user_2 = p_user_reports[max_user_reported_index_2]
+                        med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2]
+                    
+                    # Lookup highest value of matched side effects compared to total
+                    # list of side effects from specific medicine
+                    else:
+
+                        max_p_total_calc_2 = max(total_matched_sideEffects[1:index+1])
+                        
+                        max_p_total_calc_index_2 = total_matched_sideEffects[1:index+1].index(max_p_total_calc_2)
+                        max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
+                        
+                        med_high_p_name_2 = commercial_name[max_p_total_calc_index_2]
+                        med_high_p_name2_2 = None
+                        med_high_p_pct_2 = percent_matched_sideEffects[max_p_total_calc_index_2]
+                        med_high_p_prop_2 = p_med[max_p_total_calc_index_2]
+                        med_high_p_user_2 = p_user_reports[max_p_total_calc_index_2]
+                        med_high_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
+
             # first value = second value
             elif count[0] == count[1]:
                 index = 0
@@ -189,24 +253,34 @@ class data4Analysis:
                     
                     index = index + 1
 
-                # user reports
+                # best value for user reports
                 max_user_reported = float(0.00)
+                sec_p_user_reports_calc = []
                 for i in p_user_reports_calc[0:index+1]:
+                    sec_p_user_reports_calc.append(i)
                     if i != "None":
                         float_i = float(i)
                         if float_i > max_user_reported:
                             max_user_reported = i
 
+                # second best value for user reports
+                sec_index = sec_p_user_reports_calc.index(max_user_reported)
+                sec_p_user_reports_calc.pop(sec_index)
+                max_user_reported_2 = float(0.00)
+                for i in sec_p_user_reports_calc:
+                    if i != "None":
+                        float_i = float(i)
+                        if float_i > max_user_reported_2:
+                            max_user_reported_2 = i
+
+                # best value reporting vs. total
                 if max_user_reported == float(0.00):
                     max_user_reported = "Any reported yet"
 
                 if max_user_reported != "Any reported yet":
                     # Find index
                     max_user_reported_index = p_user_reports_calc[0:index+1].index(max_user_reported)
-                    
-                    #max_user_report = max_user_reported
-                    #max_user_report_index = p_user_reports[0:index].index(max_user_report)
-                    
+
                     med_high_p_name = commercial_name[max_user_reported_index]
                     med_high_p_name2 = None
                     med_high_p_pct = percent_matched_sideEffects[max_user_reported_index]
@@ -217,15 +291,6 @@ class data4Analysis:
                 # Lookup highest value of matched side effects compared to total
                 # list of side effects from specific medicine
                 else:
-                    #max_p_total = max(total_percent_matched_sideEffects[0:index+1])
-                    #max_p_total_index = total_percent_matched_sideEffects[0:index+1].index(max_p_total)
-                    
-                    #med_high_p_name = commercial_name[max_p_total_index]
-                    #med_high_p_name2 = None
-                    #med_high_p_pct = percent_matched_sideEffects[max_p_total_index]
-                    #med_high_p_prop = p_med[max_p_total_index]
-                    #med_high_p_user = p_user_reports[max_p_total_index]
-                    #med_high_p_total = total_percent_matched_sideEffects[max_p_total_index]
 
                     max_p_total_calc = max(total_matched_sideEffects[0:index+1])
                     st.write(max_p_total_calc)
@@ -238,6 +303,39 @@ class data4Analysis:
                     med_high_p_prop = p_med[max_p_total_calc_index]
                     med_high_p_user = p_user_reports[max_p_total_calc_index]
                     med_high_p_total = total_percent_matched_sideEffects[max_p_total_calc_index]
+
+
+                # second best value user reporting vs. total
+                if max_user_reported_2 == float(0.00):
+                    max_user_reported_2 = "Any reported yet"
+
+                if max_user_reported_2 != "Any reported yet":
+                    # Find index
+                    max_user_reported_index_2 = p_user_reports_calc[0:index+1].index(max_user_reported_2)
+
+                    med_high_p_name_2 = commercial_name[max_user_reported_index_2]
+                    med_high_p_name2_2 = None
+                    med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2]
+                    med_high_p_prop_2 = p_med[max_user_reported_index_2]
+                    med_high_p_user_2 = p_user_reports[max_user_reported_index_2]
+                    med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2]
+                
+                # Lookup highest value of matched side effects compared to total
+                # list of side effects from specific medicine
+                else:
+                    sec_total_matched_sideEffects = total_matched_sideEffects.copy()
+                    sec_total_matched_sideEffects.pop(max_p_total_calc_index)
+                    max_p_total_calc_2 = max(sec_total_matched_sideEffects)
+                    
+                    max_p_total_calc_index_2 = total_matched_sideEffects[0:index+1].index(max_p_total_calc_2)
+                    max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index]
+                    
+                    med_high_p_name_2 = commercial_name[max_p_total_calc_index_2]
+                    med_high_p_name2_2 = None
+                    med_high_p_pct_2 = percent_matched_sideEffects[max_p_total_calc_index_2]
+                    med_high_p_prop_2 = p_med[max_p_total_calc_index_2]
+                    med_high_p_user_2 = p_user_reports[max_p_total_calc_index_2]
+                    med_high_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
 
             # dataframes
             df1_definition_names = {'Commercial Name': commercial_name}
@@ -331,6 +429,7 @@ class data4Analysis:
                 med_high_p_prop = p_med[0]
                 med_high_p_user = p_user_reports[0]
                 med_high_p_total = total_percent_matched_sideEffects[0]
+            
             # first value is uniquely highest
             elif count[0] > count[1]:
                 med_high_p_name = commercial_name1[0]
@@ -339,32 +438,109 @@ class data4Analysis:
                 med_high_p_prop = p_med[0]
                 med_high_p_user = p_user_reports[0]
                 med_high_p_total = total_percent_matched_sideEffects[0]
-            
+
+                # find second best values
+                # second best value is the second index
+                if count[1] > count[2]:
+                    med_high_p_name_2 = commercial_name1[1]
+                    med_high_p_name2_2 = commercial_name2[1]
+                    med_high_p_pct_2 = percent_matched_sideEffects[1]
+                    med_high_p_prop_2 = p_med[1]
+                    med_high_p_user_2 = p_user_reports[1]
+                    med_high_p_total_2 = total_percent_matched_sideEffects[1]
+                
+                # at least third value is same as second value
+                elif count[1] == count[2]:
+                    index = 1
+                    for i in count[1:]:
+                        # find first value lower than max value
+                        if i < count[1]:
+                            #index = index - 1
+                            break
+                        
+                        # end of list reached = all values same
+                        elif index == len(count)-1:
+                            break
+                        
+                        index = index + 1
+
+                    # user reports for second best value
+                    max_user_reported_2 = float(0.00)
+                    for i in p_user_reports_calc[1:index+1]:
+                        if i != "None":
+                            float_i = float(i)
+                            if float_i > max_user_reported_2:
+                                max_user_reported_2 = i
+
+                    if max_user_reported_2 == float(0.00):
+                        max_user_reported_2 = "Any reported yet"
+
+                    if max_user_reported_2 != "Any reported yet":
+                        # Find index
+                        max_user_reported_index_2 = p_user_reports_calc[1:index+1].index(max_user_reported_2)
+                        
+                        #max_user_report = max_user_reported
+                        #max_user_report_index = p_user_reports[0:index].index(max_user_report)
+                        
+                        med_high_p_name_2 = commercial_name1[max_user_reported_index_2]
+                        med_high_p_name2_2 = commercial_name2[max_user_reported_index_2]
+                        med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2]
+                        med_high_p_prop_2 = p_med[max_user_reported_index_2]
+                        med_high_p_user_2 = p_user_reports[max_user_reported_index_2]
+                        med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2]
+                    
+                    # Lookup highest value of matched side effects compared to total
+                    # list of side effects from specific medicine
+                    else:
+
+                        max_p_total_calc_2 = max(total_matched_sideEffects[1:index+1])
+                        
+                        max_p_total_calc_index_2 = total_matched_sideEffects[1:index+1].index(max_p_total_calc_2)
+                        max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
+                        
+                        med_high_p_name_2 = commercial_name1[max_p_total_calc_index_2]
+                        med_high_p_name2_2 = commercial_name2[max_p_total_calc_index_2]
+                        med_high_p_pct_2 = percent_matched_sideEffects[max_p_total_calc_index_2]
+                        med_high_p_prop_2 = p_med[max_p_total_calc_index_2]
+                        med_high_p_user_2 = p_user_reports[max_p_total_calc_index_2]
+                        med_high_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
+
+            # At least the first two values are same
             elif count[0] == count[1]:
                 index = 0
                 for i in count:
                     # find first value lower than max value
                     if i < count[0]:
-                        #index = index - 1
                         break
                     
                     # end of list reached = all values same
                     elif index == len(count)-1:
-                        st.write(index)
                         break
                     
                     index = index + 1
 
-                st.write(index)
 
-                # user reports
+                # best value for user reports (combo)
                 max_user_reported = float(0.00)
+                sec_p_user_reports_calc = []
                 for i in p_user_reports_calc[0:index+1]:
+                    sec_p_user_reports_calc.append(i)
                     if i != "None":
                         float_i = float(i)
                         if float_i > max_user_reported:
                             max_user_reported = i
 
+                # second best value for user reports
+                sec_index = sec_p_user_reports_calc.index(max_user_reported)
+                sec_p_user_reports_calc.pop(sec_index)
+                max_user_reported_2 = float(0.00)
+                for i in sec_p_user_reports_calc:
+                    if i != "None":
+                        float_i = float(i)
+                        if float_i > max_user_reported_2:
+                            max_user_reported_2 = i
+                
+                
                 if max_user_reported == float(0.00):
                     max_user_reported = "Any reported yet"
 
@@ -372,11 +548,7 @@ class data4Analysis:
                 if max_user_reported != "Any reported yet":
                     # Find index of max_user_reported
                     max_user_reported_index = p_user_reports_calc[0:index+1].index(max_user_reported)
-                    # Find %-value for max. reported value
-                    #max_user_reported = p_user_reports[max_user_reported_index]
 
-                    #max_user_report = max_user_reported
-                    #max_user_report_index = p_user_reports[0:index].index(max_user_report)
                     med_high_p_name = commercial_name1[max_user_reported_index]
                     med_high_p_name2 = commercial_name2[max_user_reported_index]
                     med_high_p_pct = percent_matched_sideEffects[max_user_reported_index]
@@ -388,10 +560,9 @@ class data4Analysis:
                 # list of side effects from specific medicine
                 else:
                     max_p_total_calc = max(total_matched_sideEffects[0:index+1])
-                    st.write(max_p_total_calc)
                     max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
                     max_p_total = total_percent_matched_sideEffects[max_p_total_calc_index]
-                    st.write(max_p_total)
+
                     med_high_p_name = commercial_name1[max_p_total_calc_index]
                     med_high_p_name2 = commercial_name2[max_p_total_calc_index]
                     med_high_p_pct = percent_matched_sideEffects[max_p_total_calc_index]
@@ -399,6 +570,38 @@ class data4Analysis:
                     med_high_p_user = p_user_reports[max_p_total_calc_index]
                     med_high_p_total = total_percent_matched_sideEffects[max_p_total_calc_index]
 
+
+                # second best value user reporting vs. total
+                if max_user_reported_2 == float(0.00):
+                    max_user_reported_2 = "Any reported yet"
+
+                if max_user_reported_2 != "Any reported yet":
+                    # Find index
+                    max_user_reported_index_2 = p_user_reports_calc[0:index+1].index(max_user_reported_2)
+
+                    med_high_p_name_2 = commercial_name1[max_user_reported_index_2]
+                    med_high_p_name2_2 = commercial_name2[max_user_reported_index_2]
+                    med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2]
+                    med_high_p_prop_2 = p_med[max_user_reported_index_2]
+                    med_high_p_user_2 = p_user_reports[max_user_reported_index_2]
+                    med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2]
+                
+                # Lookup highest value of matched side effects compared to total
+                # list of side effects from specific medicine
+                else:
+                    sec_total_matched_sideEffects = total_matched_sideEffects.copy()
+                    sec_total_matched_sideEffects.pop(max_p_total_calc_index)
+                    max_p_total_calc_2 = max(sec_total_matched_sideEffects)
+                    
+                    max_p_total_calc_index_2 = total_matched_sideEffects[0:index+1].index(max_p_total_calc_2)
+                    max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index]
+                    
+                    med_high_p_name_2 = commercial_name1[max_p_total_calc_index_2]
+                    med_high_p_name2_2 = commercial_name2[max_p_total_calc_index_2]
+                    med_high_p_pct_2 = percent_matched_sideEffects[max_p_total_calc_index_2]
+                    med_high_p_prop_2 = p_med[max_p_total_calc_index_2]
+                    med_high_p_user_2 = p_user_reports[max_p_total_calc_index_2]
+                    med_high_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
 
             # dataframes
             df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
@@ -423,7 +626,7 @@ class data4Analysis:
 
         db.disconnect_postgres(db_connection, db_cur)
 
-        return concat_dfs, total_nr_meds_found, med_high_p_name, med_high_p_name2, med_high_p_pct, med_high_p_prop, med_high_p_user, med_high_p_total
+        return concat_dfs, total_nr_meds_found, med_high_p_name, med_high_p_name2, med_high_p_pct, med_high_p_prop, med_high_p_user, med_high_p_total, med_high_p_name_2, med_high_p_name2_2, med_high_p_pct_2, med_high_p_prop_2, med_high_p_user_2, med_high_p_total_2
         
 
     def lookup_avg_ratio_se_meds(self):
