@@ -137,9 +137,13 @@ class data4Analysis:
                 commercial_name.append(f"{row_i[0]}")
                 count.append(int(f"{row_i[1]}"))
                 percent_matched_sideEffects.append(f"{row_i[2]}")
+                st.write(row_i[3])
+                st.write(type(row_i[3]))
                 total_matched_sideEffects.append(float(f"{row_i[3]}"))
                 total_percent_matched_sideEffects.append(f"{row_i[4]}")
                 p_user_reports_calc.append(float(f"{row_i[5]}"))
+                st.write(row_i[5])
+                st.write(type(row_i[5]))
                 p_user_reports.append(f"{row_i[6]}")
 
             # Probability compared to all meds with at
