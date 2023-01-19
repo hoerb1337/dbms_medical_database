@@ -269,7 +269,7 @@ class data4Analysis:
                         float_i = float(i)
                         st.write(max_user_reported)
                         st.write(float_i)
-                        if float_i > max_user_reported:
+                        if float_i > float(max_user_reported):
                             max_user_reported = i
 
                 st.write(max_user_reported)
