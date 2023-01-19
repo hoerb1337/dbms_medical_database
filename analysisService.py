@@ -644,7 +644,7 @@ class data4Analysis:
                     max_p_total_calc = max(total_matched_sideEffects[0:index+1])
                     max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
                     sec_total_matched_sideEffects.pop(max_p_total_calc_index)
-                    max_p_total_calc_2 = max(sec_total_matched_sideEffects)
+                    max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index+1])
 
                     max_p_total_calc_index_2 = total_matched_sideEffects[0:index+1].index(max_p_total_calc_2)
                     max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
