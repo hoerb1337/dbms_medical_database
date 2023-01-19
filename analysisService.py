@@ -310,8 +310,7 @@ class data4Analysis:
                 max_user_reported_2 = float(0.00)
                 if max_user_reported != "Any reported yet":
                     sec_index = sec_p_user_reports_calc.index(max_user_reported)
-                    st.write(sec_index)
-                    st.write(sec_p_user_reports_calc)
+
                     sec_p_user_reports_calc.pop(sec_index)
                     st.write(sec_p_user_reports_calc)
                     #max_user_reported_2 = float(0.00)
@@ -325,11 +324,8 @@ class data4Analysis:
                 if max_user_reported_2 == float(0.00):
                     max_user_reported_2 = "Any reported yet"
 
-                    st.write(max_user_reported_2)
-
                 if max_user_reported_2 != "Any reported yet":
                     # Find index
-                    st.write(max_user_reported_2)
                     
                     max_user_reported_index_2 = sec_p_user_reports_calc.index(max_user_reported_2)
                     max_user_reported_index_2 = max_user_reported_index_2 + 1
@@ -362,9 +358,9 @@ class data4Analysis:
                     med_high_p_user_2 = p_user_reports[max_p_total_calc_index_2]
                     med_high_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
 
-                st.write(med_high_p_user)
-                st.write(med_high_p_user_2)
-                st.write(med_high_p_total < med_high_p_total_2)
+                # In case both values for reporting are same.
+                # Check for higher total_p value
+                # if second value is higher, exchange boths results
                 if med_high_p_user == med_high_p_user_2:
                     if med_high_p_total < med_high_p_total_2:
 
