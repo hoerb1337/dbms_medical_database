@@ -343,10 +343,11 @@ class data4Analysis:
                     sec_total_matched_sideEffects.pop(max_p_total_calc_index)
                     max_p_total_calc_2 = max(sec_total_matched_sideEffects)
                     st.write(max_p_total_calc_2)
-                    st.write(total_matched_sideEffects[0:index+1])
+                    st.write(total_matched_sideEffects)
                     st.write(sec_total_matched_sideEffects)
-                    max_p_total_calc_index_2 = total_matched_sideEffects[0:index+1].index(max_p_total_calc_2)
-                    max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index]
+
+                    max_p_total_calc_index_2 = total_matched_sideEffects.index(max_p_total_calc_2)
+                    max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
                     
                     med_high_p_name_2 = commercial_name[max_p_total_calc_index_2]
                     med_high_p_name2_2 = None
