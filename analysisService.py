@@ -329,8 +329,9 @@ class data4Analysis:
 
                 if max_user_reported_2 != "Any reported yet":
                     # Find index
-                    max_user_reported_index_2 = p_user_reports_calc.index(max_user_reported_2)
-
+                    st.write(max_user_reported_2)
+                    max_user_reported_index_2 = sec_p_user_reports_calc.index(max_user_reported_2)
+                    max_user_reported_index_2 = max_user_reported_index_2 + 1
                     med_high_p_name_2 = commercial_name[max_user_reported_index_2]
                     med_high_p_name2_2 = None
                     med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2]
