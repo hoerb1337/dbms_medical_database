@@ -267,8 +267,6 @@ class data4Analysis:
                     sec_p_user_reports_calc.append(i)
                     if i != "None":
                         float_i = float(i)
-                        st.write(max_user_reported)
-                        st.write(float_i)
                         if float_i > float(max_user_reported):
                             max_user_reported = i
 
@@ -312,7 +310,6 @@ class data4Analysis:
                     sec_index = sec_p_user_reports_calc.index(max_user_reported)
 
                     sec_p_user_reports_calc.pop(sec_index)
-                    st.write(sec_p_user_reports_calc)
                     #max_user_reported_2 = float(0.00)
                     for i in sec_p_user_reports_calc:
                         if i != "None":
@@ -344,9 +341,6 @@ class data4Analysis:
                     max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
                     sec_total_matched_sideEffects.pop(max_p_total_calc_index)
                     max_p_total_calc_2 = max(sec_total_matched_sideEffects)
-                    st.write(max_p_total_calc_2)
-                    st.write(total_matched_sideEffects)
-                    st.write(sec_total_matched_sideEffects)
 
                     max_p_total_calc_index_2 = total_matched_sideEffects.index(max_p_total_calc_2)
                     max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
