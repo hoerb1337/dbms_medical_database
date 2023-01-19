@@ -482,7 +482,8 @@ class data4Analysis:
                         break
                     
                     # end of list reached = all values same
-                    elif index == len(count)+1:
+                    elif index == len(count)-1:
+                        index = len(count)-1
                         break
                     
                     index = index + 1
