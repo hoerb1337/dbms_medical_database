@@ -338,6 +338,8 @@ class data4Analysis:
                 # list of side effects from specific medicine
                 else:
                     sec_total_matched_sideEffects = total_matched_sideEffects.copy()
+                    max_p_total_calc = max(total_matched_sideEffects[0:index+1])
+                    max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
                     sec_total_matched_sideEffects.pop(max_p_total_calc_index)
                     max_p_total_calc_2 = max(sec_total_matched_sideEffects)
                     
