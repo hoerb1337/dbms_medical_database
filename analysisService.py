@@ -366,7 +366,7 @@ class data4Analysis:
                 st.write(med_high_p_user_2)
                 st.write(med_high_p_total < med_high_p_total_2)
                 if med_high_p_user == med_high_p_user_2:
-                    if med_high_p_total < med_high_p_total_2:
+                    if med_high_p_total >= med_high_p_total_2:
 
                         med_high_p_name = commercial_name[max_user_reported_index_2]
                         med_high_p_name2 = None
