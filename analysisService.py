@@ -315,20 +315,20 @@ class data4Analysis:
                             if float_i > max_user_reported_2:
                                 max_user_reported_2 = i
 
-                # second best value user reporting vs. total
-                if max_user_reported_2 == float(0.00):
-                    max_user_reported_2 = "Any reported yet"
+                    # second best value user reporting vs. total
+                    if max_user_reported_2 == float(0.00):
+                        max_user_reported_2 = "Any reported yet"
 
-                if max_user_reported_2 != "Any reported yet":
-                    # Find index
-                    max_user_reported_index_2 = p_user_reports_calc[0:index+1].index(max_user_reported_2)
+                    if max_user_reported_2 != "Any reported yet":
+                        # Find index
+                        max_user_reported_index_2 = p_user_reports_calc[0:index+1].index(max_user_reported_2)
 
-                    med_high_p_name_2 = commercial_name[max_user_reported_index_2]
-                    med_high_p_name2_2 = None
-                    med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2]
-                    med_high_p_prop_2 = p_med[max_user_reported_index_2]
-                    med_high_p_user_2 = p_user_reports[max_user_reported_index_2]
-                    med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2]
+                        med_high_p_name_2 = commercial_name[max_user_reported_index_2]
+                        med_high_p_name2_2 = None
+                        med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2]
+                        med_high_p_prop_2 = p_med[max_user_reported_index_2]
+                        med_high_p_user_2 = p_user_reports[max_user_reported_index_2]
+                        med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2]
                 
                 # Lookup highest value of matched side effects compared to total
                 # list of side effects from specific medicine
