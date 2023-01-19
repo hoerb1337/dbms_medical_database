@@ -340,112 +340,22 @@ class data4Analysis:
                 # query: calcualte nr of matched side effects per medicine combination
                 query = "select left_table.med_name1, left_table.med_name2, left_table.nr_matched_se, left_table.per_matched_se, left_table.to_per_matched_se, user_reports_combo.sum_user_reports from (select cm.m0_commercial_name as med_name1, cm.m1_commercial_name as med_name2, cm.nr_matched_se as nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ")*100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se)*100, 'fm990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and (" + sideEffects4query + ") group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name)left_table left join (select user_reports2.med_name1 as med_name1, user_reports2.med_name2 as med_name2, to_char((user_reports2.nr_reported/sum_user_reports.sum_user)* 100, 'fm900D00%') as sum_user_reports from (select sum(user_reports.nr_reported) as sum_user from (select commercial_name1 as med_name1, commercial_name2 as med_name2, count(*) as nr_reported from dbms.combo_side_effects_reported group by med_name1, med_name2)user_reports)sum_user_reports, (select commercial_name1 as med_name1, commercial_name2 as med_name2, count(*) as nr_reported from dbms.combo_side_effects_reported group by med_name1, med_name2)user_reports2)user_reports_combo on left_table.med_name1 = user_reports_combo.med_name1 and left_table.med_name2 = user_reports_combo.med_name2 order by left_table.nr_matched_se desc"
                 
-                # query = "select cm.m0_commercial_name, cm.m1_commercial_name, cm.nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ")*100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se)*100, 'fm990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and (" + sideEffects4query + ") group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name order by cm.nr_matched_se desc"
-                
-                #query = "select m0.commercial_name, m1.commercial_name, count(*) from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and (" + sideEffects4query + ") group by m0.commercial_name, m1.commercial_name order by count(*) desc;"
 
                 db_cur.execute(query)
 
                 query_result = db_cur.fetchall()
 
-                #commercial_name1 = []
-                #commercial_name2 = []
-                #count = []
-                #percent_matched_sideEffects = []
-                #total_percent_matched_sideEffects = []
-                #p_user_reports = []
-                
-                #for row_i in query_result:
-                    #commercial_name1.append(f"{row_i[0]}")
-                    #commercial_name2.append(f"{row_i[1]}")
-                    #count.append(int(f"{row_i[2]}"))
-                    #percent_matched_sideEffects.append(f"{row_i[3]}")
-                    #total_percent_matched_sideEffects.append(f"{row_i[4]}")
-                    #p_user_reports.append(f"{row_i[5]}")
 
-                # Probability compared to all meds with at
-                # least one matched side effect
-                #sum_count = sum(count)
-                #nr_rows = len(count)
-                #p_med = []
-                #for i in range(nr_rows):
-                    #p = count[i]/sum_count
-                    #p_med.append("{0:0.2f}%".format(p * 100))
-
-                # dataframes
-                #df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
-                #df1 = pd.DataFrame(data=df1_definition_names)
-                #df2_definition_names = {'Commercial Name Medicine 2': commercial_name2}
-                #df2 = pd.DataFrame(data=df2_definition_names)
-                #df3_definition_names = {'Number of side effects matched': count}
-                #df3 = pd.DataFrame(data=df3_definition_names)
-                #df4_definition_names = {'Nr. of side effects matched/\nnr. selected side effects': percent_matched_sideEffects}
-                #df4 = pd.DataFrame(data=df4_definition_names)
-                #df5_definition_names = {'Nr. of side effects matched/\nnr. reported side effects': total_percent_matched_sideEffects}
-                #df5 = pd.DataFrame(data=df5_definition_names)
-                #df6_definition_names = {'Probability of all meds with at least one matched side effect': p_med}
-                #df6 = pd.DataFrame(data=df6_definition_names)
-                #df7_definition_names = {'Probability of med based on user reports': p_user_reports}
-                #df7 = pd.DataFrame(data=df7_definition_names)
-
-                #concat_dfs = pd.concat([df1, df2, df3, df4, df6, df7, df5], ignore_index=False, axis=1)
-                    
-                #return concat_dfs, commercial_name, count, percent_matched_sideEffects, total_percent_matched_sideEffects, p_user_reports
-            
             elif nr_sideEffects == 1:
                 
-                #db_cur.execute("""select m0.commercial_name, count(*) from dbms.medicines m0, dbms.medicines_combo mm where m0.stitch = mm.stitch and mm.individual_side_effect = %(side_effect)s group by m0.commercial_name order by count(*) desc;""", {'side_effect': selected_sideEffects_id[0]})
                 query = "select left_table.med_name1, left_table.med_name2, left_table.nr_matched_se, left_table.per_matched_se, left_table.to_per_matched_se, user_reports_combo.sum_user_reports from (select cm.m0_commercial_name as med_name1, cm.m1_commercial_name as med_name2, cm.nr_matched_se as nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ")*100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se)*100, 'fm990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and mc.polypharmacy_side_effect = '" + selected_sideEffects_id[0] + "' group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name)left_table left join (select user_reports2.med_name1 as med_name1, user_reports2.med_name2 as med_name2, to_char((user_reports2.nr_reported/sum_user_reports.sum_user)* 100, 'fm900D00%') as sum_user_reports from (select sum(user_reports.nr_reported) as sum_user from (select commercial_name1 as med_name1, commercial_name2 as med_name2, count(*) as nr_reported from dbms.combo_side_effects_reported group by med_name1, med_name2)user_reports)sum_user_reports, (select commercial_name1 as med_name1, commercial_name2 as med_name2, count(*) as nr_reported from dbms.combo_side_effects_reported group by med_name1, med_name2)user_reports2)user_reports_combo on left_table.med_name1 = user_reports_combo.med_name1 and left_table.med_name2 = user_reports_combo.med_name2 order by left_table.nr_matched_se desc"
-                #query = "select cm.m0_commercial_name, cm.m1_commercial_name, cm.nr_matched_se, to_char((cm.nr_matched_se::float/" + str(nr_sideEffects) + ") * 100, 'fm900D00%') as per_matched_se, to_char((cm.nr_matched_se::float/nr.to_nr_matched_se) * 100, '990D00%') as to_per_matched_se from (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 and mc.polypharmacy_side_effect = '" + selected_sideEffects_id[0] + "' group by m0.commercial_name, m1.commercial_name order by count(*) desc)cm, (select m0.commercial_name as m0_commercial_name, m1.commercial_name as m1_commercial_name, count(*) as to_nr_matched_se from dbms.medicines m0, dbms.medicines m1, dbms.medicines_combo mc where m0.stitch = mc.stitch1 and m1.stitch = mc.stitch2 group by m0.commercial_name, m1.commercial_name)nr where cm.m0_commercial_name = nr.m0_commercial_name and cm.m1_commercial_name = nr.m1_commercial_name order by cm.nr_matched_se desc"
+                
 
                 db_cur.execute(query)
 
                 query_result = db_cur.fetchall()
 
-                #commercial_name1 = []
-                #commercial_name2 = []
-                #count = []
-                #percent_matched_sideEffects = []
-                #total_percent_matched_sideEffects = []
-                #p_user_reports = []
-                #for row_i in query_result:
-                    #commercial_name1.append(f"{row_i[0]}")
-                    #commercial_name2.append(f"{row_i[1]}")
-                    #count.append(int(f"{row_i[2]}"))
-                    #percent_matched_sideEffects.append(f"{row_i[3]}")
-                    #total_percent_matched_sideEffects.append(f"{row_i[4]}")
-                    #p_user_reports.append(f"{row_i[5]}")
-
-                # Probability compared to all meds with at
-                # least one matched side effect
-                #sum_count = sum(count)
-                #nr_rows = len(count)
-                #p_med = []
-                #for i in range(nr_rows):
-                    #p = count[i]/sum_count
-                    #p_med.append("{0:0.2f}%".format(p * 100))
-
-                # Dataframes
-                #df1_definition_names = {'Commercial Name Medicine 1': commercial_name1}
-                #df1 = pd.DataFrame(data=df1_definition_names)
-                #df2_definition_names = {'Commercial Name Medicine 2': commercial_name2}
-                #df2 = pd.DataFrame(data=df2_definition_names)
-                #df3_definition_names = {'Number of side effects matched': count}
-                #df3 = pd.DataFrame(data=df3_definition_names)
-                #df4_definition_names = {'Nr. of side effects matched/\nnr. selected side effects': percent_matched_sideEffects}
-                #df4 = pd.DataFrame(data=df4_definition_names)
-                #df5_definition_names = {'Nr. of side effects matched/\nnr. reported side effects': total_percent_matched_sideEffects}
-                #df5 = pd.DataFrame(data=df5_definition_names)
-                #df6_definition_names = {'Probability of all meds with at least one matched side effect': p_med}
-                #df6 = pd.DataFrame(data=df6_definition_names)
-                #df7_definition_names = {'Probability of med based on user reports': p_user_reports}
-                #df7 = pd.DataFrame(data=df7_definition_names)
-
-                #concat_dfs = pd.concat([df1, df2, df3, df4, df6, df7, df5], ignore_index=False, axis=1)
-                    
-                #return concat_dfs, commercial_name, count, percent_matched_sideEffects, total_percent_matched_sideEffects, p_user_reports
-
-
+            # Processing query results from =1 side effects and >1 side effects
             commercial_name1 = []
             commercial_name2 = []
             count = []
@@ -503,6 +413,8 @@ class data4Analysis:
                     
                     index = index + 1
 
+                st.write(index)
+                
                 # user reports
                 max_user_reported = "0.00%"
                 for i in p_user_reports[0:index]:
