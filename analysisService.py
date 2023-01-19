@@ -463,8 +463,16 @@ class data4Analysis:
 
 
             # Algo for the most likely medicines in combination....
+            # Only one medicine with selected side effects
+            if len(count) < 2:
+                med_high_p_name = commercial_name1[0]
+                med_high_p_name2 = commercial_name2[0]
+                med_high_p_pct = percent_matched_sideEffects[0]
+                med_high_p_prop = p_med[0]
+                med_high_p_user = p_user_reports[0]
+                med_high_p_total = total_percent_matched_sideEffects[0]
             # first value is uniquely highest
-            if count[0] > count[1]:
+            elif count[0] > count[1]:
                 med_high_p_name = commercial_name1[0]
                 med_high_p_name2 = commercial_name2[0]
                 med_high_p_pct = percent_matched_sideEffects[0]
