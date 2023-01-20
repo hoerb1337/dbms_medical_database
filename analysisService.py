@@ -304,9 +304,10 @@ class data4Analysis:
 
 
                 # second best value for user reports
+                st.write("2nd best value")
                 st.write(max_user_reported)
                 max_user_reported_2 = float(0.00)
-                if max_user_reported != float(0.00):#"Any reported yet":
+                if max_user_reported != "Any reported yet":
                     sec_index = sec_p_user_reports_calc.index(max_user_reported)
 
                     sec_p_user_reports_calc.pop(sec_index)
@@ -619,7 +620,7 @@ class data4Analysis:
                 # Lookup highest value of matched side effects compared to total
                 # list of side effects from specific medicine
                 else:
-
+                    st.write("best value")
                     max_p_total_calc = max(total_matched_sideEffects[0:index+1])
                     
                     max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
@@ -634,7 +635,7 @@ class data4Analysis:
 
 
                 # second best value for user reports
-                
+                st.write("2nd best value")
                 max_user_reported_2 = float(0.00)
                 if max_user_reported != "Any reported yet":
                     sec_index = sec_p_user_reports_calc.index(max_user_reported)
