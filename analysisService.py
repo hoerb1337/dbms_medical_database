@@ -795,7 +795,7 @@ class data4Analysis:
                 # In case both values for reporting are same.
                 # Check for higher total_p value
                 # if second value is higher, exchange boths results
-                st.write(med_high_p_total)
+                st.write(type(med_high_p_total))
                 st.write(med_high_p_total_2)
 
                 #st.write(max_user_reported_index)
