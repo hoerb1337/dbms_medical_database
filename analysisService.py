@@ -671,22 +671,23 @@ class data4Analysis:
                     sec_total_matched_sideEffects = total_matched_sideEffects.copy()
                     st.write(sec_total_matched_sideEffects)
                     # value best value
-                    max_p_total_calc = max(total_matched_sideEffects[0:index+1])
-                    st.write(max_p_total_calc)
+                    max1_p_total_calc = max(sec_total_matched_sideEffects[0:index+1])
+                    st.write(max1_p_total_calc)
                     # index best value
-                    max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
-                    st.write(max_p_total_calc_index)
+                    max1_p_total_calc_index = sec_total_matched_sideEffects[0:index+1].index(max1_p_total_calc)
+                    st.write(max1_p_total_calc_index)
                     # delete best value
                     
-                    a = sec_total_matched_sideEffects[0:index+1].pop(max_p_total_calc_index)
-                    st.write(a)
+                    sec_total_matched_sideEffects[0:index+1].pop(max1_p_total_calc_index)
+                    st.write(sec_total_matched_sideEffects[0:index+1])
                     # find 2nd best value
-                    max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index])
+                    max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index+1])
                     st.write(max_p_total_calc_2)
                     # find index 2nd best value in original list
-                    max_p_total_calc_index_2 = total_matched_sideEffects[0:index+1].index(max_p_total_calc_2)
+                    max_p_total_calc_index_2 = sec_total_matched_sideEffects[0:index+1].index(max_p_total_calc_2)
+                    #max_p_total_calc_index_2 = total_matched_sideEffects[0:index+1].index(max_p_total_calc_2)
                     st.write(max_p_total_calc_index_2)
-                    #max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
+                    max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
                     
                     med_high_p_name_2 = commercial_name1[max_p_total_calc_index_2]
                     med_high_p_name2_2 = commercial_name2[max_p_total_calc_index_2]
