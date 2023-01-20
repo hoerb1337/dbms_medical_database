@@ -306,7 +306,7 @@ class data4Analysis:
                 # second best value for user reports
                 st.write(max_user_reported)
                 max_user_reported_2 = float(0.00)
-                if max_user_reported != "Any reported yet":
+                if max_user_reported != float(0.00):#"Any reported yet":
                     sec_index = sec_p_user_reports_calc.index(max_user_reported)
 
                     sec_p_user_reports_calc.pop(sec_index)
