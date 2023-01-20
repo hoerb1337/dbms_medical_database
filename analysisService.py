@@ -685,16 +685,25 @@ class data4Analysis:
                 if max_user_reported_2 == float(0.00):
                     max_user_reported_2 = "Any reported yet"
 
-
-                if max_user_reported_2 != "Any reported yet":
+                # first and second best value in reporting does exist
+                if (max_user_reported != "Any reported yet") and (max_user_reported_2 != "Any reported yet"):
+                    # Find index
                     max_user_reported_index_2 = sec_p_user_reports_calc.index(max_user_reported_2)
-                    max_user_reported_index_2 = max_user_reported_index_2 + 1
-                    med_high_p_name_2 = commercial_name1[max_user_reported_index_2]
-                    med_high_p_name2_2 = commercial_name2[max_user_reported_index_2]
-                    med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2]
-                    med_high_p_prop_2 = p_med[max_user_reported_index_2]
-                    med_high_p_user_2 = p_user_reports[max_user_reported_index_2]
-                    med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2]
+                    
+                    if max_user_reported_index_2 < sec_index:
+                        med_high_p_name_2 = commercial_name1[max_user_reported_index_2]
+                        med_high_p_name2_2 = commercial_name2[max_user_reported_index_2]
+                        med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2]
+                        med_high_p_prop_2 = p_med[max_user_reported_index_2]
+                        med_high_p_user_2 = p_user_reports[max_user_reported_index_2]
+                        med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2]
+                    else:
+                        med_high_p_name_2 = commercial_name1[max_user_reported_index_2+1]
+                        med_high_p_name2_2 = commercial_name2[max_user_reported_index_2+1]
+                        med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2+1]
+                        med_high_p_prop_2 = p_med[max_user_reported_index_2+1]
+                        med_high_p_user_2 = p_user_reports[max_user_reported_index_2+1]
+                        med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2+1]
                 
 
                 # Lookup second highest value of matched side effects compared to total
