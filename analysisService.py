@@ -715,6 +715,24 @@ class data4Analysis:
                         med_high_p_user_2 = p_user_reports[max_user_reported_index_2+1]
                         med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2+1]
                 
+                    if med_high_p_user == med_high_p_user_2:
+                        
+                        #st.write(max_user_reported_index)
+                        if med_high_p_total < med_high_p_total_2:
+
+                            med_high_p_name = commercial_name1[max_user_reported_index_2]
+                            med_high_p_name2 = commercial_name2[max_user_reported_index_2]
+                            med_high_p_pct = percent_matched_sideEffects[max_user_reported_index_2]
+                            med_high_p_prop = p_med[max_user_reported_index_2]
+                            med_high_p_user = p_user_reports[max_user_reported_index_2]
+                            med_high_p_total = total_percent_matched_sideEffects[max_user_reported_index_2]
+
+                            med_high_p_name_2 = commercial_name1[max_user_reported_index]
+                            med_high_p_name2_2 = commercial_name2[max_user_reported_index]
+                            med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index]
+                            med_high_p_prop_2 = p_med[max_user_reported_index]
+                            med_high_p_user_2 = p_user_reports[max_user_reported_index]
+                            med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index]
 
                 # Lookup second highest value of matched side effects compared to total
                 # list of side effects from specific medicine
@@ -795,13 +813,12 @@ class data4Analysis:
                 # In case both values for reporting are same.
                 # Check for higher total_p value
                 # if second value is higher, exchange boths results
-                
+                st.write(med_high_p_total)
+                st.write(med_high_p_total_2)
+
                 st.write(max_user_reported_index)
                 st.write(max_user_reported_index_2)
 
-                st.write(med_high_p_total)
-                st.write(med_high_p_total_2)
-                
                 if med_high_p_user == med_high_p_user_2:
                     
                     #st.write(max_user_reported_index)
