@@ -637,6 +637,7 @@ class data4Analysis:
                 # second best value for user reports
                 st.write("2nd best value")
                 max_user_reported_2 = float(0.00)
+                st.write(max_user_reported)
                 if max_user_reported != "Any reported yet":
                     sec_index = sec_p_user_reports_calc.index(max_user_reported)
 
@@ -652,9 +653,8 @@ class data4Analysis:
                 if max_user_reported_2 == float(0.00):
                     max_user_reported_2 = "Any reported yet"
 
+
                 if max_user_reported_2 != "Any reported yet":
-                    # Find index
-                    
                     max_user_reported_index_2 = sec_p_user_reports_calc.index(max_user_reported_2)
                     max_user_reported_index_2 = max_user_reported_index_2 + 1
                     med_high_p_name_2 = commercial_name1[max_user_reported_index_2]
