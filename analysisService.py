@@ -224,12 +224,12 @@ class data4Analysis:
                         #max_user_report = max_user_reported
                         #max_user_report_index = p_user_reports[0:index].index(max_user_report)
                         
-                        med_high_p_name_2 = commercial_name[max_user_reported_index_2]
+                        med_high_p_name_2 = commercial_name[max_user_reported_index_2+1]
                         med_high_p_name2_2 = None
-                        med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2]
-                        med_high_p_prop_2 = p_med[max_user_reported_index_2]
-                        med_high_p_user_2 = p_user_reports[max_user_reported_index_2]
-                        med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2]
+                        med_high_p_pct_2 = percent_matched_sideEffects[max_user_reported_index_2+1]
+                        med_high_p_prop_2 = p_med[max_user_reported_index_2+1]
+                        med_high_p_user_2 = p_user_reports[max_user_reported_index_2+1]
+                        med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2+1]
                     
                     # Lookup highest value of matched side effects compared to total
                     # list of side effects from specific medicine
