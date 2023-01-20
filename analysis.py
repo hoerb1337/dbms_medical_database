@@ -19,11 +19,11 @@ class render_tab2:
                     <ol>
                     <li>Choose whether you are taking medicines in combination.</li>
                     <li>Select your own set of felt side effect symptoms from medicines you are taking.</li>
-                    <li>We find for you the closest prediction of medicine that you could have taken.</li>
+                    <li>We find for you the closest prediction of medicines that you could have taken.</li>
                     </ol>
                     <p>More details on how we perform the predicition is provided with the results.</p>
                     <p>Hint: Since the number of side effects per medicine is high (>100),
-                    the prediction becomes better with higher number of selected side effects.</p>
+                    the prediction becomes naturally more precise with higher number of selected side effects.</p>
                     </div>
                     """
                     
@@ -79,6 +79,9 @@ class render_tab2:
         if nr_sideEffects < 1:
             st.warning("Please choose at least one side effect symptom.")
 
+        if combo == "True":
+                st.warning("Notice: The processesing of reverse lookup may take few moments given the large amount of data.")
+
         return selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo, selected_sideEffects
     
     
@@ -106,9 +109,10 @@ class render_tab2:
             btn_lookup_meds = st.button(label="Lookup potential medicines")
         
             callAnalysisBackend = analysisService.data4Analysis()
-        
+            
             # If button clicked:
             if btn_lookup_meds:
+                
                 # Start reverse lookup and get results as dataframe
                 df, total_nr_meds_found, med_high_p_name, med_high_p_name2, med_high_p_pct, med_high_p_prop, med_high_p_user, med_high_p_total, med_high_p_name_2, med_high_p_name2_2, med_high_p_pct_2, med_high_p_prop_2, med_high_p_user_2, med_high_p_total_2 = callAnalysisBackend.do_reverse_lookup(selected_sideEffects_name, selected_sideEffects_id,nr_sideEffects,combo)
                 
