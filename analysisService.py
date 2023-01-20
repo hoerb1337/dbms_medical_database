@@ -715,7 +715,11 @@ class data4Analysis:
                         med_high_p_user_2 = p_user_reports[max_user_reported_index_2+1]
                         med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2+1]
                 
-                    if med_high_p_user == med_high_p_user_2:
+                    med_high_p_user_float = float(med_high_p_user[:-1:])
+                    med_high_p_user_2_float = float(med_high_p_user_2[:-1:])
+                    st.write(med_high_p_user_float)
+                    st.write(med_high_p_user_2_float)
+                    if med_high_p_user_float == med_high_p_user_2_float:
                         
                         #st.write(max_user_reported_index)
                         if med_high_p_total < med_high_p_total_2:
