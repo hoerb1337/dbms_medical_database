@@ -80,7 +80,7 @@ class render_tab2:
             st.warning("Please choose at least one side effect symptom.")
 
         if combo == "True":
-                st.warning("Notice: The processesing of reverse lookup may take few moments given the large amount of data.")
+            st.warning("Notice: The processesing of reverse lookup may take few moments given the large amount of data.")
 
         return selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo, selected_sideEffects
     
@@ -124,7 +124,7 @@ class render_tab2:
                 # Show metrics
                 col1, col2, col3 = st.columns(3, gap="large")
                     
-                # KPI1
+                # KPI col1
                 with col1:
                     tooltip_kpi1 = """
                                     <div class="tooltip"> Closest Predicted Medicine (1) <img src="https://static.vecteezy.com/system/resources/previews/000/442/530/original/information-vector-icon.jpg" width="15px" height="15px">
@@ -136,7 +136,9 @@ class render_tab2:
                                     """
                     
                     st.markdown(tooltip_kpi1, unsafe_allow_html=True)
+                    # best meds
                     st.subheader(med_high_p_name)
+                    # 2nd best meds
                     st.write(med_high_p_name_2)
                     
                     if combo == "True":
