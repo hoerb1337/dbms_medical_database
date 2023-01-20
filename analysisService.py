@@ -374,6 +374,7 @@ class data4Analysis:
 
                 elif (max_user_reported != "Any reported yet") and (max_user_reported_2 == "Any reported yet"):
                     st.write("2nd best total p2")
+                    st.write(total_matched_sideEffects)
                     sec_total_matched_sideEffects = total_matched_sideEffects.copy()
                     
                     sec_total_matched_sideEffects.pop(sec_index)
