@@ -261,7 +261,8 @@ class data4Analysis:
                         break
                     
                     index = index + 1
-
+                
+                st.write(index)
                 # best value for user reports
                 max_user_reported = float(0.00)
                 sec_p_user_reports_calc = []
