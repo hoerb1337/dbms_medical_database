@@ -212,6 +212,8 @@ class data4Analysis:
                             if float_i > max_user_reported_2:
                                 max_user_reported_2 = i
 
+                    st.write(max_user_reported_2)
+
                     if max_user_reported_2 == float(0.00):
                         max_user_reported_2 = "Any reported yet"
 
