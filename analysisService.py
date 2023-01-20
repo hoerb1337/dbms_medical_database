@@ -293,9 +293,9 @@ class data4Analysis:
                 # list of side effects from specific medicine
                 else:
                     st.write("best value")
-                    max_p_total_calc = max(total_matched_sideEffects[0:index+1])
+                    max_p_total_calc = max(total_matched_sideEffects[0:index])
                     
-                    max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
+                    max_p_total_calc_index = total_matched_sideEffects[0:index].index(max_p_total_calc)
                     max_p_total = total_percent_matched_sideEffects[max_p_total_calc_index]
                     
                     med_high_p_name = commercial_name[max_p_total_calc_index]
