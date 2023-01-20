@@ -79,7 +79,7 @@ class render_tab2:
         if nr_sideEffects < 1:
             st.warning("Please choose at least one side effect symptom.")
 
-        if combo == "True":
+        if nr_sideEffects>1 and combo == "True":
             st.warning("Notice: The processesing of reverse lookup may take few moments given the large amount of data.")
 
         return selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo, selected_sideEffects
