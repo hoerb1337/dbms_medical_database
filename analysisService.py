@@ -219,7 +219,7 @@ class data4Analysis:
 
                     if max_user_reported_2 != "Any reported yet":
                         # Find index
-                        max_user_reported_index_2 = p_user_reports_calc[1:index+1].index(max_user_reported_2)
+                        max_user_reported_index_2 = p_user_reports_calc[1:index].index(max_user_reported_2)
                         st.write(max_user_reported_index_2)
                         #max_user_report = max_user_reported
                         #max_user_report_index = p_user_reports[0:index].index(max_user_report)
@@ -280,7 +280,7 @@ class data4Analysis:
 
                 if max_user_reported != "Any reported yet":
                     # Find index
-                    max_user_reported_index = p_user_reports_calc[0:index+1].index(max_user_reported)
+                    max_user_reported_index = p_user_reports_calc[0:index].index(max_user_reported)
 
                     med_high_p_name = commercial_name[max_user_reported_index]
                     med_high_p_name2 = None
@@ -655,6 +655,7 @@ class data4Analysis:
                     
                     index = index + 1
 
+                st.write(index)
                 # best value for user reports
                 max_user_reported = float(0.00)
                 sec_p_user_reports_calc = []
@@ -672,7 +673,7 @@ class data4Analysis:
 
                 if max_user_reported != "Any reported yet":
                     # Find index
-                    max_user_reported_index = p_user_reports_calc[0:index+1].index(max_user_reported)
+                    max_user_reported_index = p_user_reports_calc[0:index].index(max_user_reported)
 
                     med_high_p_name = commercial_name1[max_user_reported_index]
                     med_high_p_name2 = commercial_name2[max_user_reported_index]
