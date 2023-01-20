@@ -677,9 +677,9 @@ class data4Analysis:
                     max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
                     st.write(max_p_total_calc_index)
                     # delete best value
-                    st.write(index)
-                    sec_total_matched_sideEffects[0:index+1].pop(max_p_total_calc_index)
-                    st.write(sec_total_matched_sideEffects)
+                    
+                    a = sec_total_matched_sideEffects[0:index+1].pop(max_p_total_calc_index)
+                    st.write(a)
                     # find 2nd best value
                     max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index])
                     st.write(max_p_total_calc_2)
