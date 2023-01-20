@@ -382,7 +382,7 @@ class data4Analysis:
                     max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index+1])
                     st.write(max_p_total_calc_2)
                     # find index 2nd best value in original list
-                    max_p_total_calc_index_2 = sec_total_matched_sideEffects[0:index+1].index(max_p_total_calc_2)
+                    max_p_total_calc_index_2 = sec_total_matched_sideEffects[0:index].index(max_p_total_calc_2)
                     #max_p_total_calc_index_2 = total_matched_sideEffects[0:index+1].index(max_p_total_calc_2)
                     st.write(max_p_total_calc_index_2)
                     max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2+1]
@@ -679,7 +679,7 @@ class data4Analysis:
                     med_high_p_user_2 = p_user_reports[max_user_reported_index_2]
                     med_high_p_total_2 = total_percent_matched_sideEffects[max_user_reported_index_2]
                 
-                
+
                 # Lookup second highest value of matched side effects compared to total
                 # list of side effects from specific medicine
                 
