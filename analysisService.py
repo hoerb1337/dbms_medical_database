@@ -642,7 +642,7 @@ class data4Analysis:
                     sec_index = sec_p_user_reports_calc.index(max_user_reported)
 
                     sec_p_user_reports_calc.pop(sec_index)
-                    #max_user_reported_2 = float(0.00)
+
                     for i in sec_p_user_reports_calc:
                         if i != "None":
                             float_i = float(i)
@@ -667,6 +667,7 @@ class data4Analysis:
                 # Lookup second highest value of matched side effects compared to total
                 # list of side effects from specific medicine
                 else:
+                    st.write("2nd best total p")
                     sec_total_matched_sideEffects = total_matched_sideEffects.copy()
                     max_p_total_calc = max(total_matched_sideEffects[0:index+1])
                     max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
