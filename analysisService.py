@@ -796,6 +796,8 @@ class data4Analysis:
                 # Check for higher total_p value
                 # if second value is higher, exchange boths results
                 if med_high_p_user == med_high_p_user_2:
+                    st.write(max_user_reported_index_2)
+                    st.write(max_user_reported_index)
                     if med_high_p_total < med_high_p_total_2:
 
                         med_high_p_name = commercial_name1[max_user_reported_index_2]
