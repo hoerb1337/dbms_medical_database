@@ -744,15 +744,15 @@ class data4Analysis:
                     max_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2+1]
                     
                     if max_p_total_calc_index_2 < max1_p_total_calc_index:
-                        med_high_p_name_2 = commercial_name[max_p_total_calc_index_2]
-                        med_high_p_name2_2 = None
+                        med_high_p_name_2 = commercial_name1[max_p_total_calc_index_2]
+                        med_high_p_name2_2 = commercial_name2[max_p_total_calc_index_2]
                         med_high_p_pct_2 = percent_matched_sideEffects[max_p_total_calc_index_2]
                         med_high_p_prop_2 = p_med[max_p_total_calc_index_2]
                         med_high_p_user_2 = p_user_reports[max_p_total_calc_index_2]
                         med_high_p_total_2 = total_percent_matched_sideEffects[max_p_total_calc_index_2]
                     else:
-                        med_high_p_name_2 = commercial_name[max_p_total_calc_index_2+1]
-                        med_high_p_name2_2 = None
+                        med_high_p_name_2 = commercial_name1[max_p_total_calc_index_2+1]
+                        med_high_p_name2_2 = commercial_name2[max_p_total_calc_index_2+1]
                         med_high_p_pct_2 = percent_matched_sideEffects[max_p_total_calc_index_2+1]
                         med_high_p_prop_2 = p_med[max_p_total_calc_index_2+1]
                         med_high_p_user_2 = p_user_reports[max_p_total_calc_index_2+1]
