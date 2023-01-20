@@ -315,7 +315,7 @@ class data4Analysis:
                     for i in sec_p_user_reports_calc:
                         if i != "None":
                             float_i = float(i)
-                            if float_i > max_user_reported_2:
+                            if float_i > float(max_user_reported_2):
                                 max_user_reported_2 = i
                 
                 st.write(max_user_reported_2)
@@ -565,7 +565,7 @@ class data4Analysis:
                     for i in p_user_reports_calc[1:index+1]:
                         if i != "None":
                             float_i = float(i)
-                            if float_i > max_user_reported_2:
+                            if float_i > float(max_user_reported_2):
                                 max_user_reported_2 = i
 
                     if max_user_reported_2 == float(0.00):
