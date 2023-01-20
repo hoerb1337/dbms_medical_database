@@ -719,6 +719,7 @@ class data4Analysis:
                     med_high_p_user_2_float = float(med_high_p_user_2[:-1:])
                     st.write(med_high_p_user_float)
                     st.write(med_high_p_user_2_float)
+                    st.write("hallo")
                     if med_high_p_user_float == med_high_p_user_2_float:
                         
                         #st.write(max_user_reported_index)
