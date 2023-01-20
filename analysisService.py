@@ -686,9 +686,9 @@ class data4Analysis:
                 # list of side effects from specific medicine
                 else:
                     st.write("best value")
-                    max_p_total_calc = max(total_matched_sideEffects[0:index+1])
+                    max_p_total_calc = max(total_matched_sideEffects[0:index])
                     
-                    max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
+                    max_p_total_calc_index = total_matched_sideEffects[0:index].index(max_p_total_calc)
                     max_p_total = total_percent_matched_sideEffects[max_p_total_calc_index]
                     
                     med_high_p_name = commercial_name1[max_p_total_calc_index]
@@ -774,17 +774,17 @@ class data4Analysis:
                     sec_total_matched_sideEffects = total_matched_sideEffects.copy()
                     st.write(sec_total_matched_sideEffects)
                     # value best value
-                    max1_p_total_calc = max(sec_total_matched_sideEffects[0:index+1])
+                    max1_p_total_calc = max(sec_total_matched_sideEffects[0:index])
                     st.write(max1_p_total_calc)
                     # index best value
-                    max1_p_total_calc_index = sec_total_matched_sideEffects[0:index+1].index(max1_p_total_calc)
+                    max1_p_total_calc_index = sec_total_matched_sideEffects[0:index].index(max1_p_total_calc)
                     st.write(max1_p_total_calc_index)
                     # delete best value
                     
                     sec_total_matched_sideEffects.pop(max1_p_total_calc_index)
                     st.write(sec_total_matched_sideEffects[0:index+1])
                     # find 2nd best value
-                    max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index+1])
+                    max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index])
                     st.write(max_p_total_calc_2)
                     # find index 2nd best value in original list
                     max_p_total_calc_index_2 = sec_total_matched_sideEffects[0:index].index(max_p_total_calc_2)
@@ -816,7 +816,7 @@ class data4Analysis:
                     sec_total_matched_sideEffects.pop(sec_index)
                     st.write(sec_total_matched_sideEffects[0:index+1])
                     # find 2nd best value
-                    max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index+1])
+                    max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index])
                     st.write(max_p_total_calc_2)
                     # find index 2nd best value in original list
                     st.write(index)
