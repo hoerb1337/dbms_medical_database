@@ -289,7 +289,7 @@ class data4Analysis:
                 # Lookup highest value of matched side effects compared to total
                 # list of side effects from specific medicine
                 else:
-
+                    st.write("best value")
                     max_p_total_calc = max(total_matched_sideEffects[0:index+1])
                     
                     max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
