@@ -219,7 +219,7 @@ class data4Analysis:
 
                     if max_user_reported_2 != "Any reported yet":
                         # Find index
-                        max_user_reported_index_2 = p_user_reports_calc[1:index].index(max_user_reported_2)
+                        max_user_reported_index_2 = p_user_reports_calc[1:index+1].index(max_user_reported_2)
                         st.write(max_user_reported_index_2)
                         #max_user_report = max_user_reported
                         #max_user_report_index = p_user_reports[0:index].index(max_user_report)
