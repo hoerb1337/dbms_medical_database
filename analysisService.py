@@ -679,7 +679,7 @@ class data4Analysis:
                     sec_total_matched_sideEffects[0:index+1].pop(max_p_total_calc_index)
                     # find 2nd best value
                     max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index])
-                    st.write(max_p_total_calc_index_2)
+                    st.write(max_p_total_calc_2)
                     # find index 2nd best value in original list
                     max_p_total_calc_index_2 = total_matched_sideEffects[0:index+1].index(max_p_total_calc_2)
                     st.write(max_p_total_calc_index_2)
