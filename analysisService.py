@@ -266,7 +266,7 @@ class data4Analysis:
                 # best value for user reports
                 max_user_reported = float(0.00)
                 sec_p_user_reports_calc = []
-                for i in p_user_reports_calc[0:index+1]:
+                for i in p_user_reports_calc[0:index]:
                     sec_p_user_reports_calc.append(i)
                     if i != "None":
                         float_i = float(i)
