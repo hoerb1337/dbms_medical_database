@@ -23,7 +23,7 @@ class render_tab2:
                     <li>Select your own set of felt side effect symptoms from medicines you are taking.</li>
                     <li>We find for you the closest prediction of medicines that you could have taken.</li>
                     </ol>
-                    <p><b>Hint:</b> The number of registered side effects per medicine is high (>100)</p>
+                    <p><b>Hint:</b> The number of registered side effects per medicine is very high (>100).</p>
                     </div>
                     """
                     

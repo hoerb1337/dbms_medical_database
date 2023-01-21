@@ -315,7 +315,7 @@ class data4Analysis:
                         break
                     
                     index = index + 1
-                
+                st.write(index)
                 # Check if there is a max value for user reports for the best
                 # predicted medicine.
                 max_user_reported = float(0.00)
