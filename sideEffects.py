@@ -13,6 +13,7 @@ class render_tab1:
         info_box_tab1 = """
                     <div class="info_box">
                     <h5>Browse and report for side effects of selected medicines:</h5>
+                    <b>Usage Guidance for you:</b>
                     <ol>
                     <li>Select up to two medicines from the list.</li>
                     <li>Choose whether you combine selected medicines.</li>
