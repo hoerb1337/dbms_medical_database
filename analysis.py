@@ -79,9 +79,6 @@ class render_tab2:
         if nr_sideEffects < 1:
             st.warning("Please choose at least one side effect symptom.")
 
-        if nr_sideEffects>1 and combo == "True":
-            st.warning("Notice: The processesing of reverse lookup may take few moments given the large amount of data.")
-
         return selected_sideEffects_name, selected_sideEffects_id, nr_sideEffects, combo, selected_sideEffects
     
     
@@ -114,6 +111,7 @@ class render_tab2:
             if btn_lookup_meds:
                 if combo == "True":
                     st.warning("Notice: The processesing of reverse lookup may take few moments given the large amount of data.")
+                
                 # Start reverse lookup and get results as dataframe
                 df, total_nr_meds_found, med_high_p_name, med_high_p_name2, med_high_p_pct, med_high_p_prop, med_high_p_user, med_high_p_total, med_high_p_name_2, med_high_p_name2_2, med_high_p_pct_2, med_high_p_prop_2, med_high_p_user_2, med_high_p_total_2 = callAnalysisBackend.do_reverse_lookup(selected_sideEffects_name, selected_sideEffects_id,nr_sideEffects,combo)
                 
@@ -265,7 +263,7 @@ class render_tab2:
                     st.markdown(explained_calc, unsafe_allow_html=True)
 
                 # Full table
-                with st.expander("See full table with all data from all medicines with at least one matched side effect"):
+                with st.expander("See table with all data from all medicines with at least one matched side effect"):
                     st.markdown("<br>", unsafe_allow_html=True)
                     st.write(df)
                     st.markdown("<br>", unsafe_allow_html=True)
