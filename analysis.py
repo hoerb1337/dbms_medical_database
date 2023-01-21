@@ -17,14 +17,13 @@ class render_tab2:
                     <p>In general, the analysis follows a multiple-stage/criteria approach
                     to make the prediction. More details on how we perform the predicition
                     is provided with the results.</p>
-                    <p><b>Usage Guidance for you:</b></p>
+                    <b>Usage Guidance for you:</b>
                     <ol>
                     <li>Choose whether you are taking medicines in combination.</li>
                     <li>Select your own set of felt side effect symptoms from medicines you are taking.</li>
                     <li>We find for you the closest prediction of medicines that you could have taken.</li>
                     </ol>
-                    <p>Hint: Since the number of side effects per medicine is high (>100),
-                    the prediction becomes naturally more precise with higher number of selected side effects.</p>
+                    <p><b>Hint:</b> The number of registered side effects per medicine is high (>100)</p>
                     </div>
                     """
                     
