@@ -15,7 +15,18 @@ class render_tab3:
                         shared proteins have common side effects?</i><br>
                         We hereby assume that <b>"common"</b> means that one side
                         effect has to registered for <b>all</b> drugs that share 
-                        the same protein.</p>
+                        the same protein. More details on how we perform the anyalsis
+                        is provided further down.</p>
+                        <b>Usage Guidance for you:</b>
+                        <ul>
+                        <li>Dive deeper into the description of
+                        the procedure the analysis is taking.</li>
+                        <li>Look into the SQL-Query to perform the analysis on the
+                        data.</li>
+                        <li>Execute the runtime query on our data and look at the result.</li>
+                        <li>If you want, you can have a look on the data the anaylsis is buildt on.
+                        Notice the query is limited to 100 rows for performance reasons.</li>
+                        </ul>
                         </div>
                         """
                     
@@ -95,9 +106,10 @@ class render_tab3:
         
             st.code(query, language="sql")
 
-        st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is processed (processing of > 1,5mio rows) during runtime instead of accessing a final result.")
+       
 
         if st.button(label="Execute Analysis"):
+            st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is processed (processing of > 1,5mio rows) during runtime instead of accessing a final result.")
             #st.spinner("Execution may require up to 2:30mins...")
             # Runtime analysis execution
             protein_data = analysisService.data4Analysis()
@@ -164,8 +176,10 @@ limit 100"""
 
             st.code(query_total, language="sql")
             
-        st.warning("NOTICE: The execution of this query may take up to about 02:30mins, since the query is executed during runtime instead of accessing a final result.")
+        
         if st.button(label="Execute Query"):
+            st.warning("NOTICE: The execution of this query may take up to about 02:30mins, since the query is executed during runtime instead of accessing a final result.")
+            
             #st.spinner("Execution may require up to 2:30mins...")
             # Runtime analysis execution
             protein_data = analysisService.data4Analysis()
