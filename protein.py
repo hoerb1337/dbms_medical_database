@@ -125,7 +125,7 @@ and shared_meds.nr_shared_meds > 1)full_table
        
 
         if st.button(label="Execute Analysis"):
-            st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is processed (processing of > 1,5mio rows) during runtime instead of accessing a final result.")
+            warning = st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is processed (processing of > 1,5mio rows) during runtime instead of accessing a final result.")
             #st.spinner("Execution may require up to 2:30mins...")
             # Runtime analysis execution
             protein_data = analysisService.data4Analysis()
@@ -134,7 +134,7 @@ and shared_meds.nr_shared_meds > 1)full_table
             style = """
                     <style>
                         .result_box_negative {
-                            background-color: ##ffa07a;
+                            background-color: #ffa07a;
                             margin-top: 5px;
                             margin-bottom: 30px;
                             padding-left: 20px;
@@ -156,6 +156,7 @@ and shared_meds.nr_shared_meds > 1)full_table
                     </style>
                     """
             st.markdown(style, unsafe_allow_html=True)
+            warning = None
             # Display result of analysis
             if result_analysis == "False":
                 result_display = "<div class='result_box_negative'><h5>Result of Analysis: No</h5><p>No, drugs with shared proteins do not - on average - have common side effects. On average one side effect of drugs with a shared protein is common only in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</p></div>"   
