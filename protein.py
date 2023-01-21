@@ -46,12 +46,12 @@ class render_tab3:
         """
         
         # Analysis
-        st.subheader("Procedure of Analysis")
+        st.subheader("The Analysis for Shared Proteins")
         proc_descr1 = """<p>
                         The basic idea is to to divide the analysis in two parts
                         and then merge them together, enabling us to make a more
-                        generalised statement by considering an average. See below more
-                        details.
+                        generalised statement by considering an average.
+                        See below for more details.
                         </p>
                         <p>
                         <b>Notice:</b> The analysis excluded proteins that are
@@ -60,22 +60,27 @@ class render_tab3:
                      """    
         st.markdown(proc_descr1, unsafe_allow_html=True)
         
-        with st.expander("In more detail, the analysis proceeded as follows."):
+        with st.expander("In more detail, the analysis proceeded as follows:"):
             
             proc_descr2 = """
                             <div class="expander">
                             <ol>
-                            <b>(1) Table 1:</b>
-                            <li>For each protein, find the side effects of drugs that share the protein.</li>
-                            <li>Calculate the number of occurence of same side effects for each protein.</li>
-                            <b>(2) Table 2:</b>
+                            <b>(1) Create Table 1: Proteins with side effects</b>
+                            <li>For each protein, find the side effects of drugs
+                            that share the protein.</li>
+                            <li>Calculate the number of occurence of same side effects
+                            for each protein.</li>
+                            <b>(2) Create Table 2: Proteins with shared drugs</b>
                             <li>Find proteins with their shared drugs.</li>
-                            <li>For each protein, calculate the total number of drugs that share the protein.</li>
+                            <li>For each protein, calculate the total number of drugs
+                            that share the protein.</li>
                             <b>Connect results from (1) and (2):</b>
                             <li>Join the tables from (1) and (2) on the proteins.</li>
-                            <li>For each protein, calculate the ratio of side effects to the number of drugs that share the protein.</li>
+                            <li>For each protein, calculate the ratio of side effects to
+                            the number of drugs that share the protein.</li>
                             <b>Make general statement with an average:</b>
-                            <li>Calculate the average ratio from step 6 over all proteins and side effects.</li>
+                            <li>Calculate the average ratio from step 6 over all
+                            proteins and side effects.</li>
                             </ol>
                             <br>
                             </div>
@@ -86,11 +91,9 @@ class render_tab3:
         
 
 
-        with st.expander("Procedure as SQL-Query"):
-            query = """
-    /* Calculate avg. ratio from side effects common in meds with a shared protein */
-    select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se
-    from
+        with st.expander("Procedure as SQL-Query:"):
+            query = """/* Calculate avg. ratio from side effects common in meds with a shared protein */
+            select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se from
 
     /* Calculate the ratio from side effects common in meds with a shared protein */
     (select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect,
