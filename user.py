@@ -38,45 +38,81 @@ class render_tab4:
         get_user = userService.UserManagament()
         email, last_act = get_user.get_user_data_db(userID)
 
-        info_box_tab4 = "<div class='info_box'><h5>Your Usage data:</h5><p>Welcome " + email + "! Your last acivity was on: " + last_act + ".</p><p>Browse for the history of all your actions on our webapp.</p></div>"
+        info_box_tab4 = "<div class='info_box'><h5>Your Usage data:</h5><p>Welcome " + email + "! Your last acivity was on: " + last_act + ".</p><p>Browse for the history of all your actions on the Medical Database.</p></div>"
                     
         st.markdown(info_box_tab4, unsafe_allow_html=True)
 
-
-    def show_user(self, userID):
-        
-        get_user = userService.UserManagament()
-        email, last_act = get_user.get_user_data_db(userID)
-        
-        welcome_msg = "Welcome " + email + "! Your last acivity was on: " + last_act + "."
-        
-        st.write(welcome_msg)
-
         return email, last_act
 
+
     def show_accessHistory_tab1(self, userID):
+        """UI for access history tab1 within an expander.
+
+        Args:
+            userID: id from user
+            type: int
+        Returns:
+            df: table for usage data for tab1
+            type: dataframe
+            len: nr. of entries in table 
+            type: int
+        """
+
         with st.expander("Usage data for lookup and reporting side effects"):
             get_usage_data = userService.UsageData()
-            df = get_usage_data.get_usage_data_se(userID)
-            st.write(df)
+            df, len = get_usage_data.get_usage_data_se(userID)
+            if len > 0:
+                st.write(df)
+            else:
+                st.write("Any activity registered yet.")
         
-        return df
+        return df, len
  
     def show_accessHistory_tab2(self, userID):
+        """UI for access history tab2 within an expander.
+
+        Args:
+            userID: id from user
+            type: int
+        Returns:
+            df: table for usage data for tab2
+            type: dataframe
+            len: nr. of entries in table 
+            type: int
+        """
+
         with st.expander("Usage data for reverse lookup analysis"):
             get_usage_data = userService.UsageData()
-            df = get_usage_data.get_usage_data_relookup(userID)
-            st.write(df)
+            df, len = get_usage_data.get_usage_data_relookup(userID)
+            if len > 0:
+                st.write(df)
+            else:
+                st.write("Any activity registered yet.")
         
-        return df
+        return df, len
 
     def show_accessHistory_tab3(self, userID):
+        """UI for access history tab3 within an expander.
+
+        Args:
+            userID: id from user
+            type: int
+        Returns:
+            df: table for usage data for tab3
+            type: dataframe
+            len: nr. of entries in table 
+            type: int
+        """
+
         with st.expander("Usage data for protein analysis"):
             get_usage_data = userService.UsageData()
-            df = get_usage_data.get_usage_data_protein(userID)
-            st.write(df)
+            df, len = get_usage_data.get_usage_data_protein(userID)
+            if len > 0:
+                st.write(df)
+            else:
+                st.write("Any activity registered yet.")
         
-        return df
+        return df, len
 
 if __name__ == "__main__":
     pass

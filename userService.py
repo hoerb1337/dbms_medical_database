@@ -332,6 +332,8 @@ class UsageData:
             reported_side_effect1.append(f"{row_i[4]}")
             reported_side_effect2.append(f"{row_i[5]}")
         
+        nr_entries = len(access_date)
+
         # dataframes
         df1_definition_names = {'Access Date': access_date}
         df1 = pd.DataFrame(data=df1_definition_names)
@@ -351,7 +353,7 @@ class UsageData:
         
         db.disconnect_postgres(db_connection, db_cur)
 
-        return concat_dfs
+        return concat_dfs, nr_entries
 
 
     def get_usage_data_relookup(self, userData):
@@ -386,6 +388,8 @@ class UsageData:
             predicted_med.append(f"{row_i[2]}")
             combo.append(f"{row_i[3]}")
         
+        nr_entries = len(access_date)
+
         # dataframes
         df1_definition_names = {'Access Date': access_date}
         df1 = pd.DataFrame(data=df1_definition_names)
@@ -400,7 +404,7 @@ class UsageData:
         
         db.disconnect_postgres(db_connection, db_cur)
 
-        return concat_dfs
+        return concat_dfs, nr_entries
 
     def get_usage_data_protein(self, userData):
         """Edit user data in db. Right now only last_active is changed.
@@ -430,6 +434,8 @@ class UsageData:
             access_date.append(f"{row_i[0]}")
             analysis_type.append(f"{row_i[1]}")
         
+        nr_entries = len(access_date)
+
         # dataframes
         df1_definition_names = {'Access Date': access_date}
         df1 = pd.DataFrame(data=df1_definition_names)
@@ -440,7 +446,7 @@ class UsageData:
         
         db.disconnect_postgres(db_connection, db_cur)
 
-        return concat_dfs
+        return concat_dfs, nr_entries
 
 if __name__ == "__main__":
     pass
