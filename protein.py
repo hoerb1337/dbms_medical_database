@@ -130,32 +130,7 @@ and shared_meds.nr_shared_meds > 1)full_table
             # Runtime analysis execution
             protein_data = analysisService.data4Analysis()
             avg_ratio_se_meds, result_analysis = protein_data.lookup_avg_ratio_se_meds()
-            #ffa07a
-            style = """
-                    <style>
-                        .result_box_negative {
-                            background-color: #ace1af;
-                            margin-top: 5px;
-                            margin-bottom: 30px;
-                            padding-left: 20px;
-                            padding-top: 20px;
-                            padding-right: 20px;
-                            padding-bottom: 15px;
-                            border-radius: 5px;
-                        }
-                        .result_box_positive {
-                            background-color: #ace1af;
-                            margin-top: 5px;
-                            margin-bottom: 30px;
-                            padding-left: 20px;
-                            padding-top: 20px;
-                            padding-right: 20px;
-                            padding-bottom: 15px;
-                            border-radius: 5px;
-                        }
-                    </style>
-                    """
-            st.markdown(style, unsafe_allow_html=True)
+
             warning = None
             # Display result of analysis
             if result_analysis == "False":

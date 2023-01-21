@@ -92,6 +92,26 @@ class Frontend:
                                 padding-bottom: 10px;
                                         
                         }
+                        .result_box_negative {
+                            background-color: #ffa07a;
+                            margin-top: 5px;
+                            margin-bottom: 30px;
+                            padding-left: 20px;
+                            padding-top: 20px;
+                            padding-right: 20px;
+                            padding-bottom: 15px;
+                            border-radius: 5px;
+                        }
+                        .result_box_positive {
+                            background-color: #ace1af;
+                            margin-top: 5px;
+                            margin-bottom: 30px;
+                            padding-left: 20px;
+                            padding-top: 20px;
+                            padding-right: 20px;
+                            padding-bottom: 15px;
+                            border-radius: 5px;
+                        }
                         </style>
                     """
         st.markdown(css_style, unsafe_allow_html=True)
