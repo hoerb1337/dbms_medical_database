@@ -94,7 +94,7 @@ class Frontend:
                         }
                         .result_box_negative {
                             
-                            margin-top: 5px;
+                            margin-top: 20px;
                             margin-bottom: 30px;
                             padding-left: 20px;
                             padding-top: 20px;
@@ -102,7 +102,8 @@ class Frontend:
                             padding-bottom: 15px;
                             border-radius: 5px;
                             border-style: solid;
-                            border-color: #e62020;
+                            border-color: #fa8072;
+                            border-width: 2px;
                         }
                         .result_box_positive {
                             background-color: #ace1af;
