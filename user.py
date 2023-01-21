@@ -37,7 +37,7 @@ class render_tab4:
 
         get_user = userService.UserManagament()
         email, last_act = get_user.get_user_data_db(userID)
-
+        st.write(type(last_act))
         info_box_tab4 = "<div class='info_box'><h5>Your Usage data:</h5><p>Welcome " + email + "! Your last acivity was on: " + last_act + ".</p><p>Browse for the history of all your actions on the Medical Database.</p></div>"
                     
         st.markdown(info_box_tab4, unsafe_allow_html=True)

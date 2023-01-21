@@ -127,9 +127,9 @@ class Frontend:
         # If not, register the user in database. Get user data
         # to save their access history.
         userData = userAuthenticated.authenticate()
-        st.write(userData)
-        if 'userData["id"]' not in st.session_state:
-            st.session_state.userData["id"] = userData["id"]
+        #st.write(userData)
+        #if 'userData["id"]' not in st.session_state:
+            #st.session_state.userData["id"] = userData["id"]
 
         # Navigation bar
         tab1, tab2, tab3, tab4 = st.tabs(["Lookup and Report Side Effects", 
