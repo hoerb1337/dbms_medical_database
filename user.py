@@ -42,8 +42,6 @@ class render_tab4:
                     
         st.markdown(info_box_tab4, unsafe_allow_html=True)
 
-        return email, last_act
-
 
     def show_accessHistory_tab1(self, userID):
         """UI for access history tab1 within an expander.
