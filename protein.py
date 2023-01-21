@@ -5,6 +5,8 @@ import streamlit as st
 import analysisService
 
 class render_tab3:
+    """UI elements for tab3: Shared Protein Analysis."""
+    
     def __init__(self):
         """Display information for tab3."""
         
@@ -14,14 +16,14 @@ class render_tab3:
                         <p>We are interested in to find out <i>whether drugs with
                         shared proteins have common side effects?</i><br>
                         We hereby assume that <b>"common"</b> means that one side
-                        effect has to registered for <b>all</b> drugs that share 
-                        the same protein. More details on how we perform the anyalsis
+                        effect has to be registered for <b>all</b> drugs that share 
+                        the same protein.<br>More details on how we perform the anyalsis
                         is provided further down.</p>
                         <b>Usage Guidance for you:</b>
                         <ul>
                         <li>Dive deeper into the description of
                         the procedure the analysis is taking.</li>
-                        <li>Look into the SQL-Query to perform the analysis on the
+                        <li>Look into the SQL-Query for the analysis on the
                         data.</li>
                         <li>Execute the runtime query on our data and look at the result.</li>
                         <li>If you want, you can have a look on the data the anaylsis is buildt on.
@@ -31,28 +33,31 @@ class render_tab3:
                         """
                     
         st.markdown(info_box_tab3, unsafe_allow_html=True)
-    
+
+
     def show_protein_analysis(self):
         """UI for displaying results of shared protein analysis.
 
         Args:
-            selected_sideEffects:
-            type: list
-            nr_sideEffects:
-            type: int
+            None
         Returns:
-            selected_sideEffects: list of chosen side effects
-            type: dataframe
+            analysis_executed: "True"
+            type: str
         """
         
         # Analysis
         st.subheader("Procedure of Analysis")
-        proc_descr1 = """The basic idea is to check whether <b>(1)</b> at least one side effect occuring with drugs that share a protein,
-                        <b>(2)</b> is listed with all drugs that share the protein. The analysis excluded proteins that are targeted only from one drug.<br>
+        proc_descr1 = """The basic idea is to check whether <b>(1)</b>
+                        at least one side effect occuring with drugs that share a protein,
+                        <b>(2)</b> is listed with all drugs that share the protein.
+                        The analysis excluded proteins that are targeted only from one drug.<br>
                      """    
         st.markdown(proc_descr1, unsafe_allow_html=True)
+        
         with st.expander("In more detail, the analysis proceeded as follows."):
+            
             proc_descr2 = """
+                            <div class="expander">
                             <ol>
                             <b>(1) Table 1:</b>
                             <li>For each protein, find the side effects of drugs that share the protein.</li>
@@ -67,6 +72,7 @@ class render_tab3:
                             <li>Calculate the average ratio from step 6 over all proteins and side effects.</li>
                             </ol>
                             <br>
+                            </div>
                         """
         
             st.markdown(proc_descr2, unsafe_allow_html=True)
@@ -179,7 +185,7 @@ limit 100"""
         
         if st.button(label="Execute Query"):
             st.warning("NOTICE: The execution of this query may take up to about 02:30mins, since the query is executed during runtime instead of accessing a final result.")
-            
+
             #st.spinner("Execution may require up to 2:30mins...")
             # Runtime analysis execution
             protein_data = analysisService.data4Analysis()
