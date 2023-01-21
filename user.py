@@ -40,7 +40,7 @@ class render_tab4:
         email, last_act = get_user.get_user_data_db(userID)
         st.write(last_act)
         date_string = '2021-12-31 15:37'
-        last_act = datetime.strptime(last_act, '%Y-%m-%d %H:%M')
+        last_act = datetime.strptime(last_act, '%Y-%m-%d %H:%M:%S')
         st.write(last_act)
         info_box_tab4 = "<div class='info_box'><h5>Your Usage data:</h5><p>Welcome " + email + "! Your last acivity was on: " + last_act + ".</p><p>Browse for the history of all your actions on the Medical Database.</p></div>"
                     
