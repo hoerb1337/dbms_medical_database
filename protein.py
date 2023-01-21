@@ -145,20 +145,18 @@ and shared_meds.nr_shared_meds > 1)full_table
                             border-radius: 5px;
                         }
                     </style>
-                    <div class="result_box">
                     """
             st.markdown(style, unsafe_allow_html=True)
             # Display result of analysis
             if result_analysis == "False":
-                result_display = "No, drugs with shared proteins do not - on average - have common side effects. On average one side effect of drugs with a shared protein is common only in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein."
+                result_display = "<div class='result_box'>No, drugs with shared proteins do not - on average - have common side effects. On average one side effect of drugs with a shared protein is common only in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</div>"
                 st.subheader("Result of Analysis: No")     
                 st.markdown(result_display, unsafe_allow_html=True)
             else:
                 result_display = "Yes, drugs with shared proteins do - on average - have common side effects. On average one side effect of drugs with a shared protein is common in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein."
                 st.subheader("Result of Analysis: Yes")     
                 st.markdown(result_display, unsafe_allow_html=True)
-            style_end ="""</div>"""
-            st.markdown(style_end, unsafe_allow_html=True)    
+  
             
             analysis_executed = "True"
             
