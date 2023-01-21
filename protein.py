@@ -47,10 +47,16 @@ class render_tab3:
         
         # Analysis
         st.subheader("Procedure of Analysis")
-        proc_descr1 = """The basic idea is to check whether <b>(1)</b>
-                        at least one side effect occuring with drugs that share a protein,
-                        <b>(2)</b> is listed with all drugs that share the protein.
-                        The analysis excluded proteins that are targeted only from one drug.<br>
+        proc_descr1 = """<p>
+                        The basic idea is to to divide the analysis in two parts
+                        and then merge them together, enabling us to make a more
+                        generalised statement by considering an average. See below more
+                        details.
+                        </p>
+                        <p>
+                        <b>Notice:</b> The analysis excluded proteins that are
+                        targeted only from one drug because the then any shared drugs.
+                        </p>
                      """    
         st.markdown(proc_descr1, unsafe_allow_html=True)
         
