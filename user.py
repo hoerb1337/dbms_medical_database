@@ -38,7 +38,7 @@ class render_tab4:
 
         get_user = userService.UserManagament()
         email, last_act = get_user.get_user_data_db(userID)
-        st.write(type(last_act))
+        st.write(last_act)
         date_string = '2021-12-31 15:37'
         last_act = datetime.strptime(last_act, '%Y-%m-%d %H:%M')
         st.write(last_act)
