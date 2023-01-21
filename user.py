@@ -39,7 +39,7 @@ class render_tab4:
         
         last_act_1 = str(int(last_act[-9:-6:])+1)
         st.write(last_act_1)
-        last_act1 = last_act[0:10:] + last_act_1 + last_act[-7::]
+        last_act1 = last_act[0:11:] + last_act_1 + last_act[-6::]
         st.write(last_act1)
 
         info_box_tab4 = "<div class='info_box'><h5>Your Usage data:</h5><p>Welcome " + email + "! Your last acivity was on: " + last_act + ".</p><p>Browse for the history of all your actions on the Medical Database.</p></div>"
