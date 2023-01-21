@@ -38,7 +38,7 @@ class render_tab4:
         email, last_act = get_user.get_user_data_db(userID)
         
         last_act_1 = str(int(last_act[-9:-6:])+1)
-        st.write(last_act1)
+        st.write(last_act_1)
         last_act1 = last_act[0:10:] + last_act_1 + last_act[-7::]
         st.write(last_act1)
 
