@@ -335,7 +335,7 @@ class data4Analysis:
                 # There is a value for user reports available for best value
                 if max_user_reported != "Any reported yet":
                     # Find index of max. value for user reports
-                    max_user_reported_index = p_user_reports_calc[0:index].index(max_user_reported)
+                    max_user_reported_index = p_user_reports_calc[0:index+1].index(max_user_reported)
 
                     med_high_p_name = commercial_name[max_user_reported_index]
                     med_high_p_name2 = None
@@ -348,9 +348,9 @@ class data4Analysis:
                 # Then for each possible medicine, lookup highest value of matched
                 # side effects compared to total list of side effects of this medicine.
                 else:
-                    max_p_total_calc = max(total_matched_sideEffects[0:index])
+                    max_p_total_calc = max(total_matched_sideEffects[0:index+1])
                     
-                    max_p_total_calc_index = total_matched_sideEffects[0:index].index(max_p_total_calc)
+                    max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
                     max_p_total = total_percent_matched_sideEffects[max_p_total_calc_index]
                     
                     med_high_p_name = commercial_name[max_p_total_calc_index]
