@@ -7,11 +7,16 @@ import analysisService
 
 class render_tab3:
     def __init__(self):
-
+        """Display information for tab3."""
+        
         info_box_tab3 = """
                         <div class="info_box">
                         <h5>Analysis of drugs with shared proteins:</h5>
-                        <p>Do drugs with shared proteins have common side effects?</p>
+                        <p>We are interested in to find out whether drugs with
+                        shared proteins have common side effects?</p>
+                        <p>We hereby assume that <b>"common"</b> means that one side
+                        effect has to registered for <b>all</b> drugs that share 
+                        the same protein.</p>
                         </div>
                         """
                     
