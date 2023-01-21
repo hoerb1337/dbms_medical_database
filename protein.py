@@ -12,7 +12,7 @@ class render_tab3:
                         <div class="info_box">
                         <h5>Analysis of drugs with shared proteins:</h5>
                         <p>We are interested in to find out <i>whether drugs with
-                        shared proteins have common side effects?</i>
+                        shared proteins have common side effects?</i><br>
                         We hereby assume that <b>"common"</b> means that one side
                         effect has to registered for <b>all</b> drugs that share 
                         the same protein.</p>
