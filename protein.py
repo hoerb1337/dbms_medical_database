@@ -90,7 +90,6 @@ class render_tab3:
 
         
 
-
         with st.expander("Procedure as SQL-Query:"):
             query = """
 /* Calculate avg. ratio from side effects common in meds with a shared protein */
@@ -119,48 +118,43 @@ only in one medicine */
 where gene_sideeffects.gene1 = shared_meds.gene2
 and shared_meds.nr_shared_meds > 1)full_table
                     """
-        
+
             st.code(query, language="sql")
 
-       
 
         if st.button(label="Execute Analysis"):
-            warning = st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is processed (processing of > 1,5mio rows) during runtime instead of accessing a final result.")
-            #st.spinner("Execution may require up to 2:30mins...")
+            st.warning("NOTICE: The execution of this analysis may take up to about 02:30mins, since it is processed (processing of > 1,5mio rows) during runtime instead of accessing a final result.")
+
             # Runtime analysis execution
             protein_data = analysisService.data4Analysis()
             avg_ratio_se_meds, result_analysis = protein_data.lookup_avg_ratio_se_meds()
 
-            warning = None
             # Display result of analysis
             if result_analysis == "False":
                 result_display = "<div class='result_box_negative'><h4>Result of Analysis: No</h4><p>No, drugs with shared proteins do not - on average - have common side effects. On average one side effect of drugs with a shared protein is common only in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</p></div>"   
                 st.markdown(result_display, unsafe_allow_html=True)
             else:
                 result_display = "<div class='result_box_positive'><h4>Result of Analysis: Yes</h4><p>Yes, drugs with shared proteins do - on average - have common side effects. On average one side effect of drugs with a shared protein is common in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</p></div>"
-                
                 st.markdown(result_display, unsafe_allow_html=True)
-  
-            
+
             analysis_executed = "True"
             
             return analysis_executed
 
     
     def show_protein_analysis_details(self):
-        """UI for displaying results of shared protein analysis.
+        """UI for displaying details shared protein analysis.
 
         Args:
-            selected_sideEffects:
-            type: list
-            nr_sideEffects:
-            type: int
+            None
         Returns:
-            selected_sideEffects: list of chosen side effects
-            type: dataframe
+            query_executed: "True"
+            type: str
         """
+
         # Details
         st.subheader("Want to explore data in more detail?")     
+
         # Data basis table
         with st.expander("Query for data basis"):
             st.write("Notice that this query is limited to 100 rows because the processing of > 1,5mio rows would require to many resources. The target here is to get an feeling for the data and prodecure applied to the analysis.")
@@ -193,7 +187,6 @@ limit 100"""
         if st.button(label="Execute Query"):
             st.warning("NOTICE: The execution of this query may take up to about 02:30mins, since the query is executed during runtime instead of accessing a final result.")
 
-            #st.spinner("Execution may require up to 2:30mins...")
             # Runtime analysis execution
             protein_data = analysisService.data4Analysis()
             data_basis = protein_data.lookup_protein_se_meds()
@@ -201,9 +194,9 @@ limit 100"""
             st.markdown("<br><b>Excerp of data basis for the analaysis:</b><br>", unsafe_allow_html=True)
             st.write(data_basis)
 
-            analysis_executed = "True"
+            query_executed = "True"
         
-            return analysis_executed
+            return query_executed
 
 
 if __name__ == "__main__":
