@@ -130,11 +130,11 @@ and shared_meds.nr_shared_meds > 1)full_table
             # Runtime analysis execution
             protein_data = analysisService.data4Analysis()
             avg_ratio_se_meds, result_analysis = protein_data.lookup_avg_ratio_se_meds()
-            
+            #ffa07a
             style = """
                     <style>
                         .result_box_negative {
-                            background-color: #ffa07a;
+                            background-color: #ace1af;
                             margin-top: 5px;
                             margin-bottom: 30px;
                             padding-left: 20px;
@@ -159,10 +159,10 @@ and shared_meds.nr_shared_meds > 1)full_table
             warning = None
             # Display result of analysis
             if result_analysis == "False":
-                result_display = "<div class='result_box_negative'><h5>Result of Analysis: No</h5><p>No, drugs with shared proteins do not - on average - have common side effects. On average one side effect of drugs with a shared protein is common only in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</p></div>"   
+                result_display = "<div class='result_box_negative'><h4>Result of Analysis: No</h4><p>No, drugs with shared proteins do not - on average - have common side effects. On average one side effect of drugs with a shared protein is common only in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</p></div>"   
                 st.markdown(result_display, unsafe_allow_html=True)
             else:
-                result_display = "<div class='result_box_positive'><h5>Result of Analysis: Yes</h5><p>Yes, drugs with shared proteins do - on average - have common side effects. On average one side effect of drugs with a shared protein is common in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</p></div>"
+                result_display = "<div class='result_box_positive'><h4>Result of Analysis: Yes</h4><p>Yes, drugs with shared proteins do - on average - have common side effects. On average one side effect of drugs with a shared protein is common in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</p></div>"
                 
                 st.markdown(result_display, unsafe_allow_html=True)
   
