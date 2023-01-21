@@ -315,7 +315,7 @@ class data4Analysis:
                         break
                     
                     index = index + 1
-                st.write(index)
+
                 # Check if there is a max value for user reports for the best
                 # predicted medicine.
                 max_user_reported = float(0.00)
@@ -431,7 +431,7 @@ class data4Analysis:
                     # delete best value
                     sec_total_matched_sideEffects.pop(max1_p_total_calc_index)
                     # find 2nd best value
-                    max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index+1])
+                    max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index])
 
                     # find index of 2nd best value in original list
                     max_p_total_calc_index_2 = sec_total_matched_sideEffects[0:index].index(max_p_total_calc_2)
@@ -462,7 +462,7 @@ class data4Analysis:
                     # Delete value from best
                     sec_total_matched_sideEffects.pop(sec_index)
                     # find 2nd best value
-                    max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index+1])
+                    max_p_total_calc_2 = max(sec_total_matched_sideEffects[0:index])
 
                     # find index 2nd best value in original list
                     max_p_total_calc_index_2 = sec_total_matched_sideEffects[0:index].index(max_p_total_calc_2)
@@ -696,7 +696,7 @@ class data4Analysis:
 
                 # best value for user reports available
                 if max_user_reported != "Any reported yet":
-                    max_user_reported_index = p_user_reports_calc[0:index].index(max_user_reported)
+                    max_user_reported_index = p_user_reports_calc[0:index+1].index(max_user_reported)
 
                      # Define best predicted medicine.
                     med_high_p_name = commercial_name1[max_user_reported_index]
@@ -710,8 +710,8 @@ class data4Analysis:
                 # Then lookup highest value of matched side effects
                 # compared to total list of side effects from specific medicine.
                 else:
-                    max_p_total_calc = max(total_matched_sideEffects[0:index])
-                    max_p_total_calc_index = total_matched_sideEffects[0:index].index(max_p_total_calc)
+                    max_p_total_calc = max(total_matched_sideEffects[0:index+1])
+                    max_p_total_calc_index = total_matched_sideEffects[0:index+1].index(max_p_total_calc)
                     max_p_total = total_percent_matched_sideEffects[max_p_total_calc_index]
                     
                     # Define best predicted medicine.
@@ -786,9 +786,9 @@ class data4Analysis:
 
                     sec_total_matched_sideEffects = total_matched_sideEffects.copy()
                     # value best value
-                    max1_p_total_calc = max(sec_total_matched_sideEffects[0:index])
+                    max1_p_total_calc = max(sec_total_matched_sideEffects[0:index+1])
                     # index best value
-                    max1_p_total_calc_index = sec_total_matched_sideEffects[0:index].index(max1_p_total_calc)
+                    max1_p_total_calc_index = sec_total_matched_sideEffects[0:index+1].index(max1_p_total_calc)
                     # delete best value
                     sec_total_matched_sideEffects.pop(max1_p_total_calc_index)
                     # find 2nd best value
