@@ -93,31 +93,31 @@ class render_tab3:
 
         with st.expander("Procedure as SQL-Query:"):
             query = """
-                    /* Calculate avg. ratio from side effects common in meds with a shared protein */
-                    select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se from
+/* Calculate avg. ratio from side effects common in meds with a shared protein */
+select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se from
 
-    /* Calculate the ratio from side effects common in meds with a shared protein */
-    (select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect,
-    gene_sideeffects.nr_shared_se as nr_common_se, shared_meds.nr_shared_meds as nr_shared_meds,
-    gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds as ratio_common_se,
-    to_char((gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds)*100, 'fm900D00%') as per_ratio_common_se
+/* Calculate the ratio from side effects common in meds with a shared protein */
+(select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect,
+gene_sideeffects.nr_shared_se as nr_common_se, shared_meds.nr_shared_meds as nr_shared_meds,
+gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds as ratio_common_se,
+to_char((gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds)*100, 'fm900D00%') as per_ratio_common_se
 
-    from
-    /* Table 1 with proteins with side effects from shared meds */
-    (select mp1.gene as gene1, mm.individual_side_effect as se, count(*) as nr_shared_se
-    from dbms.medicine_protein mp1, dbms.medicine_mono mm
-    where mp1.stitch = mm.stitch
-    group by mp1.gene, mm.individual_side_effect)gene_sideeffects,
+from
+/* Table 1 with proteins with side effects from shared meds */
+(select mp1.gene as gene1, mm.individual_side_effect as se, count(*) as nr_shared_se
+from dbms.medicine_protein mp1, dbms.medicine_mono mm
+where mp1.stitch = mm.stitch
+group by mp1.gene, mm.individual_side_effect)gene_sideeffects,
 
-    /* Table 2 with proteins with their shared meds */
-    (select mp.gene as gene2, count(*) as nr_shared_meds
-    from dbms.medicine_protein mp
-    group by gene)shared_meds
+/* Table 2 with proteins with their shared meds */
+(select mp.gene as gene2, count(*) as nr_shared_meds
+from dbms.medicine_protein mp
+group by gene)shared_meds
 
-    /* Join Table 1 with Table 2 on the protein and exclude proteins that are targeted
-    only in one medicine */
-    where gene_sideeffects.gene1 = shared_meds.gene2
-    and shared_meds.nr_shared_meds > 1)full_table
+/* Join Table 1 with Table 2 on the protein and exclude proteins that are targeted
+only in one medicine */
+where gene_sideeffects.gene1 = shared_meds.gene2
+and shared_meds.nr_shared_meds > 1)full_table
                     """
         
             st.code(query, language="sql")
