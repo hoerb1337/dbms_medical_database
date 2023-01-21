@@ -1,7 +1,6 @@
 # External libraries
 import streamlit as st
 
-
 # Backend modules
 import analysisService
 
@@ -12,9 +11,9 @@ class render_tab3:
         info_box_tab3 = """
                         <div class="info_box">
                         <h5>Analysis of drugs with shared proteins:</h5>
-                        <p>We are interested in to find out whether drugs with
-                        shared proteins have common side effects?</p>
-                        <p>We hereby assume that <b>"common"</b> means that one side
+                        <p>We are interested in to find out <i>whether drugs with
+                        shared proteins have common side effects?</i>
+                        We hereby assume that <b>"common"</b> means that one side
                         effect has to registered for <b>all</b> drugs that share 
                         the same protein.</p>
                         </div>
