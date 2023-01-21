@@ -92,8 +92,9 @@ class render_tab3:
 
 
         with st.expander("Procedure as SQL-Query:"):
-            query = """/* Calculate avg. ratio from side effects common in meds with a shared protein */
-            select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se from
+            query = """
+                    /* Calculate avg. ratio from side effects common in meds with a shared protein */
+                    select to_char((avg(full_table.ratio_common_se))*100, 'fm900D00%') as avg_ratio_common_se from
 
     /* Calculate the ratio from side effects common in meds with a shared protein */
     (select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect,
