@@ -191,7 +191,7 @@ limit 100"""
             protein_data = analysisService.data4Analysis()
             data_basis = protein_data.lookup_protein_se_meds()
             
-            st.markdown("<div class='result_box_positive'><br><b>Excerp of data basis for the analaysis:</b><br>" + data_basis + "</div>", unsafe_allow_html=True)
+            st.markdown("<br><b>Excerp of data basis for the analaysis:</b><br>", unsafe_allow_html=True)
             st.write(data_basis)
 
             query_executed = "True"
