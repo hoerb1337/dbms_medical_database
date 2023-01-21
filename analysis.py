@@ -7,6 +7,7 @@ import analysisService
 #
 
 class render_tab2:
+    """UI elements for tab2: Reverse Lookup Analysis."""
     
     def __init__(self):
         """Display information for tab2."""

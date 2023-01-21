@@ -7,6 +7,8 @@ import userService
 
 
 class render_tab1:
+    """UI elements for tab1: Browse and Report Side Effects."""
+    
     def __init__(self):
         """Display information for tab1."""
 

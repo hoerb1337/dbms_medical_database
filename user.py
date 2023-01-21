@@ -32,14 +32,13 @@ class UserUI:
         return userData
 
 class render_tab4:
-    def __init__(self):
+    """UI elements for tab4: Your Usage Data"""
+    def __init__(self, userID):
 
-        info_box_tab4 = """
-                        <div class="info_box">
-                        <h5>Your Usage data:</h5>
-                        <p>Browse for the history of all your actions on our webapp.</p>
-                        </div>
-                        """
+        get_user = userService.UserManagament()
+        email, last_act = get_user.get_user_data_db(userID)
+
+        info_box_tab4 = "<div class='info_box'><h5>Your Usage data:</h5><p>Welcome " + email + "! Your last acivity was on: " + last_act + ".</p><p>Browse for the history of all your actions on our webapp.</p></div>"
                     
         st.markdown(info_box_tab4, unsafe_allow_html=True)
 
