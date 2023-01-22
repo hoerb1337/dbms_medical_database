@@ -5,6 +5,10 @@ import pandas as pd
 import database
 
 class data4Analysis:
+    """Methods for POST and GET data in the context of
+    performing and displaying reverse lookup (tab2) and shared protein
+    (tab3) analysis."""
+
     def __init__(self):
         pass
 
@@ -868,16 +872,16 @@ class data4Analysis:
         
 
     def lookup_avg_ratio_se_meds(self):
-        """Create value for KPI1:
-        
-        Nr. meds with at least one matched side effect.
+        """Performs shared protein analysis.
+
+        It makes a generalised statement with an average.
 
         Args:
-            commercial_name: list of medicines found in query
-            type: list
+            None
         Returns:
-            kpi1: number of medicines with >=1 matched side effects
-            type: int
+            result: "True" (Answer RQ with yes)
+            or "False" (Answer RQ with no)
+            type: str
         """
 
         # Open db connection
@@ -905,27 +909,27 @@ class data4Analysis:
 
     
     def lookup_protein_se_meds(self):
-        """Create value for KPI1:
-        
-        Nr. meds with at least one matched side effect.
+        """Provides a small preview on data used for
+        the shared protein analysis.
+
+        Preview is limited to 100rows.
 
         Args:
-            commercial_name: list of medicines found in query
-            type: list
+            None
         Returns:
-            kpi1: number of medicines with >=1 matched side effects
-            type: int
+            concat_dfs: table with data limited to 100 rows
+            type: dateframe
         """
 
         # Open db connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
-        #st.write("Hello")
+
         query = "select gene_sideeffects.gene1 as gene, gene_sideeffects.se as side_effect, gene_sideeffects.nr_shared_se as nr_common_se, shared_meds.nr_shared_meds as nr_shared_meds, to_char((gene_sideeffects.nr_shared_se::float/shared_meds.nr_shared_meds)*100, 'fm900D00%') as per_ratio_common_se from (select mp1.gene as gene1, mm.individual_side_effect as se, count(*) as nr_shared_se from dbms.medicine_protein mp1, dbms.medicine_mono mm where mp1.stitch = mm.stitch group by mp1.gene, mm.individual_side_effect)gene_sideeffects, (select mp.gene as gene2, count(*) as nr_shared_meds from dbms.medicine_protein mp group by gene)shared_meds where gene_sideeffects.gene1 = shared_meds.gene2 and shared_meds.nr_shared_meds > 1 limit 100"
         
         db_cur.execute(query)
         query_result = db_cur.fetchall()
-        #st.write(query_result)
+
         gene = []
         side_effect = []
         nr_common_se = []
@@ -944,7 +948,7 @@ class data4Analysis:
         df1 = pd.DataFrame(data=df1_definition_names)
         df2_definition_names = {'Side effect from med.': side_effect}
         df2 = pd.DataFrame(data=df2_definition_names)
-        df3_definition_names = {'Occurence side effect in each protein': nr_common_se}
+        df3_definition_names = {'Occurence side effect': nr_common_se}
         df3 = pd.DataFrame(data=df3_definition_names)
         df4_definition_names = {'Nr. of meds sharing this protein': nr_shared_meds}
         df4 = pd.DataFrame(data=df4_definition_names)

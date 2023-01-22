@@ -6,6 +6,8 @@ import pandas as pd
 import database
 
 class UserManagament:
+    """Methods to manage users"""
+
     def __init__(self):
         pass
 
@@ -13,11 +15,10 @@ class UserManagament:
         """Get user data from login service provider (SP).
 
         Args:
-            n: 
-            type: 
+            None
         Returns:
-            sum over n:
-            type: 
+            userData: user data or "Error"
+            type: JSON or str
         """
 
         # Get token from SP
@@ -25,10 +26,9 @@ class UserManagament:
         token = params.get("token")
         if token:
             token = token[0]
-            #st.write(f"token {token}")
+
         else:
             no_token = "Error"
-            #st.write("No token")
 
         # Get user data
         headers = {"Authorization": f"Bearer {token}"}
@@ -36,19 +36,25 @@ class UserManagament:
             "https://api.dashboardauth.com/get-user", headers=headers,
         )
         if response.status_code == 200:
-            return response.json()
+            userData = response.json()
+            #return response.json()
         else:
-            return no_token
+            userData = no_token
+            #return no_token
+        
+        return userData
+
 
     def get_user_status_db(self, userID):
         """Check if user already exists in db.
 
         Args:
-            n: 
-            type: 
+            userID: ID from user registered in db.
+            type: int
         Returns:
-            sum over n:
-            type: 
+            status_msg: 200 (user exists) or 400
+            (user does not exist yet in db)
+            type: int
         """
 
         # Open db connection
@@ -71,11 +77,25 @@ class UserManagament:
         return status_msg
     
     def get_user_data_db(self, userID):
-        pass
+        """Provides user data registered in db for a given userID.
+
+        Data includes: email address and last activity.
+
+        Args:
+            userID: ID from user registered in db.
+            type: int
+        Returns:
+            email[0]: email address from registered user.
+            type: str
+            last_act[0]: last activity from registered user.
+            type: str
+        """
+
         # Open db connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
         
+        # email
         email_query = "select us.email from dbms.user us where us.id = " + str(userID) + ";"
         db_cur.execute(email_query)
         email_query_result = db_cur.fetchall()
@@ -84,7 +104,7 @@ class UserManagament:
         for row_i in email_query_result:
                 email.append(f"{row_i[0]}")
         
-
+        # last activity
         last_act_query = "select us.last_active from dbms.user us where us.id = " + str(userID) + ";"
         db_cur.execute(last_act_query)
         last_act_query_result = db_cur.fetchall()
@@ -98,14 +118,15 @@ class UserManagament:
 
 
     def post_user(self, userData):
-        """Create new user data in db.
+        """Create new user data in db, if it does not
+        exist yet.
 
         Args:
-            n: 
-            type: 
+            userData: id, email, last activity from user
+            type: list 
         Returns:
-            sum over n:
-            type: 
+            status_msg: 200 (successfull written in db)
+            type: int
         """
 
         db = database.db_connection()
@@ -126,11 +147,11 @@ class UserManagament:
         """Edit user data in db. Right now only last_active is changed.
 
         Args:
-            n: 
-            type: 
+            userData: id, email, last activity from user
+            type: list
         Returns:
-            sum over n:
-            type: 
+            status_msg: 200 (successfull written in db)
+            type: int 
         """
 
         db = database.db_connection()
@@ -148,20 +169,32 @@ class UserManagament:
         return status_msg
 
 class UsageData:
+    """Methods to POST and GET usage data from users."""
+    
     def __init__(self):
         pass
 
     def post_usage_data_se(self, userData, selected_meds,
-                        combo, medicine1_side_effects, 
-                        medicine2_side_effects):
-        """Edit user data in db. Right now only last_active is changed.
+                           combo, medicine1_side_effects, 
+                           medicine2_side_effects):
+        """Write usage data from tab1 into db.
 
         Args:
             userData: id from user
             type: int
+            selected_meds: selected medicines by user
+            type: list
+            combo: "True" or "False"
+            type: str
+            medicine1_side_effects: side effects from first
+            selected medicine reported by users
+            type: list
+            medicine2_side_effects: side effects from second
+            selected medicines reported by users
+            type: list
         Returns:
-            sum over n:
-            type: 
+            status_msg: 200 (succesfull written in db)
+            type: int
         """
         
         # Only one med selected
@@ -232,18 +265,27 @@ class UsageData:
         
         return status_msg
 
+
     def post_usage_data_reLookup(self, userData,
                                 selected_sideEffects, 
                                 predicted_med, combo):
-        """Edit user data in db. Right now only last_active is changed.
+        """Write usage data from tab2 into db.
 
         Args:
             userData: id from user
             type: int
+            selected_sideEffects: selected side effects
+            by user
+            type: list
+            predicted_med: predicted medicine by analsis
+            type: str
+            combo: "True" or "False"
+            type: str
         Returns:
-            sum over n:
-            type: 
+            status_msg: 200 (succesfull written in db)
+            type: int
         """
+
         # db connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
@@ -271,15 +313,19 @@ class UsageData:
 
     def post_usage_data_protein(self, userData,
                                 analysis_type_executed):
-        """Edit user data in db. Right now only last_active is changed.
+        """Write usage data from tab3 into db.
 
         Args:
             userData: id from user
             type: int
+            analysis_type_executed: "Execute Analysis" or
+            "Execute Query"
+            type: str
         Returns:
-            sum over n:
-            type: 
+            status_msg: 200 (succesfull written in db)
+            type: int
         """
+
         # db connection
         db = database.db_connection()
         db_connection, db_cur = db.connect_postgres()
@@ -297,14 +343,16 @@ class UsageData:
         return status_msg
 
     def get_usage_data_se(self, userData):
-        """Edit user data in db. Right now only last_active is changed.
+        """Provides usage data from tab1 of a given user.
 
         Args:
             userData: id from user
             type: int
         Returns:
-            sum over n:
-            type: 
+            concat_dfs: usage data in a table
+            type: dataframe
+            nr_entries: nr. of rows in table
+            type: int
         """
         
         # db connection
@@ -357,14 +405,16 @@ class UsageData:
 
 
     def get_usage_data_relookup(self, userData):
-        """Edit user data in db. Right now only last_active is changed.
+        """Provides usage data from tab2 of a given user.
 
         Args:
             userData: id from user
             type: int
         Returns:
-            sum over n:
-            type: 
+            concat_dfs: usage data in a table
+            type: dataframe
+            nr_entries: nr. of rows in table
+            type: int
         """
         
         # db connection
@@ -406,15 +456,18 @@ class UsageData:
 
         return concat_dfs, nr_entries
 
+
     def get_usage_data_protein(self, userData):
-        """Edit user data in db. Right now only last_active is changed.
+        """Provides usage data from tab3 of a given user.
 
         Args:
             userData: id from user
             type: int
         Returns:
-            sum over n:
-            type: 
+            concat_dfs: usage data in a table
+            type: dataframe
+            nr_entries: nr. of rows in table
+            type: int
         """
         
         # db connection
@@ -447,6 +500,7 @@ class UsageData:
         db.disconnect_postgres(db_connection, db_cur)
 
         return concat_dfs, nr_entries
+
 
 if __name__ == "__main__":
     pass

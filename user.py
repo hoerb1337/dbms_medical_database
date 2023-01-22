@@ -30,6 +30,7 @@ class UserUI:
 
         return userData
 
+
 class render_tab4:
     """UI elements for tab4: Your Usage Data"""
     def __init__(self, userID):
