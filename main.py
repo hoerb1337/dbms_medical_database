@@ -13,6 +13,8 @@ import userService
 class Frontend:
     
     def __init__(self):
+        
+        ## Layout an Design ##
         st.set_page_config(page_title="Medical Database",
                            layout="wide")
 
@@ -29,7 +31,7 @@ class Frontend:
         """
         st.markdown(header, unsafe_allow_html=True)
         
-        # Style Info Box when initialising tabs
+        # Style definition of web app
         css_style = """
                         <style>
                         .info_box {
@@ -127,7 +129,7 @@ class Frontend:
         # If not, register the user in database. Get user data
         # to save their access history.
         userData = userAuthenticated.authenticate()
-        #st.write(userData)
+        st.write(userData)
         #if 'userData["id"]' not in st.session_state:
             #st.session_state.userData["id"] = userData["id"]
 
