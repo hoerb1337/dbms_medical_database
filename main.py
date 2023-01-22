@@ -132,7 +132,6 @@ class Frontend:
         # If not, register the user in database. Get user data
         # to save their access history.
         userData = userAuthenticated.authenticate()
-        st.write(userData)
         if userData == "Error":
             webbrowser.open('https://medbase.dashboardauth.com/home', new=0, autoraise=True)
 
