@@ -2,6 +2,7 @@
 
 # External libraries
 import streamlit as st
+import webbrowser
 
 # Frontend modules
 import sideEffects
@@ -133,7 +134,7 @@ class Frontend:
         userData = userAuthenticated.authenticate()
         st.write(userData)
         if userData == "Error":
-            st.experimental_rerun
+            webbrowser.open('https://medbase.dashboardauth.com/home', new=0, autoraise=True)
 
         # Navigation bar
         tab1, tab2, tab3, tab4 = st.tabs(["Lookup and Report Side Effects", 
