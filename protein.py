@@ -131,10 +131,10 @@ and shared_meds.nr_shared_meds > 1)full_table
 
             # Display result of analysis
             if result_analysis == "False":
-                result_display = "<div class='result_box_negative'><h4>Result of Analysis: No</h4><p>No, drugs with shared proteins do not - on average - have common side effects. On average one side effect of drugs with a shared protein is common only in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</p></div>"   
+                result_display = "<div class='result_box_negative'><h4>RQ: Do drugs with shared proteins have common side effects?</h4><h4>Result of Analysis: No</h4><p>No, drugs with shared proteins do not - on average - have common side effects. On average, one side effect of drugs with a shared protein is common only in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</p></div>"   
                 st.markdown(result_display, unsafe_allow_html=True)
             else:
-                result_display = "<div class='result_box_positive'><h4>Result of Analysis: Yes</h4><p>Yes, drugs with shared proteins do - on average - have common side effects. On average one side effect of drugs with a shared protein is common in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</p></div>"
+                result_display = "<div class='result_box_positive'><h4>RQ: Do drugs with shared proteins have common side effects?</h4><h4>Result of Analysis: Yes</h4><p>Yes, drugs with shared proteins do - on average - have common side effects. On average one side effect of drugs with a shared protein is common in <b>" + avg_ratio_se_meds + "</b> of all drugs with this shared protein.</p></div>"
                 st.markdown(result_display, unsafe_allow_html=True)
 
             analysis_executed = "True"
