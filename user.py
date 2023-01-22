@@ -1,3 +1,5 @@
+###### Production Version 1.0 user #####
+
 # External libraries
 import streamlit as st
 
@@ -11,6 +13,19 @@ class UserUI:
         pass
 
     def authenticate(self):
+        """Proxy b/w frontend and backend to authenticate users
+        being redirected from Login Service Provider.
+
+        User data include: application_id, created_at, deleted,
+        email, id, last_active, verified.
+
+        Args:
+            None
+        Returns:
+            userData: data from user, see description above.
+            type: list/JSON or str
+        """
+        
         user = userService.UserManagament()
         
         # User data as JSON
@@ -24,7 +39,7 @@ class UserUI:
             if user_checked == 200:
                 user.edit_user(userData)
         
-            # user not yet in db
+            # user not yet in db, post user data to db
             elif user_checked == 400:
                 user.post_user(userData)
 
