@@ -130,6 +130,8 @@ class Frontend:
         # to save their access history.
         userData = userAuthenticated.authenticate()
         st.write(userData)
+        if userData == "Error":
+            st.experimental_rerun
         #if 'userData["id"]' not in st.session_state:
             #st.session_state.userData["id"] = userData["id"]
 
