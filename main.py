@@ -132,8 +132,6 @@ class Frontend:
         st.write(userData)
         if userData == "Error":
             st.experimental_rerun
-        #if 'userData["id"]' not in st.session_state:
-            #st.session_state.userData["id"] = userData["id"]
 
         # Navigation bar
         tab1, tab2, tab3, tab4 = st.tabs(["Lookup and Report Side Effects", 
