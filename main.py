@@ -241,10 +241,10 @@ class Frontend:
             tab4_rendered.show_accessHistory_tab3(userData["id"])
         # End of tab4
 
-        #footer = """<div class="footer">
+        footer = """<div class="footer">
                     #<p>Medical Database</p>
                     #</div>"""
-        #st.markdown(footer, unsafe_allow_html=True) 
+        st.markdown(footer, unsafe_allow_html=True) 
 
 if __name__ == "__main__":
     rendered_frondend = Frontend()
