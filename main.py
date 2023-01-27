@@ -48,7 +48,7 @@ class Frontend:
                             bottom: 0;
                             width: 100%;
                             background-color: red;
-                            z-index: 9999999999999999999999999999;
+                            z-index: -1;
                         }
                         .subheader {
                             color: grey;
