@@ -123,11 +123,6 @@ class Frontend:
         st.markdown(css_style, unsafe_allow_html=True)
        
         header = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        .subheader {color: grey; font-size: 18px;}
-        </style>
         <h1>Welcome to the Medical Database</h1>
         <div class="subheader">Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
         The data mainly provides information on medicines and their side effects.</div>
@@ -239,11 +234,6 @@ class Frontend:
             tab4_rendered.show_accessHistory_tab3(userData["id"])
         # End of tab4
 
-        #
-        # footer = """<div class="footer">
-                    #<p>Medical Database</p>
-                    #</div>"""
-        #st.markdown(footer, unsafe_allow_html=True) 
 
 if __name__ == "__main__":
     rendered_frondend = Frontend()
