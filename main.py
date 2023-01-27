@@ -42,13 +42,13 @@ class Frontend:
                             visibility: hidden;
                         }
                         .footer {
-                            visibility: hidden;
+                            visibility: visibility;
                             position: absolute;
                             left: 0;
                             bottom: 0;
                             width: 100%;
                             background-color: red;
-                            z-index: auto;
+                            z-index: 9999999999999999999999999999;
                         }
                         .subheader {
                             color: grey;
