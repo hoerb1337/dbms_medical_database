@@ -121,6 +121,16 @@ class Frontend:
                             border-color: #ace1af;
                             border-width: 2px;
                         }
+                        .footer {
+                            position: fixed;
+                            left: 0;
+                            bottom: 0;
+                            width: 100%;
+                            background-color: white;
+                            color: white;
+                            text-align: center;
+                            z-index: 1;
+                        }
                         </style>
                     """
         st.markdown(css_style, unsafe_allow_html=True)
@@ -229,6 +239,10 @@ class Frontend:
             tab4_rendered.show_accessHistory_tab3(userData["id"])
         # End of tab4
 
+        footer = """<div class="footer">
+                    <p>Medical Database</p>
+                    </div>"""
+        st.markdown(footer, unsafe_allow_html=True) 
 
 if __name__ == "__main__":
     rendered_frondend = Frontend()
