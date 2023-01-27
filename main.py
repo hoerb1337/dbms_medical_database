@@ -21,22 +21,19 @@ class Frontend:
         st.set_page_config(page_title="Medical Database",
                            layout="wide")
 
-        # Header
-        header = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        .subheader {color: grey; font-size: 18px;}
-        </style>
-        <h1>Welcome to the Medical Database</h1>
-        <div class="subheader">Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
-        The data mainly provides information on medicines and their side effects.</div>
-        <br>
-        """
-        st.markdown(header, unsafe_allow_html=True)
-        
         # Style definition of web app
         css_style = """
                         <style>
+                        #MainMenu {
+                            visibility: hidden;
+                        }
+                        footer {
+                            visibility: hidden;
+                        }
+                        .subheader {
+                            color: grey;
+                            font-size: 18px;
+                        }
                         .info_box {
                             background-color: #f2f3f4;
                             margin-top: 5px;
@@ -125,6 +122,15 @@ class Frontend:
                     """
         st.markdown(css_style, unsafe_allow_html=True)
        
+        # Header
+        header = """
+        <h1>Welcome to the Medical Database</h1>
+        <div class="subheader">Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
+        The data mainly provides information on medicines and their side effects.</div>
+        <br>
+        """
+        st.markdown(header, unsafe_allow_html=True)
+
         # User management:
         userAuthenticated = user.UserUI()
         
