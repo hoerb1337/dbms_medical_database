@@ -25,6 +25,8 @@ class Frontend:
         header = """
         <style>
         #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
         .subheader {color: grey; font-size: 18px;}
         </style>
         <h1>Welcome to the Medical Database</h1>
