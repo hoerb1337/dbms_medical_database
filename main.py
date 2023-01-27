@@ -42,7 +42,7 @@ class Frontend:
                             visibility: hidden;
                         }
                         .footer {
-                            visibility: hidden;
+                            visibility: visible;
                             position: fixed;
                             left: 0;
                             bottom: 0;
@@ -260,8 +260,8 @@ class Frontend:
         # End of tab4
 
         footer = """<div class="footer">
-                    #<p>Medical Database</p>
-                    #</div>"""
+                    <p>Medical Database</p>
+                    </div>"""
         st.markdown(footer, unsafe_allow_html=True) 
 
 if __name__ == "__main__":
