@@ -42,8 +42,8 @@ class Frontend:
                             visibility: hidden;
                         }
                         .footer {
-                            visibility: visible;
-                            position: fixed;
+                            visibility: hidden;
+                            position: absolute;
                             left: 0;
                             bottom: 0;
                             width: 100%;
