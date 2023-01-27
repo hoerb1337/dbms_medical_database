@@ -45,14 +45,12 @@ class Frontend:
                             visibility: hidden;
                         }
                         footer:after {
-                            content:'goodbye'; 
-                            visibility: visible;
-                            display: block;
                             position: fixed;
-                            background-color: red;
+                            left: 0;
+                            bottom: 0;
                             width: 100%;
-                            padding: 0px;
-                            top: 2px;
+                            visibility: visible;
+                            background-color: red;
                             z-index: 100;
                         }
                         .subheader {
