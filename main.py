@@ -48,9 +48,10 @@ class Frontend:
                             content:'goodbye'; 
                             visibility: visible;
                             display: block;
-                            position: relative;
+                            position: fixed;
                             background-color: red;
-                            padding: 5px;
+                            width: 100%;
+                            padding: 0px;
                             top: 2px;
                             z-index: 100;
                         }
