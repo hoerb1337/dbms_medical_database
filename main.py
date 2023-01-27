@@ -51,7 +51,7 @@ class Frontend:
                             width: 100%;
                             visibility: visible;
                             background-color: red;
-                            z-index: 100;
+                            z-index: 1;
                         }
                         .subheader {
                             color: grey;
