@@ -126,8 +126,8 @@ class Frontend:
                             left: 0;
                             bottom: 0;
                             width: 100%;
-                            background-color: red;
-                            color: white;
+                            background-color: white;
+                            color: black;
                             text-align: center;
                             z-index: 1;
                         }
