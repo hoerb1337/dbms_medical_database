@@ -22,23 +22,42 @@ class Frontend:
                            layout="wide")
 
         # Header
-        header = """
-        <style>
+        #header = """
+        #<style>
         #MainMenu {visibility: hidden;}
-        footer {visibility: hidden;}
-        header {visibility: visible;}
-        .subheader {color: grey; font-size: 18px;}
-        </style>
-        <h1>Welcome to the Medical Database</h1>
-        <div class="subheader">Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
-        The data mainly provides information on medicines and their side effects.</div>
-        <br>
-        """
-        st.markdown(header, unsafe_allow_html=True)
+        #footer {visibility: hidden;}
+        #.subheader {color: grey; font-size: 18px;}
+        #</style>
+        #<h1>Welcome to the Medical Database</h1>
+        #<div class="subheader">Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
+        #The data mainly provides information on medicines and their side effects.</div>
+        #<br>
+        #"""
+        #st.markdown(header, unsafe_allow_html=True)
         
         # Style definition of web app
         css_style = """
                         <style>
+                        #MainMenu {
+                            visibility: hidden;
+                        }
+                        .footer {
+                            visibility: hidden;
+                        }
+                        footer:after {
+                            content:'goodbye'; 
+                            visibility: visible;
+                            display: block;
+                            position: relative;
+                            background-color: red;
+                            padding: 5px;
+                            top: 2px;
+                            z-index: 100;
+                        }
+                        .subheader {
+                            color: grey;
+                            font-size: 18px;
+                        }
                         .info_box {
                             background-color: #f2f3f4;
                             margin-top: 5px;
@@ -123,20 +142,23 @@ class Frontend:
                             border-color: #ace1af;
                             border-width: 2px;
                         }
-                        .footer {
-                            position: fixed;
-                            left: 0;
-                            bottom: 0;
-                            width: 100%;
-                            background-color: white;
-                            color: white;
-                            text-align: center;
-                            z-index: 100;
-                        }
                         </style>
                     """
         st.markdown(css_style, unsafe_allow_html=True)
        
+        header = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        .subheader {color: grey; font-size: 18px;}
+        </style>
+        <h1>Welcome to the Medical Database</h1>
+        <div class="subheader">Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
+        The data mainly provides information on medicines and their side effects.</div>
+        <br>
+        """
+        st.markdown(header, unsafe_allow_html=True)
+
         # User management:
         userAuthenticated = user.UserUI()
         
