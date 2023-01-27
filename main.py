@@ -28,7 +28,7 @@ class Frontend:
                             visibility: hidden;
                         }
                         footer {
-                            visibility: visible;
+                            visibility: hidden;
                             position: fixed;
                             left: 0;
                             bottom: 0;
