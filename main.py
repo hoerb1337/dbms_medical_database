@@ -33,7 +33,7 @@ class Frontend:
                             left: 0;
                             bottom: 0;
                             width: 100%;
-                            z-index: 5;
+                            z-index: 99999999999;
                             background-color: white;
                         }
                         .subheader {
