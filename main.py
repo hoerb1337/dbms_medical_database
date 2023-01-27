@@ -26,7 +26,7 @@ class Frontend:
         <style>
         #MainMenu {visibility: hidden;}
         footer {visibility: hidden;}
-        header {visibility: hidden;}
+        header {visibility: visible;}
         .subheader {color: grey; font-size: 18px;}
         </style>
         <h1>Welcome to the Medical Database</h1>
@@ -129,9 +129,9 @@ class Frontend:
                             bottom: 0;
                             width: 100%;
                             background-color: white;
-                            color: black;
+                            color: white;
                             text-align: center;
-                            z-index: 1;
+                            z-index: 100;
                         }
                         </style>
                     """
