@@ -166,22 +166,22 @@ class Frontend:
                 medicine1_side_effects, medicine2_side_effects = tab1_rendered.select_own_side_effects(combo,
                                                                                                        nr_selected_meds,
                                                                                                        selected_meds)
-
+                if len(medicine1_side_effects) > 0:
                 # Reporting Button
-                if st.button(label="Report side effects", key="reporting"):
-                    # Post own side effects to database
-                    tab1_rendered.report_side_effects(combo, nr_selected_meds,
-                                                      selected_meds, medicine1_side_effects,
-                                                      medicine2_side_effects, userData["id"])
-                    
-                    # Store usage data from user in database
-                    store_usage_date = userService.UsageData()
-                    store_usage_date.post_usage_data_se(userData["id"], selected_meds, combo,
-                                                        medicine1_side_effects, medicine2_side_effects)
-                    
-                    # Process reporting in frontend
-                    session_sate = st.session_state.keys()
-                    tab1_rendered.process_reporting(session_sate)
+                    if st.button(label="Report side effects", key="reporting"):
+                        # Post own side effects to database
+                        tab1_rendered.report_side_effects(combo, nr_selected_meds,
+                                                        selected_meds, medicine1_side_effects,
+                                                        medicine2_side_effects, userData["id"])
+                        
+                        # Store usage data from user in database
+                        store_usage_date = userService.UsageData()
+                        store_usage_date.post_usage_data_se(userData["id"], selected_meds, combo,
+                                                            medicine1_side_effects, medicine2_side_effects)
+                        
+                        # Process reporting in frontend
+                        session_sate = st.session_state.keys()
+                        tab1_rendered.process_reporting(session_sate)
         # End of tab1
 
         # Tab2: reverse lookup analysis

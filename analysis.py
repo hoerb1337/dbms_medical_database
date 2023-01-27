@@ -57,7 +57,7 @@ class render_tab2:
         callAnalysisBackend = analysisService.data4Analysis()
         
         # Checkbox
-        if st.checkbox('I am taking two medicines in combination',
+        if st.checkbox('Consider two medicines in combination',
                        key="checkbox"):
             
             # Get list of side effects from combo medicines
