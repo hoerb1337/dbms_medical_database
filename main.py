@@ -28,13 +28,7 @@ class Frontend:
                             visibility: hidden;
                         }
                         .footer {
-                            visibility: visibility;
-                            position: fixed;
-                            left: 0;
-                            bottom: 0;
-                            width: 100%;
-                            background-color: red;
-                            z-index: 99999999999999999999999999999999999999999999999999999;
+                            visibility: hidden;
                         }
                         .subheader {
                             color: grey;
@@ -245,10 +239,10 @@ class Frontend:
             tab4_rendered.show_accessHistory_tab3(userData["id"])
         # End of tab4
 
-        footer = """<div class="footer">
-                    <p>Medical Database</p>
-                    </div>"""
-        st.markdown(footer, unsafe_allow_html=True) 
+        #footer = """<div class="footer">
+                    #<p>Medical Database</p>
+                    #</div>"""
+        #st.markdown(footer, unsafe_allow_html=True) 
 
 if __name__ == "__main__":
     rendered_frondend = Frontend()
