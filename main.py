@@ -28,7 +28,13 @@ class Frontend:
                             visibility: hidden;
                         }
                         footer {
-                            visibility: hidden;
+                            visibility: visible;
+                            position: fixed;
+                            left: 0;
+                            bottom: 0;
+                            width: 100%;
+                            z-index: 5;
+                            background-color: white;
                         }
                         .subheader {
                             color: grey;
@@ -122,6 +128,7 @@ class Frontend:
                     """
         st.markdown(css_style, unsafe_allow_html=True)
        
+        # Header
         header = """
         <h1>Welcome to the Medical Database</h1>
         <div class="subheader">Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
