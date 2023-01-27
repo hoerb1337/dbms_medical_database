@@ -21,20 +21,6 @@ class Frontend:
         st.set_page_config(page_title="Medical Database",
                            layout="wide")
 
-        # Header
-        #header = """
-        #<style>
-        #MainMenu {visibility: hidden;}
-        #footer {visibility: hidden;}
-        #.subheader {color: grey; font-size: 18px;}
-        #</style>
-        #<h1>Welcome to the Medical Database</h1>
-        #<div class="subheader">Our data is based on the <i>"Molecular network and polypharmacy data"</i>.
-        #The data mainly provides information on medicines and their side effects.</div>
-        #<br>
-        #"""
-        #st.markdown(header, unsafe_allow_html=True)
-        
         # Style definition of web app
         css_style = """
                         <style>
@@ -48,7 +34,7 @@ class Frontend:
                             bottom: 0;
                             width: 100%;
                             background-color: red;
-                            z-index: -1;
+                            z-index: 99999999999999999999999999999999999999999999999999999;
                         }
                         .subheader {
                             color: grey;
