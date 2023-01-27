@@ -27,7 +27,7 @@ class Frontend:
                         #MainMenu {
                             visibility: hidden;
                         }
-                        .footer {
+                        footer {
                             visibility: hidden;
                         }
                         .subheader {
