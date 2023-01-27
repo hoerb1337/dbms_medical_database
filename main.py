@@ -43,15 +43,12 @@ class Frontend:
                         }
                         .footer {
                             visibility: hidden;
-                        }
-                        footer:after {
                             position: fixed;
                             left: 0;
                             bottom: 0;
                             width: 100%;
-                            visibility: visible;
                             background-color: red;
-                            z-index: 1;
+                            z-index: 1
                         }
                         .subheader {
                             color: grey;
