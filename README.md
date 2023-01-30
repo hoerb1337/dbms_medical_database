@@ -4,7 +4,7 @@ Creator of web app: Eduard Kaucher, s0641340@stud.uni-frankfurt.de
 
 <b>Information on this web app and its usage:</b>
 - Technology mainly used: Python, SQL, HTML and CSS with the help of Streamlit
-- In general, the web app is built around frontend python modules, which include HTML and CSS. The Frontend modules access Backend modules (Python files with Service in the end), with the logic and SQL-Queries required to display in the frontend. The Backend modules access one central Backendservice (database.py) to connect and disconnect to the database.
+- In general, the web app is built around frontend Python modules, which include HTML and CSS. The frontend modules access backend modules including the functional logic and SQL-Queries to create and access data required to display in the frontend. The backend modules access one central database backend to connect and disconnect to the database.
 - Branch "prod" is used for the demonstration on 1st February 2023
 - Web app is hosted on Streamlit Cloud, which accesses the file 'main.py' from branch "prod" on GitHub to render the web app
 - For the login, the web app uses the service https://www.dashboardauth.com/
